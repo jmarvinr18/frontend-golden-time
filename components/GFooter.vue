@@ -2,7 +2,7 @@
     <footer class="bg-dark">
         <div class="container-xs py-5 text-light">
             <div class="logo">
-                <img src="logo.png" width="60" />
+                <img src="/logo.png" width="60" />
             </div>
 
             <div class="row lh-lg mt-4">

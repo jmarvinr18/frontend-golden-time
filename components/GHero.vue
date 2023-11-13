@@ -1,5 +1,5 @@
 <template>
-    <section id="golden-hero" class="w-100 g-hero overflow-hidden d-flex align-items-end justify-content-center border-bottom border-3 border-dark">
+    <section id="section-hero" class="w-100 g-hero overflow-hidden d-flex align-items-end justify-content-center border-bottom border-3 border-dark">
         <div class="display-4 fw-bold d-flex align-items-center g-title text-light justify-content-center h-25">
             <div class="g-title-spot position-relative me-3">
                 In the end
@@ -23,7 +23,7 @@
 .g-hero {
     height: 70vh;
     border-radius: 0 0 30px 30px;
-    background: url('https://www.jeremyscottfitness.com/wp-content/uploads/2015/05/JS-Feb-2015_2-small.jpg') no-repeat center center;
+    background: url('/images/bg-1.png') no-repeat center center;
     background-size: cover;
     box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);

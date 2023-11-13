@@ -44,3 +44,15 @@
 .bg-none {
     background: none !important;
 }
+
+.w-fit-content {
+    width: fit-content;
+}
+
+.pull-right, .float-right, .force-right {
+    float: right;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

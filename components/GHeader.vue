@@ -4,7 +4,9 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="left-side d-flex align-items-center">
                     <div class="me-5">
-                        <img src="logo.png" width="80" />
+                        <NuxtLink to="/">
+                            <img src="/logo.png" width="80" />
+                        </NuxtLink>
                     </div>
                     <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>Suplemen registration</div>
                 </div>
@@ -43,9 +45,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink class="dropdown-item" to="/me/profile">
                                     <i class="bi bi-person mb-0 me-2"></i>Edit profile
-                                </a>
+                                </NuxtLink>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
