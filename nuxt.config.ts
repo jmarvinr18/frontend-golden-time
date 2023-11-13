@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'node-server',
     output: {
-      publicDir: 'dist', // This setting can avoid that the packed dist file is a soft connection
+      publicDir: '../dist', // This setting can avoid that the packed dist file is a soft connection
     },
   },
   app: {
