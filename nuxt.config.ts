@@ -1,5 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  nitro: {
+    output: {
+      dir: '~/node-server',
+      publicDir: '~/node-server'
+    }
+  },
   app: {
     head: {
       title: 'Golden Time Food Suplement',
