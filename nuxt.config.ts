@@ -2,8 +2,8 @@
 export default defineNuxtConfig({
   nitro: {
     output: {
-      dir: '~/dist',
-      publicDir: '~/dist'
+      dir: '~/static_pages',
+      publicDir: '~/static_pages'
     }
   },
   app: {
