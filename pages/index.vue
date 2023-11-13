@@ -1,7 +1,7 @@
 <template>
     <GHero></GHero>
     <div class="container pt-2 pb-4">
-    <GSectionTitle title="My Blogzz" icon="bi-journals"></GSectionTitle>
+    <GSectionTitle title="Blog" icon="bi-journals"></GSectionTitle>
 
     <div class="row">
         <div class="col-md-6 col-xs-12">
