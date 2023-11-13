@@ -2,8 +2,8 @@
 export default defineNuxtConfig({
   nitro: {
     output: {
-      dir: '~/node-server',
-      publicDir: '~/node-server'
+      dir: '~/dist',
+      publicDir: '~/dist'
     }
   },
   app: {
