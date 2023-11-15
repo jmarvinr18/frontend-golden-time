@@ -1,5 +1,5 @@
 <template>
-    <section class="g-header position-fixed top-0 start-0 w-100 py-3" :class="colorChange? 'active':''">
+    <section class="g-header position-fixed top-0 start-0 w-100 py-3" :class="fixedMode==false? colorChange? 'active':'':'bg-dark'">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="left-side d-flex align-items-center">
@@ -40,9 +40,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink class="dropdown-item" to="/blog/post">
                                     <i class="bi bi-pencil mb-0 me-2"></i>Blog post
-                                </a>
+                                </NuxtLink>
                             </li>
                             <li>
                                 <NuxtLink class="dropdown-item" to="/me/profile">
@@ -69,8 +69,21 @@
 </template>
 <script lang="ts">
 export default defineComponent({
-    setup() {
+    async setup() {
         const colorChange = ref(false);
+        const fixedMode = ref(false);
+        const route:any = useRoute();
+        
+
+        const checkScroll = () => {
+            const spotlight = document.getElementById('section-hero');
+            if (spotlight) {
+                fixedMode.value = false;
+            } else {
+                fixedMode.value = true;
+            }
+        }
+        
         const initScroll = () => {
             const windowTop:any = window.top.scrollY;
             const spotlight:any = document.getElementById('section-hero');
@@ -83,20 +96,24 @@ export default defineComponent({
             }
         }
 
+        watch(() => route.fullPath, () => {
+            // console.log('change url')
+            checkScroll();
+        });
+
         onMounted(() => {
-            window.addEventListener('scroll', initScroll)
+            checkScroll()
+            window.addEventListener('scroll', initScroll);
         });
 
         return {
+            fixedMode,
             colorChange
         }
     }
 })
 </script>
 <style scoped>
-.dropdown-toggle::after {
-    display: none !important;
-}
 
 .g-header {
     z-index: 10000;

@@ -41,10 +41,14 @@
                 <div class="h2 mt-4 fw-bold">Jack Komboy</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
-                        <i class="bi bi-person-up me-2"></i>23
+                        <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-up me-2"></i>23
+                        </NuxtLink>
                     </div>
                     <div class="mx-2">
-                        <i class="bi bi-person-down me-2"></i>89
+                        <NuxtLink to="/me/following" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-down me-2"></i>89
+                        </NuxtLink>
                     </div>
                     <div class="mx-2">
                         <i class="bi bi-instagram me-2"></i>

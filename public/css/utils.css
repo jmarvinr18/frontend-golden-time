@@ -56,3 +56,11 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+.w-10 {
+    width: 10%;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
