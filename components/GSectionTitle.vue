@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex w-100 h4 my-3 align-items-center" id="section-here"  >
-        <i class="bi me-2" :class="icon"></i>
+        <i v-if="!iconHide" class="bi me-2" :class="icon"></i>
         {{ title }}
         <button v-for="(btn,id) in buttons" class="ms-2 btn rounded-pill f14" :class="'btn-'+btn.variant">
             <i class="bi me-1" :class="btn.icon"></i>
@@ -23,6 +23,10 @@ export default defineComponent({
         },
         buttons: {
             default: []
+        },
+        iconHide: {
+            type: Boolean,
+            default: false,
         }
     }
 })

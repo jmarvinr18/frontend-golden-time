@@ -61,6 +61,10 @@
     width: 10%;
 }
 
+.mt-lg {
+    margin-top: 20% !important;
+}
+
 .dropdown-toggle::after {
     display: none !important;
 }

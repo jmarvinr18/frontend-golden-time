@@ -69,7 +69,7 @@
 </template>
 <style scoped>
 .g-profile-card {
-    top: 60%;
+    top: 50%;
 }
 .g-profile-container {
     height: 20vh;
