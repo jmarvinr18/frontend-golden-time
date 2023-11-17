@@ -86,7 +86,7 @@
                 <div class="w-25 text-end">
                     <div>Release</div>
                     <div class="form-check form-switch form-check-reverse">
-                        <input class="form-check-input py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                        <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
                     </div>
                 </div>
             </div>
@@ -94,10 +94,6 @@
     </div>
 </template>
 <style scoped>
-.form-check-input:checked {
-    border-color: var(--bs-success);
-    background-color: var(--bs-success);
-}
 .g-blog-form {
     top: 20%;
 }

@@ -8,11 +8,20 @@
                             <img src="/logo.png" width="80" />
                         </NuxtLink>
                     </div>
-                    <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>Suplemen registration</div>
+                    <NuxtLink to="/supplement/add" class="text-decoration-none">
+                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>Suplemen registration</div>
+                    </NuxtLink>
                 </div>
-                <div class="right-side d-flex align-items-center">
-                    <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3">Login</button>
-                    <button class="btn btn-light py-1 rounded-pill px-3 me-2">Signup</button>
+                <div class="right-side d-flex align-items-center f14">
+                    <NuxtLink to="/login">
+                        <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3">Login</button>
+                    </NuxtLink>
+                    <NuxtLink to="/signup">
+                        <button class="btn btn-light py-1 rounded-pill px-3 me-2">
+                            <i class="bi bi-plus-lg"></i>
+                            Signup
+                        </button>
+                    </NuxtLink>
                     <div class="dropdown p-0 ">
                         <button class="btn btn-secondary dropdown-toggle p-0 m-0 bg-none border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list h1 mb-0 text-light fw-bold"></i>
@@ -25,19 +34,19 @@
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink to="/supplement/add" class="dropdown-item text-decoration-none">
                                     <i class="bi bi-plus-lg mt-2 mb-0 me-2"></i>Supplement registration
-                                </a>
+                                </NuxtLink>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink class="dropdown-item" to="/supplement/search">
                                     <i class="bi bi-search mt-2 mb-0 me-2"></i>Supplement search
-                                </a>
+                                </NuxtLink>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink class="dropdown-item" to="/supplement/review/post">
                                     <i class="bi bi-chat-right-text mb-0 me-2"></i>Supplement review
-                                </a>
+                                </NuxtLink>
                             </li>
                             <li>
                                 <NuxtLink class="dropdown-item" to="/blog/post">
@@ -56,9 +65,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink class="dropdown-item" to="/login">
                                     <i class="bi bi-box-arrow-right me-2"></i>Log out
-                                </a>
+                                </NuxtLink>
                             </li>
                         </ul>
                     </div>

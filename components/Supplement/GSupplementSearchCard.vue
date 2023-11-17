@@ -3,7 +3,7 @@
         <!-- SEARCH BOX AND FILTER -->
         <div class="container py-4">
             <div class="input-group mb-3 rounded-lg border border-dark w-75 mx-auto">
-                <input type="text" class="form-control form-control-lg border-0" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" class="form-control form-control-lg border-0" placeholder="Type a keyword..." aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <span class="input-group-text bg-dark text-light px-4 border-0" id="basic-addon2" style="border-radius:0 0 0 30px">
                     <i class="bi bi-sort-up"></i>
                 </span>

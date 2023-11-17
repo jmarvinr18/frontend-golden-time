@@ -3,7 +3,7 @@
     <div class="g-supplement-review-form w-100 position-absolute overflow-visible ">
         <div class="bg-white mx-auto rounded-lg w-75 position-relative g-shadow" style="min-height:500px">
             <div class="w-75 mx-auto pt-4 pb-2">
-                <SupplementGSupplementReviewItem class="mb-5"></SupplementGSupplementReviewItem>
+                <SupplementGSupplementReviewItem class="mt-4 mb-5"></SupplementGSupplementReviewItem>
 
                 <div class="d-flex justify-content-center gap-4" style="margin-bottom:80px; margin-top:100px">
                     <div class="w-25">

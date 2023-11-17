@@ -2,7 +2,7 @@
 
 <template>
     <section id="section-hero" class="g-profile-section position-relative">
-        <GProfileCard></GProfileCard>
+        <GProfileCard :mode="mode"></GProfileCard>
     </section>
 </template>
 <script lang="ts">
@@ -10,6 +10,12 @@ import GProfileCard from './GProfileCard.vue';
 
 export default defineComponent({
     name: 'GProfileSection',
+    props: {
+        mode: {
+            type: String,
+            default: 'me' // me or other
+        }
+    },
     components: {
         GProfileCard
     }

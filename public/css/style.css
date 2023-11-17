@@ -36,6 +36,10 @@ body {
     color: var(--bs-success);
 }
 
+.border-primary {
+    border-color: var(--bs-primary) !important;
+}
+
 .text-primary {
     color: var(--bs-primary) !important;
 }
@@ -54,4 +58,9 @@ body {
 
 .bg-success {
     background: var(--bs-success) !important;
+}
+
+.form-check-input-success:checked {
+    border-color: var(--bs-success);
+    background-color: var(--bs-success);
 }

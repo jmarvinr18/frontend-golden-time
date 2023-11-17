@@ -17,10 +17,15 @@
                 </div>
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container ps-3">
                     <div class="w-100 g-profile-content">
-                        <button class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                        <button v-if="mode=='me'" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
                             <i class="bi bi-pencil me-1"></i>
                             Edit Profile
                         </button>
+                        <button v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                            <i class="bi bi-person-plus me-1"></i>
+                            Follow
+                        </button>
+                        
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content mt-5">
                             Age: 30 years old
                         </div>
@@ -67,6 +72,16 @@
         </div>
     </div>
 </template>
+<script lang="ts">
+export default defineComponent({
+    props: {
+        mode: {
+            type: String,
+            default: 'me' // me or other
+        }
+    },
+})
+</script>
 <style scoped>
 .g-profile-card {
     top: 50%;
