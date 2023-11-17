@@ -1,0 +1,3 @@
+<template>
+    <SupplementGSupplementReviewSection></SupplementGSupplementReviewSection>
+</template>
