@@ -17,10 +17,10 @@
                 </div>
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container ps-3">
                     <div class="w-100 g-profile-content">
-                        <button v-if="mode=='me'" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                        <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
                             <i class="bi bi-pencil me-1"></i>
                             Edit Profile
-                        </button>
+                        </NuxtLink>
                         <button v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
                             <i class="bi bi-person-plus me-1"></i>
                             Follow

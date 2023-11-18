@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="g-supplement-item-rating text-center">
-                        <div class="g-rating-caption">Taste/drinkability</div>
+                        <div class="g-rating-caption">Effect</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
                             <i class="bi bi-star-fill h3 text-grad-2"></i>
                             <i class="bi bi-star-fill h3 text-grad-2"></i>

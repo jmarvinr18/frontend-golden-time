@@ -12,12 +12,12 @@
                         <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>Suplemen registration</div>
                     </NuxtLink>
                 </div>
-                <div class="right-side d-flex align-items-center f14">
+                <div class="right-side d-flex align-items-center">
                     <NuxtLink to="/login">
-                        <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3">Login</button>
+                        <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">Login</button>
                     </NuxtLink>
                     <NuxtLink to="/signup">
-                        <button class="btn btn-light py-1 rounded-pill px-3 me-2">
+                        <button class="btn btn-light py-1 rounded-pill px-3 me-2 f14">
                             <i class="bi bi-plus-lg"></i>
                             Signup
                         </button>
@@ -54,7 +54,7 @@
                                 </NuxtLink>
                             </li>
                             <li>
-                                <NuxtLink class="dropdown-item" to="/me/profile">
+                                <NuxtLink class="dropdown-item" to="/me/edit-profile">
                                     <i class="bi bi-person mb-0 me-2"></i>Edit profile
                                 </NuxtLink>
                             </li>

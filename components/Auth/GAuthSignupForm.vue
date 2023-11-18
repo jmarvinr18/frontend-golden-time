@@ -1,6 +1,6 @@
 <template>
     <div class="g-auth-signup-title w-100 mt-5">
-        <div class="h3 mt-5">Register a new account</div>
+        <div class="h3 mt-5">{{ mode=='signup'? 'Register a new account':'Profile change' }}</div>
         <div class="text-danger mt-5">* Required input</div>
     </div>
     <div class="g-auth-signup-form mt-5">
@@ -128,13 +128,31 @@
             </div>
         </div>
         <div class="w-100 py-3 text-center">
-            <button class="btn btn-primary g-shadow rounded-pill px-4">
+            <button v-if="mode=='signup'" class="btn btn-primary g-shadow rounded-pill px-4">
                 Create New
                 <i class="ms-2 bi bi-plus-lg"></i>
             </button>
+            <div v-else class="d-flex justify-content-center gap-3">
+                <button class="w-25 btn btn-outline-secondary rounded-pill px-4">
+                    cancel
+                </button>
+                <button class="w-25 btn btn-primary rounded-pill px-4">
+                    change
+                </button>
+            </div>
         </div>
     </div>
 </template>
+<script>
+export default defineComponent({
+    props: {
+        mode: {
+            type: String,
+            default: 'signup', // or edit
+        }
+    }
+})
+</script>
 <style>
 .g-form-input input, .g-form-input select, .g-form-input textarea{
     margin-top:-16px;

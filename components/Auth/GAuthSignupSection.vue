@@ -11,7 +11,17 @@
     <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
         <!-- SIGN UP FORM -->
         <div class="container py-4 w-50 mx-auto">
-            <AuthGAuthSignupForm></AuthGAuthSignupForm>
+            <AuthGAuthSignupForm :mode="mode"></AuthGAuthSignupForm>
         </div>
     </div>
 </template>
+<script>
+export default defineComponent({
+    props: {
+        mode: {
+            type: String,
+            default: 'signup', // or edit
+        }
+    }
+})
+</script>
