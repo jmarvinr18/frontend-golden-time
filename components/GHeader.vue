@@ -1,5 +1,5 @@
 <template>
-    <section class="g-header position-fixed top-0 start-0 w-100 py-3" :class="colorChange? 'active':''">
+    <section class="g-header position-fixed top-0 start-0 w-100 py-3" :class="fixedMode==false? colorChange? 'active':'':'bg-dark'">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="left-side d-flex align-items-center">
@@ -8,11 +8,20 @@
                             <img src="/logo.png" width="80" />
                         </NuxtLink>
                     </div>
-                    <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>Suplemen registration</div>
+                    <NuxtLink to="/supplement/add" class="text-decoration-none">
+                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>Suplemen registration</div>
+                    </NuxtLink>
                 </div>
                 <div class="right-side d-flex align-items-center">
-                    <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3">Login</button>
-                    <button class="btn btn-light py-1 rounded-pill px-3 me-2">Signup</button>
+                    <NuxtLink to="/login">
+                        <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">Login</button>
+                    </NuxtLink>
+                    <NuxtLink to="/signup">
+                        <button class="btn btn-light py-1 rounded-pill px-3 me-2 f14">
+                            <i class="bi bi-plus-lg"></i>
+                            Signup
+                        </button>
+                    </NuxtLink>
                     <div class="dropdown p-0 ">
                         <button class="btn btn-secondary dropdown-toggle p-0 m-0 bg-none border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list h1 mb-0 text-light fw-bold"></i>
@@ -25,27 +34,27 @@
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink to="/supplement/add" class="dropdown-item text-decoration-none">
                                     <i class="bi bi-plus-lg mt-2 mb-0 me-2"></i>Supplement registration
-                                </a>
+                                </NuxtLink>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink class="dropdown-item" to="/supplement/search">
                                     <i class="bi bi-search mt-2 mb-0 me-2"></i>Supplement search
-                                </a>
+                                </NuxtLink>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink class="dropdown-item" to="/supplement/review/post">
                                     <i class="bi bi-chat-right-text mb-0 me-2"></i>Supplement review
-                                </a>
+                                </NuxtLink>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink class="dropdown-item" to="/blog/post">
                                     <i class="bi bi-pencil mb-0 me-2"></i>Blog post
-                                </a>
+                                </NuxtLink>
                             </li>
                             <li>
-                                <NuxtLink class="dropdown-item" to="/me/profile">
+                                <NuxtLink class="dropdown-item" to="/me/edit-profile">
                                     <i class="bi bi-person mb-0 me-2"></i>Edit profile
                                 </NuxtLink>
                             </li>
@@ -56,9 +65,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <NuxtLink class="dropdown-item" to="/login">
                                     <i class="bi bi-box-arrow-right me-2"></i>Log out
-                                </a>
+                                </NuxtLink>
                             </li>
                         </ul>
                     </div>
@@ -69,8 +78,21 @@
 </template>
 <script lang="ts">
 export default defineComponent({
-    setup() {
+    async setup() {
         const colorChange = ref(false);
+        const fixedMode = ref(false);
+        const route:any = useRoute();
+        
+
+        const checkScroll = () => {
+            const spotlight = document.getElementById('section-hero');
+            if (spotlight) {
+                fixedMode.value = false;
+            } else {
+                fixedMode.value = true;
+            }
+        }
+        
         const initScroll = () => {
             const windowTop:any = window.top.scrollY;
             const spotlight:any = document.getElementById('section-hero');
@@ -83,20 +105,24 @@ export default defineComponent({
             }
         }
 
+        watch(() => route.fullPath, () => {
+            // console.log('change url')
+            checkScroll();
+        });
+
         onMounted(() => {
-            window.addEventListener('scroll', initScroll)
+            checkScroll()
+            window.addEventListener('scroll', initScroll);
         });
 
         return {
+            fixedMode,
             colorChange
         }
     }
 })
 </script>
 <style scoped>
-.dropdown-toggle::after {
-    display: none !important;
-}
 
 .g-header {
     z-index: 10000;

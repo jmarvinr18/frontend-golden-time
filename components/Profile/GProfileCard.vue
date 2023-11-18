@@ -17,10 +17,15 @@
                 </div>
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container ps-3">
                     <div class="w-100 g-profile-content">
-                        <button class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                        <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
                             <i class="bi bi-pencil me-1"></i>
                             Edit Profile
+                        </NuxtLink>
+                        <button v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                            <i class="bi bi-person-plus me-1"></i>
+                            Follow
                         </button>
+                        
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content mt-5">
                             Age: 30 years old
                         </div>
@@ -41,10 +46,14 @@
                 <div class="h2 mt-4 fw-bold">Jack Komboy</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
-                        <i class="bi bi-person-up me-2"></i>23
+                        <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-up me-2"></i>23
+                        </NuxtLink>
                     </div>
                     <div class="mx-2">
-                        <i class="bi bi-person-down me-2"></i>89
+                        <NuxtLink to="/me/following" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-down me-2"></i>89
+                        </NuxtLink>
                     </div>
                     <div class="mx-2">
                         <i class="bi bi-instagram me-2"></i>
@@ -63,9 +72,19 @@
         </div>
     </div>
 </template>
+<script lang="ts">
+export default defineComponent({
+    props: {
+        mode: {
+            type: String,
+            default: 'me' // me or other
+        }
+    },
+})
+</script>
 <style scoped>
 .g-profile-card {
-    top: 60%;
+    top: 50%;
 }
 .g-profile-container {
     height: 20vh;

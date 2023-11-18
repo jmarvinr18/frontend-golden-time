@@ -1,12 +1,47 @@
 .g-shadow {
-    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.74);
-    -webkit-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.74);
-    -moz-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.74);
+    box-shadow: 0px 4px 4px 0px #1D1B20, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 4px 4px 0px #1D1B20, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 4px 4px 0px #1D1B20, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
 }
 
 .text-border-black {
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: black;
+}
+
+.text-grad-1 {
+    background: rgb(33,255,174);
+    background: linear-gradient(0deg, rgba(33,255,174,1) 20%, rgba(0,202,239,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-grad-2 {
+    background: rgb(97,62,212);
+    background: linear-gradient(0deg, rgba(97,62,212,1) 20%, rgba(141,112,255,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-grad-1 {
+    background: rgb(33,255,174);
+    background: linear-gradient(0deg, rgba(33,255,174,1) 20%, rgba(0,202,239,1) 100%);
+}
+
+.bg-grad-2 {
+    background: rgb(97,62,212);
+    background: linear-gradient(0deg, rgba(97,62,212,1) 20%, rgba(141,112,255,1) 100%);
+}
+
+.border-grad-1 {
+    border: 7px solid;
+    border-image-slice: 1 !important;
+    border-image-source: linear-gradient(0deg, rgba(33,255,174,1) 20%, rgba(0,202,239,1) 100%) !important;
+}
+
+.border-dashed {
+    border-style: dashed !important;
 }
 
 .rounded-lg {
@@ -55,4 +90,16 @@
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.mt-lg {
+    margin-top: 20% !important;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
 }

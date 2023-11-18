@@ -2,7 +2,9 @@
     <footer class="bg-dark">
         <div class="container-xs py-5 text-light">
             <div class="logo">
-                <img src="/logo.png" width="60" />
+                <NuxtLink to="/">
+                    <img src="/logo.png" width="60" />
+                </NuxtLink>
             </div>
 
             <div class="row lh-lg mt-4">
