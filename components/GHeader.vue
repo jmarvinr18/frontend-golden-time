@@ -97,7 +97,9 @@
                     <i class="bi bi-bell text-light h2 mb-0"></i>
                 </div>
                 <div>
-                    <i class="bi bi-person text-light h2 mb-0"></i>
+                    <NuxtLink to="/me/profile">
+                        <i class="bi bi-person text-light h2 mb-0"></i>
+                    </NuxtLink>
                 </div>
             </div>
         </div>

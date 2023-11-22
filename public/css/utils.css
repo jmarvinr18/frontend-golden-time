@@ -120,6 +120,10 @@
     .is-mobile {
         display: block !important;
     }
+
+    .is-mobile.d-flex {
+        display: flex !important;
+    }
     
     .is-desktop{
         display: none !important;

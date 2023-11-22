@@ -2,8 +2,8 @@
 
 <template>
     <section id="section-hero" class="g-profile-section position-relative">
-        <GProfileCard :mode="mode"></GProfileCard>
     </section>
+    <GProfileCard :mode="mode"></GProfileCard>
 </template>
 <script lang="ts">
 import GProfileCard from './GProfileCard.vue';
@@ -30,6 +30,5 @@ export default defineComponent({
     box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    margin-bottom: 18%;
 }
 </style>

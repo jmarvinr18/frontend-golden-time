@@ -1,6 +1,6 @@
 <template>
-    <div class="g-blog-form w-100 position-absolute overflow-visible ">
-        <div class="bg-white mx-auto rounded-lg w-75 py-5 px-5 position-relative g-shadow" style="min-height:500px">
+    <div class="g-blog-form w-100 position-absolute overflow-visiblex">
+        <div class="is-desktop bg-white mx-auto rounded-lg w-75 py-5 px-5 position-relative g-shadow" style="min-height:500px">
             <div class="mb-4">
                 <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="Add title">
             </div>
@@ -58,6 +58,68 @@
                     <div>Release</div>
                     <div class="form-check form-switch form-check-reverse">
                         <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="is-mobile bg-white mx-auto rounded-lg w-100 py-3 px-2 position-relative g-shadow" style="min-height:500px">
+            <div class="mb-4">
+                <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="Add title">
+            </div>
+            <div class="mb-3">
+                <div id="editor-container" class=" border rounded-3"></div>
+            </div>
+
+            <div class="position-absolute bg-primary text-light py-0 px-0 rounded cursor-pointer" style="top:70px; right:22px">
+                
+                <div class="d-inline-flex gap-1">
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" @click="toolShow=!toolShow">
+                        <i v-if="!toolShow" class="bi bi-plus-lg h4"></i>
+                        <i v-else class="bi bi-dash-lg  h4"></i>
+                    </a>
+                </div>
+                <div class="collapse bg-light text-dark rounded-bottom" id="collapseExample">
+                    <ul class="g-blog-form-menu lh-5" id="toolbar">
+                        <li class="py-2">
+                            <button class="dropdown-item h2 mb-0 ql-image" data-bs-toggle="modal" data-bs-target="#tool-modal" @click="selectText('image')">
+                                <i class="bi bi-camera"></i>
+                            </button>
+                        </li>
+                        <li class="py-2 ql-bold">
+                            <button class="dropdown-item h2 mb-0 ql-link" data-bs-toggle="modal" data-bs-target="#tool-modal" @click="selectText('link')">
+                                <i class="bi bi-link-45deg"></i>
+                            </button>
+                        </li>
+                        
+                        <li class="py-2">
+                            <button class="dropdown-item h2 mb-0" data-bs-toggle="modal" data-bs-target="#tool-modal" @click="selectText('gif')">
+                                <i class="bi bi-filetype-gif"></i>
+                            </button>
+                        </li>
+                        
+                        <li class="py-2">
+                            <a class="dropdown-item h2 mb-0" href="#">
+                                <i class="bi bi-fonts"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="d-flex w-100 mt-4 mx-auto justify-content-center align-items-center flex-wrap">
+                <div class="mx-auto w-100 d-flex align-items-center g-blog-post-buttons">
+                    <button class="btn btn-outline-secondary rounded-pill me-1">Save draft</button>
+                    <button class="btn btn-primary rounded-pill me-1">Post</button>
+                    <button class="btn border-0 bg-none btn-delete text-start">
+                        <i class="bi bi-trash me-1"></i>
+                        delete
+                    </button>
+                    <div class="f10 text-end">
+                        <div>Release</div>
+                        <div class="form-check form-switch form-check-reverse">
+                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -189,6 +251,15 @@ export default defineComponent({
 .g-blog-form-menu.show {
     transition: opacity 1s ease-in;
     opacity: 1 !important;
+}
+
+.g-blog-post-buttons button{
+    width: 35%;
+    font-size: 14px;
+}
+
+.g-blog-post-buttons .btn-delete {
+    font-size: 13px;
 }
 </style>
 <style>

@@ -1,71 +1,78 @@
 <template>
     <ProfileGProfileSection mode="other"></ProfileGProfileSection>
-    <div class="container pt-2 pb-4">
-      <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
+    <div class="is-desktop">
+        <div class="container pt-2 pb-4">
+            <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
-      <div class="row">
-        <div class="col-md-4 col-xs-12">
-          <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+                </div>
+                <UtilsGLoadMore></UtilsGLoadMore>
+            </div>
         </div>
-        <div class="col-md-4 col-xs-12">
-          <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+        <div class="container pt-2 pb-4">
+            <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
+
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <CardsGCardSuplement mode="other"></CardsGCardSuplement>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <CardsGCardSuplement mode="other"></CardsGCardSuplement>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <CardsGCardSuplement mode="other"></CardsGCardSuplement>
+                </div>
+                    <UtilsGLoadMore></UtilsGLoadMore>
+            </div>
         </div>
-        <div class="col-md-4 col-xs-12">
-          <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+        <div class="container pt-2 pb-4">
+            <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
+
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                <CardsGCardFeature></CardsGCardFeature>
+                </div>
+                <div class="col-md-12 col-xs-12">
+                <CardsGCardFeature></CardsGCardFeature>
+                </div>
+                <UtilsGLoadMore></UtilsGLoadMore>
+            </div>
         </div>
-        <UtilsGLoadMore></UtilsGLoadMore>
-      </div>
     </div>
-    <div class="container pt-2 pb-4">
-      <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
+    <div class="is-mobile">
+        <div class="container pt-2 pb-4">
+            <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
-      <div class="row">
-        <div class="col-md-4 col-xs-12">
-          <CardsGCardSuplement mode="other"></CardsGCardSuplement>
+            <GContainerSlider>
+                <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+                <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+                <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+            </GContainerSlider>
         </div>
-        <div class="col-md-4 col-xs-12">
-          <CardsGCardSuplement mode="other"></CardsGCardSuplement>
-        </div>
-        <div class="col-md-4 col-xs-12">
-          <CardsGCardSuplement mode="other"></CardsGCardSuplement>
-        </div>
-        <UtilsGLoadMore></UtilsGLoadMore>
-      </div>
-    </div>
-    <div class="container pt-2 pb-4">
-      <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
+        <div class="container pt-2 pb-4">
+            <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
 
-      <div class="row">
-        <div class="col-md-12 col-xs-12">
-          <CardsGCardFeature></CardsGCardFeature>
+            <GContainerSlider>
+                <CardsGCardSuplement mode="other"></CardsGCardSuplement>
+                <CardsGCardSuplement mode="other"></CardsGCardSuplement>
+                <CardsGCardSuplement mode="other"></CardsGCardSuplement>
+            </GContainerSlider>
         </div>
-        <div class="col-md-12 col-xs-12">
-          <CardsGCardFeature></CardsGCardFeature>
-        </div>
-        <UtilsGLoadMore></UtilsGLoadMore>
-      </div>
-    </div>
-    <div class="container pt-2 pb-4">
-      <GSectionTitle title="comments" icon="bi-chat"></GSectionTitle>
+        <div class="container pt-2 pb-4">
+            <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
 
-      <div class="row">
-        <div class="col-md-12 col-xs-12">
-          <CardsGCardFeature></CardsGCardFeature>
+            <GContainerSlider>
+            <CardsGCardFeature></CardsGCardFeature>
+            <CardsGCardFeature></CardsGCardFeature>
+            </GContainerSlider>
         </div>
-        <div class="col-md-12 col-xs-12">
-          <CardsGCardFeature></CardsGCardFeature>
-        </div>
-        <UtilsGLoadMore></UtilsGLoadMore>
-      </div>
-    </div>
-    <div class="container pt-2 pb-4">
-      <GSectionTitle title="notification" icon="bi-bell"></GSectionTitle>
-
-      <div class="row">
-        <div class="col-md-12 col-xs-12">
-          <UtilsGNotifContainer></UtilsGNotifContainer>
-        </div>
-        <UtilsGLoadMore></UtilsGLoadMore>
-      </div>
     </div>
 </template>
