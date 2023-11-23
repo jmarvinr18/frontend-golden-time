@@ -1,5 +1,5 @@
 <template>
-    <section id="section-hero" class="w-100 g-auth-hero overflow-hidden d-flex align-items-center border-bottom border-3 border-dark">
+    <section id="section-hero" class="is-desktop w-100 g-auth-hero overflow-hidden d-flex align-items-center border-bottom border-3 border-dark">
         <div class="display-4 fw-bold d-flex align-items-center g-title text-light h-25 ms-5 flex-wrap">
             <div class="g-title-spot position-relative me-3">
                 In the end
@@ -15,11 +15,22 @@
             </div>
         </div>
     </section>
-    <div class="g-hero-search w-100 d-flex justify-content-center">
-        <div class="w-25">
-            
+    <section id="section-hero" class="is-mobile w-100 g-auth-hero overflow-hidden d-flex align-items-center border-bottom border-3 border-dark">
+        <div class="fw-bold d-flex align-items-center g-title text-light h-25 px-3 flex-wrap">
+            <div class="g-title-spot position-relative me-3">
+                In the end
+                <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
+            </div>
+            <div class="text-border-black fw-bold h4">What should I drink?</div>
+            <div class="text-border-black fw-bold h6 w-100">
+                Check it out now in prime time
+            </div>
+            <div class="mt-3 btn-group rounded-pill overflow-hidden bg-white border border-primary w-100 ms-1" role="group" aria-label="Basic example">
+                <NuxtLink to="/login" type="button" class="f12 btn text-primary fw-bold">Login <i class="bi bi-arrow-right mb-0 ms-1"></i></NuxtLink>
+                <button type="button" class="f12 btn btn-primary fw-bold">Sign Up <i class="bi bi-plus-lg mb-0 ms-1"></i></button>
+            </div>
         </div>
-    </div>
+    </section>
 </template>
 <style scope>
 .g-auth-hero {
@@ -54,5 +65,12 @@
 
 .g-hero-search input {
     border:1px solid #333000;
+}
+
+@media only screen and (max-width:1009px)  {
+    .g-auth-hero {
+        height: 40vh;
+        background-size: 210%;
+    }
 }
 </style>
