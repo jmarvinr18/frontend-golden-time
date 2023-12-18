@@ -64,3 +64,9 @@ body {
     border-color: var(--bs-success);
     background-color: var(--bs-success);
 }
+
+@media only screen and (max-width:1009px)  {
+    body {
+        padding-bottom: 15%;
+    }
+}

@@ -103,3 +103,44 @@
 .dropdown-toggle::after {
     display: none !important;
 }
+
+.is-mobile {
+    display: none !important;
+}
+
+.is-desktop{
+    display: block;
+}
+
+.is-desktop.d-flex{
+    display: flex;
+}
+
+@media only screen and (max-width:1009px)  {
+    .is-mobile {
+        display: block !important;
+    }
+
+    .is-mobile.d-flex {
+        display: flex !important;
+    }
+    
+    .is-desktop{
+        display: none !important;
+    }
+
+    .is-desktop.d-flex{
+        display: none !important;
+    }
+
+    .row {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .row>* {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-top: 10px; 
+    }
+}

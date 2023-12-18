@@ -1,6 +1,9 @@
 <template>
+    
     <section id="section-hero" class="g-profile-section position-relative">
-        <GBlogForm></GBlogForm>
+        <GSection>
+            <GBlogForm></GBlogForm>
+        </GSection>
     </section>
 </template>
 <script lang="ts">

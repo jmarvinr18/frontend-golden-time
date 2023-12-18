@@ -1,5 +1,5 @@
 <template>
-    <section class="g-header position-fixed top-0 start-0 w-100 py-3" :class="fixedMode==false? colorChange? 'active':'':'bg-dark'">
+    <section class="is-desktop g-header position-fixed top-0 start-0 w-100 py-3" :class="fixedMode==false? colorChange? 'active':'':'bg-dark'">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="left-side d-flex align-items-center">
@@ -71,6 +71,35 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="is-mobile g-header position-fixed top-0 start-0 w-100" :class="fixedMode==false? colorChange? 'active':'':'bg-dark'">
+        <div class="d-flex align-items-center justify-content-between px-3 py-3">
+            <div class="left-side d-flex align-items-center" style="width: 15%;">
+                <div class="me-5">
+                    <NuxtLink to="/">
+                        <img src="/logo.png" width="60" />
+                    </NuxtLink>
+                </div>
+            </div>
+            <div class="middle-side w-50 text-center">
+                <div class="input-group w-100 rounded-pill overflow-hidden bg-white">
+                    <span class="bg-none input-group-text border-0" id="basic-addon1">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control border-0 py-1" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="right-side d-flex align-items-center gap-3">
+                <div>
+                    <i class="bi bi-bell text-light h2 mb-0"></i>
+                </div>
+                <div>
+                    <NuxtLink to="/me/profile">
+                        <i class="bi bi-person text-light h2 mb-0"></i>
+                    </NuxtLink>
                 </div>
             </div>
         </div>

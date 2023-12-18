@@ -1,6 +1,6 @@
 
 <template>
-    <div class="g-supplement-review-form w-100 position-absolute overflow-visible ">
+    <div class="is-desktop g-supplement-review-form w-100 position-absolute overflow-visible ">
         <div class="bg-white mx-auto rounded-lg w-75 position-relative g-shadow" style="min-height:500px">
             <div class="w-75 mx-auto pt-4 pb-2">
                 <SupplementGSupplementReviewItem class="mt-4 mb-5"></SupplementGSupplementReviewItem>
@@ -32,6 +32,34 @@
 
                 <button class="rounded-pill px-4 shadow mt-3 mx-auto btn btn-primary">Post a comment <i class="bi bi-arrow-up fw-bold"></i></button>
             </div>
+        </div>
+    </div>
+    <div class="is-mobile g-supplement-review-form w-100 position-absolute overflow-visible ">
+        <div class="bg-white rounded-lg w-100 position-relative g-shadow" >
+            <div class="w-100 px-2 pt-4 pb-2">
+                <SupplementGSupplementReviewItem class="mt-4 mb-5"></SupplementGSupplementReviewItem>
+
+                <div class="d-flex justify-content-center gap-3 px-3" style="margin-bottom:80px; margin-top:100px">
+                    <div class="w-50 px-2">
+                        <SupplementGSupplementRatingCard></SupplementGSupplementRatingCard>
+                    </div>
+                    <div class="w-50 px-2">
+                        <SupplementGSupplementRatingCard type="effect"></SupplementGSupplementRatingCard>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-100 px-3 mx-auto">
+                <SupplementGSupplementDetailTable></SupplementGSupplementDetailTable>
+            </div>
+
+            <hr class="border-dashed w-75 mx-auto my-5" />
+
+            <div class="w-75 px-3 mx-auto">
+                <SupplementGSupplementReviewCard></SupplementGSupplementReviewCard>
+            </div>
+
+            <SupplementGSupplementReviewCommentForm></SupplementGSupplementReviewCommentForm>
         </div>
     </div>
 </template>

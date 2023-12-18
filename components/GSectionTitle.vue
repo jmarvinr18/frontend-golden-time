@@ -22,6 +22,7 @@ export default defineComponent({
             default: 'bi-eye'
         },
         buttons: {
+            type: Array,
             default: []
         },
         iconHide: {
