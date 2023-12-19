@@ -49,6 +49,8 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 CreateNewButton: "Create New",
                 CancelButton: "Cancel",
                 ChangeButton: "Change",
+                InTheEnd: "In the end",
+                WhatShouldIDrink: "What should I drink?",
             },
             ja: {
                 SupplementRegistration: 'サプリ登録',
@@ -91,7 +93,9 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 MyTraining: "私のトレーニング",
                 CreateNewButton: "新しく作る",
                 CancelButton: "キャンセル",
-                ChangeButton: "変化"
+                ChangeButton: "変化",
+                InTheEnd: "結局",
+                WhatShouldIDrink: "何飲めば良いの？"
             }
         }
     })
