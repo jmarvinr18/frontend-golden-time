@@ -9,17 +9,17 @@
                         </NuxtLink>
                     </div>
                     <NuxtLink to="/supplement/add" class="text-decoration-none">
-                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>Suplemen registration</div>
+                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>{{ $t('SupplementRegistration') }}</div>
                     </NuxtLink>
                 </div>
                 <div class="right-side d-flex align-items-center">
                     <NuxtLink to="/login">
-                        <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">Login</button>
+                        <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">{{ $t('Login') }}</button>
                     </NuxtLink>
                     <NuxtLink to="/signup">
                         <button class="btn btn-light py-1 rounded-pill px-3 me-2 f14">
                             <i class="bi bi-plus-lg"></i>
-                            Signup
+                            {{ $t('SignUp') }}
                         </button>
                     </NuxtLink>
                     <div class="dropdown p-0 ">
@@ -35,38 +35,38 @@
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <NuxtLink to="/supplement/add" class="dropdown-item text-decoration-none">
-                                    <i class="bi bi-plus-lg mt-2 mb-0 me-2"></i>Supplement registration
+                                    <i class="bi bi-plus-lg mt-2 mb-0 me-2"></i>{{ $t('SupplementRegistration') }}
                                 </NuxtLink>
                             </li>
                             <li>
                                 <NuxtLink class="dropdown-item" to="/supplement/search">
-                                    <i class="bi bi-search mt-2 mb-0 me-2"></i>Supplement search
+                                    <i class="bi bi-search mt-2 mb-0 me-2"></i>{{ $t('SupplementSearch') }}
                                 </NuxtLink>
                             </li>
                             <li>
                                 <NuxtLink class="dropdown-item" to="/supplement/review/post">
-                                    <i class="bi bi-chat-right-text mb-0 me-2"></i>Supplement review
+                                    <i class="bi bi-chat-right-text mb-0 me-2"></i>{{ $t('SupplementReview') }}
                                 </NuxtLink>
                             </li>
                             <li>
                                 <NuxtLink class="dropdown-item" to="/blog/post">
-                                    <i class="bi bi-pencil mb-0 me-2"></i>Blog post
+                                    <i class="bi bi-pencil mb-0 me-2"></i>{{ $t('BlogPost') }}
                                 </NuxtLink>
                             </li>
                             <li>
                                 <NuxtLink class="dropdown-item" to="/me/edit-profile">
-                                    <i class="bi bi-person mb-0 me-2"></i>Edit profile
+                                    <i class="bi bi-person mb-0 me-2"></i>{{ $t('EditProfile') }}
                                 </NuxtLink>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item" href="#">
-                                    <i class="bi bi-gear mb-0 me-2"></i>Settings
+                                    <i class="bi bi-gear mb-0 me-2"></i>{{ $t('Settings') }}
                                 </a>
                             </li>
                             <li>
                                 <NuxtLink class="dropdown-item" to="/login">
-                                    <i class="bi bi-box-arrow-right me-2"></i>Log out
+                                    <i class="bi bi-box-arrow-right me-2"></i>{{ $t('Logout') }}
                                 </NuxtLink>
                             </li>
                         </ul>

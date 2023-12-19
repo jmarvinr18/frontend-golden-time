@@ -20,7 +20,7 @@
     <div class="is-desktop g-hero-search w-100 d-flex justify-content-center">
         <div class="w-25">
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
-                <input type="text" class="form-control border-0 p-4" placeholder="Find supplements..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <NuxtLink to="/supplement/search" class="input-group-text border-0 bg-white" id="basic-addon2">
                     <i class="bi bi-search me-3"></i>
                 </NuxtLink>
@@ -30,7 +30,7 @@
     <div class="is-mobile g-hero-search w-100 d-flex justify-content-center">
         <div class="w-100 px-3">
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
-                <input type="text" class="form-control border-0 p-3" placeholder="Find supplements..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" class="form-control border-0 p-3" :placeholder="$t('FindSupplements')" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <NuxtLink to="/supplement/search" class="input-group-text border-0 bg-white" id="basic-addon2">
                     <i class="bi bi-search me-3"></i>
                 </NuxtLink>
