@@ -1,20 +1,20 @@
 <template>
     <section id="section-hero" class="is-desktop w-100 g-hero overflow-hidden d-flex align-items-end justify-content-center border-bottom border-3 border-dark">
         <div class="display-4 fw-bold d-flex align-items-center g-title text-light justify-content-center h-25">
-            <div class="g-title-spot position-relative me-3">
-                In the end
-                <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
+            <div class="g-title-spot position-relative me-3 rounded border border-3 border-light p-1">
+                {{ $t('InTheEnd') }}
+                <div class="g-title-spot-box position-absolute "></div>
             </div>
-            <div class="text-border-black fw-bold">What should I drink?</div>
+            <div class="text-border-black fw-bolder"> <strong>{{ $t('WhatShouldIDrink') }}</strong></div>
         </div>
     </section>
     <section id="section-hero" class="is-mobile w-100 g-hero overflow-hidden d-flex align-items-end justify-content-center border-bottom border-3 border-dark position-relative">
         <div class="h4 fw-bold d-flex align-items-center g-title text-light h-25 position-absolute bottom-0 w-100">
-            <div class="g-title-spot position-relative me-3">
-                In the end
-                <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
+            <div class="g-title-spot position-relative me-3 rounded border border-3 border-light">
+                 {{ $t('InTheEnd') }}
+                <div class="g-title-spot-box position-absolute"></div>
             </div>
-            <div class="g-title-display text-border-black fw-bold h1">What should I drink?</div>
+            <div class="g-title-display text-border-black fw-bold h1">{{ $t('WhatShouldIDrink') }}</div>
         </div>
     </section>
     <div class="is-desktop g-hero-search w-100 d-flex justify-content-center">
