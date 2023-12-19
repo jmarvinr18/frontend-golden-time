@@ -2,7 +2,7 @@
     <GHero></GHero>
     <div class="is-desktop">
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Blog" icon="bi-journals"></GSectionTitle>
+            <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <CardsGCardBlog></CardsGCardBlog>
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Muscle News" icon="bi-newspaper"></GSectionTitle>
+            <GSectionTitle :title="$t('MuscleNews')" icon="bi-newspaper"></GSectionTitle>
 
             <div class="row">
                 <div class="col-md-4 col-xs-12">
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Tournament Information" icon="bi-calendar-check"></GSectionTitle>
+            <GSectionTitle :title="$t('TournamentInformation')" icon="bi-calendar-check"></GSectionTitle>
 
             <div class="row">
                 <div class="col-md-4 col-xs-12">
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Featured players" icon="bi-stars"></GSectionTitle>
+            <GSectionTitle :title="$t('FeaturedPlayers')" icon="bi-stars"></GSectionTitle>
 
             <div class="row">
                 <div class="col-md-6 col-xs-12">
@@ -86,11 +86,11 @@
 
     <div class="is-mobile">
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Blog" icon="bi-journals"></GSectionTitle>
+            <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
             <CardsGCardBlog></CardsGCardBlog>
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Muscle News" icon="bi-newspaper"></GSectionTitle>
+            <GSectionTitle :title="$t('MuscleNews')" icon="bi-newspaper"></GSectionTitle>
             
             <GContainerSlider>
                 <CardsGCardNews></CardsGCardNews>
@@ -99,7 +99,7 @@
             </GContainerSlider>
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Tournament information" icon="bi-calendar-check"></GSectionTitle>
+            <GSectionTitle :title="$t('TournamentInformation')" icon="bi-calendar-check"></GSectionTitle>
             
             
             <GContainerSlider>
@@ -109,7 +109,7 @@
             </GContainerSlider>
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Featured players" icon="bi-stars"></GSectionTitle>
+            <GSectionTitle :title="$t('FeaturedPlayers')" icon="bi-stars"></GSectionTitle>
             <GContainerSlider>
                 <CardsGCardFeature></CardsGCardFeature>
                 <CardsGCardFeature></CardsGCardFeature>

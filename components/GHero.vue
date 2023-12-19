@@ -1,26 +1,26 @@
 <template>
     <section id="section-hero" class="is-desktop w-100 g-hero overflow-hidden d-flex align-items-end justify-content-center border-bottom border-3 border-dark">
         <div class="display-4 fw-bold d-flex align-items-center g-title text-light justify-content-center h-25">
-            <div class="g-title-spot position-relative me-3">
-                In the end
-                <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
+            <div class="g-title-spot position-relative me-3 rounded border border-3 border-light p-1">
+                {{ $t('InTheEnd') }}
+                <div class="g-title-spot-box position-absolute "></div>
             </div>
-            <div class="text-border-black fw-bold">What should I drink?</div>
+            <div class="text-border-black fw-bolder"> <strong>{{ $t('WhatShouldIDrink') }}</strong></div>
         </div>
     </section>
     <section id="section-hero" class="is-mobile w-100 g-hero overflow-hidden d-flex align-items-end justify-content-center border-bottom border-3 border-dark position-relative">
         <div class="h4 fw-bold d-flex align-items-center g-title text-light h-25 position-absolute bottom-0 w-100">
-            <div class="g-title-spot position-relative me-3">
-                In the end
-                <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
+            <div class="g-title-spot position-relative me-3 rounded border border-3 border-light">
+                 {{ $t('InTheEnd') }}
+                <div class="g-title-spot-box position-absolute"></div>
             </div>
-            <div class="g-title-display text-border-black fw-bold h1">What should I drink?</div>
+            <div class="g-title-display text-border-black fw-bold h1">{{ $t('WhatShouldIDrink') }}</div>
         </div>
     </section>
     <div class="is-desktop g-hero-search w-100 d-flex justify-content-center">
         <div class="w-25">
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
-                <input type="text" class="form-control border-0 p-4" placeholder="Find supplements..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <NuxtLink to="/supplement/search" class="input-group-text border-0 bg-white" id="basic-addon2">
                     <i class="bi bi-search me-3"></i>
                 </NuxtLink>
@@ -30,7 +30,7 @@
     <div class="is-mobile g-hero-search w-100 d-flex justify-content-center">
         <div class="w-100 px-3">
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
-                <input type="text" class="form-control border-0 p-3" placeholder="Find supplements..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" class="form-control border-0 p-3" :placeholder="$t('FindSupplements')" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <NuxtLink to="/supplement/search" class="input-group-text border-0 bg-white" id="basic-addon2">
                     <i class="bi bi-search me-3"></i>
                 </NuxtLink>

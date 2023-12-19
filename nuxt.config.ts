@@ -1,11 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  nitro: {
-    output: {
-      dir: '~/static_pages',
-      publicDir: '~/static_pages'
-    }
-  },
   app: {
     head: {
       title: 'Golden Time Food Suplement',
