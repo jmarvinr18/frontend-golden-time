@@ -40,7 +40,6 @@
                     <div class="w-50 mb-4 g-form-input">
                         <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('BodyWeightLabel')}}</label>
                         <div>{{ $t('PrivateLabel') }}</div>
-                        </div>
                     </div>
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-75">
@@ -59,7 +58,6 @@
                     <div class="w-50 mb-4 g-form-input">
                         <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('AgeLabel') }}</label>
                         <div>{{ $t('PrivateLabel') }}</div>
-                        </div>
                     </div>
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-75">
@@ -67,9 +65,9 @@
                         <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('SexLabel') }}</label>
                         <select class="form-select form-select-lg" aria-label="Default select example">
                         <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
                         </select>
                     </div>
                     <div class="ms-5 w-25 text-start">
@@ -209,12 +207,10 @@
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-1 w-50">
                     <div class="w-75 mb-4 g-form-input pe-2">
-                        <label for="g-auth-form-1" class="form-label bg-white px-2">sex</label>
-                        <select class="form-select" aria-label="Default select example" v-model="profileData.sex">
                         <label for="g-auth-form-1" class="form-label bg-white px-2">{{ $t('SexLabel') }}</label>
                         <select class="form-select" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option v-for="(gender,key) in genderData" :key="key" :value="gender.value">{{ gender.text }}</option>
+                            <option selected>Select</option>
+                            <option v-for="(gender,key) in genderData" :key="key" :value="gender.value">{{ gender.text }}</option>
                         </select>
                     </div>
                     <div class=" w-25 text-start">

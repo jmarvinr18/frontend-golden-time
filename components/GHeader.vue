@@ -22,7 +22,7 @@
                             {{ $t('SignUp') }}
                         </button>
                     </NuxtLink>
-                    <div class="dropdown p-0 ">
+                    <div v-if="authStore.token" class="dropdown p-0 ">
                         <button class="btn btn-secondary dropdown-toggle p-0 m-0 bg-none border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list h1 mb-0 text-light fw-bold"></i>
                         </button>
