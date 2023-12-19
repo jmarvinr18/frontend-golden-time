@@ -1,13 +1,13 @@
 <template>
     <div class="is-desktop">
         <div class="container w-100 text-center position-relative" style="margin-bottom:-120px">
-            <button class="btn position-absolute top-0 rounded-pill py-2" style="right:30%">
+            <button class="btn position-absolute top-0 rounded-pill py-2" style="right:30%" data-bs-toggle="modal" data-bs-target="#photo-modal">
                 <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
                     <i class="bi bi-camera "></i>
                 </span>
-                add image
+                {{ avatarImg? 'change':'add' }} image
             </button>
-            <img src="https://www.muscleandfitness.com/wp-content/uploads/2019/01/man-tire-pull-1109.jpg?quality=86&strip=all" height="180" width="180" class="object-fit-cover rounded-circle mx-auto g-shadow" />
+            <img :src="avatarImg?avatarImg:'/images/no-avatar.jpeg'" height="180" width="180" class="object-fit-cover rounded-circle mx-auto g-shadow" />
         </div>
         <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
             <!-- SIGN UP FORM -->
@@ -19,11 +19,11 @@
     <div class="is-mobile">
         <div class="container w-100 text-center position-relative mt-5" style="margin-bottom:-60px">
             <img src="https://www.muscleandfitness.com/wp-content/uploads/2019/01/man-tire-pull-1109.jpg?quality=86&strip=all" height="110  " width="110" class="object-fit-cover rounded-circle mx-auto g-shadow" />
-            <button class="btn position-absolute bottom-0 rounded-pill py-2" style="right:0%">
+            <button class="btn position-absolute bottom-0 rounded-pill py-2" style="right:0%" data-bs-toggle="modal" data-bs-target="#photo-modal">
                 <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
                     <i class="bi bi-camera "></i>
                 </span>
-                add image
+                {{ avatarImg? 'change':'add' }} image
             </button>
         </div>
         <div class="w-100 rounded-lg py-5 mt-1 bg-white border border-2">
@@ -33,13 +33,26 @@
             </div>
         </div>
     </div>
+    <!-- PROFILE AVATAR MODAL -->
+    <ModalsGModalImageUpload id="photo-modal" title="Insert profile photo" @on-get-file="setPhoto"></ModalsGModalImageUpload>
 </template>
-<script>
+<script lang="ts">
 export default defineComponent({
     props: {
         mode: {
             type: String,
             default: 'signup', // or edit
+        }
+    },
+    setup() {
+        const avatarImg = ref("");
+        const setPhoto = ((src:any) => {
+            avatarImg.value = src;
+        });
+
+        return  {
+            avatarImg,
+            setPhoto
         }
     }
 })

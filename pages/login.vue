@@ -15,19 +15,19 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-envelope"></i>
                     </span>
-                    <input type="text" class="form-control border-0" placeholder="Email address" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control border-0" placeholder="Email address" aria-label="Username" aria-describedby="basic-addon1" v-model="formData.email">
                 </div>
                 <div class="input-group input-group-md bg-white mb-3 w-100 mx-auto border rounded border-secondary">
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="password" class="form-control border-0" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="password" class="form-control border-0" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" v-model="formData.password">
                 </div>
 
                 <NuxtLink to="/account/forgot" class="g-login-forgot-link text-decoration-none text-dark mt-3 f14 cursor-pointer w-100 mx-auto">Did you forget your password?</NuxtLink>
 
                 <div class="mb-3 w-75 mt-5 mx-auto text-center">
-                    <button class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14">log In</button>
+                    <button class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14" @click="loginNow">log In</button>
                 </div>
             </div>
         </div>
@@ -46,21 +46,43 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-envelope"></i>
                     </span>
-                    <input type="text" class="form-control border-0" placeholder="Email address" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control border-0" placeholder="Email address" aria-label="Username" aria-describedby="basic-addon1" v-model="formData.email">
                 </div>
                 <div class="input-group input-group-md bg-white mb-3 w-100 mx-auto border rounded border-secondary">
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="password" class="form-control border-0" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="password" class="form-control border-0" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" v-model="formData.password">
                 </div>
 
                 <NuxtLink to="/account/forgot" class="g-login-forgot-link text-decoration-none text-dark mt-1 f14 cursor-pointer w-100 mx-auto">Did you forget your password?</NuxtLink>
 
                 <div class="mb-3 w-100 mt-5 mx-auto text-center">
-                    <button class="w-100 btn btn-primary rounded-pill g-shadow px-5 py-2 f14">log In</button>
+                    <button class="w-100 btn btn-primary rounded-pill g-shadow px-5 py-2 f14" @click="loginNow">log In</button>
                 </div>
             </div>
         </div>
     </GSection>
 </template>
+<script>
+import { useAuthStore } from "~/stores/GStoreAuth";
+
+export default defineComponent({
+    setup() {
+        const authStore = useAuthStore();
+        const formData = ref({
+            email:"",
+            password: ""
+        });
+
+        const loginNow = () => {
+            authStore.login(formData.value);
+        }
+
+        return {
+            formData,
+            loginNow
+        }
+    }
+})
+</script>

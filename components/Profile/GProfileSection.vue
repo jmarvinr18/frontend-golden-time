@@ -3,7 +3,7 @@
 <template>
     <section id="section-hero" class="g-profile-section position-relative">
     </section>
-    <GProfileCard :mode="mode"></GProfileCard>
+    <GProfileCard :obj-data="objData" :mode="mode"></GProfileCard>
 </template>
 <script lang="ts">
 import GProfileCard from './GProfileCard.vue';
@@ -11,6 +11,10 @@ import GProfileCard from './GProfileCard.vue';
 export default defineComponent({
     name: 'GProfileSection',
     props: {
+        objData: {
+            type: Object,
+            default: {}
+        },
         mode: {
             type: String,
             default: 'me' // me or other
