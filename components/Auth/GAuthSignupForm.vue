@@ -32,7 +32,7 @@
                     <div class="ms-5 w-25 text-start">
                         <div>{{ $t('ReleaseLabel') }}</div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="profileData.h_visibility">
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <div class="ms-5 w-25 text-start">
                         <div>{{ $t('PrivateLabel') }}</div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="profileData.bf_visibility">
                         </div>
                     </div>
                 </div>
@@ -77,15 +77,15 @@
                         <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('SexLabel') }}</label>
                         <select class="form-select form-select-lg" aria-label="Default select example">
                         <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
                         </select>
                     </div>
                     <div class="ms-5 w-25 text-start">
                         <div>{{ $t('PrivateLabel') }}</div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="profileData.s_visibility">
                         </div>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
                     <div class="ms-1 w-25 text-end">
                         <div>{{ $t('PrivateLabel') }}</div>
                         <div class="form-check form-switch pull-right">
-                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="profileData.h_visibility">
                         </div>
                     </div>
                 </div>
@@ -189,7 +189,7 @@
                     <div class="ms-1 w-25 text-end">
                         <div>{{ $t('PrivateLabel') }}</div>
                         <div class="form-check form-switch pull-right">
-                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="profileData.bw_visibility">
                         </div>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                     <div class="ms-1 w-25 text-end">
                         <div>{{ $t('PrivateLabel') }}</div>
                         <div class="form-check form-switch pull-right">
-                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="profileData.a_visibility">
                         </div>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                     <div class="ms-1 w-25 text-end">
                         <div>{{ $t('PrivateLabel') }}</div>
                         <div class="form-check form-switch pull-right">
-                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="profileData.bf_visibility">
                         </div>
                     </div>
                 </div>
@@ -221,16 +221,14 @@
                     <div class="w-75 mb-4 g-form-input pe-2">
                         <label for="g-auth-form-1" class="form-label bg-white px-2">{{ $t('SexLabel') }}</label>
                         <select class="form-select" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                            <option selected>Select</option>
+                            <option v-for="(gender,key) in genderData" :key="key" :value="gender.value">{{ gender.text }}</option>
                         </select>
                     </div>
                     <div class=" w-25 text-start">
                         <div>{{ $t('PrivateLabel') }}</div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="profileData.s_visibility">
                         </div>
                     </div>
                 </div>
@@ -290,12 +288,104 @@
         </div>
     </div>
 </template>
-<script>
+<script lang="ts">
+import { useAuthStore } from "~/stores/GStoreAuth";
 export default defineComponent({
     props: {
         mode: {
             type: String,
             default: 'signup', // or edit
+        },
+    },
+    setup(props) {
+        const authStore = useAuthStore();
+
+
+        const formData = ref({
+            name: "",
+            email: "",
+            password: "",
+            password_confirmation: "",
+            role: "basic",
+        });
+
+        const profileData = ref({
+            id: "",
+            social_media: {
+                "instagram": null
+            },
+            description: null,
+            my_training: null,
+            height: null,
+            h_visibility: "private",
+            body_weight: null,
+            bw_visibility: "private",
+            body_fat_percentage: "0.00",
+            bf_visibility: "private",
+            age: 0,
+            a_visibility: "private",
+            sex: null,
+            s_visibility: "private",
+            year_attended_training: null,
+            bench_press: null,
+            deadlift: null,
+            squat: null,
+            respected_trainee: null
+        });
+
+        const genderData = ref([
+            { text: "Male", value: "male" },
+            { text: "Female", value: "female" },
+            { text: "Other", value: "other" },
+        ]);
+
+        const submitData = () => {
+            try {
+                formData.value.password_confirmation = formData.value.password;
+                if (formData.value.name && formData.value.email) {
+                    const allData = {...formData.value, profile_details: {...profileData.value}};
+                    
+                    if (props.mode == "edit") {
+                        saveChanges(allData);
+                    } else {
+                        if (formData.value.password && formData.value.password_confirmation) {
+                            signUpProcess(allData);
+                        }
+                    }
+                }
+            } catch(err:any) {
+
+            }
+        }
+
+        const saveChanges = (data:any) => {
+            authStore.updateProfile(data);
+        }
+
+        const signUpProcess = (data:any) => {
+            authStore.registrationStepOne(data).then((res:any) => {
+                const resData = res.data;
+                console.log(resData);
+                profileData.value.id = resData.id;
+                
+                // authStore.registrationStepTwo(profileData.value);
+            });
+        }
+
+        onMounted(() => {
+            const savedProfile = JSON.parse(localStorage.getItem("profile"));
+            authStore.getProfile(savedProfile.id).then((res:any) => {
+                formData.value = res;
+                profileData.value.social_media = JSON.parse(res.profile_details.social_media);
+                // profileData.value = res.profile_details;
+            })
+        });
+
+        return {
+            formData,
+            profileData,
+            genderData,
+            submitData
         }
     }
 })

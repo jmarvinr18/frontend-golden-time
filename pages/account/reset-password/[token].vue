@@ -10,17 +10,17 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="text" class="form-control border-0" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                    <input v-model="authData.password" type="password" class="form-control border-0" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group input-group-md bg-white mb-3 w-100 mx-auto border rounded border-secondary">
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="text" class="form-control border-0" placeholder="Password confirmation" aria-label="Username" aria-describedby="basic-addon1">
+                    <input v-model="authData.password_confirmation" type="password" class="form-control border-0" placeholder="Password confirmation" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 
                 <div class="mb-3 mt-5 mx-auto text-center">
-                    <button class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14">
+                    <button @click="submit" class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14">
                         Send password reset email
                         <i class="bi bi-send-fill ms-2"></i>
                     </button>
@@ -37,17 +37,17 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="text" class="form-control border-0" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                    <input v-model="authData.password" type="password" class="form-control border-0" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group input-group-md bg-white mb-3 w-100 mx-auto border rounded border-secondary">
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="text" class="form-control border-0" placeholder="Password confirmation" aria-label="Username" aria-describedby="basic-addon1">
+                    <input v-model="authData.password_confirmation" type="password" class="form-control border-0" placeholder="Password confirmation" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </div>
             <div class="w-100 mb-3 mt-5 mx-auto text-center px-3">
-                <button class="btn btn-primary rounded-pill g-shadow py-2 f14 w-100">
+                <button @click="submit" class="btn btn-primary rounded-pill g-shadow py-2 f14 w-100">
                     Send password reset email
                     <i class="bi bi-send-fill ms-2"></i>
                 </button>
@@ -55,5 +55,41 @@
         </div>
     </GSection>
 </template>
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
+// import { type UserAuth } from '@/stores/GStoreAuth'
+
+type UserAuth = {
+    email: any,
+    password: String,
+    password_confirmation: String,
+    token: String | String[]
+}
+export default defineComponent({
+    setup() {
+        var authStore = useAuthStore()
+        var route = useRoute()
+        var authData = ref<UserAuth>({
+            email: "",
+            password: "",
+            password_confirmation: "",
+            token: ""
+        })
+
+
+        var submit = () => {
+            authStore.resetPassword({
+                ...authData.value,
+                email: route.query.email,
+                token: route.params.token
+            })
+        }
+
+        
+        return {
+            authData,
+            submit
+        }
+    },
+})
 </script>

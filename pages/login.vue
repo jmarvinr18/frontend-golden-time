@@ -15,19 +15,19 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-envelope"></i>
                     </span>
-                    <input type="text" class="form-control border-0" :placeholder="$t('EmailPlaceholder')" aria-label="Username" aria-describedby="basic-addon1">
+                    <input v-model="authData.email" type="text" class="form-control border-0" :placeholder="$t('EmailPlaceholder')" aria-label="email" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group input-group-md bg-white mb-3 w-100 mx-auto border rounded border-secondary">
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="password" class="form-control border-0" :placeholder="$t('PasswordPlaceholder')" aria-label="Username" aria-describedby="basic-addon1">
+                    <input v-model="authData.password" type="password" class="form-control border-0" :placeholder="$t('PasswordPlaceholder')" aria-label="password" aria-describedby="basic-addon1">
                 </div>
 
                 <NuxtLink to="/account/forgot" class="g-login-forgot-link text-decoration-none text-dark mt-3 f14 cursor-pointer w-100 mx-auto">{{ $t('DidYouForgetPassword') }}</NuxtLink>
 
                 <div class="mb-3 w-75 mt-5 mx-auto text-center">
-                    <button class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14">{{ $t('Login')}}</button>
+                    <button @click="loginNow" class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14">{{ $t('Login')}}</button>
                 </div>
             </div>
         </div>
@@ -46,21 +46,41 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-envelope"></i>
                     </span>
-                    <input type="text" class="form-control border-0" :placeholder="$t('EmailPlaceholder')" aria-label="Username" aria-describedby="basic-addon1">
+                    <input v-model="authData.email" type="text" class="form-control border-0" :placeholder="$t('EmailPlaceholder')" aria-label="email" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group input-group-md bg-white mb-3 w-100 mx-auto border rounded border-secondary">
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="password" class="form-control border-0" :placeholder="$t('PasswordPlaceholder')" aria-label="Username" aria-describedby="basic-addon1">
+                    <input v-model="authData.password" type="password" class="form-control border-0" :placeholder="$t('PasswordPlaceholder')" aria-label="password" aria-describedby="basic-addon1">
                 </div>
 
                 <NuxtLink to="/account/forgot" class="g-login-forgot-link text-decoration-none text-dark mt-1 f14 cursor-pointer w-100 mx-auto">{{ $t('DidYouForgetPassword') }}</NuxtLink>
 
                 <div class="mb-3 w-100 mt-5 mx-auto text-center">
-                    <button class="w-100 btn btn-primary rounded-pill g-shadow px-5 py-2 f14">{{ $t('Login')}}</button>
+                    <button  @click="loginNow" class="w-100 btn btn-primary rounded-pill g-shadow px-5 py-2 f14">{{ $t('Login')}}</button>
                 </div>
             </div>
         </div>
     </GSection>
 </template>
+<script>
+import { useAuthStore } from "~/stores/GStoreAuth";
+
+export default defineComponent({
+    setup() {
+        const authStore = useAuthStore();
+        const authData = ref({
+            email:"",
+            password: ""
+        });
+        const loginNow = () => {
+            authStore.login(authData.value);
+        }
+        return {
+            authData,
+            loginNow
+        }
+    }
+})
+</script>
