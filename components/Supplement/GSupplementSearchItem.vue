@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-between align-items-center my-5">
         <div class="col-md-7">
-            <SupplementGSupplementSearchItemCard></SupplementGSupplementSearchItemCard>
+            <SupplementGSupplementSearchItemCard :supplement="supplement"></SupplementGSupplementSearchItemCard>
         </div>
         <div class="is-desktop col-md-4 px-4">
             <button class="btn btn-primary btn-sm rounded-pill py-2 f14">
@@ -25,6 +25,25 @@
         </GContainerSlider>
     </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+
+    props: {
+        supplement: Object
+    },
+    setup() {
+        
+
+        return {
+
+        }
+    },
+})
+</script>
+
 <style scoped>
 .g-search-item-extra {
     min-width: 280px;

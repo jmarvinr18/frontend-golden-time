@@ -6,7 +6,7 @@
                 Brand
                 </div>
                 <div class="w-50 border-bottom">
-                    Cocolab
+                    {{supplement.brand}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -14,7 +14,7 @@
                 Shape
                 </div>
                 <div class="w-50 border-bottom">
-                    Table
+                     {{supplement.shape}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -22,7 +22,7 @@
                 Product name
                 </div>
                 <div class="w-50 border-bottom">
-                Supermin
+                 {{supplement.name}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -30,7 +30,7 @@
                 URL
                 </div>
                 <div class="w-50 border-bottom">
-                    www.amazon.com
+                   {{supplement.url}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -38,7 +38,7 @@
                     Kinds
                 </div>
                 <div class="w-50 border-bottom">
-                Tablet
+                {{supplement.kind}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2 f12">
@@ -46,7 +46,7 @@
                 Product features
                 </div>
                 <div class="w-50 border-bottom f10">
-                    12 tablets per day provides 3,000mg of HMB
+                    {{supplement.features}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -54,7 +54,7 @@
                 component
                 </div>
                 <div class="w-50 border-bottom">
-                Leucine
+                {{supplement.component}}
                 </div>
             </div>
         </div>
@@ -120,3 +120,18 @@
         </div>
     </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    setup() {
+        var supplementStore = useSupplementStore()
+        var { supplement } = storeToRefs(supplementStore)
+
+        return {
+            supplement
+        }
+    },
+})
+</script>
