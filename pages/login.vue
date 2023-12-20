@@ -64,3 +64,25 @@
         </div>
     </GSection>
 </template>
+<script>
+import { useAuthStore } from "~/stores/GStoreAuth";
+
+export default defineComponent({
+    setup() {
+        const authStore = useAuthStore();
+        const formData = ref({
+            email:"",
+            password: ""
+        });
+
+        const loginNow = () => {
+            authStore.login(formData.value);
+        }
+
+        return {
+            formData,
+            loginNow
+        }
+    }
+})
+</script>

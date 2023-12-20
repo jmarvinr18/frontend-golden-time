@@ -10,19 +10,33 @@
     -webkit-text-stroke-color: black;
 }
 
+
 .text-grad-1 {
+    color: rgb(33,255,174);
+    -webkit-text-fill-color:initial !important;
+}
+
+.text-grad-1 {
+    color: rgb(33,255,174);
     background: rgb(33,255,174);
-    background: linear-gradient(0deg, rgba(33,255,174,1) 20%, rgba(0,202,239,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(33,255,174,1) 20%, rgba(0,202,239,1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .text-grad-2 {
+    color: rgb(97,62,212);
+    -webkit-text-fill-color:initial !important;
+}
+
+.text-grad-2 {
+    color: rgb(97,62,212);
     background: rgb(97,62,212);
-    background: linear-gradient(0deg, rgba(97,62,212,1) 20%, rgba(141,112,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(97,62,212,1) 20%, rgba(141,112,255,1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 
 .bg-grad-1 {
     background: rgb(33,255,174);

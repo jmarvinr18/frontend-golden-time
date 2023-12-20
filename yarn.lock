@@ -748,6 +748,27 @@
   resolved "https://registry.yarnpkg.com/@intlify/shared/-/shared-9.8.0.tgz#62adf8f6ef67c8eba6cf8d521e248f3503f237d3"
   integrity sha512-TmgR0RCLjzrSo+W3wT0ALf9851iFMlVI9EYNGeWvZFUQTAJx0bvfsMlPdgVtV1tDNRiAfhkFsMKu6jtUY1ZLKQ==
 
+"@intlify/core-base@9.8.0":
+  "integrity" "sha512-UxaSZVZ1DwqC/CltUZrWZNaWNhfmKtfyV4BJSt/Zt4Or/fZs1iFj0B+OekYk1+MRHfIOe3+x00uXGQI4PbO/9g=="
+  "resolved" "https://registry.npmjs.org/@intlify/core-base/-/core-base-9.8.0.tgz"
+  "version" "9.8.0"
+  dependencies:
+    "@intlify/message-compiler" "9.8.0"
+    "@intlify/shared" "9.8.0"
+
+"@intlify/message-compiler@9.8.0":
+  "integrity" "sha512-McnYWhcoYmDJvssVu6QGR0shqlkJuL1HHdi5lK7fNqvQqRYaQ4lSLjYmZxwc8tRNMdIe9/KUKfyPxU9M6yCtNQ=="
+  "resolved" "https://registry.npmjs.org/@intlify/message-compiler/-/message-compiler-9.8.0.tgz"
+  "version" "9.8.0"
+  dependencies:
+    "@intlify/shared" "9.8.0"
+    "source-map-js" "^1.0.2"
+
+"@intlify/shared@9.8.0":
+  "integrity" "sha512-TmgR0RCLjzrSo+W3wT0ALf9851iFMlVI9EYNGeWvZFUQTAJx0bvfsMlPdgVtV1tDNRiAfhkFsMKu6jtUY1ZLKQ=="
+  "resolved" "https://registry.npmjs.org/@intlify/shared/-/shared-9.8.0.tgz"
+  "version" "9.8.0"
+
 "@ioredis/commands@^1.1.1":
   version "1.2.0"
   resolved "https://registry.npmjs.org/@ioredis/commands/-/commands-1.2.0.tgz"
@@ -2079,6 +2100,14 @@
     "@parcel/watcher-win32-arm64" "2.3.0"
     "@parcel/watcher-win32-ia32" "2.3.0"
     "@parcel/watcher-win32-x64" "2.3.0"
+
+"@pinia/nuxt@^0.5.1":
+  "integrity" "sha512-6wT6TqY81n+7/x3Yhf0yfaJVKkZU42AGqOR0T3+UvChcaOJhSma7OWPN64v+ptYlznat+fS1VTwNAcbi2lzHnw=="
+  "resolved" "https://registry.npmjs.org/@pinia/nuxt/-/nuxt-0.5.1.tgz"
+  "version" "0.5.1"
+  dependencies:
+    "@nuxt/kit" "^3.5.0"
+    "pinia" ">=2.1.7"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"

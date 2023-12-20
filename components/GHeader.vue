@@ -22,7 +22,7 @@
                             {{ $t('SignUp') }}
                         </button>
                     </NuxtLink>
-                    <div class="dropdown p-0 ">
+                    <div v-if="authStore.token" class="dropdown p-0 ">
                         <button class="btn btn-secondary dropdown-toggle p-0 m-0 bg-none border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list h1 mb-0 text-light fw-bold"></i>
                         </button>
@@ -71,6 +71,17 @@
                             </li>
                         </ul>
                     </div>
+                    <div v-else class="d-flex align-items-center">
+                        <NuxtLink to="/login">
+                            <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">Login</button>
+                        </NuxtLink>
+                        <NuxtLink to="/signup">
+                            <button class="btn btn-light py-1 rounded-pill px-3 me-2 f14">
+                                <i class="bi bi-plus-lg"></i>
+                                Signup
+                            </button>
+                        </NuxtLink>
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,13 +103,20 @@
                     <input type="text" class="form-control border-0 py-1" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </div>
-            <div class="right-side d-flex align-items-center gap-3">
+            <div v-if="authStore.token" class="right-side d-flex align-items-center gap-3">
                 <div>
                     <i class="bi bi-bell text-light h2 mb-0"></i>
                 </div>
                 <div>
                     <NuxtLink to="/me/profile">
                         <i class="bi bi-person text-light h2 mb-0"></i>
+                    </NuxtLink>
+                </div>
+            </div>
+            <div v-else class="right-side d-flex align-items-center gap-3">
+                <div>
+                    <NuxtLink to="/login">
+                        <i class="bi bi-box-arrow-in-right text-light h2 mb-0"></i>
                     </NuxtLink>
                 </div>
             </div>
@@ -111,6 +129,7 @@ export default defineComponent({
         const colorChange = ref(false);
         const fixedMode = ref(false);
         const route:any = useRoute();
+        const authStore = useAuthStore();
         
 
         const checkScroll = () => {
@@ -123,9 +142,9 @@ export default defineComponent({
         }
         
         const initScroll = () => {
-            const windowTop:any = window.top.scrollY;
+            const windowTop:any = window?.top?.scrollY;
             const spotlight:any = document.getElementById('section-hero');
-            const spotlightTop = spotlight.offsetHeight + spotlight.offsetTop - 500;
+            const spotlightTop = spotlight?.offsetHeight + spotlight?.offsetTop - 500;
             if (windowTop >= spotlightTop)
             {
                 colorChange.value = true;
@@ -146,6 +165,7 @@ export default defineComponent({
 
         return {
             fixedMode,
+            authStore,
             colorChange
         }
     }
