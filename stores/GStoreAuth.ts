@@ -109,7 +109,7 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setError(true, msg);
             });
         },
-        async sendForgotPasswordRequest(payload) {
+        async sendForgotPasswordRequest(payload: any) {
             generalStore().setIsLoading(true);
             return GApiAuth.forgotPassword({ email: payload }).then((res: any) => {
                 generalStore().setIsLoading(false);
@@ -119,7 +119,7 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setError(true, msg);
             });
         },
-        async resetPassword(payload) {
+        async resetPassword(payload: any) {
             generalStore().setIsLoading(true);
             return GApiAuth.resetPassword(payload).then((res: any) => {
                 generalStore().setIsLoading(false);
@@ -132,5 +132,22 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setError(true, msg);
             });
         },
-    }
+
+        async userLogout() {
+            return GApiAuth.logout().then((res: any) => {
+                this.purgeUserData()
+                setTimeout(() => {
+                    window.location.href = "/login";
+                }, 1000)
+            });
+        },
+
+        async purgeUserData() {
+            this.userData = <User>{}
+            this.profile = {}
+            this.isAuthenticated = false
+            this.token = ""
+        }
+    },
+    persist: true,
 })

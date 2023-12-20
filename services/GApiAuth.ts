@@ -20,4 +20,7 @@ export default {
     async resetPassword(data: any) {
         return ApiService.post('/auth/reset-password', data)
     },
+    async logout() {
+        return ApiService.post('/auth/logout')
+    },
 }

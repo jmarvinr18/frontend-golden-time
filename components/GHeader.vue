@@ -56,9 +56,9 @@
                                 </a>
                             </li>
                             <li>
-                                <NuxtLink class="dropdown-item" to="/login">
+                                <button @click="logout" class="dropdown-item" type="button">
                                     <i class="bi bi-box-arrow-right me-2"></i>{{ $t('Logout') }}
-                                </NuxtLink>
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -154,10 +154,15 @@ export default defineComponent({
             window.addEventListener('scroll', initScroll);
         });
 
+        var logout = () => {
+            authStore.userLogout()
+        }
+
         return {
             fixedMode,
             authStore,
-            colorChange
+            colorChange,
+            logout
         }
     }
 })
