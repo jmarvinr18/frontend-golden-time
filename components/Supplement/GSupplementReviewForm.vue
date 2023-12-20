@@ -53,9 +53,9 @@
                 <SupplementGSupplementDetailTable></SupplementGSupplementDetailTable>
             </div>
 
-            <hr class="border-dashed w-75 mx-auto my-5" />
+            <hr class="border-dashed w-75 mx-auto my-4" />
 
-            <div class="w-75 px-3 mx-auto">
+            <div class="w-75 px-3 mx-auto mb-4">
                 <SupplementGSupplementReviewCard></SupplementGSupplementReviewCard>
             </div>
 

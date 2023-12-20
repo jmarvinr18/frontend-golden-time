@@ -1,17 +1,17 @@
 <template>
-    <div class="g-profile-card w-100 overflow-visible">
-        <div class="is-desktop g-profile-card-main bg-white mx-auto rounded-lg w-50 p-3" style="min-height:500px">
+    <div v-if="objData && objData.profile_details" class="g-profile-card w-100 overflow-visible">
+        <div class="is-desktop g-profile-card-main bg-white mx-auto rounded-lg w-50 p-3 g-shadow" style="min-height:500px">
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container">
-                    <div class="w-100 g-profile-content">
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> Big 3 total: 100kg
+                    <div class="w-100 g-profile-content" v-if="objData.profile_details">
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.deadlift">
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> Big 3 total: {{ objData.profile_details.deadlift }}
                         </div>
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: 8 years
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.my_training">
+                            <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ objData.profile_details.my_training }} years
                         </div>
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: 8 years
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.respected_trainee">
+                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: {{ objData.profile_details.respected_trainee }} years
                         </div>
                     </div>
                 </div>
@@ -27,23 +27,23 @@
                         </button>
                         
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content mt-5">
-                            Age: 30 years old
+                            Age: {{ objData.profile_details.age }} years old
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            Height: 176 cm
+                            Height: {{ objData.profile_details.height }} cm
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            Weight: 78 kg
+                            Weight: {{ objData.profile_details.body_weight }} kg
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            Body fat percentage: 17%
+                            Body fat percentage: {{ objData.profile_details.body_fat_percentage }}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="position-absolute w-100 g-profile-dp ">
                 <img src="https://www.muscleandfitness.com/wp-content/uploads/2019/01/man-tire-pull-1109.jpg?quality=86&strip=all" height="270" width="270" class="object-fit-cover rounded-circle mx-auto g-shadow" />
-                <div class="h2 mt-4 fw-bold">Jack Komboy</div>
+                <div class="h2 mt-4 fw-bold">{{ objData.name }}</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
                         <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
@@ -70,28 +70,25 @@
                 Training
             </div>
         </div>
-        <div class="is-mobile g-profile-card-main bg-white mx-auto rounded-lg g-shadow   w-100 p-3" style="min-height:500px">
+        <div class="is-mobile g-profile-card-main bg-white mx-auto rounded-lg g-shadow w-100 p-3" style="min-height:500px">
             <div class="row align-items-center justify-content-between mt-5">
                 <div class="col-xs-12">
                     <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right ">
                         <i class="bi bi-pencil me-1"></i>
                         Edit Profile
                     </NuxtLink>
-                    <button v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right py-2">
-                        <i class="bi bi-person-plus me-1"></i>
-                        Follow
-                    </button>
+                    <ProfileGProfileFollowBtn v-else></ProfileGProfileFollowBtn>
                 </div>
-                <div class="col-sm-6 d-flex flex-wrap align-items-center g-profile-container">
+                <div class="col-sm-6 d-flex flex-wrap align-items-center g-profile-container" v-if="objData.profile_details">
                     <div class="w-100 g-profile-content g-profile-content-first d-flex flex-wrap">
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> Big 3 total: 100kg
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> Big 3 total: {{ objData.profile_detailss }}
                         </div>
+                        <!-- <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.my_training">
+                            <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ objData.profile_details.my_training }} years
+                        </div> -->
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: 8 years
-                        </div>
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: 8 years
+                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: {{ objData.profile_details.respected_trainee }} years
                         </div>
                     </div>
                 </div>
@@ -99,16 +96,16 @@
                     <div class="mw-100 g-profile-content overflow-x-scroll">
                         <div class="d-flex g-profile-content-slide align-items-center gap-2">
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                Age: 30 years old
+                                Age: {{ objData.profile_details.age }} years old
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                Height: 176 cm
+                                Height: {{ objData.profile_details.height }} cm
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                Weight: 78 kg
+                                Weight: {{ objData.profile_details.body_weight }} kg
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                Body fat percentage: 17%
+                                Body fat percentage: {{ objData.profile_details.body_fat_percentage }}
                             </div>
                         </div>
                     </div>
@@ -148,6 +145,9 @@
 <script lang="ts">
 export default defineComponent({
     props: {
+        objData: {
+            type: Object,
+        },
         mode: {
             type: String,
             default: 'me' // me or other
