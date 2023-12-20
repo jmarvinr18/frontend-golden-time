@@ -51,6 +51,9 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 ChangeButton: "Change",
                 InTheEnd: "In the end",
                 WhatShouldIDrink: "What should I drink?",
+                ChangePasswordHeader: "Change Password",
+                PleaseEnterYourRegisteredEmail: "Please enter your registered email address.",
+                SendPasswordResetEmail: "Send password reset email",
             },
             ja: {
                 SupplementRegistration: 'サプリ登録',
@@ -95,7 +98,10 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 CancelButton: "キャンセル",
                 ChangeButton: "変化",
                 InTheEnd: "結局",
-                WhatShouldIDrink: "何飲めば良いの？"
+                WhatShouldIDrink: "何飲めば良いの？",
+                ChangePasswordHeader: "パスワードを変更する",
+                PleaseEnterYourRegisteredEmail: "ご登録のメールアドレスを入力してください。",
+                SendPasswordResetEmail: "パスワードリセットメールを送信する",
             }
         }
     })
