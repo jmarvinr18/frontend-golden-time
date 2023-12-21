@@ -22,8 +22,18 @@
             <hr class="border-dashed w-75 mx-auto my-5" />
 
             <div class="w-50 mx-auto">
-                <SupplementGSupplementReviewCard></SupplementGSupplementReviewCard>
+                <div v-for="(comment, i) in comments" :key="i">
+                    <SupplementGSupplementReviewCard :comment="comment"></SupplementGSupplementReviewCard>
+                        <div class="w-100 m-5">
+                            <a href="">View 3 Replies</a>
+                            <div ref="container"></div>
+                            <!-- <SupplementGSupplementReviewCard v-for="(reply, i) in comment?.replies" :key="i" :comment="reply"></SupplementGSupplementReviewCard> -->
+                        </div>   
+                </div>
+
+                   
             </div>
+
 
             <div class="mt-5 bg-light py-5 w-100 text-center">
                 <div class="mb-3 w-50 mx-auto">
@@ -63,6 +73,25 @@
         </div>
     </div>
 </template>
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    setup() {
+        var supplementStore = useSupplementStore()
+        var { supplement } = storeToRefs(supplementStore)
+
+        var comments = computed(() => {
+            return supplement.value.comments
+        })
+        
+        return {
+            comments
+        }
+    },
+})
+</script>
+
 <style scoped>
 .form-check-input:checked {
     border-color: var(--bs-success);

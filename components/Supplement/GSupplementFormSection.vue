@@ -4,7 +4,7 @@
             <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
                 <i class="bi bi-camera "></i>
             </span>
-            {{ prodImage? 'change photo':'add photo' }}
+            {{ prodImage? $t('ChangeImage'): $t('AddImage') }}
         </button>
         <img :src="prodImage? prodImage:'/images/no-image.jpeg'" height="180" width="180" class="cursor-pointer object-fit-cover rounded-circle mx-auto g-shadow" data-bs-toggle="modal" data-bs-target="#photo-modal" />
     </div>
@@ -13,7 +13,7 @@
             <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
                 <i class="bi bi-camera "></i>
             </span>
-            {{ $i('AddImage') }}
+            {{ $t('AddImage') }}
         </button>
         <img :src="prodImage? prodImage:'/images/no-image.jpeg'" height="120" width="120" class="cursor-pointer object-fit-cover rounded-circle mx-auto g-shadow" data-bs-toggle="modal" data-bs-target="#photo-modal" />
     </div>
