@@ -25,7 +25,7 @@
                 <div v-for="(comment, i) in comments" :key="i">
                     <SupplementGSupplementReviewCard :comment="comment"></SupplementGSupplementReviewCard>
                         <div class="w-100 m-5">
-                            <a href="">View 3 Replies</a>
+                            <a href="javascript:void(0)">View 3 Replies</a>
                             <div ref="container"></div>
                             <!-- <SupplementGSupplementReviewCard v-for="(reply, i) in comment?.replies" :key="i" :comment="reply"></SupplementGSupplementReviewCard> -->
                         </div>   
