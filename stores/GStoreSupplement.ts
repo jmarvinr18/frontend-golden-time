@@ -18,6 +18,11 @@ export interface Supplement {
     shape: string
     url: string
     features: string
+    ratings: Rating
+}
+export interface Rating {
+    avg_effect: number
+    avg_taste: number
 }
 export const useSupplementStore = defineStore("supplementStore", {
     state: () => {

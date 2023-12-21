@@ -11,22 +11,13 @@
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption">Taste/drinkability</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i class="bi bi-star-fill h3 text-grad-1"></i>
-                            <i class="bi bi-star-fill h3 text-grad-1"></i>
-                            <i class="bi bi-star-fill h3 text-grad-1"></i>
-                            <i class="bi bi-star-fill h3 text-light"></i>
-                            <i class="bi bi-star-fill h3 text-light"></i>
-                           
+                            <i v-for="(rate, i) in getRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i>
                         </div>
                     </div>
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption">Effect</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i class="bi bi-star-fill h3 text-grad-2"></i>
-                            <i class="bi bi-star-fill h3 text-grad-2"></i>
-                            <i class="bi bi-star-fill h3 text-grad-2"></i>
-                            <i class="bi bi-star-fill h3 text-grad-2"></i>
-                            <i class="bi bi-star-fill h3 text-light"></i>
+                            <i v-for="(rate, k) in getRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i>
                         </div>
                     </div>
                 </div>
@@ -43,21 +34,13 @@
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption f12">Taste/drinkability</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i class="bi bi-star-fill f12 text-grad-1"></i>
-                            <i class="bi bi-star-fill f12 text-grad-1"></i>
-                            <i class="bi bi-star-fill f12 text-grad-1"></i>
-                            <i class="bi bi-star-fill f12 text-light"></i>
-                            <i class="bi bi-star-fill f12h3 text-light"></i>
+                            <i v-for="(rate, i) in getRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i>
                         </div>
                     </div>
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption f12">Effect</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i class="bi bi-star-fill f12 text-grad-2"></i>
-                            <i class="bi bi-star-fill f12 text-grad-2"></i>
-                            <i class="bi bi-star-fill f12 text-grad-2"></i>
-                            <i class="bi bi-star-fill f12 text-grad-2"></i>
-                            <i class="bi bi-star-fill f12 text-light"></i>
+                            <i v-for="(rate, k) in getRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i>
                         </div>
                     </div>
                 </div>
@@ -77,8 +60,12 @@ export default defineComponent({
         var truncate = (text: string) => {
             if (text != undefined) return text.substring(0, 150) + "..."
         }
+        var getRating = (ratings: any) => {
+            return useSupplementRating(ratings)
+        }
         return {
-            truncate
+            truncate,
+            getRating
         }
     },
 })
