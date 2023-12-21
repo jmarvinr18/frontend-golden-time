@@ -2,15 +2,16 @@
     <div class="g-blog-form w-100 overflow-visiblex pb-5">
         <div class="is-desktop bg-white mx-auto rounded-lg w-75 py-5 px-5 position-relative g-shadow" style="min-height:500px">
             <div class="mb-4">
-                <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="Add title" v-model="formData.title" name="title">
+                <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')"
+                v-model="formData.title" name="title">
             </div>
             <div class="mb-4 d-flex align-items-center flex-wrap">
-                <div class="h4 me-3">Cover Image</div>
+                <div class="h4 me-3">{{ $t("CoverImage") }}</div>
                 <button v-if="coverImage" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Change ...</button>
                 <div v-if="coverImage" class="w-100 mt-2">
                     <img :src="coverImage" class="w-25 rounded object-fit-contain bg-dark" height="200" />
                 </div>
-                <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Browse...</button>
+                <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >{{ $t("Browse") }}...</button>
             </div>
             <div class="mb-3 position-relative">
                 <div id="editor-container" class=" border rounded-3"></div>
@@ -58,11 +59,11 @@
             <!-- ACTION BUTTONS -->
             <div class="d-flex w-100 mt-4 mx-auto justify-content-center align-items-center">
                 <div class="mx-auto w-75 d-flex align-items-center justify-content-end">
-                    <button class="btn btn-outline-secondary rounded-pill w-25 me-3">Save draft</button>
-                    <button class="btn btn-primary rounded-pill w-25 me-3" @click="saveBlog()">Post</button>
+                    <button class="btn btn-outline-secondary rounded-pill w-25 me-3">{{ $t("SaveDraftButton") }}</button>
+                    <button class="btn btn-primary rounded-pill w-25 me-3" @click="saveBlog()">{{ $t("PostButton") }}</button>
                     <button class="btn border-0 bg-none">
                         <i class="bi bi-trash me-1"></i>
-                        delete
+                        {{ $t("DeleteButton") }}
                     </button>
                 </div>
                 <div class="w-25 text-end">
@@ -75,7 +76,7 @@
         </div>
         <div class="is-mobile bg-white mx-auto rounded-lg w-100 py-3 px-3 position-relative g-shadow" style="min-height:500px">
             <div class="mb-4">
-                <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="Add title" v-model="formData.title">
+                <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')" v-model="formData.title">
             </div>
             <div class="mb-4 d-flex align-items-center flex-wrap">
                 <div class="h4 me-3">Cover Image</div>
@@ -174,9 +175,11 @@
 </template>
 <script lang="ts">
 import { defineComponent,ref } from 'vue';
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
-    setup() {
+    setup({}) {
+        const { t } = useI18n();
         const modalType = ref<String>("link"); // link, image, gif, format
         const blogStore = useBlogStore();
         const generalStore = useGeneralStore();
@@ -274,7 +277,7 @@ export default defineComponent({
                             [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }]
                         ]
                     },
-                    placeholder: "Let's write down the contents of today's training!",
+                    placeholder: t('BlogContentPlaceholder'),
                     theme: "bubble"
                 });
                 generalStore.setIsLoading(false);
@@ -287,7 +290,7 @@ export default defineComponent({
                             [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }]
                         ]
                     },
-                    placeholder: "Let's write down the contents of today's training!",
+                    placeholder: t('BlogContentPlaceholder'),
                     theme: "bubble"
                 });
                 generalStore.setIsLoading(false);

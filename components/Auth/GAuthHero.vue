@@ -2,28 +2,28 @@
     <section id="section-hero" class="is-desktop w-100 g-auth-hero overflow-hidden d-flex align-items-center border-bottom border-3 border-dark">
         <div class="display-4 fw-bold d-flex align-items-center g-title text-light h-25 ms-5 flex-wrap">
             <div class="g-title-spot position-relative me-3">
-                In the end
+                {{ $t('InTheEnd') }}
                 <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
             </div>
-            <div class="text-border-black fw-bold">What should I drink?</div>
+            <div class="text-border-black fw-bold">{{ $t('WhatShouldIDrink') }}</div>
             <div class="text-border-black fw-bold h1 w-100">
-                Check it out now in prime time
+                {{ $t('CheckItNow') }}
             </div>
             <div class="mt-4 btn-group rounded-pill overflow-hidden bg-white border border-primary w-25 ms-1" role="group" aria-label="Basic example">
-                <NuxtLink to="/login" type="button" class="f12 btn text-primary fw-bold">Login <i class="bi bi-arrow-right mb-0 ms-1"></i></NuxtLink>
-                <button type="button" class="f12 btn btn-primary fw-bold">Sign Up <i class="bi bi-plus-lg mb-0 ms-1"></i></button>
+                <NuxtLink to="/login" type="button" class="f12 btn text-primary fw-bold">{{ $t('Login') }} <i class="bi bi-arrow-right mb-0 ms-1"></i></NuxtLink>
+                <button type="button" class="f12 btn btn-primary fw-bold">{{ $t('SignUp') }} <i class="bi bi-plus-lg mb-0 ms-1"></i></button>
             </div>
         </div>
     </section>
     <section id="section-hero" class="is-mobile w-100 g-auth-hero overflow-hidden d-flex align-items-center border-bottom border-3 border-dark">
         <div class="fw-bold d-flex align-items-center g-title text-light h-25 px-3 flex-wrap">
             <div class="g-title-spot position-relative me-3">
-                In the end
+                {{ $t('InTheEnd') }}
                 <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
             </div>
-            <div class="text-border-black fw-bold h4">What should I drink?</div>
+            <div class="text-border-black fw-bold h4">{{ $t('WhatShouldIDrink') }}</div>
             <div class="text-border-black fw-bold h6 w-100">
-                Check it out now in prime time
+                {{ $t('CheckItNow') }}
             </div>
             <div class="mt-3 btn-group rounded-pill overflow-hidden bg-white border border-primary w-100 ms-1" role="group" aria-label="Basic example">
                 <NuxtLink to="/login" type="button" class="f12 btn text-primary fw-bold">Login <i class="bi bi-arrow-right mb-0 ms-1"></i></NuxtLink>

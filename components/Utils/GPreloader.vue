@@ -4,7 +4,7 @@
             <div class="g-preloader-content bg-white px-3 py-4 rounded-5 w-25 text-center">
                 <img class="is-desktop w-50" src="/images/loading.gif" />
                 <img class="is-mobile w-100" src="/images/loading.gif" />
-                <div class="is-desktop fw-bold h4">Hang on...</div>
+                <div class="is-desktop fw-bold h4">{{ $t('HangOn') }}</div>
                 <!-- <div class="mt-3">Lorem ipsum dolor, sit amet consectetur </div> -->
             </div>
             <div class="g-preloader-bg bg-black w-100 h-100 position-absolute opacity-50"></div>
