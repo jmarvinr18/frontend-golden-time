@@ -62,6 +62,9 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 DeleteButton: "delete",
                 AddImage: "add image",
                 ChangeImage: "change image",
+                ChangePasswordHeader: "Change Password",
+                PleaseEnterYourRegisteredEmail: "Please enter your registered email address.",
+                SendPasswordResetEmail: "Send password reset email",
             },
             ja: {
                 SupplementRegistration: 'サプリ登録',
@@ -118,6 +121,9 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 DeleteButton: "削除",
                 AddImage: "画像を追加",
                 ChangeImage: "イメージチェンジ",
+                ChangePasswordHeader: "パスワードを変更する",
+                PleaseEnterYourRegisteredEmail: "ご登録のメールアドレスを入力してください。",
+                SendPasswordResetEmail: "パスワードリセットメールを送信する",
             }
         }
     })

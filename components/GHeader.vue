@@ -8,21 +8,12 @@
                             <img src="/logo.png" width="80" />
                         </NuxtLink>
                     </div>
-                    <NuxtLink to="/supplement/add" class="text-decoration-none">
+                    <NuxtLink v-if="authStore.isAuthenticated" to="/supplement/add" class="text-decoration-none">
                         <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>{{ $t('SupplementRegistration') }}</div>
                     </NuxtLink>
                 </div>
                 <div class="right-side d-flex align-items-center">
-                    <NuxtLink to="/login">
-                        <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">{{ $t('Login') }}</button>
-                    </NuxtLink>
-                    <NuxtLink to="/signup">
-                        <button class="btn btn-light py-1 rounded-pill px-3 me-2 f14">
-                            <i class="bi bi-plus-lg"></i>
-                            {{ $t('SignUp') }}
-                        </button>
-                    </NuxtLink>
-                    <div v-if="authStore.token" class="dropdown p-0 ">
+                    <div v-if="authStore.isAuthenticated" class="dropdown p-0 ">
                         <button class="btn btn-secondary dropdown-toggle p-0 m-0 bg-none border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list h1 mb-0 text-light fw-bold"></i>
                         </button>
@@ -65,20 +56,20 @@
                                 </a>
                             </li>
                             <li>
-                                <NuxtLink class="dropdown-item" to="/login">
+                                <button @click="logout" class="dropdown-item" type="button">
                                     <i class="bi bi-box-arrow-right me-2"></i>{{ $t('Logout') }}
-                                </NuxtLink>
+                                </button>
                             </li>
                         </ul>
                     </div>
                     <div v-else class="d-flex align-items-center">
                         <NuxtLink to="/login">
-                            <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">Login</button>
+                            <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">{{ $t('Login') }}</button>
                         </NuxtLink>
                         <NuxtLink to="/signup">
                             <button class="btn btn-light py-1 rounded-pill px-3 me-2 f14">
                                 <i class="bi bi-plus-lg"></i>
-                                Signup
+                                {{ $t('SignUp') }}
                             </button>
                         </NuxtLink>
                     </div>
@@ -163,10 +154,15 @@ export default defineComponent({
             window.addEventListener('scroll', initScroll);
         });
 
+        var logout = () => {
+            authStore.userLogout()
+        }
+
         return {
             fixedMode,
             authStore,
-            colorChange
+            colorChange,
+            logout
         }
     }
 })
