@@ -31,10 +31,11 @@
 
         <!-- SEARCH RESULT -->
         <div class="container mx-auto mt-5">
+            <!-- {{ allSupplements }} -->
+            <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in allSupplements" :key="supplement.id"></SupplementGSupplementSearchItem>
+            <!-- <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem>
             <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem>
-            <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem>
-            <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem>
-            <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem>
+            <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem> -->
             <UtilsGLoadMore></UtilsGLoadMore>
         </div>
     </div>
@@ -77,3 +78,23 @@
         </div>
     </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    setup() {
+        
+        var supplementStore = useSupplementStore()
+        var { allSupplements } = storeToRefs(supplementStore)
+
+        onMounted(() => {
+            supplementStore.getAllSupplement()
+        })
+
+        return {
+            allSupplements
+        }
+    },
+})
+</script>

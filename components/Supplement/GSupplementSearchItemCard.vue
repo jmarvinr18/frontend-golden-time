@@ -1,31 +1,23 @@
 <template>
-    <NuxtLink to="/supplement/review/post" class="text-decoration-none text-dark">
+    <NuxtLink :to="`/supplement/review/${supplement?.id}`" class="text-decoration-none text-dark">
         <div class="is-desktop g-supplement-item-card d-flex rounded-lg gap-4 g-shadow">
             <div class="g-supplement-item-media">
-                <img src="https://picsum.photos/200/200" class="object-fit-cover" height="200" />
+                <img :src="supplement?.image" class="object-fit-cover" />
             </div>
             <div class="g-supplement-item-content py-2 px-3 f14">
-                <div class="h4 w-100">CTRL protein powder</div>
-                <div>Contains whey protein derived from milk, casein protein, and soy protein derived from soybeans.</div>
+                <div class="h4 w-100"> {{ supplement?.name }} </div>
+                <div class="sup-description"> {{ truncate(supplement?.features) }} </div>
                 <div class="g-supplement-item-ratings d-flex justify-content-around mt-4 w-100 mx-auto">
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption">Taste/drinkability</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i class="bi bi-star-fill h3 text-grad-1"></i>
-                            <i class="bi bi-star-fill h3 text-grad-1"></i>
-                            <i class="bi bi-star-fill h3 text-grad-1"></i>
-                            <i class="bi bi-star-fill h3 text-light"></i>
-                            <i class="bi bi-star-fill h3 text-light"></i>
+                            <i v-for="(rate, i) in getRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i>
                         </div>
                     </div>
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption">Effect</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i class="bi bi-star-fill h3 text-grad-2"></i>
-                            <i class="bi bi-star-fill h3 text-grad-2"></i>
-                            <i class="bi bi-star-fill h3 text-grad-2"></i>
-                            <i class="bi bi-star-fill h3 text-grad-2"></i>
-                            <i class="bi bi-star-fill h3 text-light"></i>
+                            <i v-for="(rate, k) in getRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i>
                         </div>
                     </div>
                 </div>
@@ -42,21 +34,13 @@
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption f12">Taste/drinkability</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i class="bi bi-star-fill f12 text-grad-1"></i>
-                            <i class="bi bi-star-fill f12 text-grad-1"></i>
-                            <i class="bi bi-star-fill f12 text-grad-1"></i>
-                            <i class="bi bi-star-fill f12 text-light"></i>
-                            <i class="bi bi-star-fill f12h3 text-light"></i>
+                            <i v-for="(rate, i) in getRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i>
                         </div>
                     </div>
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption f12">Effect</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i class="bi bi-star-fill f12 text-grad-2"></i>
-                            <i class="bi bi-star-fill f12 text-grad-2"></i>
-                            <i class="bi bi-star-fill f12 text-grad-2"></i>
-                            <i class="bi bi-star-fill f12 text-grad-2"></i>
-                            <i class="bi bi-star-fill f12 text-light"></i>
+                            <i v-for="(rate, k) in getRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i>
                         </div>
                     </div>
                 </div>
@@ -64,3 +48,31 @@
         </div>
     </NuxtLink>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    props: {
+        supplement: Object
+    },
+    setup() {
+        var truncate = (text: string) => {
+            if (text != undefined) return text.substring(0, 150) + "..."
+        }
+        var getRating = (ratings: any) => {
+            return useSupplementRating(ratings)
+        }
+        return {
+            truncate,
+            getRating
+        }
+    },
+})
+</script>
+<style scoped>
+.g-supplement-item-media img{
+    width: 250px;
+    height: 210px;
+}
+</style>
