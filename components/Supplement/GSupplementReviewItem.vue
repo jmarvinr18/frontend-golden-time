@@ -14,8 +14,8 @@
             <hr />
             <div class="g-review-item-head d-flex justify-content-between position-relative flex-wrap">
                 <div class="w-50 f14 lh-lg">
-                    Taste: {{ supplement.taste }}<br>
-                    Reference price: {{ supplement.price }}
+                    {{ $t('TasteLabel') }}: {{ supplement.taste }}<br>
+                    {{ $t('PriceLabel') }}: {{ supplement.price }}
                 </div>
                 <div class="w-50">
                     <button class="btn btn-primary btn-sm rounded-pill py-2 f14">
@@ -52,8 +52,8 @@
             <hr />
             <div class="w-100 g-review-item-head d-flex justify-content-between position-relative flex-wrap">
                 <div class="w-50 f14 lh-lg">
-                    Taste: {{ supplement.taste }}<br>
-                    Reference price: {{ supplement.price }}
+                    {{ $t('TasteLabel') }}: {{ supplement.taste }}<br>
+                    {{ $t('PriceLabel') }}: {{ supplement.price }}
                 </div>
             </div>
             

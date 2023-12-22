@@ -77,6 +77,17 @@ export const useSupplementStore = defineStore("supplementStore", {
                 generalStore().setSuccess(true, "Your supplement has been successfully removed!");
                 return res.data;
             });
-        }
+        },
+        async ratingSupplement(data: any) {
+            generalStore().setIsLoading(true);
+            return GApiSupplement.ratingSupplement(data).then((res: any) => {
+                generalStore().setIsLoading(false);
+                generalStore().setSuccess(true, "Your rating has been successfully submitted!");
+                return res.data;
+            }).catch((err: any) => {
+                const msg = err.response.data.message;
+                generalStore().setError(true, msg);
+            });
+        },
     }
 })
