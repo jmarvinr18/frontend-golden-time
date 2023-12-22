@@ -19,7 +19,18 @@ export interface Supplement {
     url: string
     features: string
     ratings: Rating
+    comments: Comment[]
 }
+
+export interface Comment {
+    user_id: string
+    comment: string
+    is_reply: boolean
+    reply_to: string
+    sender: object
+    replies: Comment[]
+}
+
 export interface Rating {
     avg_effect: number
     avg_taste: number
