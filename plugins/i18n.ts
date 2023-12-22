@@ -29,6 +29,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 Nickname: "Nickname",
                 EmailLabel: "Email address",
                 PasswordLabel: "Password",
+                PasswordConfirmationLabel: "Confirm password",
                 InstagramAccountLabel: "Password",
                 RegisterANewAccount: "Register a new account",
                 ProfileChange: "Profile change",
@@ -65,6 +66,9 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 ChangePasswordHeader: "Change Password",
                 PleaseEnterYourRegisteredEmail: "Please enter your registered email address.",
                 SendPasswordResetEmail: "Send password reset email",
+                GoToMyAccount: "Go to my account",
+                YourAccountHasBeenVerified: "Your account has been verified.",
+                YourRegistrationHasBeenSuccesful: "Your registration has been successful. Email verification link has been sent to your registered email address.",
             },
             ja: {
                 SupplementRegistration: 'サプリ登録',
@@ -88,6 +92,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 Nickname: "ニックネーム",
                 EmailLabel: "電子メールアドレス",
                 PasswordLabel: "パスワード",
+                PasswordConfirmationLabel: "パスワードを認証する",
                 InstagramAccountLabel: "インスタグラムアカウント",
                 RegisterANewAccount: "新しいアカウントを登録する",
                 ProfileChange: "プロフィールの変更",
@@ -124,6 +129,9 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 ChangePasswordHeader: "パスワードを変更する",
                 PleaseEnterYourRegisteredEmail: "ご登録のメールアドレスを入力してください。",
                 SendPasswordResetEmail: "パスワードリセットメールを送信する",
+                GoToMyAccount: "マイアカウントへ移動します",
+                YourAccountHasBeenVerified: "あなたのアカウントは確認されました。",
+                YourRegistrationHasBeenSuccesful: "登録は成功しました。 登録したメールアドレスにメール認証リンクが送信されました。",
             }
         }
     })
