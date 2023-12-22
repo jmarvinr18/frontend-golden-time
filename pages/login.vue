@@ -70,6 +70,7 @@ import { useAuthStore } from "~/stores/GStoreAuth";
 export default defineComponent({
     setup() {
         const authStore = useAuthStore();
+        var route = useRoute()
         const authData = ref({
             email:"",
             password: ""

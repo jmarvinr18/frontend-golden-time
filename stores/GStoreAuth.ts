@@ -12,11 +12,52 @@ export interface User {
     email: string
     token: string | undefined
 }
+export interface UserForm {
+    name: string
+    role: string
+    email: string
+    password: string
+    password_confirmation: string
+    profile_details: ProfileData
+}
+
+export interface ProfileData {
+    id: string
+    social_media: SocialMedia,
+    description: string | string[] | number
+    my_training: string | string[] | number
+    height: string | null
+    h_visibility: boolean
+    body_weight: string | null
+    bw_visibility: boolean
+    body_fat_percentage: string | null
+    bf_visibility: boolean
+    age: 0,
+    a_visibility: boolean
+    sex: string,
+    s_visibility: boolean
+    year_attended_training: string | null
+    bench_press: string | null
+    deadlift: string | null
+    squat: string | null
+    respected_trainee: string | null
+}
+
+export interface SocialMedia {
+    facebook: string | undefined
+    instagram: string | undefined
+}
+
 
 export const useAuthStore = defineStore("authStore", {
     state: () => {
         return {
             userData: <User>{},
+            registrationForm: <UserForm>{
+                profile_details: <ProfileData>{
+                    social_media: { instagram: "" }
+                }
+            },
             isAuthenticated: false,
             token: "",
             profile: {},
@@ -51,23 +92,38 @@ export const useAuthStore = defineStore("authStore", {
                 this.userData = res.data.user
                 this.isAuthenticated = true
                 generalStore().setSuccess(true, "Welcome back!");
-                useRouter().push("/")
+
+                console.log("ROUTE VP: ", useRoute().query.vp)
+                if (useRoute().query.vp != undefined) {
+                    this.verifyEmail(useRoute().query.vp)
+                } else {
+                    useRouter().push("/")
+                }
 
             }).catch((err: any) => {
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);
             });
         },
-        async registrationStepOne(data: any) {
+        async verifyEmail(data) {
+            console.log("DATA: ", data)
+            return GApiAuth.verifyEmail(data).then((res: any) => {
+                useRouter().push("/account/verified")
+            }).catch((err: any) => {
+                const msg = err.response.data.message;
+                generalStore().setError(true, msg);
+            })
+        },
+
+        async register() {
             generalStore().setIsLoading(true);
-            return GApiAuth.signUp(data).then((res: any) => {
+
+            console.log(this.registrationForm)
+            return GApiAuth.signUp(this.registrationForm).then((res: any) => {
                 generalStore().setIsLoading(false);
                 this.mode = "signup";
-                data.id = res.data.data.id;
-                generalStore().setSuccess(true, "User has been registered succesfully! Please check your email to verify your account.");
-
                 setTimeout(() => {
-                    useRouter().push("/login")
+                    useRouter().push('/account/registration/successful');
                 }, 3000)
                 return res.data;
             }).catch((err: any) => {
@@ -83,11 +139,11 @@ export const useAuthStore = defineStore("authStore", {
                 return res.data;
             })
         },
-        async updateProfile(data: any) {
+        async updateProfile() {
             generalStore().setIsLoading(true);
-            return GApiAuth.updateProfile(data).then((res: any) => {
+            return GApiAuth.updateProfile(this.registrationForm).then((res: any) => {
                 generalStore().setIsLoading(false);
-                data.id = res.data.data.id;
+                // data.id = res.data.data.id;
                 generalStore().setSuccess(true, "Your profile has been updated succesfully!");
 
                 setTimeout(() => {
@@ -147,6 +203,18 @@ export const useAuthStore = defineStore("authStore", {
             this.profile = {}
             this.isAuthenticated = false
             this.token = ""
+        },
+        async purgeRegistrationForm() {
+            this.registrationForm = {
+                name: "",
+                role: "",
+                email: "",
+                password: "",
+                password_confirmation: "",
+                profile_details: <ProfileData>{
+                    social_media: { instagram: "" }
+                }
+            }
         }
     },
     persist: true,
