@@ -9,7 +9,9 @@ const ApiService = axios.create({
 });
 
 ApiService.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`
+  var authStore = useAuthStore()
+  var { token } = storeToRefs(authStore)
+  config.headers.Authorization = `Bearer ${token.value}`
   return config
 })
 

@@ -6,18 +6,18 @@
             </div>
             <div class="g-supplement-item-content py-2 px-3 f14">
                 <div class="h4 w-100"> {{ supplement?.name }} </div>
-                <div class="sup-description"> {{ truncate(supplement?.features) }} </div>
+                <div class="sup-description"> {{ useTruncateText(supplement?.features) }} </div>
                 <div class="g-supplement-item-ratings d-flex justify-content-around mt-4 w-100 mx-auto">
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption">Taste/drinkability</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i v-for="(rate, i) in getRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i>
+                            <i v-for="(rate, i) in useSupplementRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i>
                         </div>
                     </div>
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption">Effect</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i v-for="(rate, k) in getRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i>
+                            <i v-for="(rate, k) in useSupplementRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i>
                         </div>
                     </div>
                 </div>
@@ -34,13 +34,13 @@
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption f12">Taste/drinkability</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i v-for="(rate, i) in getRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i>
+                            <i v-for="(rate, i) in useSupplementRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i>
                         </div>
                     </div>
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption f12">Effect</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i v-for="(rate, k) in getRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i>
+                            <i v-for="(rate, k) in useSupplementRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i>
                         </div>
                     </div>
                 </div>
@@ -51,21 +51,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import useTruncateText from '~/composables/useTruncateText'
 
 export default defineComponent({
     props: {
         supplement: Object
     },
     setup() {
-        var truncate = (text: string) => {
-            if (text != undefined) return text.substring(0, 150) + "..."
-        }
-        var getRating = (ratings: any) => {
-            return useSupplementRating(ratings)
-        }
         return {
-            truncate,
-            getRating
+            useTruncateText,
+            useSupplementRating,
         }
     },
 })

@@ -13,6 +13,20 @@
                 </div>
                 <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >{{ $t("Browse") }}...</button>
             </div>
+
+            <div>
+                <div class="mb-5">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Select content type</option>
+                        <option value="1">Blog</option>
+                        <option value="2">News</option>
+                        <option value="3">Event</option>
+                    </select>
+                </div>                
+            </div>
+
+
+
             <div class="mb-3 position-relative">
                 <div id="editor-container" class=" border rounded-3"></div>
 

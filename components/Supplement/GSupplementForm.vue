@@ -6,8 +6,8 @@
     <div class="is-desktop g-auth-signup-form mt-2">
         <div class="g-form-group pb-5">
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">brand*</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="formData.brand">
+                <label  class="form-label bg-white ms-2 px-2">brand*</label>
+                <input type="text" class="form-control form-control-lg"  placeholder="sample" v-model="formData.brand">
             </div>
             <div class="mb-4 g-form-input">
                 <label for="g-auth-form-2" class="form-label bg-white ms-2 px-2">Product name*</label>
@@ -15,7 +15,7 @@
             </div>
             <div class="mb-4 g-form-input">
                 <div class="mb-4 g-form-input">
-                    <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Kinds*</label>
+                    <label  class="form-label bg-white ms-2 px-2">Kinds*</label>
                     <select class="form-select form-select-lg" aria-label="Default select example" v-model="formData.kind">
                     <option selected>Select</option>
                     <option value="1">powder</option>
@@ -26,28 +26,28 @@
                 </div>
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Protein content per 100gr*</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="200gr" v-model="formData.protein_content">
+                <label  class="form-label bg-white ms-2 px-2">Protein content per 100gr*</label>
+                <input type="text" class="form-control form-control-lg"  placeholder="200gr" v-model="formData.protein_content">
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Type of protein</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="formData.protein_type">
+                <label  class="form-label bg-white ms-2 px-2">Type of protein</label>
+                <input type="text" class="form-control form-control-lg"  placeholder="sample" v-model="formData.protein_type">
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Taste</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="formData.taste">
+                <label  class="form-label bg-white ms-2 px-2">Taste</label>
+                <input type="text" class="form-control form-control-lg"  placeholder="sample" v-model="formData.taste">
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Price</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="formData.price">
+                <label  class="form-label bg-white ms-2 px-2">Price</label>
+                <input type="text" class="form-control form-control-lg"  placeholder="sample" v-model="formData.price">
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Component</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="formData.component">
+                <label  class="form-label bg-white ms-2 px-2">Component</label>
+                <input type="text" class="form-control form-control-lg"  placeholder="sample" v-model="formData.component">
             </div>
             <div class="mb-4 g-form-input">
                 <div class="mb-4 g-form-input">
-                    <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Shape*</label>
+                    <label  class="form-label bg-white ms-2 px-2">Shape*</label>
                     <select class="form-select form-select-lg" aria-label="Default select example" v-model="formData.shape">
                     <option selected>Select</option>
                     <option value="1">powder</option>
@@ -58,11 +58,11 @@
                 </div>
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">URL</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="www.sample.com" v-model="formData.url">
+                <label  class="form-label bg-white ms-2 px-2">URL</label>
+                <input type="text" class="form-control form-control-lg"  placeholder="www.sample.com" v-model="formData.url">
             </div>
             <div class="w-100 mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Product features</label>
+                <label  class="form-label bg-white ms-2 px-2">Product features</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="formData.features"></textarea>
             </div>
         </div>
@@ -82,8 +82,8 @@
     <div class="is-mobile g-auth-signup-form mt-2">
         <div class="g-form-group pb-2">
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">brand*</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="formData.brand">
+                <label  class="form-label bg-white ms-2 px-2">brand*</label>
+                <input type="text" class="form-control "  placeholder="sample" v-model="formData.brand">
             </div>
             <div class="mb-4 g-form-input w-75">
                 <label for="g-auth-form-2" class="form-label bg-white ms-2 px-2">Product name*</label>
@@ -91,7 +91,7 @@
             </div>
             <div class="mb-4 g-form-input w-75">
                 <div class="mb-4 g-form-input">
-                    <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Kinds*</label>
+                    <label  class="form-label bg-white ms-2 px-2">Kinds*</label>
                     <select class="form-select" aria-label="Default select example" v-model="formData.kind">
                     <option selected>Select</option>
                     <option value="1">powder</option>
@@ -102,28 +102,28 @@
                 </div>
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Protein content per 100gr*</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="200gr" v-model="formData.protein_content">
+                <label  class="form-label bg-white ms-2 px-2">Protein content per 100gr*</label>
+                <input type="text" class="form-control "  placeholder="200gr" v-model="formData.protein_content">
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Type of protein</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="formData.protein_type">
+                <label  class="form-label bg-white ms-2 px-2">Type of protein</label>
+                <input type="text" class="form-control "  placeholder="sample" v-model="formData.protein_type">
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Taste</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="formData.taste">
+                <label  class="form-label bg-white ms-2 px-2">Taste</label>
+                <input type="text" class="form-control "  placeholder="sample" v-model="formData.taste">
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Price</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="formData.price">
+                <label  class="form-label bg-white ms-2 px-2">Price</label>
+                <input type="text" class="form-control "  placeholder="sample" v-model="formData.price">
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Component</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="formData.component">
+                <label  class="form-label bg-white ms-2 px-2">Component</label>
+                <input type="text" class="form-control "  placeholder="sample" v-model="formData.component">
             </div>
             <div class="mb-4 g-form-input w-75">
                 <div class="mb-4 g-form-input">
-                    <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Shape*</label>
+                    <label  class="form-label bg-white ms-2 px-2">Shape*</label>
                     <select class="form-select " aria-label="Default select example" v-model="formData.shape">
                     <option selected>Select</option>
                     <option value="1">powder</option>
@@ -134,11 +134,11 @@
                 </div>
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">URL</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="www.sample.com" v-model="formData.url">
+                <label  class="form-label bg-white ms-2 px-2">URL</label>
+                <input type="text" class="form-control "  placeholder="www.sample.com" v-model="formData.url">
             </div>
             <div class="w-100 mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">Product features</label>
+                <label  class="form-label bg-white ms-2 px-2">Product features</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="formData.features"></textarea>
             </div>
         </div>

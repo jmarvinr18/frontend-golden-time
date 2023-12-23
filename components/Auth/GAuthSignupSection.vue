@@ -12,7 +12,7 @@
         <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
             <!-- SIGN UP FORM -->
             <div class="container py-4 w-50 mx-auto">
-                <AuthGAuthSignupForm :mode="mode"></AuthGAuthSignupForm>
+                <AuthGAuthSignupForm></AuthGAuthSignupForm>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
         <div class="w-100 rounded-lg py-5 mt-1 bg-white border border-2">
             <!-- SIGN UP FORM -->
             <div class="container py-4 w-100 mx-auto">
-                <AuthGAuthSignupForm :mode="mode"></AuthGAuthSignupForm>
+                <AuthGAuthSignupForm></AuthGAuthSignupForm>
             </div>
         </div>
     </div>
@@ -38,12 +38,6 @@
 </template>
 <script lang="ts">
 export default defineComponent({
-    props: {
-        mode: {
-            type: String,
-            default: 'signup', // or edit
-        }
-    },
     setup() {
         const avatarImg = ref("");
         const setPhoto = ((src:any) => {

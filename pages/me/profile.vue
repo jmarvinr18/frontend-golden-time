@@ -1,5 +1,5 @@
 <template>
-    <ProfileGProfileSection :obj-data="objData"></ProfileGProfileSection>
+    <ProfileGProfileSection :obj-data="userData"></ProfileGProfileSection>
     <div class="is-desktop">
       <div class="container pt-2 pb-4">
         <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
@@ -121,17 +121,14 @@ export default defineComponent({
   name: 'PageProfile',
   setup() {
    const authStore = useAuthStore();
-   const objData = ref({});
+   var { userData } = storeToRefs(authStore)
 
    onMounted(() => {
-    const savedProfile = JSON.parse(localStorage.getItem("profile"));
-    authStore.getProfile(savedProfile.id).then((res:any) => {
-      objData.value = res;
-    })
+      authStore.getProfile(userData.value.id)
    });
 
    return {
-    objData,
+    userData,
    }
   }
 })

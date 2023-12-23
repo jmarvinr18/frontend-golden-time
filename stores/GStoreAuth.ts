@@ -5,14 +5,9 @@ import { useGeneralStore as generalStore } from "./GStoreGeneral";
 const ACCESS_TOKEN = "access_token";
 const PROFILE = "profile";
 
+
 export interface User {
-    id: string
-    name: string
-    role: string
-    email: string
-    token: string | undefined
-}
-export interface UserForm {
+    id?: string
     name: string
     role: string
     email: string
@@ -22,7 +17,7 @@ export interface UserForm {
 }
 
 export interface ProfileData {
-    id: string
+    id?: string
     social_media: SocialMedia,
     description: string | string[] | number
     my_training: string | string[] | number
@@ -52,8 +47,12 @@ export interface SocialMedia {
 export const useAuthStore = defineStore("authStore", {
     state: () => {
         return {
-            userData: <User>{},
-            registrationForm: <UserForm>{
+            userData: <User>{
+                profile_details: <ProfileData>{
+                    social_media: { instagram: "" }
+                }
+            },
+            registrationForm: <User>{
                 profile_details: <ProfileData>{
                     social_media: { instagram: "" }
                 }
@@ -72,28 +71,18 @@ export const useAuthStore = defineStore("authStore", {
         }
     },
     actions: {
-        async setToken() {
-            if (this.token === "") {
-                if (localStorage.getItem(ACCESS_TOKEN)) {
-                    this.token = localStorage.access_token;
-
-                    // if (this.routesAuth.includes(route().path)) {
-                    //     await router().push("/");
-                    // }
-                }
-            }
-        },
         async login(data: any) {
             generalStore().setIsLoading(true);
             return GApiAuth.login(data).then((res: any) => {
+
                 generalStore().setIsLoading(false);
-                localStorage.setItem(ACCESS_TOKEN, res.data.token);
-                localStorage.setItem(PROFILE, JSON.stringify(res.data.user));
+
                 this.userData = res.data.user
                 this.isAuthenticated = true
+                this.token = res.data.token
+
                 generalStore().setSuccess(true, "Welcome back!");
 
-                console.log("ROUTE VP: ", useRoute().query.vp)
                 if (useRoute().query.vp != undefined) {
                     this.verifyEmail(useRoute().query.vp)
                 } else {
@@ -105,7 +94,7 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setError(true, msg);
             });
         },
-        async verifyEmail(data) {
+        async verifyEmail(data: any) {
             console.log("DATA: ", data)
             return GApiAuth.verifyEmail(data).then((res: any) => {
                 useRouter().push("/account/verified")
@@ -117,11 +106,8 @@ export const useAuthStore = defineStore("authStore", {
 
         async register() {
             generalStore().setIsLoading(true);
-
-            console.log(this.registrationForm)
             return GApiAuth.signUp(this.registrationForm).then((res: any) => {
                 generalStore().setIsLoading(false);
-                this.mode = "signup";
                 setTimeout(() => {
                     useRouter().push('/account/registration/successful');
                 }, 3000)
@@ -131,24 +117,16 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setError(true, msg);
             });
         },
-        async registrationStepTwo(data: any) {
-            generalStore().setIsLoading(true);
-            return GApiAuth.updateProfile(data).then((res: any) => {
-                generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "User has been registered succesfully! Please check your email to verify your account.");
-                return res.data;
-            })
-        },
+
         async updateProfile() {
             generalStore().setIsLoading(true);
-            return GApiAuth.updateProfile(this.registrationForm).then((res: any) => {
+            return GApiAuth.updateProfile(this.userData).then((res: any) => {
                 generalStore().setIsLoading(false);
-                // data.id = res.data.data.id;
                 generalStore().setSuccess(true, "Your profile has been updated succesfully!");
 
                 setTimeout(() => {
                     window.location.href = "/me/profile";
-                }, 5000)
+                }, 3000)
                 return res.data;
             }).catch((err: any) => {
                 const msg = err.response.data.message;
@@ -159,7 +137,7 @@ export const useAuthStore = defineStore("authStore", {
             generalStore().setIsLoading(true);
             return GApiAuth.getProfile(id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                return res.data;
+                this.userData = res.data;
             }).catch((err: any) => {
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);
