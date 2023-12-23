@@ -15,5 +15,8 @@ export default {
     },
     async updateSupplement(data: any) {
         return ApiService.put(`/api/v1/supplement/${data?.id}`, data);
+    },
+    async ratingSupplement(data: any) {
+        return ApiService.post(`/api/v1/supplement/rating/${data?.id}`, data);
     }
 }

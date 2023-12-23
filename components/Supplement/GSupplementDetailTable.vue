@@ -3,7 +3,7 @@
         <div class="row f14 lh-lg justify-content-between">
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
-                Brand
+                {{ $t('BrandLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
                     {{supplement.brand}}
@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
-                Shape
+                {{ $t('ShapeLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
                      {{supplement.shape}}
@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
-                Product name
+                {{ $t('ProductNameLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
                  {{supplement.name}}
@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
-                URL
+                {{ $t('UrlLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
                    {{supplement.url}}
@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
-                    Kinds
+                {{ $t('KindsLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
                 {{supplement.kind}}
@@ -43,7 +43,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2 f12">
                 <div class="w-25 me-2 text-muted">
-                Product features
+                {{ $t('FeatureLabel') }}
                 </div>
                 <div class="w-50 border-bottom f10">
                     {{supplement.features}}
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
-                component
+                {{ $t('ComponentLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
                 {{supplement.component}}
@@ -63,7 +63,7 @@
         <div class="row f14 lh-lg justify-content-between">
             <div class="col-md-6 col-xs-12 d-flex gap-3">
                 <div class="w-25 me-2 text-muted">
-                Brand
+                {{ $t('BrandLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
                     Cocolab
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3">
                 <div class="w-25 me-2 text-muted">
-                Shape
+                {{ $t('ShapeLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
                     Table
@@ -79,7 +79,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3">
                 <div class="w-25 me-2 text-muted">
-                Product name
+                {{ $t('ProductNameLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
                 Supermin
@@ -87,7 +87,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3">
                 <div class="w-25 me-2 text-muted">
-                URL
+                {{ $t('UrlLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
                     www.amazon.com
@@ -95,7 +95,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3">
                 <div class="w-25 me-2 text-muted">
-                    Kinds
+                    {{ $t('KindsLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
                 Tablet
@@ -103,7 +103,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 ">
                 <div class="w-25 me-2 text-muted f10">
-                Product features
+                    {{ $t('FeatureLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
                     12 tablets per day provides 3,000mg of HMB
@@ -111,7 +111,7 @@
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 ">
                 <div class="w-25 me-2 text-muted">
-                component
+                    {{ $t('ComponentLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
                 Leucine
