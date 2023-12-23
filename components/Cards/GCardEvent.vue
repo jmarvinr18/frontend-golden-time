@@ -1,19 +1,29 @@
 <template>
-    <NuxtLink :to="`/news/read/${news?.id}`" class="text-decoration-none">
+    <NuxtLink :to="`/blog/read/${event?.id}`" class="text-decoration-none">
         <div class="g-card-news card w-100 g-shadow rounded-lg">
-            <img :src="news?.feature_image" class="card-img-top" alt="...">
+            <img :src="event?.feature_image" class="card-img-top" alt="...">
             <div class="card-body">
                 <div class="h5">
-                    {{ useTruncateText(news?.title, 35) }}
+                    {{ event?.title }}
                 </div>
                 <div class="card-created-time f12 text-secondary">
-                    <div>
-                        2 seconds ago
+
+                    <div >
+                       {{ event?.meta.date }} <span class="ms-2 text-black">{{ event?.meta.location }}</span>
                     </div>
                 </div>
                 <hr class="border-secondary mb-1" />
-                <p class="card-text f12 text-secondary">{{ useTruncateText(news?.content, 150) }}</p>
-
+        
+                <p  class="card-text-schedule f12 text-secondary d-flex align-items-center justify-content-between">
+                    <div class="card-time lh-lg">
+                        <div>OPEN : {{ event?.meta.start }}</div>
+                        <div>START : {{ event?.meta.start }}</div>
+                        <div class="player-gathering">Player gathering : {{ event?.meta.player_gathering }}</div>
+                    </div>
+                    <div class="card-button">
+                        <button class="btn btn-outline-primary btn-sm border-2">detail</button>
+                    </div>
+                </p>
             </div>
         </div>
     </NuxtLink>
@@ -21,13 +31,12 @@
 <script lang="ts">
 export default defineComponent({
     props: {
-        news: Object
+        event: Object,
     },
-    setup() {
-        return {
-            useTruncateText
-        }
-    },
+
+    setup(props) {
+
+    }
 })
 </script>
 <style scoped>
