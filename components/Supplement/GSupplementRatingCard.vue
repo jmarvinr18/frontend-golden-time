@@ -24,13 +24,13 @@
                     {{ type=='taste'? 'Taste/drinkability':'Effect' }}
                 </div>
                 <div class="g-rating-stars text-center mb-2" style="letter-spacing:.4em">
-                    <i v-for="(effect, i) in avg_effect" :key="i" class="bi  h3" :class="[type=='taste'? 'text-grad-1':'text-grad-2', effect]"></i>
+                    <i v-if="type=='taste'" v-for="(taste, t) in avg_taste" :key="t" class="bi  text-grad-1" :class="taste"></i>
+                    <i v-else v-for="(effect, e) in avg_effect" :key="e" class="bi  text-grad-2" :class="effect"></i>
                 </div>
-                <button style="width: 90%" class="btn rounded-pill mb-3 f10 py-2 fw-bold mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'">Post a rating <i class="bi bi-arrow-up ms-1" data-bs-toggle="modal" :data-bs-target="`#rating-modal-${type}`"></i></button>
+                <button style="width: 90%" class="btn rounded-pill mb-3 f10 py-2 fw-bold mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'" data-bs-toggle="modal" :data-bs-target="`#rating-modal-${type}`">Post a rating <i class="bi bi-arrow-up ms-1"></i></button>
             </div>
         </div>
     </div>
-    <ModalsGModalSupplementRating :type="type"></ModalsGModalSupplementRating>
 </template>
 <script lang="ts">
 export default defineComponent({

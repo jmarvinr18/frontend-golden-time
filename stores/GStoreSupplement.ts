@@ -100,5 +100,17 @@ export const useSupplementStore = defineStore("supplementStore", {
                 generalStore().setError(true, msg);
             });
         },
+        async createCommentSupplement(data: any) {
+            generalStore().setIsLoading(true);
+            return GApiSupplement.createCommentSupplement(data).then((res: any) => {
+                generalStore().setIsLoading(false);
+                generalStore().setSuccess(true, "Your comment has been successfully added!");
+                this.getSupplement(data?.supplement_id);
+                return res.data;
+            }).catch((err: any) => {
+                const msg = err.response.data.message;
+                generalStore().setError(true, msg);
+            });
+        },
     }
 })

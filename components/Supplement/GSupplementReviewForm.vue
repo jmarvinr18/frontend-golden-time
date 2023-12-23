@@ -1,6 +1,6 @@
 
 <template>
-    <div class="is-desktop g-supplement-review-form w-100 position-absolute overflow-visible ">
+    <div class="is-desktop g-supplement-review-form w-100 position-relative overflow-visible ">
         <div class="bg-white mx-auto rounded-lg w-75 position-relative g-shadow" style="min-height:500px">
             <div class="w-75 mx-auto pt-4 pb-2">
                 <SupplementGSupplementReviewItem class="mt-4 mb-5"></SupplementGSupplementReviewItem>
@@ -23,28 +23,23 @@
 
             <div class="w-50 mx-auto">
                 <div v-for="(comment, i) in comments" :key="i">
-                    <SupplementGSupplementReviewCard :comment="comment"></SupplementGSupplementReviewCard>
-                        <div class="w-100 m-5">
-                            <a href="javascript:void(0)">View 3 Replies</a>
-                            <div ref="container"></div>
-                            <!-- <SupplementGSupplementReviewCard v-for="(reply, i) in comment?.replies" :key="i" :comment="reply"></SupplementGSupplementReviewCard> -->
-                        </div>   
+                    <SupplementGSupplementReviewCard class="mb-1" :comment="comment"></SupplementGSupplementReviewCard>
+                    <div class="w-100 text-center mt-1 mb-4">
+                        <!-- <a class="text-decoration-none text-primary text-end" v-if="comment?.replies?.length && !comment.view_replies" href="javascript:void(0)" @click="comment.view_replies=true">View {{ comment?.replies?.length }} Replies</a> -->
+                        <UtilsGLoadMore class="mt-1" v-if="comment?.replies?.length && !comment.view_replies" :button-mode="true" :label-btn="`View ${ comment?.replies?.length } Replies`" @on-click="comment.view_replies=true"></UtilsGLoadMore>
+                    </div>
+                    <div class="w-100 m-5" v-if="comment.view_replies">
+                        <!-- <div ref="container"></div> -->
+                        <SupplementGSupplementReviewCard v-for="(reply, i) in comment?.replies" :key="i" :comment="reply"></SupplementGSupplementReviewCard>
+                    </div>
                 </div>
-
-                   
             </div>
 
 
-            <div class="mt-5 bg-light py-5 w-100 text-center">
-                <div class="mb-3 w-50 mx-auto">
-                    <textarea class="g-shadow rounded-3 border-dark form-control" placeholder="write a comment" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-
-                <button class="rounded-pill px-4 shadow mt-3 mx-auto btn btn-primary">Post a comment <i class="bi bi-arrow-up fw-bold"></i></button>
-            </div>
+            <SupplementGSupplementReviewCommentForm></SupplementGSupplementReviewCommentForm>
         </div>
     </div>
-    <div class="is-mobile g-supplement-review-form w-100 position-absolute overflow-visible ">
+    <div class="is-mobile g-supplement-review-form w-100 position-relative overflow-visible ">
         <div class="bg-white rounded-lg w-100 position-relative g-shadow" >
             <div class="w-100 px-2 pt-4 pb-2">
                 <SupplementGSupplementReviewItem class="mt-4 mb-5"></SupplementGSupplementReviewItem>
@@ -66,7 +61,16 @@
             <hr class="border-dashed w-75 mx-auto my-4" />
 
             <div class="w-75 px-3 mx-auto mb-4">
-                <SupplementGSupplementReviewCard></SupplementGSupplementReviewCard>
+                <div v-for="(comment, i) in comments" :key="i">
+                    <SupplementGSupplementReviewCard class="mb-1" :comment="comment"></SupplementGSupplementReviewCard>
+                    <div class="w-100 text-center mt-1 mb-4">
+                        <UtilsGLoadMore class="mt-1" v-if="comment?.replies?.length && !comment.view_replies" :button-mode="true" :label-btn="`View ${ comment?.replies?.length } Replies`" @on-click="comment.view_replies=true"></UtilsGLoadMore>
+                    </div>
+                    <div class="w-100 m-3" v-if="comment.view_replies">
+                        <!-- <div ref="container"></div> -->
+                        <SupplementGSupplementReviewCard v-for="(reply, i) in comment?.replies" :key="i" :comment="reply" class="my-2"></SupplementGSupplementReviewCard>
+                    </div>
+                </div>
             </div>
 
             <SupplementGSupplementReviewCommentForm></SupplementGSupplementReviewCommentForm>
@@ -79,14 +83,25 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     setup() {
         var supplementStore = useSupplementStore()
-        var { supplement } = storeToRefs(supplementStore)
+        var { supplement } = storeToRefs(supplementStore);
 
         var comments = computed(() => {
             return supplement.value.comments
         })
+
+        watch(comments, (val) => {
+            if (val.length) {
+                val.map((item:any) => {
+                    item.view_replies = false;
+                });
+            }
+        })
+
+        const viewReplies = ref(false);
         
         return {
-            comments
+            comments,
+            viewReplies
         }
     },
 })
@@ -98,7 +113,7 @@ export default defineComponent({
     background-color: var(--bs-success);
 }
 .g-supplement-review-form {
-    top: 15%;
+    margin-bottom: 20%;
 }
 .g-blog-form-menu {
     /* min-width: unset !important;
@@ -113,5 +128,16 @@ export default defineComponent({
 .g-blog-form-menu.show {
     transition: opacity 1s ease-in;
     opacity: 1 !important;
+}
+
+@media only screen and (max-width: 1009px) {
+    .g-supplement-review-form {
+        margin-top: -140%
+    }
+}
+</style>
+<style>
+.g-profile-section {
+    margin-bottom: -28% !important;
 }
 </style>

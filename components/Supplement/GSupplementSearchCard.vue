@@ -9,23 +9,7 @@
                 </span>
             </div>
             <div class="gl-search-filter-category d-flex justify-content-between w-50 mx-auto">
-                <button class="btn btn-primary-soft">
-                    <i class="bi bi-check-lg text-primary"></i>
-                    Protein
-                </button>
-                <button class="btn">
-                    EAA
-                </button>
-                <button class="btn">
-                    creatine
-                </button>
-                <button class="btn btn-primary-soft">
-                    <i class="bi bi-check-lg text-primary"></i>
-                    glutamine
-                </button>
-                <button class="btn">
-                    HMB
-                </button>
+                <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
             </div>
         </div>
 
@@ -48,32 +32,13 @@
             </span>
         </div>
         <div class="gl-search-filter-category d-flex justify-content-between w-100 mx-auto px-4">
-            <button class="btn btn-primary-soft f10">
-                <i class="bi bi-check-lg text-primary"></i>
-                Protein
-            </button>
-            <button class="btn f10">
-                EAA
-            </button>
-            <button class="btn f10">
-                creatine
-            </button>
-            <button class="btn btn-primary-soft f10">
-                <i class="bi bi-check-lg text-primary"></i>
-                glutamine
-            </button>
-            <button class="btn f10">
-                HMB
-            </button>
+            <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
         </div>
     </div>
     <div class="is-mobile w-100 rounded-lg py-5 mt-4 bg-white border border-2">
         <!-- SEARCH RESULT -->
         <div class="container mx-auto mt-5">
-            <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem>
-            <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem>
-            <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem>
-            <SupplementGSupplementSearchItem></SupplementGSupplementSearchItem>
+            <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in allSupplements" :key="supplement.id"></SupplementGSupplementSearchItem>
             <UtilsGLoadMore></UtilsGLoadMore>
         </div>
     </div>
@@ -84,16 +49,53 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     setup() {
-        
+        const filterOpts = ref([
+            {
+                title:"Protein",
+                value:"protein"
+            },
+            {
+                title:"EAA",
+                value:"eaa"
+            },
+            {
+                title:"Creatine",
+                value:"creatine"
+            },
+            {
+                title:"Glutamine",
+                value:"glutamine"
+            },
+            {
+                title:"HMB",
+                value:"hmb"
+            }
+        ])
+
+        const filters = ref({
+            type: [],
+        })
         var supplementStore = useSupplementStore()
         var { allSupplements } = storeToRefs(supplementStore)
+
+        const toggleFilter = (val:any) => {
+            if (filters.value.type.includes(val)) {
+                const getIdx = filters.value.type.indexOf(val);
+                filters.value.type.splice(getIdx, 1);
+            } else {
+                filters.value.type.push(val);
+            }
+        }
 
         onMounted(() => {
             supplementStore.getAllSupplement()
         })
 
         return {
-            allSupplements
+            allSupplements,
+            filterOpts,
+            filters,
+            toggleFilter
         }
     },
 })
