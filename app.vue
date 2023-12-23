@@ -15,7 +15,6 @@ export default defineComponent({
     const authStore = useAuthStore();
     const generalRef = storeToRefs(generalStore);
     const isLoading = ref(generalRef.isLoading);
-    // authStore.setToken();
 
     onMounted(() => {
       if (window.screen.width <= 1009) {

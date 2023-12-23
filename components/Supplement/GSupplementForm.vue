@@ -16,11 +16,7 @@
             <div class="mb-4 g-form-input">
                 <div class="mb-4 g-form-input">
                     <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`KindsLabel`) }}*</label>
-                    <select class="form-select form-select-lg" aria-label="Default select example" v-model="formData.kind">
-                        <option value="" selected>{{ $t('SelectLabel') }}</option>
-                        <option v-for="(opt,key) in shapeOpt" :value="opt.value">{{ opt.label }}</option>
                     </select>
-                </div>
             </div>
             <div class="mb-4 g-form-input">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`ProteinContentLabel`) }}*</label>

@@ -4,11 +4,8 @@
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
             <div class="row">
-                <div class="col-md-6 col-xs-12">
-                    <CardsGCardBlog></CardsGCardBlog>
-                </div>
-                <div class="col-md-6 col-xs-12">
-                    <CardsGCardBlog></CardsGCardBlog>
+                <div v-for="(blog, i) in blogList" class="col-md-6 col-xs-12 mb-5">
+                    <CardsGCardBlog :blog="blog" ></CardsGCardBlog>
                 </div>
                 <UtilsGLoadMore></UtilsGLoadMore>
             </div>
@@ -117,4 +114,25 @@
         </div>
     </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    setup() {
+        var blogStore = useBlogStore()
+        var { blogList } = storeToRefs(blogStore)
+
+
+        onMounted(() => {
+          blogStore.getAllBlogs()  
+        })
+
+        return {
+            blogList
+        }
+    },
+})
+</script>
+
   

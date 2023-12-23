@@ -8,10 +8,10 @@
                             <i class="bi bi-person-raised-hand me-1 text-primary"></i> Big 3 total: {{ objData.profile_details.deadlift }}
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.my_training">
-                            <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ objData.profile_details.my_training }} years
+                            <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ objData.profile_details.year_attended_training }} years
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.respected_trainee">
-                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: {{ objData.profile_details.respected_trainee }} years
+                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: {{ objData.profile_details.respected_trainee }}
                         </div>
                     </div>
                 </div>
@@ -41,9 +41,9 @@
                     </div>
                 </div>
             </div>
-            <div class="position-absolute w-100 g-profile-dp ">
+            <div class="position-absolute top-10 w-100 g-profile-dp">
                 <img src="https://www.muscleandfitness.com/wp-content/uploads/2019/01/man-tire-pull-1109.jpg?quality=86&strip=all" height="270" width="270" class="object-fit-cover rounded-circle mx-auto g-shadow" />
-                <div class="h2 mt-4 fw-bold">{{ objData.name }}</div>
+                <div class="h2 mt-4 fw-bold mt-5">{{ objData.name }}</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
                         <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
@@ -64,11 +64,24 @@
                 </div>
             </div>
             <div class="g-profile-text border border-light p-2 rounded border-2">
-                Self Introduction
+                <div class="my-1 fw-bold">
+                    Self Introduction
+                </div>
+                <hr style="opacity: 0.10;">
+               <div class="mb-5">
+                     {{ objData.profile_details.description }}
+               </div>                
             </div>
-            <div class="mt-3 border border-light p-2 rounded border-2">
-                Training
-            </div>
+            <div class="d-flex flex-column mt-3 border border-light p-2 rounded border-2">
+                <div class="my-1 fw-bold">
+                    My Training
+                </div>
+                <hr style="opacity: 0.10;">
+               <div class="mb-5">
+                     {{ objData.profile_details.my_training }}
+               </div>
+            </div>     
+
         </div>
         <div class="is-mobile g-profile-card-main bg-white mx-auto rounded-lg g-shadow w-100 p-3" style="min-height:500px">
             <div class="row align-items-center justify-content-between mt-5">
