@@ -18,11 +18,29 @@
                 <div class="mb-5">
                     <select class="form-select" aria-label="Default select example">
                         <option selected>Select content type</option>
-                        <option value="1">Blog</option>
-                        <option value="2">News</option>
-                        <option value="3">Event</option>
+                        <option value="blog">Blog</option>
+                        <option value="news">News</option>
+                        <option value="event">Event</option>
                     </select>
-                </div>                
+                </div>          
+
+                <div class="row mb-3">
+                    <div class="d-flex justify-content-start">
+                        <button @click="addNewField" class="btn btn-primary">Add New Field</button>
+                    </div>
+                </div>
+                
+                <div v-for="(meta) in blogForm.meta" class="row mb-5">
+                    <div class="col-5">
+                        <input v-model="meta.key" type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')"/>
+                    </div>
+                    <div class="col-5">
+                        <input v-model="meta.value" type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')"/>
+                    </div>      
+                    <div class="col-2 text-center">
+                        <button @click="addNewField" class="btn btn-primary"><i class="bi bi-trash3"></i></button>
+                    </div>                                    
+                </div>                    
             </div>
 
 
@@ -196,6 +214,7 @@ export default defineComponent({
         const { t } = useI18n();
         const modalType = ref<String>("link"); // link, image, gif, format
         const blogStore = useBlogStore();
+        const { blogForm } = storeToRefs(blogStore)
         const generalStore = useGeneralStore();
         const router = useRouter();
         const route = useRoute();
@@ -227,6 +246,12 @@ export default defineComponent({
             coverImage.value = src;
         }
 
+        var addNewField = () => {
+            blogForm.value.meta.push({
+                key: "",
+                value: ""
+            })
+        }
         let insertLink = () => {
             if (quill) {
                 const range = quill.getSelection();
@@ -341,6 +366,8 @@ export default defineComponent({
             selectText,
             insertLink,
             saveBlog,
+            addNewField,
+            blogForm
         }
     }
 })

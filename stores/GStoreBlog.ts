@@ -4,21 +4,32 @@ import { useGeneralStore as generalStore } from "./GStoreGeneral";
 
 
 export interface Blog {
-    id: string
+    id?: string
     title: string
     content: string
     feature_image: string
-    meta: string
+    meta: Meta[]
     visibility: string
     type: string
     status: string
     user: string
 }
+export interface Meta {
+    key: string
+    value: string
+}
+
 export const useBlogStore = defineStore("blogStore", {
     state: () => {
         return {
             blogList: <Array<Blog>>[],
-            blog: <Blog>{}
+            blog: <Blog>{},
+            blogForm: <Blog>{
+                meta: [{
+                    key: "",
+                    value: ""
+                }]
+            }
         }
     },
     actions: {
