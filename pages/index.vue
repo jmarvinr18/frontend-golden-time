@@ -3,12 +3,10 @@
     <div class="is-desktop">
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
+
             <div class="row">
-                <div class="col-md-6 col-xs-12">
-                    <CardsGCardBlog></CardsGCardBlog>
-                </div>
-                <div class="col-md-6 col-xs-12">
-                    <CardsGCardBlog></CardsGCardBlog>
+                <div v-for="(blog, i) in contents?.blog" class="col-md-6 col-xs-12 mb-5">
+                    <CardsGCardBlog :blog="blog" ></CardsGCardBlog>
                 </div>
                 <UtilsGLoadMore></UtilsGLoadMore>
             </div>
@@ -17,15 +15,10 @@
             <GSectionTitle :title="$t('MuscleNews')" icon="bi-newspaper"></GSectionTitle>
 
             <div class="row">
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews></CardsGCardNews>
+                <div v-for="(news, i) in contents?.news" class="col-md-4 col-xs-12">
+                    <CardsGCardNews :news="news"></CardsGCardNews>
                 </div>
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews></CardsGCardNews>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews></CardsGCardNews>
-                </div>
+
                 <UtilsGLoadMore></UtilsGLoadMore>
             </div>
         </div>
@@ -33,32 +26,8 @@
             <GSectionTitle :title="$t('TournamentInformation')" icon="bi-calendar-check"></GSectionTitle>
 
             <div class="row">
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews
-                    type="agenda"
-                    start-time="09:00"
-                    open-time="07:00"
-                    player-gathering="08:00"
-                    location-name="Spanish Cultural Center">
-                </CardsGCardNews>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews
-                    type="agenda"
-                    start-time="09:00"
-                    open-time="07:00"
-                    player-gathering="08:00"
-                    location-name="Spanish Cultural Center">
-                </CardsGCardNews>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews
-                    type="agenda"
-                    start-time="09:00"
-                    open-time="07:00"
-                    player-gathering="08:00"
-                    location-name="Spanish Cultural Center">
-                </CardsGCardNews>
+                <div v-for="(event, i) in contents?.event" class="col-md-4 col-xs-12">
+                    <CardsGCardEvent :event="event"></CardsGCardEvent>
                 </div>
                 <UtilsGLoadMore></UtilsGLoadMore>
             </div>
@@ -117,4 +86,25 @@
         </div>
     </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { usePublicContentStore } from '~/stores/GStorePublicContent'
+
+export default defineComponent({
+    setup() {
+        var publicContentStore = usePublicContentStore()
+        var { contents } = storeToRefs(publicContentStore)
+
+        onMounted(() => {
+          publicContentStore.getHomeContents("?blog_limit=2&news_limit=3&event_limit=3")  
+        })
+
+        return {
+            contents
+        }
+    },
+})
+</script>
+
   

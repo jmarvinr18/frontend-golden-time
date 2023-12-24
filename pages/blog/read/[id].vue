@@ -13,13 +13,16 @@
 
             <GSectionTitle class="mt-lg" title="More blogs" :icon-hide="true"></GSectionTitle>
             <div class="row mt-3">
-                <div class="col-md-4 col-xs-12">
+                <div class="col-md-3 col-xs-12">
                     <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="col-md-3 col-xs-12">
                     <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="col-md-3 col-xs-12">
+                    <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
+                </div>
+                <div class="col-md-3 col-xs-12">
                     <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
                 </div>
             </div>
@@ -39,11 +42,13 @@
 export default defineComponent({
     name: 'BlogDetail',
     setup() {
-        const route:any = useRoute();
+        const route = useRoute();
         const blogStore = useBlogStore();
         const objData:any = ref({});
+        
+
         onMounted(() => {
-            blogStore.getBlog(route.query.id).then((res:any) => {
+            blogStore.getBlog(route.params.id).then((res:any) => {
                 objData.value = res;
             });
         });
