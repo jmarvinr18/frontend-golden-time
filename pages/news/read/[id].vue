@@ -1,12 +1,12 @@
 <template>
     <GSection>
         <div class="container">
-            <img src="https://picsum.photos/1000/400" class="rounded-lg mt-3" width="100%" />
+            <img :src="blog?.feature_image" class="rounded-lg mt-3" width="100%" />
             <div class="g-blog-date text-secondary f12 mt-2">
                 <i class="bi bi-clock me-2 f14"></i>
-                November 12th 20:02
+                {{blog.created_at}}
             </div>
-            <GSectionTitle class="fw-bold" title="Training of latissimus dorsi and teres major muscles" :icon-hide="true"></GSectionTitle>
+            <GSectionTitle class="fw-bold" :title="blog.title" :icon-hide="true"></GSectionTitle>
             <div class="d-flex align-items-center mt-4 h4 text-primary">
                 <div class="g-blog-like me-3">
                     <i class="bi bi-heart"></i>
@@ -19,17 +19,8 @@
                 </div>
             </div>
             <hr class="my-3" />
-            <div class="g-blog-body mt-5 lh-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem fuga, repellendus asperiores earum voluptatem quis vero omnis aperiam in. Veniam itaque earum quas ut eius sequi. Molestiae debitis optio aut.
-
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem fuga, repellendus asperiores earum voluptatem quis vero omnis aperiam in. Veniam itaque earum quas ut eius sequi. Molestiae debitis optio aut.
-                <br /><br />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem fuga, repellendus asperiores earum voluptatem quis vero omnis aperiam in. Veniam itaque earum quas ut eius sequi. Molestiae debitis optio aut.
-
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem fuga, repellendus asperiores earum voluptatem quis vero omnis aperiam in. Veniam itaque earum quas ut eius sequi. Molestiae debitis optio aut.
+            <div class="g-blog-body mt-5 lh-lg" v-html=" blog.content">
             </div>
-            <UtilsGLoadMore class="mt-5" :button-mode="true"></UtilsGLoadMore>
-
             <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
             <div class="row mt-3">
                 <div class="col-md-4 col-xs-12">
@@ -47,3 +38,23 @@
         
     </GSection>
 </template>
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    name: 'NewsDetail',
+    setup() {
+        const route = useRoute();
+        const blogStore = useBlogStore(); 
+        const { blog }  = storeToRefs(blogStore); 
+
+        onMounted(() => {
+            blogStore.getBlog(route.params.id);
+        });
+
+        return {
+            blog,
+        }
+    }
+})
+</script>

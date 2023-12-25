@@ -13,8 +13,10 @@ export interface Blog {
     type: string
     status: string
     user: string
+    created_at?: string
 }
 export interface Meta {
+    type: string
     key: string
     value: string
 }
@@ -26,6 +28,7 @@ export const useBlogStore = defineStore("blogStore", {
             blog: <Blog>{},
             blogForm: <Blog>{
                 meta: [{
+                    type: "text",
                     key: "",
                     value: ""
                 }]
@@ -45,7 +48,7 @@ export const useBlogStore = defineStore("blogStore", {
             generalStore().setIsLoading(true);
             return GApiBlog.getBlog(id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                this.blog = res.data.data
+                this.blog = res.data
                 return res.data;
             })
         },
