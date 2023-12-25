@@ -48,7 +48,10 @@ export const useBlogStore = defineStore("blogStore", {
             generalStore().setIsLoading(true);
             return GApiBlog.getBlog(id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                this.blog = res.data
+                this.blog = {
+                    ...res.data,
+                    meta: JSON.parse(res.data.meta)
+                }
                 return res.data;
             })
         },
