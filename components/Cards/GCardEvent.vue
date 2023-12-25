@@ -1,5 +1,5 @@
 <template>
-    <a :href="`/blog/read/${event?.id}`" class="text-decoration-none">
+    <a :href="`/event/read/${event?.id}`" class="text-decoration-none">
         <div class="g-card-news card w-100 g-shadow rounded-lg">
             <img :src="event?.feature_image" class="card-img-top" alt="...">
             <div class="card-body">
@@ -8,9 +8,7 @@
                 </div>
                 <div class="card-created-time f12 text-secondary">
 
-                    <div >
-                       {{ event?.meta.date }} <span class="ms-2 text-black">{{ event?.meta.location }}</span>
-                    </div>
+                    <div v-html="useTruncateText(event?.content,250)"></div>
                 </div>
                 <hr class="border-secondary mb-1" />
         
@@ -36,7 +34,10 @@ export default defineComponent({
     
 
     setup(props) {
+        
+        return {
 
+        }
     }
 })
 </script>

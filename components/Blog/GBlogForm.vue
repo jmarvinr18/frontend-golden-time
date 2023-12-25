@@ -46,9 +46,9 @@
                             <input v-model="meta.key" type="text" class="form-control form-control-lg" placeholder="Label"/>
                         </div>
                         <div class="col-5 d-flex gap-4">
-                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'time'" placeholder="Value" v-model="meta.value" time-picker @update:model-value="handleDate"></VueDatePicker>
-                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'singledate'" placeholder="Value" v-model="meta.value" @update:model-value="handleDate"></VueDatePicker>
-                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'daterange'" placeholder="Value" v-model="meta.value" range multi-calendars @update:model-value="handleDate"></VueDatePicker>
+                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'time'" placeholder="Value" v-model="meta.value" time-picker @update:model-value="handleDate" model-type="HH:mm:ss"></VueDatePicker>
+                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'singledate'" placeholder="Value" v-model="meta.value" @update:model-value="handleDate" model-type="dd.MM.yyyy"></VueDatePicker>
+                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'daterange'" placeholder="Value" v-model="meta.value" range multi-calendars @update:model-value="handleDate" model-type="dd.MM.yyyy"></VueDatePicker>
                             
                             <input v-if="meta.type == 'text'" v-model="meta.value" type="text" class="form-control form-control-lg" placeholder="Value"/>
                             <input @change="defaultToZero(i)" v-if="meta.type == 'number'" min="0" v-model="meta.value" type="number" class="form-control form-control-lg" placeholder="Value"/>
@@ -128,7 +128,7 @@
         </div>
         <div class="is-mobile bg-white mx-auto rounded-lg w-100 py-3 px-3 position-relative g-shadow" style="min-height:500px">
             <div class="mb-4">
-                <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')" v-model="formData.title">
+                <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')" v-model="blogForm.title">
             </div>
             <div class="mb-4 d-flex align-items-center flex-wrap">
                 <div class="h4 me-3">Cover Image</div>
@@ -241,11 +241,7 @@ export default defineComponent({
         const generalStore = useGeneralStore();
         const router = useRouter();
         const route = useRoute();
-        const formData:any = ref({
-            title:"",
-            content: ""
-        });
-        const blogTitle = ref("");
+
         const toolShow = ref<Boolean>(false);
         const textLink:any = ref<String>();
         const gMediaUpload:any = ref(null);
@@ -401,8 +397,6 @@ export default defineComponent({
             toolShow,
             gMediaUpload,
             gMediaGifLibrary,
-            formData,
-            blogTitle,
             setCover,
             selectObj,
             selectText,
