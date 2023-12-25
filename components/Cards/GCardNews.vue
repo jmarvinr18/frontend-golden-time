@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to="`/news/read/${news?.id}`" class="text-decoration-none">
+    <a :href="`/news/read/${news?.id}`" class="text-decoration-none">
         <div class="g-card-news card w-100 g-shadow rounded-lg">
             <img :src="news?.feature_image" class="card-img-top" alt="...">
             <div class="card-body">
@@ -16,7 +16,7 @@
 
             </div>
         </div>
-    </NuxtLink>
+    </a>
 </template>
 <script lang="ts">
 export default defineComponent({

@@ -3,26 +3,64 @@
         <div class="is-desktop bg-white mx-auto rounded-lg w-75 py-5 px-5 position-relative g-shadow" style="min-height:500px">
             <div class="mb-4">
                 <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')"
-                v-model="formData.title" name="title">
+                v-model="blogForm.title" name="title">
             </div>
             <div class="mb-4 d-flex align-items-center flex-wrap">
                 <div class="h4 me-3">{{ $t("CoverImage") }}</div>
-                <button v-if="coverImage" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Change ...</button>
-                <div v-if="coverImage" class="w-100 mt-2">
-                    <img :src="coverImage" class="w-25 rounded object-fit-contain bg-dark" height="200" />
+                <button v-if="blogForm.feature_image" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Change ...</button>
+                <div v-if="blogForm.feature_image" class="w-100 mt-2">
+                    <img :src="blogForm.feature_image" class="w-25 rounded object-fit-contain bg-dark" height="200" />
                 </div>
                 <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >{{ $t("Browse") }}...</button>
             </div>
 
             <div>
+           
                 <div class="mb-5">
-                    <select class="form-select" aria-label="Default select example">
+                    <select v-model="blogForm.type"  class="form-control form-control-lg form-select" aria-label="Default select example">
                         <option selected>Select content type</option>
-                        <option value="1">Blog</option>
-                        <option value="2">News</option>
-                        <option value="3">Event</option>
+                        <option value="blog">Blog</option>
+                        <option value="news">News</option>
+                        <option value="event">Event</option>
                     </select>
-                </div>                
+                </div>          
+                <div v-if="blogForm.type == 'event'">
+                    <div class="row mb-3">
+                        <div class="d-flex justify-content-start">
+                            <button @click="addNewField" class="btn btn-primary">Add New Field</button>
+                        </div>
+                    </div>
+                    
+                    <div v-for="(meta, i) in blogForm.meta" :key="i" class="row mb-5">
+                        <div class="col-2 text-center">
+                        <select v-model="meta.type" class="form-control form-control-lg form-select" placeholder="Select field type" aria-label="Default select example">
+                            <option value="" selected>Select field type</option>
+                            <option value="text">Text</option>
+                            <option value="number">Number</option>
+                            <option value="time">Time</option>
+                            <option value="singledate">Single Date</option>
+                            <option value="daterange">Date Range</option>
+                        </select>
+                        </div>                    
+                        <div class="col-5">
+                            <input v-model="meta.key" type="text" class="form-control form-control-lg" placeholder="Label"/>
+                        </div>
+                        <div class="col-5 d-flex gap-4">
+                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'time'" placeholder="Value" v-model="meta.value" time-picker @update:model-value="handleDate"></VueDatePicker>
+                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'singledate'" placeholder="Value" v-model="meta.value" @update:model-value="handleDate"></VueDatePicker>
+                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'daterange'" placeholder="Value" v-model="meta.value" range multi-calendars @update:model-value="handleDate"></VueDatePicker>
+                            
+                            <input v-if="meta.type == 'text'" v-model="meta.value" type="text" class="form-control form-control-lg" placeholder="Value"/>
+                            <input @change="defaultToZero(i)" v-if="meta.type == 'number'" min="0" v-model="meta.value" type="number" class="form-control form-control-lg" placeholder="Value"/>
+
+                            <button @click="addNewField" class="btn btn-primary"><i class="bi bi-trash3"></i></button>
+                        </div>      
+                        <!-- <div class="col-2 text-center">
+                            <button @click="addNewField" class="btn btn-primary"><i class="bi bi-trash3"></i></button>
+                        </div>                                     -->
+                    </div>  
+                </div>
+                  
             </div>
 
 
@@ -94,9 +132,9 @@
             </div>
             <div class="mb-4 d-flex align-items-center flex-wrap">
                 <div class="h4 me-3">Cover Image</div>
-                <button v-if="coverImage" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Change ...</button>
-                <div v-if="coverImage" class="w-100 mt-2">
-                    <img :src="coverImage" class="w-100 rounded object-fit-contain bg-dark" height="200" />
+                <button v-if="blogForm.feature_image" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Change ...</button>
+                <div v-if="blogForm.feature_image" class="w-100 mt-2">
+                    <img :src="blogForm.feature_image" class="w-100 rounded object-fit-contain bg-dark" height="200" />
                 </div>
                 <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Browse...</button>
             </div>
@@ -190,12 +228,16 @@
 <script lang="ts">
 import { defineComponent,ref } from 'vue';
 import { useI18n } from "vue-i18n";
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default defineComponent({
+    components: { VueDatePicker },    
     setup({}) {
         const { t } = useI18n();
         const modalType = ref<String>("link"); // link, image, gif, format
         const blogStore = useBlogStore();
+        const { blogForm } = storeToRefs(blogStore)
         const generalStore = useGeneralStore();
         const router = useRouter();
         const route = useRoute();
@@ -208,11 +250,14 @@ export default defineComponent({
         const textLink:any = ref<String>();
         const gMediaUpload:any = ref(null);
         const gMediaGifLibrary:any = ref(null);
-        const coverImage = ref("");
         let textPos = {
             index:0,
             length:0
         };
+        const time = ref({
+            hours: new Date().getHours(),
+            minutes: new Date().getMinutes()
+        });        
         let quill:any;
 
         const selectText = (type:any) => {
@@ -224,9 +269,33 @@ export default defineComponent({
         }
 
         const setCover = (src:any) => {
-            coverImage.value = src;
+            blogForm.value.feature_image = src;
+        }
+        const defaultToZero = ($val: any, index: number = 0) => {
+            console.log($val)
+            return $val.target.value < 0 ? 0 : $val.target.value
         }
 
+        const handleDate = (modelData:any) => {
+
+
+            console.log(modelData)
+            // const day = date.getDate();
+            // const month = date.getMonth() + 1;
+            // const year = date.getFullYear();
+            
+            // return `${day}/${month}/${year}`
+
+            return `${modelData.hours}:${modelData.minutes}${modelData.seconds}`
+        }
+
+        var addNewField = () => {
+            blogForm.value.meta.push({
+                type: "text",
+                key: "",
+                value: ""
+            })
+        }
         let insertLink = () => {
             if (quill) {
                 const range = quill.getSelection();
@@ -250,22 +319,21 @@ export default defineComponent({
 
         const saveBlog = () => {
             const myEl:any = document.querySelector(".ql-editor");
-            formData.value.content = myEl.innerHTML;
+            blogForm.value.content = myEl.innerHTML;
 
             if (route.query.id) {
-                blogStore.updateBlog(formData.value).then((res: any) => {
-                   router.push(`/blog/read?id=${res.data.id}`);
+                blogStore.updateBlog(blogForm.value).then((res: any) => {
+                   router.push(`/blog/read/${res.data.id}`);
                 });
             } else {
-                blogStore.createBlog(formData.value).then((res: any) => {
-                    router.push(`/blog/read?id=${res.data.id}`);
+                blogStore.createBlog(blogForm.value).then((res: any) => {
+                    router.push(`/blog/read/${res.data.id}`);
                 })
             }
         }
 
         onMounted(() => {
             generalStore.setIsLoading(true);
-            
             setTimeout(() => {
                 initEditor();
             },1000)
@@ -274,7 +342,7 @@ export default defineComponent({
         const loadData = () => {
             if (route.query.id) {
                 blogStore.getBlog(route.query.id).then((res:any) => {
-                    formData.value = res;
+                    blogForm.value = res;
                     const myEl:any = !generalStore.isMobile? document.querySelectorAll(".ql-editor")[0]:document.querySelector(".ql-editor");
                     myEl.innerHTML = res.content;
                 });
@@ -335,12 +403,16 @@ export default defineComponent({
             gMediaGifLibrary,
             formData,
             blogTitle,
-            coverImage,
             setCover,
             selectObj,
             selectText,
             insertLink,
             saveBlog,
+            addNewField,
+            blogForm,
+            time,
+            defaultToZero,
+            handleDate
         }
     }
 })

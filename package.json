@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "@vuepic/vue-datepicker": "^7.4.0",
     "axios": "^1.6.2",
     "moment": "^2.29.4",
     "netlify-cli": "^17.2.2",

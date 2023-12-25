@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to="`/blog/read/${event?.id}`" class="text-decoration-none">
+    <a :href="`/blog/read/${event?.id}`" class="text-decoration-none">
         <div class="g-card-news card w-100 g-shadow rounded-lg">
             <img :src="event?.feature_image" class="card-img-top" alt="...">
             <div class="card-body">
@@ -16,9 +16,9 @@
         
                 <p  class="card-text-schedule f12 text-secondary d-flex align-items-center justify-content-between">
                     <div class="card-time lh-lg">
-                        <div>OPEN : {{ event?.meta.start }}</div>
-                        <div>START : {{ event?.meta.start }}</div>
-                        <div class="player-gathering">Player gathering : {{ event?.meta.player_gathering }}</div>
+                        <div>{{ event?.meta[0].key }} : {{ event?.meta[0].value }}</div>
+                        <div>{{ event?.meta[1].key }} : {{ event?.meta[1].value }}</div>
+                        <div>{{ event?.meta[2].key }} : {{ event?.meta[2].value }}</div>
                     </div>
                     <div class="card-button">
                         <button class="btn btn-outline-primary btn-sm border-2">detail</button>
@@ -26,13 +26,14 @@
                 </p>
             </div>
         </div>
-    </NuxtLink>
+    </a>
 </template>
 <script lang="ts">
 export default defineComponent({
     props: {
         event: Object,
     },
+    
 
     setup(props) {
 
