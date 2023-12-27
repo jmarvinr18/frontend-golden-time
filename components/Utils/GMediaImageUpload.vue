@@ -29,8 +29,10 @@ export default defineComponent({
             reader.readAsDataURL(thisFile);
             reader.onload = () => {
                 uploadedFile.value = reader.result;
-                event.target.value='';
-                emit("on-get-file", reader.result);
+                emit("on-get-file", {
+                    file: event.target.files[0],
+                    src: reader.result
+                });
             };
         };
 
