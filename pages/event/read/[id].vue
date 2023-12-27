@@ -19,8 +19,19 @@
                 </div>
             </div>
             <hr class="my-3" />
-            <div class="g-blog-body mt-5 lh-lg" v-html=" blog.content">
+
+            <div class="g-blog-body my-4 lh-lg">
+                <h5 class="fw-bolder mb-4">Event Information</h5>
+                <div v-for="(event, i) in blog?.meta" :key="i">
+                   <strong>{{ event.key }}</strong>  : {{ event.value }}
+                </div>
             </div>
+            <hr class="my-3" />
+            <div class="my-5">
+                <h5 class="fw-bolder mb-4">Event Details</h5>
+                <div class="g-blog-body lh-lg" v-html=" blog.content"></div>                
+            </div>
+
             <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
             <div class="row mt-3">
                 <div class="col-md-4 col-xs-12">
@@ -42,7 +53,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'NewsDetail',
+    name: 'EventDetail',
     setup() {
         const route = useRoute();
         const blogStore = useBlogStore(); 

@@ -1,15 +1,15 @@
 <template>
     <GSection>
         <div class="container">
-            <GSectionTitle :title="objData.title" :icon-hide="true"></GSectionTitle>
+            <GSectionTitle :title="blog.title" :icon-hide="true"></GSectionTitle>
             <hr class="my-3" />
-            <BlogGBlogAuthor :objData="objData"></BlogGBlogAuthor>
+            <BlogGBlogAuthor :blog="blog"></BlogGBlogAuthor>
             <div class="g-blog-date text-secondary f12 mt-3">
                 <i class="bi bi-clock me-2 f14"></i>
-                {{ $formatTime(objData.created_at) }}
+                {{ $formatTime(blog.created_at) }}
             </div>
-            <img src="https://picsum.photos/1000/400" class="rounded-lg mt-3" width="100%" />
-            <div class="g-blog-body mt-5 lh-lg" v-html="objData.content"></div>
+            <img :src="blog.feature_image" class="rounded-lg mt-3" width="100%" />
+            <div class="g-blog-body mt-5 lh-lg" v-html="blog.content"></div>
 
             <GSectionTitle class="mt-lg" title="More blogs" :icon-hide="true"></GSectionTitle>
             <div class="row mt-3">
@@ -28,9 +28,9 @@
             </div>
             <hr class="mt-5 mb-3" />
             <div class="d-flex align-items-center justify-content-end h4 text-primary">
-                <BlogFeaturesGBlogLike :id="objData.id"></BlogFeaturesGBlogLike>
-                <BlogFeaturesGBlogComment :id="objData.id"></BlogFeaturesGBlogComment>
-                <BlogFeaturesGBlogShare :objData="objData" id="share-modal"></BlogFeaturesGBlogShare>
+                <BlogFeaturesGBlogLike :id="blog.id"></BlogFeaturesGBlogLike>
+                <BlogFeaturesGBlogComment :id="blog.id"></BlogFeaturesGBlogComment>
+                <BlogFeaturesGBlogShare :objData="blog" id="share-modal"></BlogFeaturesGBlogShare>
             </div>
         </div>
         
@@ -41,18 +41,15 @@ export default defineComponent({
     name: 'BlogDetail',
     setup() {
         const route = useRoute();
-        const blogStore = useBlogStore();
-        const objData:any = ref({});
-        
+        const blogStore = useBlogStore(); 
+        const { blog }  = storeToRefs(blogStore); 
 
         onMounted(() => {
-            blogStore.getBlog(route.params.id).then((res:any) => {
-                objData.value = res;
-            });
+            blogStore.getBlog(route.params.id);
         });
 
         return {
-            objData,
+            blog,
         }
     }
 })

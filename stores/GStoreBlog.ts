@@ -4,21 +4,35 @@ import { useGeneralStore as generalStore } from "./GStoreGeneral";
 
 
 export interface Blog {
-    id: string
+    id?: string
     title: string
     content: string
     feature_image: string
-    meta: string
+    meta: Meta[]
     visibility: string
     type: string
     status: string
     user: string
+    created_at?: string
 }
+export interface Meta {
+    type: string
+    key: string
+    value: string
+}
+
 export const useBlogStore = defineStore("blogStore", {
     state: () => {
         return {
             blogList: <Array<Blog>>[],
-            blog: <Blog>{}
+            blog: <Blog>{},
+            blogForm: <Blog>{
+                meta: [{
+                    type: "text",
+                    key: "",
+                    value: ""
+                }]
+            }
         }
     },
     actions: {
@@ -34,7 +48,10 @@ export const useBlogStore = defineStore("blogStore", {
             generalStore().setIsLoading(true);
             return GApiBlog.getBlog(id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                this.blog = res.data.data
+                this.blog = {
+                    ...res.data,
+                    meta: JSON.parse(res.data.meta)
+                }
                 return res.data;
             })
         },

@@ -49,7 +49,7 @@ export default defineComponent({
     setup() {
         const avatarImg = ref("");
         const setPhoto = ((src:any) => {
-            avatarImg.value = src;
+            avatarImg.value = src.src;
         });
 
         return  {

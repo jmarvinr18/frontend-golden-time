@@ -34,8 +34,8 @@
 export default defineComponent({
     setup() {
         const prodImage = ref("");
-        const setPhoto = ((src:any) => {
-            prodImage.value = src;
+        const setPhoto = ((data:any) => {
+            prodImage.value = data.src;
         });
 
         return  {
