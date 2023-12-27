@@ -170,7 +170,7 @@ export default defineComponent({
 <style scoped>
 
 .g-header {
-    z-index: 10000;
+    z-index: 100;
     animation: bg-fade-reverse forwards linear .5s 1;
 }
 

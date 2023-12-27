@@ -1,6 +1,6 @@
 <template>
     <div class="is-desktop">
-        <div class="row f14 lh-lg justify-content-between">
+        <div class="row f14 lh-lg justify-content-between align-items-start">
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
                 {{ $t('BrandLabel') }}
@@ -45,7 +45,7 @@
                 <div class="w-25 me-2 text-muted">
                 {{ $t('FeatureLabel') }}
                 </div>
-                <div class="w-50 border-bottom f10">
+                <div class="w-50 border-bottom f10 line-break-anywhere">
                     {{supplement.features}}
                 </div>
             </div>

@@ -10,8 +10,8 @@
                 <slot></slot>
             </div>
             <div class="modal-footer">
-                <button type="button" class="f14 btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="f14 btn btn-primary rounded-pill" data-bs-dismiss="modal" @click="onSubmit">Submit</button>
+                <button type="button" class="f14 btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">{{ $t('CloseButton') }}</button>
+                <button v-if="submitBtn" type="button" class="f14 btn btn-primary rounded-pill" data-bs-dismiss="modal" @click="onSubmit">{{ $t('SubmitButton') }}</button>
             </div>
             </div>
         </div>

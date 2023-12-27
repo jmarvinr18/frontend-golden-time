@@ -26,7 +26,7 @@
                     <SupplementGSupplementReviewCard class="mb-1" :comment="comment"></SupplementGSupplementReviewCard>
                     <div class="w-100 text-center mt-1 mb-4">
                         <!-- <a class="text-decoration-none text-primary text-end" v-if="comment?.replies?.length && !comment.view_replies" href="javascript:void(0)" @click="comment.view_replies=true">View {{ comment?.replies?.length }} Replies</a> -->
-                        <UtilsGLoadMore class="mt-1" v-if="comment?.replies?.length && !comment.view_replies" :button-mode="true" :label-btn="`View ${ comment?.replies?.length } Replies`" @on-click="comment.view_replies=true"></UtilsGLoadMore>
+                        <UtilsGLoadMore class="mt-1" v-if="comment?.replies?.length && !comment.view_replies" :button-mode="true" :label-btn="`${ comment?.replies?.length } ${$t('Replies')}`" @on-click="comment.view_replies=true"></UtilsGLoadMore>
                     </div>
                     <div class="w-100 m-5" v-if="comment.view_replies">
                         <!-- <div ref="container"></div> -->
@@ -64,7 +64,7 @@
                 <div v-for="(comment, i) in comments" :key="i">
                     <SupplementGSupplementReviewCard class="mb-1" :comment="comment"></SupplementGSupplementReviewCard>
                     <div class="w-100 text-center mt-1 mb-4">
-                        <UtilsGLoadMore class="mt-1" v-if="comment?.replies?.length && !comment.view_replies" :button-mode="true" :label-btn="`View ${ comment?.replies?.length } Replies`" @on-click="comment.view_replies=true"></UtilsGLoadMore>
+                        <UtilsGLoadMore class="mt-1" v-if="comment?.replies?.length && !comment.view_replies" :button-mode="true" :label-btn="`${ comment?.replies?.length } ${$t('Replies')}`" @on-click="comment.view_replies=true"></UtilsGLoadMore>
                     </div>
                     <div class="w-100 m-3" v-if="comment.view_replies">
                         <!-- <div ref="container"></div> -->

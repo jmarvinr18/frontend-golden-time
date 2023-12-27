@@ -21,7 +21,11 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input v-model="authData.password" type="password" class="form-control border-0" :placeholder="$t('PasswordPlaceholder')" aria-label="password" aria-describedby="basic-addon1">
+                    <input v-model="authData.password" :type="viewPassword? 'text':'password'" class="form-control border-0" :placeholder="$t('PasswordPlaceholder')" aria-label="password" aria-describedby="basic-addon1">
+                    <span class="input-group-text bg-none border-0" @click="viewPassword=!viewPassword">
+                        <i v-if="!viewPassword" class="bi bi-eye"></i>
+                        <i v-if="viewPassword" class="bi bi-eye-slash"></i>
+                    </span>
                 </div>
 
                 <NuxtLink to="/account/forgot" class="g-login-forgot-link text-decoration-none text-dark mt-3 f14 cursor-pointer w-100 mx-auto">{{ $t('DidYouForgetPassword') }}</NuxtLink>
@@ -52,7 +56,11 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input v-model="authData.password" type="password" class="form-control border-0" :placeholder="$t('PasswordPlaceholder')" aria-label="password" aria-describedby="basic-addon1">
+                    <input v-model="authData.password" :type="viewPassword? 'text':'password'" class="form-control border-0" :placeholder="$t('PasswordPlaceholder')" aria-label="password" aria-describedby="basic-addon1">
+                    <span class="input-group-text bg-none border-0" @click="viewPassword=!viewPassword">
+                        <i v-if="!viewPassword" class="bi bi-eye"></i>
+                        <i v-if="viewPassword" class="bi bi-eye-slash"></i>
+                    </span>
                 </div>
 
                 <NuxtLink to="/account/forgot" class="g-login-forgot-link text-decoration-none text-dark mt-1 f14 cursor-pointer w-100 mx-auto">{{ $t('DidYouForgetPassword') }}</NuxtLink>
@@ -75,11 +83,13 @@ export default defineComponent({
             email:"",
             password: ""
         });
+        const viewPassword = ref(false);
         const loginNow = () => {
             authStore.login(authData.value);
         }
         return {
             authData,
+            viewPassword,
             loginNow
         }
     }

@@ -28,7 +28,7 @@
     </div>
 
     <!-- SUPPLEMENT IMAGE MODAL -->
-    <ModalsGModalImageUpload id="photo-modal" title="Insert photo" @on-get-file="setPhoto"></ModalsGModalImageUpload>
+    <ModalsGModalImageUpload id="photo-modal" :title="$t('InsertPhoto')" @on-get-file="setPhoto"></ModalsGModalImageUpload>
 </template>
 <script lang="ts">
 export default defineComponent({

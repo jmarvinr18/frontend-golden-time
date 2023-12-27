@@ -34,7 +34,7 @@
         </div>
     </div>
     <!-- PROFILE AVATAR MODAL -->
-    <ModalsGModalImageUpload id="photo-modal" title="Insert profile photo" @on-get-file="setPhoto"></ModalsGModalImageUpload>
+    <ModalsGModalImageUpload id="photo-modal" :title="$t('InsertProfilePhoto')" @on-get-file="setPhoto"></ModalsGModalImageUpload>
 </template>
 <script lang="ts">
 export default defineComponent({
