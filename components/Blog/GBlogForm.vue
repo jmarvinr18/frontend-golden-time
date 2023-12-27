@@ -9,7 +9,7 @@
                 <div class="h4 me-3">{{ $t("CoverImage") }}</div>
                 <button v-if="blogForm.feature_image" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Change ...</button>
                 <div v-if="blogForm.feature_image" class="w-100 mt-2">
-                    <img :src="blogForm.feature_image" class="w-25 rounded object-fit-contain bg-dark" height="200" />
+                    <img :src="coverImage" class="w-25 rounded object-fit-contain bg-dark" height="200" />
                 </div>
                 <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >{{ $t("Browse") }}...</button>
             </div>
@@ -46,18 +46,16 @@
                             <input v-model="meta.key" type="text" class="form-control form-control-lg" placeholder="Label"/>
                         </div>
                         <div class="col-5 d-flex gap-4">
-                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'time'" placeholder="Value" v-model="meta.value" time-picker @update:model-value="handleDate" model-type="HH:mm:ss"></VueDatePicker>
-                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'singledate'" placeholder="Value" v-model="meta.value" @update:model-value="handleDate" model-type="dd.MM.yyyy"></VueDatePicker>
-                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'daterange'" placeholder="Value" v-model="meta.value" range multi-calendars @update:model-value="handleDate" model-type="dd.MM.yyyy"></VueDatePicker>
+                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'time'" placeholder="Value" v-model="meta.value" time-picker model-type="HH:mm:ss"></VueDatePicker>
+                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'singledate'" placeholder="Value" v-model="meta.value" model-type="dd.MM.yyyy"></VueDatePicker>
+                            <VueDatePicker class="form-control form-control-lg" v-if="meta.type == 'daterange'" placeholder="Value" v-model="meta.value" range multi-calendars model-type="dd.MM.yyyy"></VueDatePicker>
                             
                             <input v-if="meta.type == 'text'" v-model="meta.value" type="text" class="form-control form-control-lg" placeholder="Value"/>
-                            <input @change="defaultToZero(i)" v-if="meta.type == 'number'" min="0" v-model="meta.value" type="number" class="form-control form-control-lg" placeholder="Value"/>
+                            <input v-if="meta.type == 'number'" min="0" v-model="meta.value" type="number" class="form-control form-control-lg" placeholder="Value"/>
 
                             <button @click="addNewField" class="btn btn-primary"><i class="bi bi-trash3"></i></button>
                         </div>      
-                        <!-- <div class="col-2 text-center">
-                            <button @click="addNewField" class="btn btn-primary"><i class="bi bi-trash3"></i></button>
-                        </div>                                     -->
+
                     </div>  
                 </div>
                   
@@ -241,6 +239,7 @@ export default defineComponent({
         const generalStore = useGeneralStore();
         const router = useRouter();
         const route = useRoute();
+        const coverImage = ref()
 
         const toolShow = ref<Boolean>(false);
         const textLink:any = ref<String>();
@@ -264,25 +263,9 @@ export default defineComponent({
             textLink.value = src;
         }
 
-        const setCover = (src:any) => {
-            blogForm.value.feature_image = src;
-        }
-        const defaultToZero = ($val: any, index: number = 0) => {
-            console.log($val)
-            return $val.target.value < 0 ? 0 : $val.target.value
-        }
-
-        const handleDate = (modelData:any) => {
-
-
-            console.log(modelData)
-            // const day = date.getDate();
-            // const month = date.getMonth() + 1;
-            // const year = date.getFullYear();
-            
-            // return `${day}/${month}/${year}`
-
-            return `${modelData.hours}:${modelData.minutes}${modelData.seconds}`
+        const setCover = (data:any) => {
+            blogForm.value.feature_image = data.file;
+            coverImage.value = data.src;
         }
 
         var addNewField = () => {
@@ -405,8 +388,7 @@ export default defineComponent({
             addNewField,
             blogForm,
             time,
-            defaultToZero,
-            handleDate
+            coverImage
         }
     }
 })

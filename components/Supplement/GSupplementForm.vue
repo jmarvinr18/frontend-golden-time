@@ -64,6 +64,8 @@
             </button>
         </div>
         </div>
+
+        
     </div>
     <div class="is-mobile g-auth-signup-title w-100 mt-5">
         <div class="h5 mt-5 text-center">{{ $t('RegisterYourSupplement') }}</div>

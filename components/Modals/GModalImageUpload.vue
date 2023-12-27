@@ -11,9 +11,9 @@ export default defineComponent({
         size: "lg" //sm (small), md (modal)
     },
     emits: ['on-get-file'],
-    setup({}, {emit}) {
-        const ongetfile = (src) => {
-            emit("on-get-file", src);
+    setup({}, { emit }) {
+        const ongetfile = (data: any) => {
+            emit("on-get-file", data);
         };
 
         return {
