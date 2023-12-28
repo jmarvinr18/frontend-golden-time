@@ -3,20 +3,20 @@
     <div class="is-desktop g-supplement-review-form w-100 position-relative overflow-visible ">
         <div class="bg-white mx-auto rounded-lg w-75 position-relative g-shadow" style="min-height:500px">
             <div class="w-75 mx-auto pt-4 pb-2">
-                <SupplementGSupplementReviewItem class="mt-4 mb-5"></SupplementGSupplementReviewItem>
+                <SupplementGSupplementReviewItem :supplement="supplement" class="mt-4 mb-5"></SupplementGSupplementReviewItem>
 
                 <div class="d-flex justify-content-center gap-4" style="margin-bottom:80px; margin-top:100px">
                     <div class="w-25">
-                        <SupplementGSupplementRatingCard></SupplementGSupplementRatingCard>
+                        <SupplementGSupplementRatingCard :supplement="supplement"></SupplementGSupplementRatingCard>
                     </div>
                     <div class="w-25">
-                        <SupplementGSupplementRatingCard type="effect"></SupplementGSupplementRatingCard>
+                        <SupplementGSupplementRatingCard :supplement="supplement" type="effect"></SupplementGSupplementRatingCard>
                     </div>
                 </div>
             </div>
 
             <div class="w-75 mx-auto py-2">
-                <SupplementGSupplementDetailTable></SupplementGSupplementDetailTable>
+                <SupplementGSupplementDetailTable :supplement="supplement"></SupplementGSupplementDetailTable>
             </div>
 
             <hr class="border-dashed w-75 mx-auto my-5" />
@@ -29,13 +29,10 @@
                         <UtilsGLoadMore class="mt-1" v-if="comment?.replies?.length && !comment.view_replies" :button-mode="true" :label-btn="`${ comment?.replies?.length } ${$t('Replies')}`" @on-click="comment.view_replies=true"></UtilsGLoadMore>
                     </div>
                     <div class="w-100 m-5" v-if="comment.view_replies">
-                        <!-- <div ref="container"></div> -->
                         <SupplementGSupplementReviewCard v-for="(reply, i) in comment?.replies" :key="i" :comment="reply"></SupplementGSupplementReviewCard>
                     </div>
                 </div>
             </div>
-
-
             <SupplementGSupplementReviewCommentForm></SupplementGSupplementReviewCommentForm>
         </div>
     </div>
@@ -46,16 +43,16 @@
 
                 <div class="d-flex justify-content-center gap-3 px-3" style="margin-bottom:80px; margin-top:100px">
                     <div class="w-50 px-2">
-                        <SupplementGSupplementRatingCard></SupplementGSupplementRatingCard>
+                        <SupplementGSupplementRatingCard :supplement="supplement"></SupplementGSupplementRatingCard>
                     </div>
                     <div class="w-50 px-2">
-                        <SupplementGSupplementRatingCard type="effect"></SupplementGSupplementRatingCard>
+                        <SupplementGSupplementRatingCard :supplement="supplement" type="effect"></SupplementGSupplementRatingCard>
                     </div>
                 </div>
             </div>
 
             <div class="w-100 px-3 mx-auto">
-                <SupplementGSupplementDetailTable></SupplementGSupplementDetailTable>
+                <SupplementGSupplementDetailTable :supplement="supplement"></SupplementGSupplementDetailTable>
             </div>
 
             <hr class="border-dashed w-75 mx-auto my-4" />
@@ -82,7 +79,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     setup() {
-        var supplementStore = useSupplementStore()
+        var supplementStore = usePublicContentStore()
         var { supplement } = storeToRefs(supplementStore);
 
         var comments = computed(() => {
@@ -101,7 +98,8 @@ export default defineComponent({
         
         return {
             comments,
-            viewReplies
+            viewReplies,
+            supplement
         }
     },
 })

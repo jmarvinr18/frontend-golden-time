@@ -11,9 +11,9 @@ export interface User {
     name: string
     role: string
     email: string
-    password: string
-    password_confirmation: string
-    profile_details: ProfileData
+    password?: string
+    password_confirmation?: string
+    profile_details?: ProfileData
 }
 
 export interface ProfileData {

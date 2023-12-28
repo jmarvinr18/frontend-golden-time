@@ -30,7 +30,7 @@ export const useBlogStore = defineStore("blogStore", {
                 meta: [{
                     type: "text",
                     key: "",
-                    value: ""
+                    value: "",
                 }]
             }
         }

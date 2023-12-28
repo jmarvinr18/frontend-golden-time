@@ -75,7 +75,7 @@ export default defineComponent({
         const filters = ref({
             type: [],
         })
-        var supplementStore = useSupplementStore()
+        var supplementStore = usePublicContentStore()
         var { allSupplements } = storeToRefs(supplementStore)
 
         const toggleFilter = (val:any) => {
