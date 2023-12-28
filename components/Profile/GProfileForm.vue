@@ -14,11 +14,14 @@
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('EmailLabel') }}*</label>
                     <input type="email" class="form-control form-control-lg"  placeholder="sample@gmail.com" v-model="userData.email">
                 </div>
-                <div class="mb-4 g-form-input">
-                    <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordLabel')}}*</label>
-                    <input type="password" class="form-control form-control-lg"  placeholder="abcde12345" v-model="userData.password">
+                <div class="mb-4 g-form-input position-relative">
+                    <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordConfirmationLabel')}}*</label>
+                    <input :type="viewPassword? 'text':'password'" class="form-control form-control-lg"  placeholder="abcde12345" v-model="userData.password">
+                    <div class="position-absolute end-0 me-3" style="margin-top:-50px" @click="viewPassword=!viewPassword">
+                        <i v-if="!viewPassword" class="bi h3 bi-eye"></i>
+                        <i v-else class="bi h3 bi-eye-slash"></i>
+                    </div>
                 </div>
-
                 <div class="mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('InstagramAccountLabel')}}*</label>
                     <input type="text" class="form-control form-control-lg"  placeholder="@sample.ig" v-model="userData.profile_details.social_media.instagram">
@@ -289,7 +292,7 @@ export default defineComponent({
 
         var authStore = useAuthStore()
         var router = useRouter()
-
+        const viewPassword = ref(false);
         var { userData } = storeToRefs(authStore)
         const genderData = ref([
             { text: "Male", value: "male" },
@@ -300,6 +303,7 @@ export default defineComponent({
             authStore.updateProfile()
         }
         return {
+            viewPassword,
             userData,
             genderData,
             submitData,

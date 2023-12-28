@@ -18,5 +18,8 @@ export default {
     },
     async ratingSupplement(data: any) {
         return ApiService.post(`/api/v1/supplement/rating/${data?.id}`, data);
+    },
+    async createCommentSupplement(data: any) {
+        return ApiService.post(`/api/v1/supplement/user/comment`, data);
     }
 }

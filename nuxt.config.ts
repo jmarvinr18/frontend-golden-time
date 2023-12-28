@@ -37,6 +37,9 @@ export default defineNuxtConfig({
         {
           src: 'https://cdn.quilljs.com/1.3.6/quill.js',
           body: true
+        },
+        {
+          src: 'https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js',
         }
       ]
     }

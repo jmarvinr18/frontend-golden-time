@@ -395,7 +395,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .g-blog-form {
-    margin-top: -50%;
+    margin-top: -10%;
 }
 .g-blog-form-menu {
     /* min-width: unset !important;

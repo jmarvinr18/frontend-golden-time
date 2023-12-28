@@ -3,8 +3,8 @@
         <div v-if="!uploadedFile" class="w-100 text-center ">
             <label for="g-file-input" class="g-upload-media-container cursor-pointer">
                 <i class="bi bi-cloud-upload-fill text-muted display-3"></i>
-                <div class="mt-3">Upload your file</div>
-                <div class="mt-1 text-muted f12">Click here to start upload</div>
+                <div class="mt-3">{{ $t('UploadYourFile') }}</div>
+                <div class="mt-1 text-muted f12">{{ $t('ClickHereToUpload') }}</div>
             </label>
             <input type="file" id="g-file-input" style="width: 0;" @change="getFile" />
         </div>
@@ -12,7 +12,7 @@
             <img v-if="uploadedFile" :src="uploadedFile" class="w-100 object-fit-contain bg-dark" height="210" />
             <div class="my-3 text-primary f12 cursor-pointer" @click="uploadedFile=''">
                 <i class="bi bi-trash me-2"></i>
-                Change file...
+                {{ $t('ChangeFile') }}...
             </div>
         </div>
     </div>

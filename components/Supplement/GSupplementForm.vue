@@ -16,6 +16,11 @@
             <div class="mb-4 g-form-input">
                 <div class="mb-4 g-form-input">
                     <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`KindsLabel`) }}*</label>
+                    <select class="form-select form-select-lg" aria-label="Default select example" v-model="formData.kind">
+                        <option value="" selected>{{ $t('SelectLabel') }}</option>
+                        <option v-for="(opt,key) in shapeOpt" :value="opt.value">{{ opt.label }}</option>
+                    </select>
+                </div>
             </div>
             <div class="mb-4 g-form-input">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`ProteinContentLabel`) }}*</label>
@@ -41,8 +46,8 @@
                 <div class="mb-4 g-form-input">
                     <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`ShapeLabel`) }}*</label>
                     <select class="form-select form-select-lg" aria-label="Default select example" v-model="formData.shape">
-                        <option value="" selected>{{ $t('SelectLabel') }}</option>
-                        <option v-for="(opt,key) in shapeOpt" :value="opt.value">{{ opt.label }}</option>
+                    <option value="" selected>{{ $t('SelectLabel') }}</option>
+                    <option v-for="(opt,key) in shapeOpt" :value="opt.value">{{ opt.label }}</option>
                     </select>
                 </div>
             </div>
@@ -63,9 +68,6 @@
                 {{ $t('RegisterButton') }}
             </button>
         </div>
-        </div>
-
-        
     </div>
     <div class="is-mobile g-auth-signup-title w-100 mt-5">
         <div class="h5 mt-5 text-center">{{ $t('RegisterYourSupplement') }}</div>

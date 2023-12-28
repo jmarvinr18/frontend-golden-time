@@ -30,9 +30,7 @@
             <div class="d-flex align-items-center justify-content-end h4 text-primary">
                 <BlogFeaturesGBlogLike :id="blog.id"></BlogFeaturesGBlogLike>
                 <BlogFeaturesGBlogComment :id="blog.id"></BlogFeaturesGBlogComment>
-                <div class="g-blog-repost me-3">
-                    <i class="bi bi-arrow-repeat"></i>
-                </div>
+                <BlogFeaturesGBlogShare :objData="blog" id="share-modal"></BlogFeaturesGBlogShare>
             </div>
         </div>
         

@@ -1,8 +1,8 @@
 
 <template>
     <section id="section-hero" class="g-profile-section position-relative">
-        <SupplementGSupplementReviewForm></SupplementGSupplementReviewForm>
     </section>
+    <SupplementGSupplementReviewForm></SupplementGSupplementReviewForm>
 </template>
 
 
