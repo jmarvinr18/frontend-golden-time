@@ -1,11 +1,11 @@
 <template>
     <div class="is-desktop g-review-item d-flex">
         <div class="g-review-item-media w-25 px-4">
-            <img class="g-review-item-image g-shadow w-100 rounded object-fit-cover" :src="supplement.image" height="190" />
+            <img class="g-review-item-image g-shadow w-100 rounded object-fit-cover" :src="supplement?.image" height="190" />
         </div>
         <div class="g-review-item-description w-75">
             <div class="g-review-item-head d-flex justify-content-between">
-                <div class="h4"> {{ supplement.name }}</div>
+                <div class="h4"> {{ supplement?.name }}</div>
                 <nuxt-link :to="`/supplement/edit?id=${supplement?.id}`" class="btn bg-none btn-sm rounded-pill w-50 f12">
                     <i class="bi bi-pencil me-2"></i>
                     {{ $t('EditInformation') }}
@@ -14,8 +14,9 @@
             <hr />
             <div class="g-review-item-head d-flex justify-content-between position-relative flex-wrap">
                 <div class="w-50 f14 lh-lg">
-                    {{ $t('TasteLabel') }}: {{ supplement.taste }}<br>
-                    {{ $t('PriceLabel') }}: {{ supplement.price }}
+                    <div>{{ $t('TasteLabel') }}: {{ supplement?.taste }}</div>
+                    <div>{{ $t('PriceLabel') }}: {{ supplement?.price }}</div>
+                    
                 </div>
                 <div class="w-50">
                     <button class="btn btn-primary btn-sm rounded-pill py-2 f14">
@@ -43,17 +44,17 @@
             </nuxt-link>
         </div>
         <div class="g-review-item-media w-100 px-2">
-            <img class="g-review-item-image g-shadow w-50 rounded object-fit-cover" :src="supplement.image" />
+            <img class="g-review-item-image g-shadow w-50 rounded object-fit-cover" :src="supplement?.image" />
         </div>
         <div class="g-review-item-description w-100 px-2 mt-5">
             <div class="g-review-item-head d-flex justify-content-between">
-                <div class="h4 fw-bold">{{ supplement.name }}</div>
+                <div class="h4 fw-bold">{{ supplement?.name }}</div>
             </div>
             <hr />
             <div class="w-100 g-review-item-head d-flex justify-content-between position-relative flex-wrap">
                 <div class="w-50 f14 lh-lg">
-                    {{ $t('TasteLabel') }}: {{ supplement.taste }}<br>
-                    {{ $t('PriceLabel') }}: {{ supplement.price }}
+                    <div>{{ $t('TasteLabel') }}: {{ supplement?.taste }}</div>
+                    <div>{{ $t('PriceLabel') }}: {{ supplement?.price }}</div>
                 </div>
             </div>
             
@@ -78,14 +79,9 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    setup() {
-        var supplementStore = useSupplementStore()
-        var { supplement } = storeToRefs(supplementStore)
-
-        return {
-            supplement
-        }
-    },
+    props: {
+        supplement: Object
+    },  
 })
 </script>
 <style scoped>

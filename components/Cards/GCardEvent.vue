@@ -14,9 +14,9 @@
         
                 <p  class="card-text-schedule f12 text-secondary d-flex align-items-center justify-content-between">
                     <div class="card-time lh-lg">
-                        <div>{{ event?.meta[0].key }} : {{ event?.meta[0].value }}</div>
-                        <div>{{ event?.meta[1].key }} : {{ event?.meta[1].value }}</div>
-                        <div>{{ event?.meta[2].key }} : {{ event?.meta[2].value }}</div>
+                        <div>{{ event?.meta[0]?.key }} : {{ event?.meta[0]?.value }}</div>
+                        <div>{{ event?.meta[1]?.key }} : {{ event?.meta[1]?.value }}</div>
+                        <div>{{ event?.meta[2]?.key }} : {{ event?.meta[2]?.value }}</div>
                     </div>
                     <div class="card-button">
                         <button class="btn btn-outline-primary btn-sm border-2">detail</button>

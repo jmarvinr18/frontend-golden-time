@@ -53,10 +53,9 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'EventDetail',
     setup() {
         const route = useRoute();
-        const blogStore = useBlogStore(); 
+        const blogStore = usePublicContentStore(); 
         const { blog }  = storeToRefs(blogStore); 
 
         onMounted(() => {

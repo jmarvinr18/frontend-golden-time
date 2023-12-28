@@ -41,7 +41,7 @@ export default defineComponent({
     name: 'BlogDetail',
     setup() {
         const route = useRoute();
-        const blogStore = useBlogStore(); 
+        const blogStore = usePublicContentStore(); 
         const { blog }  = storeToRefs(blogStore); 
 
         onMounted(() => {
