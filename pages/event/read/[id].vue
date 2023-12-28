@@ -1,7 +1,7 @@
 <template>
     <GSection>
         <div class="container">
-            <img :src="blog?.feature_image" class="rounded-lg mt-3" width="100%" />
+            <img :src="blog?.feature_image" class="rounded-lg mt-3 w-100" />
             <div class="g-blog-date text-secondary f12 mt-2">
                 <i class="bi bi-clock me-2 f14"></i>
                 {{blog.created_at}}
@@ -35,13 +35,13 @@
             <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
             <div class="row mt-3">
                 <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
+                    <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
+                    <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
+                    <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
                 </div>
             </div>
             
