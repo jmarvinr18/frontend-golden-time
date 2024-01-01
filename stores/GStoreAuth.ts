@@ -13,7 +13,7 @@ export interface User {
     email: string
     password?: string
     password_confirmation?: string
-    profile_details?: ProfileData
+    profile_details: ProfileData
 }
 
 export interface ProfileData {
@@ -36,6 +36,7 @@ export interface ProfileData {
     deadlift: string | null
     squat: string | null
     respected_trainee: string | null
+    image: string
 }
 
 export interface SocialMedia {
@@ -49,7 +50,8 @@ export const useAuthStore = defineStore("authStore", {
         return {
             userData: <User>{
                 profile_details: <ProfileData>{
-                    social_media: { instagram: "" }
+                    social_media: { instagram: "" },
+                    image: ""
                 }
             },
             registrationForm: <User>{
@@ -120,7 +122,7 @@ export const useAuthStore = defineStore("authStore", {
 
         async updateProfile() {
             generalStore().setIsLoading(true);
-            return GApiAuth.updateProfile(this.userData).then((res: any) => {
+            return GApiAuth.updateProfile(this.userData, this.userData.id).then((res: any) => {
                 generalStore().setIsLoading(false);
                 generalStore().setSuccess(true, "Your profile has been updated succesfully!");
 

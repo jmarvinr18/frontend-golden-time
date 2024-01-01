@@ -8,7 +8,7 @@
                     </span>
                     {{ avatarImg? $t('ChangeImage'): $t('AddImage') }}
                 </button>
-                <img :src="avatarImg?avatarImg:'/images/no-avatar.jpeg'" height="180" width="180" class="object-fit-cover rounded-circle mx-auto g-shadow" />
+                <img :src="avatarImg" class="object-fit-cover rounded-circle mx-auto g-shadow" style="height:180px; width:180px;" />
             </div>
             <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
                 <!-- SIGN UP FORM -->
@@ -19,7 +19,7 @@
         </div>
         <div class="is-mobile">
             <div class="container w-100 text-center position-relative mt-5 cursor-pointer" style="margin-bottom:-60px" data-bs-toggle="modal" data-bs-target="#photo-modal">
-                <img src="https://www.muscleandfitness.com/wp-content/uploads/2019/01/man-tire-pull-1109.jpg?quality=86&strip=all" height="110  " width="110" class="object-fit-cover rounded-circle mx-auto g-shadow" />
+                <img :src="avatarImg"  class="object-fit-cover rounded-circle mx-auto g-shadow" />
                 <button class="btn position-absolute bottom-0 rounded-pill py-2" style="right:0%">
                     <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
                         <i class="bi bi-camera "></i>
@@ -47,10 +47,20 @@ export default defineComponent({
         }
     },
     setup() {
-        const avatarImg = ref("");
-        const setPhoto = ((src:any) => {
-            avatarImg.value = src.src;
+        var authStore = useAuthStore()
+        const avatarImg = ref('/images/no-avatar.jpeg');
+        var { userData } = storeToRefs(authStore)
+
+        const setPhoto = ((data:any) => {
+            avatarImg.value = data.src;
+            userData.value.profile_details.image = data.file;
         });
+
+        onMounted(async () => {
+            await authStore.getProfile(userData.value.id).then(() => {
+                avatarImg.value = userData.value.profile_details.image  
+            })
+        })
 
         return  {
             avatarImg,

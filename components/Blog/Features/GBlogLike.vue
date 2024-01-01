@@ -6,12 +6,7 @@
 <script lang="ts">
 export default defineComponent({
     props: {
-        id: {
-            type: String,
-            default() {
-                return 0;
-            }
-        }
+        id: String
     },
     setup(props) {
         const isLiked = ref(false);
