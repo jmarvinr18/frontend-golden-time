@@ -13,7 +13,7 @@
                     </NuxtLink>
                 </div>
                 <div class="right-side d-flex align-items-center gap-3">
-                    <div v-if="authStore.isAuthenticated" class="dropdown p-0 ">
+                    <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-3">
                         <div class="text-light fw-bold">
                             <span>Hello, {{ userData.name }}</span>
                         </div>
