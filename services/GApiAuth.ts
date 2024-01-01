@@ -1,15 +1,20 @@
 import ApiService from "~/services/ApiService";
 
+const header = {
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+}
 
 export default {
-    async login(params: any) {
-        return ApiService.post('/auth/login', params)
+    async login(data: any) {
+        return ApiService.post('/auth/login', data)
     },
-    async signUp(params: any) {
-        return ApiService.post('/auth/register', params)
+    async signUp(data: any) {
+        return ApiService.post('/auth/register', data)
     },
-    async updateProfile(params: any) {
-        return ApiService.put(`/api/v1/me/${params?.id}`, params)
+    async updateProfile(data: object, id: string) {
+        return ApiService.post(`/api/v1/me/${id}?_method=PUT`, data, header)
     },
     async getProfile(id: any) {
         return ApiService.get(`/api/v1/me/${id}`);
@@ -23,7 +28,7 @@ export default {
     async logout() {
         return ApiService.post('/auth/logout')
     },
-    async verifyEmail(data) {
+    async verifyEmail(data: object) {
         return ApiService.get(`/auth/verify-email/${data}`)
     },
 }
