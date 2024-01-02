@@ -13,7 +13,7 @@ export default {
     async signUp(data: any) {
         return ApiService.post('/auth/register', data)
     },
-    async updateProfile(data: object, id: string) {
+    async updateProfile(data: object, id: any) {
         return ApiService.post(`/api/v1/me/${id}?_method=PUT`, data, header)
     },
     async getProfile(id: any) {

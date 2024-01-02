@@ -6,7 +6,7 @@
         <div class="g-review-item-description w-75">
             <div class="g-review-item-head d-flex justify-content-between">
                 <div class="h4"> {{ supplement?.name }}</div>
-                <nuxt-link :to="`/supplement/edit?id=${supplement?.id}`" class="btn bg-none btn-sm rounded-pill w-50 f12">
+                <nuxt-link v-if="isContentOwner" :to="`/supplement/edit/${supplement?.id}`" class="btn bg-none btn-sm rounded-pill w-50 f12">
                     <i class="bi bi-pencil me-2"></i>
                     {{ $t('EditInformation') }}
                 </nuxt-link>
@@ -29,7 +29,7 @@
                     </button>
                 </div>
                 <div class="g-review-item-owner w-100 d-flex align-items-center position-absolute">
-                    <img class="rounded-circle me-3" src="https://picsum.photos/seed/picsum/300/300" height="25" />
+                    <img class="rounded-circle me-2" :src="getProfileImage" style="height: 30px; width: 30px;" />
                     <div class="f12">{{ supplement?.user?.name }}</div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
     </div>
     <div class="is-mobile g-review-item d-flex flex-wrap">
         <div class="w-100 text-end">
-            <nuxt-link :to="`/supplement/edit?id=${supplement?.id}`" class="btn bg-none btn-sm rounded-pill w-50 f12">
+            <nuxt-link :to="`/supplement/edit/${supplement?.id}`" class="btn bg-none btn-sm rounded-pill w-50 f12">
                 <i class="bi bi-pencil me-2"></i>
                 {{ $t('EditInformation') }}
             </nuxt-link>
@@ -70,7 +70,7 @@
             </button>
         </div>
         <div class="px-2 mt-4 g-review-item-owner w-100 d-flex align-items-center">
-            <img class="rounded-circle me-2" src="https://picsum.photos/seed/picsum/300/300" height="25" />
+            <img class="rounded-circle me-2" :src="getProfileImage" style="height: 25px; width: 25px;" />
             <div class="f12">{{ supplement?.user?.name }}</div>
         </div>
     </div>
@@ -81,7 +81,23 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     props: {
         supplement: Object
-    },  
+    },
+    setup(props) {
+        var authStore = useAuthStore()
+        var { userData } = storeToRefs(authStore)
+        var isContentOwner = computed(() => {
+            return userData.value.id === props.supplement?.user_id
+        })
+
+        var getProfileImage = computed(() => {
+            return props.supplement?.user?.profile_details?.image ?? "/images/no-avatar.jpeg"
+        })
+        
+        return {
+            isContentOwner,
+            getProfileImage
+        }
+    }  
 })
 </script>
 <style scoped>

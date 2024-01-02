@@ -105,6 +105,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 CloseButton: "Close",
                 SubmitButton: "Submit",
                 InsertProfilePhoto: "Insert profile photo",
+                HelloGreetings: "Hello"
             },
             ja: {
                 SupplementRegistration: 'サプリ登録',
@@ -204,6 +205,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 CloseButton: "閉じる",
                 SubmitButton: "提出",
                 InsertProfilePhoto: "プロフィール写真の挿入",
+                HelloGreetings: "こんにちは"
             }
         }
     })

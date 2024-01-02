@@ -24,13 +24,15 @@
         </div>
         <div class="g-card-body p-3 position-relative">
             <div>{{ useTruncateText(blog?.content,200) }}</div>
-            <a :href="`/blog/read/${blog?.id}`">
                 <div class="g-card-more w-100 text-light position-absolute bottom-2 d-flex justify-content-center">
-                    <div class="bg-dark text-center rounded-pill py-3 w-25">
+                    <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
                         read more <i class="ms-2 bi bi-chevron-down rounded-pill"></i>
-                    </div>
+                    </a>
+                    <a v-if="isContentOwner"  :href="`/blog/edit/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
+                        Update <strong class="bi bi-arrow-up me-2 fw-bold"></strong>
+                    </a>
                 </div>
-            </a>
+          
         </div>
     </div>
     <div class="is-mobile bg-white w-100 rounded-lg g-shadow">
@@ -67,13 +69,19 @@ import { defineComponent } from 'vue'
 import useTruncateText from '~/composables/useTruncateText'
 
 export default defineComponent({
-
     props: {
         blog: Object
     },
-    setup() {
+    setup(props) {
+        var authStore = useAuthStore()
+        var { userData } = storeToRefs(authStore)
+
+        var isContentOwner = computed(() => {
+            return userData.value.id === props.blog?.user_id
+        })        
         return {
-            useTruncateText
+            useTruncateText,
+            isContentOwner
         }
     },
 })

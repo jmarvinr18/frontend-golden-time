@@ -146,14 +146,6 @@ import { useGeneralStore } from "~/stores/GStoreGeneral";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({
-    props: {
-        img: {
-            required: true,
-            default() {
-                return ""
-            }
-        },
-    },
     setup(props) {
         const {t} = useI18n();
         const supplementStore = useSupplementStore();
@@ -183,7 +175,6 @@ export default defineComponent({
 
 
         const submitNow = () => {
-            supplementForm.value.image = props.img;
             supplementForm.value.price = supplementForm.value.price + ".00"
             if (supplementForm.value.name && supplementForm.value.kind && supplementForm.value.protein_content && supplementForm.value.shape) {
                 submitSupplement();
@@ -193,7 +184,7 @@ export default defineComponent({
         };
 
         const submitSupplement = () => {
-            if (route.query.id) {
+            if (route.params.id) {
                 supplementStore.updateSupplement(supplementForm.value);
             } else {
                 supplementStore.createSupplement(supplementForm.value);

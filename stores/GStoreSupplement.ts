@@ -116,5 +116,10 @@ export const useSupplementStore = defineStore("supplementStore", {
                 generalStore().setError(true, msg);
             });
         },
+
+        async purgeFormContent() {
+            this.supplement = <Supplement>{}
+            this.supplementForm = <Supplement>{}
+        }
     }
 })

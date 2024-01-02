@@ -12,11 +12,10 @@ export default defineComponent({
         var route = useRoute()
         var supplementStore = usePublicContentStore()
 
-
         onMounted(() => {
             supplementStore.getSupplement(route.params.id)
         })
-        return {}
+
     },
 })
 </script>

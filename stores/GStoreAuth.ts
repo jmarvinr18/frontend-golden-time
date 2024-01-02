@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import GApiAuth from "~/services/GApiAuth";
 import { useGeneralStore as generalStore } from "./GStoreGeneral";
-
+import type { Supplement } from "./GStoreSupplement";
+import type { Blog } from "./GStoreBlog";
 const ACCESS_TOKEN = "access_token";
 const PROFILE = "profile";
 
@@ -14,6 +15,8 @@ export interface User {
     password?: string
     password_confirmation?: string
     profile_details: ProfileData
+    supplements?: Supplement
+    blogs?: Blog
 }
 
 export interface ProfileData {
