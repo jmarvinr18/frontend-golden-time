@@ -1,3 +1,0 @@
-<template>
-    <BlogGBlogSection></BlogGBlogSection>
-</template>

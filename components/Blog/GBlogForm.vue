@@ -9,15 +9,13 @@
                 <div class="h4 me-3">{{ $t("CoverImage") }}</div>
                 <button v-if="blogForm.feature_image" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Change ...</button>
                 <div v-if="blogForm.feature_image" class="w-100 mt-2">
-                    <img :src="coverImage" class="w-25 rounded object-fit-contain bg-dark" height="200" />
+                    <img :src="coverImage" class="w-25 rounded object-fit-contain bg-dark" style="height: 200px;" />
                 </div>
                 <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >{{ $t("Browse") }}...</button>
             </div>
-
             <div>
-           
                 <div class="mb-5">
-                    <select v-model="blogForm.type"  class="form-control form-control-lg form-select" aria-label="Default select example">
+                    <select @change="changedType" v-model="blogForm.type"  class="form-control form-control-lg form-select" aria-label="Default select example">
                         <option selected>Select content type</option>
                         <option value="blog">Blog</option>
                         <option value="news">News</option>
@@ -132,7 +130,7 @@
                 <div class="h4 me-3">Cover Image</div>
                 <button v-if="blogForm.feature_image" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Change ...</button>
                 <div v-if="blogForm.feature_image" class="w-100 mt-2">
-                    <img :src="blogForm.feature_image" class="w-100 rounded object-fit-contain bg-dark" height="200" />
+                    <img :src="coverImage" class="w-100 rounded object-fit-contain bg-dark" style="height: 200px;" />
                 </div>
                 <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Browse...</button>
             </div>
@@ -239,7 +237,7 @@ export default defineComponent({
         const generalStore = useGeneralStore();
         const router = useRouter();
         const route = useRoute();
-        const coverImage = ref()
+        const coverImage = ref("/images/no-image.jpeg")
 
         const toolShow = ref<Boolean>(false);
         const textLink:any = ref<String>();
@@ -261,6 +259,19 @@ export default defineComponent({
 
         const selectObj = (src:any) => {
             textLink.value = src;
+        }
+
+        const changedType = (val: any) => {
+            if(val.target.value == "event"){
+                blogForm.value.meta = [{
+                    type: "text",
+                    key: "",
+                    value: "",
+                }];
+            } else {
+                blogForm.value.meta = null;
+            }
+
         }
 
         const setCover = (data:any) => {
@@ -300,13 +311,15 @@ export default defineComponent({
             const myEl:any = document.querySelector(".ql-editor");
             blogForm.value.content = myEl.innerHTML;
 
-            if (route.query.id) {
+            if (route.name == "blog-edit-id") {
+                var blogId = blogForm.value.id
+                var type = blogForm.value.type
                 blogStore.updateBlog(blogForm.value).then((res: any) => {
-                   router.push(`/blog/read/${res.data.id}`);
+                   location.href = `/${type}/read/${blogId}`;
                 });
             } else {
                 blogStore.createBlog(blogForm.value).then((res: any) => {
-                    router.push(`/blog/read/${res.data.id}`);
+                    location.href = `/blog/read/${res.data.id}`;
                 })
             }
         }
@@ -315,9 +328,16 @@ export default defineComponent({
             generalStore.setIsLoading(true);
             setTimeout(() => {
                 initEditor();
+                renderImage();
             },1000)
+         
         });
-
+      
+        const renderImage = () => {
+            if (route.name == "blog-edit-id"){
+                coverImage.value = blogForm.value.feature_image
+            }               
+        }
         const loadData = () => {
             if (route.query.id) {
                 blogStore.getBlog(route.query.id).then((res:any) => {
@@ -388,7 +408,8 @@ export default defineComponent({
             addNewField,
             blogForm,
             time,
-            coverImage
+            coverImage,
+            changedType
         }
     }
 })
