@@ -107,7 +107,7 @@
                 </div>
                 <div class="col-xs-6 d-flex flex-wrap align-items-center g-profile-container ps-3">
                     <div class="mw-100 g-profile-content overflow-x-scroll">
-                        <div class="d-flex g-profile-content-slide align-items-center gap-2">
+                        <div class="d-flex align-items-center gap-2">
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
                                 Age: {{ objData.profile_details.age }} years old
                             </div>
@@ -126,7 +126,7 @@
             </div>
             <div class="position-absolute w-100 g-profile-dp ">
                 <img :src="userImage" style="height: 170px; width: 170px;" class="object-fit-cover rounded-circle mx-auto g-shadow user__image" />
-                <div class="h2 mt-4 fw-bold">Jack Komboy</div>
+                <div class="h2 mt-4 fw-bold">{{ objData.name }}</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
                         <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
@@ -146,11 +146,24 @@
                     </div>
                 </div>
             </div>
+            
             <div class="mt-3 border border-light p-2 rounded border-2">
-                Self Introduction
+                <div class="my-1 fw-bold">
+                    Self Introduction
+                </div>
+                <hr style="opacity: 0.10;">
+               <div class="mb-5">
+                     {{ objData.profile_details.description }}
+               </div>    
             </div>
             <div class="mt-3 mb-5 border border-light p-2 rounded border-2">
-                Training
+                <div class="my-1 fw-bold">
+                    My Training
+                </div>
+                <hr style="opacity: 0.10;">
+               <div class="mb-5">
+                     {{ objData.profile_details.my_training }}
+               </div>
             </div>
         </div>
     </div>
