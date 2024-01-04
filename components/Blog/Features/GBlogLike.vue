@@ -1,16 +1,32 @@
 <template>
-    <div class="g-blog-like me-3 cursor-pointer" @click="like()">
-        <i class="bi bi-heart"></i>
+    <div v-if="isAuthenticated" class="g-blog-like me-3 cursor-pointer" @click="like()">
+        <i v-if="isLiked" class="bi bi-heart-fill"></i>
+        <i v-else class="bi bi-heart"></i>
     </div>
+    <NuxtLink v-else class="g-blog-like me-3 cursor-pointer text-primary" to="/login">
+        <i class="bi bi-heart"></i>
+    </NuxtLink>
 </template>
 <script lang="ts">
 export default defineComponent({
     props: {
-        id: String
+        isLiked: {
+            type: Boolean,
+            default() {
+                return false;
+            }
+        },
+        id: {
+            type: String,
+            default() {
+                return 0;
+            }
+        }
     },
     setup(props) {
-        const isLiked = ref(false);
         const blogStore = useBlogStore();
+        const authStore = useAuthStore();
+        const { isAuthenticated } = storeToRefs(authStore);
 
         const like = () => {
             blogStore.likeBlog(props.id);
@@ -18,6 +34,7 @@ export default defineComponent({
 
         return {
             like,
+            isAuthenticated
         }
     }
 })

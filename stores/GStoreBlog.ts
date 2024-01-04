@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import GApiBlog from "~/services/GApiBlog";
 import { useGeneralStore as generalStore } from "./GStoreGeneral";
-
+import type { Comment } from './GStoreSupplement';
 
 export interface Blog {
     id?: string
@@ -14,6 +14,22 @@ export interface Blog {
     status: string
     user: string
     created_at?: string
+    likes: Like[]
+    comments: Comment[]
+}
+export interface Like {
+    blog_id: string
+    created_at: string
+    id?: string
+    ip?: string
+    user_id: string
+    updated_at: string
+}
+export interface Replies {
+    id?: string
+    comment: string
+    is_reply: boolean
+    reply_to?: string
 }
 export interface Meta {
     type: string
@@ -92,7 +108,7 @@ export const useBlogStore = defineStore("blogStore", {
             generalStore().setIsLoading(true);
             return GApiBlog.likeBlog(id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your blog has been successfully removed!");
+                this.getBlog(this.blog.id);
                 return res.data;
             }).catch((err: any) => {
                 const msg = err.response.data.message;
@@ -104,6 +120,7 @@ export const useBlogStore = defineStore("blogStore", {
             return GApiBlog.createBlogComment(data).then((res: any) => {
                 generalStore().setIsLoading(false);
                 generalStore().setSuccess(true, "Your blog has been successfully created!");
+                this.getBlog(this.blog.id);
                 return res.data;
             }).catch((err: any) => {
                 const msg = err.response.data.message;

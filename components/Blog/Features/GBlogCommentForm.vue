@@ -1,6 +1,5 @@
 <template>
-    <div v-if="isReplay" class="ms-5 text-right position-relative w-100">
-        <SupplementGSupplementReviewCommentFormDisabled v-if="!isAuthenticated" :is-replay="isReplay"></SupplementGSupplementReviewCommentFormDisabled>
+    <div v-if="isReplay" class="ms-5 text-right  w-100">
         <textarea class="g-shadow rounded-3 border-dark form-control" :placeholder="$t('WriteAComment')" id="commentInput1" rows="3" v-model="comment"></textarea>
 
        <div class="text-end d-flex align-items-center justify-content-end">
@@ -10,16 +9,14 @@
        </div>
     </div>
     <div v-else>
-        <div class="is-desktop position-relative mt-5 bg-light py-5 w-100 text-center">
-            <SupplementGSupplementReviewCommentFormDisabled v-if="!isAuthenticated" :is-replay="isReplay"></SupplementGSupplementReviewCommentFormDisabled>
-            <div class="mb-3 w-50 mx-auto">
+        <div class="is-desktop mt-5 bg-light py-5 w-100 text-center">
+            <div class="mb-3 w-50 mx-auto position-relative">
                 <textarea class="g-shadow rounded-3 border-dark form-control" :placeholder="$t('WriteAComment')" id="commentInput1" rows="3" v-model="comment"></textarea>
             </div>
 
             <button class="rounded-pill px-4 mt-3 mx-auto btn btn-primary" :class="comment? 'btn-primary shadow':'btn-dark opacity-50'" :disabled="!comment.length" @click="submitComment">{{ $t("PostCommentLabel") }} <i class="bi bi-arrow-up fw-bold"></i></button>
         </div>
-        <div class="is-mobile mt-2 bg-light py-3 w-100 text-center pb-3 position-relative">
-            <SupplementGSupplementReviewCommentFormDisabled v-if="!isAuthenticated" :is-replay="isReplay"></SupplementGSupplementReviewCommentFormDisabled>
+        <div class="is-mobile mt-2 bg-light py-3 w-100 text-center pb-3">
             <div class="mb-3 w-75 mx-auto">
                 <textarea class="g-shadow rounded-3 border-dark form-control" :placeholder="$t('WriteAComment')" id="commentInput2" rows="2" v-model="comment"></textarea>
             </div>
@@ -31,14 +28,14 @@
 <script lang="ts">
 export default defineComponent({
     props: {
-        isReplay:String,
-        commentId: String,
+        isReplay:String || Boolean,
+        commentId: Number,
     },
     setup(props) {
         const comment = ref("");
+        const blogStore = useBlogStore();
         const authStore = useAuthStore();
-        const supplementStore = useSupplementStore();
-        const { isAuthenticated } = storeToRefs(authStore);
+        const { userData } = storeToRefs(authStore);
         const route = useRoute();
 
         const submitComment = () => {
@@ -46,7 +43,7 @@ export default defineComponent({
             if (props.isReplay === 'true') {
                 objData = {
                     comment: comment.value,
-                    supplement_id: route.params.id,
+                    blog_id: route.params.id,
                     is_reply: true,
                     reply_to: props.commentId
                 }
@@ -58,14 +55,14 @@ export default defineComponent({
                 }
             }
 
-            supplementStore.createCommentSupplement(objData).then(()=>{
+            blogStore.createBlogComment(objData).then(()=>{
                 comment.value = "";
             });
         }
 
         return {
             comment,
-            isAuthenticated,
+            userData,
             submitComment
         }
     }

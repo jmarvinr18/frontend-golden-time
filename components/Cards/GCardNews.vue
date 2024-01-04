@@ -3,7 +3,7 @@
         <div class="g-card-news card w-100 g-shadow rounded-lg">
             <img :src="news?.feature_image" class="card-img-top" alt="...">
             <div class="card-body">
-                <div class="h5">
+                <div class="h5 g-card-title">
                     {{ useTruncateText(news?.title, 35) }}
                 </div>
                 <div class="card-created-time f12 text-secondary">
@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <hr class="border-secondary mb-1" />
-                <p class="card-text f12 text-secondary">{{ useTruncateText(news?.content, 150) }}</p>
+                <p class="card-text f12 text-secondary">{{ useTruncateText(news?.content, 100) }}</p>
 
             </div>
         </div>
@@ -31,6 +31,13 @@ export default defineComponent({
 })
 </script>
 <style scoped>
+.g-card-news img{
+    height: 200px;
+    object-fit: cover;
+}
+.g-card-title {
+    height: 68px;
+}
 @media only screen and (max-width:1009px)  {
     .g-card-news {
         width: 190px !important;
