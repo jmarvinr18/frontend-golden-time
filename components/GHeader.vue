@@ -14,7 +14,7 @@
                 </div>
                 <div class="right-side d-flex align-items-center gap-3">
                     <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-3">
-                        <NuxtLink to="/me/profile" class="text-light text-decoration-none me-4" >
+                        <NuxtLink to="/me/profile" class="d-flex align-items-center text-light text-decoration-none me-4" >
                             <img src="/images/no-avatar.jpeg" class="me-2 rounded-circle" style="width: 30px; height: 30px;" />
                             <div class="text-light fw-bold">
                                 <span>{{ $t("HelloGreetings") }}, {{ userData.name }}</span>
@@ -70,7 +70,7 @@
                         </ul>
                     </div>
                     <div v-else class="d-flex align-items-center gap-3">
-                        <NuxtLink to="/login">
+                        <NuxtLink class="d-flex align-items-center text-decoration-none" to="/login">
                             <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">{{ $t('Login') }}</button>
                         </NuxtLink>
                         <NuxtLink to="/signup">
