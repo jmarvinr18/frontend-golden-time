@@ -134,6 +134,13 @@
     line-break: anywhere;
 }
 
+.searchHitItems {
+    width: 100% !important;
+    border: none !important;
+}
+.search_box{
+    border: 0 !important;
+}
 @media only screen and (max-width:1009px)  {
     .is-mobile {
         display: block !important;

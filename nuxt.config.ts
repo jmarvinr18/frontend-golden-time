@@ -6,6 +6,10 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'stylesheet',
+          href: "https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/reset-min.css"
+        },
+        {
+          rel: 'stylesheet',
           href: "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap"
         },
         {
@@ -44,13 +48,22 @@ export default defineNuxtConfig({
       ]
     }
   },
+
   build: {
     transpile: ['@vuepic/vue-datepicker']
   },
   modules: [
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/algolia'
   ],
+  algolia: {
+    apiKey: 'b3a5bb09f2b7b1862b1870e078bb7f74',
+    applicationId: 'QEI3QTVDIN',
+    instantSearch: {
+      theme: 'algolia'
+    }
+  },
   piniaPersistedstate: {
     cookieOptions: {
       sameSite: 'strict',
