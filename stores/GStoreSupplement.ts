@@ -29,6 +29,7 @@ export interface Comment {
     reply_to: string
     sender: object
     replies: Comment[]
+    view_replies: boolean
 }
 
 export interface Rating {

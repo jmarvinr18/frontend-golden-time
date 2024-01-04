@@ -56,15 +56,18 @@
     <div class="is-mobile">
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
-            <CardsGCardBlog></CardsGCardBlog>
+            <!-- <CardsGCardBlog></CardsGCardBlog> -->
+            <GContainerSlider>
+            <div v-for="(blog, i) in contents?.blog">
+                <CardsGCardBlog :blog="blog" ></CardsGCardBlog>
+            </div>
+            </GContainerSlider>
         </div>
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('MuscleNews')" icon="bi-newspaper"></GSectionTitle>
             
             <GContainerSlider>
-                <CardsGCardNews></CardsGCardNews>
-                <CardsGCardNews></CardsGCardNews>
-                <CardsGCardNews></CardsGCardNews>
+                <CardsGCardNews v-for="(news, i) in contents?.news" :news="news"></CardsGCardNews>
             </GContainerSlider>
         </div>
         <div class="container pt-2 pb-4">
@@ -72,9 +75,7 @@
             
             
             <GContainerSlider>
-                <CardsGCardNews type="schedule"></CardsGCardNews>
-                <CardsGCardNews type="schedule"></CardsGCardNews>
-                <CardsGCardNews type="schedule"></CardsGCardNews>
+                <CardsGCardEvent v-for="(event, i) in contents?.event" :event="event" ></CardsGCardEvent>
             </GContainerSlider>
         </div>
         <div class="container pt-2 pb-4">

@@ -13,7 +13,11 @@
                     </NuxtLink>
                 </div>
                 <div class="right-side d-flex align-items-center">
-                    <div v-if="authStore.isAuthenticated" class="dropdown p-0 ">
+                    <div v-if="authStore.isAuthenticated" class="dropdown p-0 d-flex align-items-center">
+                        <NuxtLink to="/me/profile" class="text-light text-decoration-none me-4 d-flex align-items-center profile-shortcut cursor-pointer">
+                            <img src="/images/no-avatar.jpeg" class="me-2 rounded-circle" style="width: 30px; height: 30px;" />
+                            Hi {{ authStore.userData.name }} !
+                        </NuxtLink>
                         <button class="btn btn-secondary dropdown-toggle p-0 m-0 bg-none border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list h1 mb-0 text-light fw-bold"></i>
                         </button>
@@ -170,7 +174,7 @@ export default defineComponent({
 <style scoped>
 
 .g-header {
-    z-index: 100;
+    z-index: 1000;
     animation: bg-fade-reverse forwards linear .5s 1;
 }
 
