@@ -1,6 +1,7 @@
 <template>
     <div class="row justify-content-between align-items-center my-5">
         <div class="col-md-7">
+            <!-- {{ supplement }} -->
             <SupplementGSupplementSearchItemCard :supplement="supplement"></SupplementGSupplementSearchItemCard>
         </div>
         <div class="is-desktop col-md-4 px-4">

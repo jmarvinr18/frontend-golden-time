@@ -11,13 +11,13 @@
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption">{{ $t('TasteSupplementLabel') }}</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i v-for="(rate, i) in useSupplementRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i>
+                            <!-- <i v-for="(rate, i) in useSupplementRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi h3 text-grad-1"></i> -->
                         </div>
                     </div>
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption">{{ $t('EffectSupplementLabel') }}</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i v-for="(rate, k) in useSupplementRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i>
+                            <!-- <i v-for="(rate, k) in useSupplementRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi h3 text-grad-2"></i> -->
                         </div>
                     </div>
                 </div>
@@ -25,22 +25,22 @@
         </div>
         <div class="is-mobile g-supplement-item-card d-flex rounded-lg gap-1 g-shadow">
             <div class="g-supplement-item-media">
-                <img :src="supplement?.image" class="object-fit-cover" height="120" />
+                <!-- <img :src="supplement?.image" class="object-fit-cover" height="120" /> -->
             </div>
             <div class="g-supplement-item-content  px-3 f14">
-                <div class=" w-100 mt-1 fw-bold">{{ supplement?.name }}</div>
-                <div class="f12 mb-2 sup-description text-truncate mt-2">{{ useTruncateText(supplement?.features) }}</div>
+                <!-- <div class=" w-100 mt-1 fw-bold">{{ supplement?.name }}</div> -->
+                <!-- <div class="f12 mb-2 sup-description text-truncate mt-2">{{ useTruncateText(supplement?.features) }}</div> -->
                 <div class="g-supplement-item-ratings d-flex justify-content-around mt-3 w-100 mx-auto">
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption f12">{{ $t('TasteSupplementLabel') }}</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i v-for="(rate, i) in useSupplementRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi  text-grad-1"></i>
+                            <!-- <i v-for="(rate, i) in useSupplementRating(supplement?.ratings.avg_taste)" :key="i" :class="rate" class="bi  text-grad-1"></i> -->
                         </div>
                     </div>
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption f12">{{ $t('EffectSupplementLabel') }}</div>
                         <div class="g-rating-stars text-center mb-2 mt-1" style="letter-spacing:.4em">
-                            <i v-for="(rate, k) in useSupplementRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi  text-grad-2"></i>
+                            <!-- <i v-for="(rate, k) in useSupplementRating(supplement?.ratings.avg_effect)" :key="k" :class="rate" class="bi  text-grad-2"></i> -->
                         </div>
                     </div>
                 </div>
