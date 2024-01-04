@@ -55,7 +55,7 @@ export default defineComponent({
     name: 'BlogDetail',
     setup() {
         const route = useRoute();
-        const blogStore = useBlogStore();
+        const blogStore = usePublicContentStore();
         const authStore = useAuthStore();
         const { userData } = storeToRefs(authStore);
         const { blog }  = storeToRefs(blogStore);

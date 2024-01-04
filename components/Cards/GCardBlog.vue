@@ -11,7 +11,7 @@
                     <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
                     <div class="d-flex ms-3 align-items-center">
                         <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" width="20" height="20" class="object-fit-cover rounded-pill" />
-                        <div class="ms-2"> {{ blog?.author }} </div>
+                        <div class="ms-2"> {{ blog?.user }} </div>
                     </div>
                     </NuxtLink>
                 </div>
@@ -48,7 +48,7 @@
                         <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
                         <div class="d-flex ms-3 align-items-center">
                             <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" width="20" height="20" class="object-fit-cover rounded-pill f14" />
-                            <div class="ms-2 f12">{{ blog?.author }}</div>
+                            <div class="ms-2 f12">{{ blog?.user }}</div>
                         </div>
                         </NuxtLink>
                     </div>
