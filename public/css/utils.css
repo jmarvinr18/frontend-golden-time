@@ -135,18 +135,12 @@
 }
 
 .searchHitItems {
-    /* margin: 0 !important; */
-    /* padding: 0 !important; */
     width: 100% !important;
     border: none !important;
-    /* box-shadow: 0 !important; */
-
-
-    /* row justify-content-between align-items-center my-5 */
-    
-
 }
-
+.search_box{
+    border: 0 !important;
+}
 @media only screen and (max-width:1009px)  {
     .is-mobile {
         display: block !important;

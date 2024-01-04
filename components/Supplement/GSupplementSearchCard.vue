@@ -7,7 +7,7 @@
             <div class="input-group mb-3 rounded-lg border border-dark w-75 mx-auto">
 
 
-                <ais-search-box class="form-control form-control-lg border-0" placeholder="Search here" />
+                <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0" placeholder="Search here" />
         
                 <span class="input-group-text bg-dark text-light px-4 border-0" id="basic-addon2" style="border-radius:0 0 0 30px">
                     <i class="bi bi-sort-up"></i>
@@ -24,10 +24,8 @@
                 <template v-slot:item="{ item }">
                     <SupplementGSupplementSearchItem :supplement="item" ></SupplementGSupplementSearchItem>
                 </template>
-                
 
             </ais-hits> 
-                        <UtilsGLoadMore></UtilsGLoadMore>
         </div>
 
      </ais-instant-search>   
