@@ -6,7 +6,7 @@
                 {{ $t('BrandLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
-                    {{supplement.brand}}
+                    {{supplement?.brand}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -14,7 +14,7 @@
                 {{ $t('ShapeLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
-                     {{supplement.shape}}
+                     {{supplement?.shape}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -22,7 +22,7 @@
                 {{ $t('ProductNameLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
-                 {{supplement.name}}
+                 {{supplement?.name}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -30,7 +30,7 @@
                 {{ $t('UrlLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
-                   {{supplement.url}}
+                   {{supplement?.url}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -38,7 +38,7 @@
                 {{ $t('KindsLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
-                {{supplement.kind}}
+                {{supplement?.kind}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2 f12">
@@ -46,7 +46,7 @@
                 {{ $t('FeatureLabel') }}
                 </div>
                 <div class="w-50 border-bottom f10 line-break-anywhere">
-                    {{supplement.features}}
+                    {{supplement?.features}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -54,7 +54,7 @@
                 {{ $t('ComponentLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
-                {{supplement.component}}
+                {{supplement?.component}}
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                 {{ $t('BrandLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
-                    {{supplement.brand}}
+                    {{supplement?.brand}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3">
@@ -74,7 +74,7 @@
                 {{ $t('ShapeLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
-                    {{supplement.shape}}
+                    {{supplement?.shape}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3">
@@ -82,7 +82,7 @@
                 {{ $t('ProductNameLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
-                    {{supplement.name}}
+                    {{supplement?.name}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3">
@@ -90,7 +90,7 @@
                 {{ $t('UrlLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
-                    {{supplement.url}}
+                    {{supplement?.url}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3">
@@ -98,7 +98,7 @@
                     {{ $t('KindsLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
-                    {{supplement.kind}}
+                    {{supplement?.kind}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 ">
@@ -106,7 +106,7 @@
                     {{ $t('FeatureLabel') }}
                 </div>
                 <div class="w-75 border-bottom line-break-anywhere">
-                    {{supplement.features}}
+                    {{supplement?.features}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 ">
@@ -114,7 +114,7 @@
                     {{ $t('ComponentLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
-                    {{supplement.component}}
+                    {{supplement?.component}}
                 </div>
             </div>
         </div>
@@ -125,13 +125,8 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    setup() {
-        var supplementStore = useSupplementStore()
-        var { supplement } = storeToRefs(supplementStore)
-
-        return {
-            supplement
-        }
-    },
+    props: {
+        supplement: Object
+    }
 })
 </script>

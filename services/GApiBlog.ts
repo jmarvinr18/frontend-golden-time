@@ -18,7 +18,7 @@ export default {
         return ApiService.post(`/api/v1/blog`, data, header);
     },
     async updateBlog(data: any) {
-        return ApiService.put(`/api/v1/blog/${data?.id}`, data);
+        return ApiService.post(`/api/v1/blog/${data?.id}?_method=PUT`, data, header);
     },
     async deleteBlog(id: any) {
         return ApiService.delete(`/api/v1/blog/${id}`);

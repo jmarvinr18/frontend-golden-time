@@ -18,7 +18,6 @@
                 <div v-for="(news, i) in contents?.news" class="col-md-4 col-xs-12">
                     <CardsGCardNews :news="news"></CardsGCardNews>
                 </div>
-
                 <UtilsGLoadMore></UtilsGLoadMore>
             </div>
         </div>
@@ -57,11 +56,10 @@
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
             <!-- <CardsGCardBlog></CardsGCardBlog> -->
+
             <GContainerSlider>
-            <div v-for="(blog, i) in contents?.blog">
-                <CardsGCardBlog :blog="blog" ></CardsGCardBlog>
-            </div>
-            </GContainerSlider>
+                <CardsGCardBlog v-for="(blog, i) in contents?.blog" :blog="blog"></CardsGCardBlog>
+            </GContainerSlider>            
         </div>
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('MuscleNews')" icon="bi-newspaper"></GSectionTitle>

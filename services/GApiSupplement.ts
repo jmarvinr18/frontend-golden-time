@@ -1,5 +1,11 @@
 import ApiService from "~/services/ApiService";
 
+const header = {
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+}
+
 export default {
     async getAllSupplements(query: any) {
         return ApiService.get(`/api/v1/supplement${query}`);
@@ -11,10 +17,10 @@ export default {
         return ApiService.delete(`/api/v1/supplement/${id}`);
     },
     async createSupplement(data: any) {
-        return ApiService.post('/api/v1/supplement', data);
+        return ApiService.post('/api/v1/supplement', data, header);
     },
     async updateSupplement(data: any) {
-        return ApiService.put(`/api/v1/supplement/${data?.id}`, data);
+        return ApiService.post(`/api/v1/supplement/${data?.id}?_method=PUT`, data, header);
     },
     async ratingSupplement(data: any) {
         return ApiService.post(`/api/v1/supplement/rating/${data?.id}`, data);

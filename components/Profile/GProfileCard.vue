@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="position-absolute top-10 w-100 g-profile-dp">
-                <img src="https://www.muscleandfitness.com/wp-content/uploads/2019/01/man-tire-pull-1109.jpg?quality=86&strip=all" height="270" width="270" class="object-fit-cover rounded-circle mx-auto g-shadow" />
+                <img :src="userImage" style="height: 270px; width: 270px;" class="object-fit-cover rounded-circle mx-auto g-shadow" />
                 <div class="h2 mt-4 fw-bold mt-5">{{ objData.name }}</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="position-absolute w-100 g-profile-dp ">
-                <img src="https://www.muscleandfitness.com/wp-content/uploads/2019/01/man-tire-pull-1109.jpg?quality=86&strip=all" height="170" width="170" class="object-fit-cover rounded-circle mx-auto g-shadow" />
+                <img :src="userImage" style="height: 170px; width: 170px;" class="object-fit-cover rounded-circle mx-auto g-shadow user__image" />
                 <div class="h2 mt-4 fw-bold">Jack Komboy</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
@@ -166,6 +166,17 @@ export default defineComponent({
             default: 'me' // me or other
         }
     },
+    setup(props) {
+        var userImage = ref("")
+
+        onBeforeUpdate(() => {
+            userImage.value = props.objData?.profile_details.image
+        })
+
+        return {
+            userImage
+        }
+    }
 })
 </script>
 <style scoped>

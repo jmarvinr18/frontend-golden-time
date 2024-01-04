@@ -18,13 +18,13 @@
             <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
             <div class="row mt-3">
                 <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
+                    <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
+                    <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" width="100%" class="rounded-lg" />
+                    <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
                 </div>
             </div>
             <hr class="my-4" />

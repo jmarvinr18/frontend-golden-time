@@ -32,7 +32,7 @@
 export default defineComponent({
     props: {
         isReplay:String,
-        commentId: Number,
+        commentId: String,
     },
     setup(props) {
         const comment = ref("");

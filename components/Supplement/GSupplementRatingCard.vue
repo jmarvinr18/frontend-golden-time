@@ -35,19 +35,19 @@
 <script lang="ts">
 export default defineComponent({
     props: {
+        supplement: Object,
         type: {
             type: String,
             default: "taste" // effect or taste
         }
     },
     setup(props) {
-        var supplementStore = useSupplementStore()
-        var { supplement } = storeToRefs(supplementStore)
+
         var avg_effect = computed(() => {
-            return useSupplementRating(supplement.value.ratings?.avg_effect)
+            return useSupplementRating(props.supplement?.ratings?.avg_effect)
         })
         var avg_taste = computed(() => {
-            return useSupplementRating(supplement.value.ratings?.avg_taste)
+            return useSupplementRating(props.supplement?.ratings?.avg_taste)
         })
 
         return {

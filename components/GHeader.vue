@@ -8,23 +8,26 @@
                             <img src="/logo.png" width="80" />
                         </NuxtLink>
                     </div>
-                    <NuxtLink v-if="authStore.isAuthenticated" to="/supplement/add" class="text-decoration-none">
+                    <a v-if="authStore.isAuthenticated" href="/supplement/add" class="text-decoration-none">
                         <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>{{ $t('SupplementRegistration') }}</div>
-                    </NuxtLink>
+                    </a>
                 </div>
-                <div class="right-side d-flex align-items-center">
-                    <div v-if="authStore.isAuthenticated" class="dropdown p-0 d-flex align-items-center">
-                        <NuxtLink to="/me/profile" class="text-light text-decoration-none me-4 d-flex align-items-center profile-shortcut cursor-pointer">
+                <div class="right-side d-flex align-items-center gap-3">
+                    <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-3">
+                        <NuxtLink to="/me/profile" class="text-light text-decoration-none me-4" >
                             <img src="/images/no-avatar.jpeg" class="me-2 rounded-circle" style="width: 30px; height: 30px;" />
-                            Hi {{ authStore.userData.name }} !
+                            <div class="text-light fw-bold">
+                                <span>{{ $t("HelloGreetings") }}, {{ userData.name }}</span>
+                            </div>
                         </NuxtLink>
                         <button class="btn btn-secondary dropdown-toggle p-0 m-0 bg-none border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list h1 mb-0 text-light fw-bold"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end f14 lh-lg">
                             <li>
-                                <a class="dropdown-item text-end" href="#">
-                                    <i class="bi bi-x h4 mt-2 mb-0 me-2"></i>
+                                <a class="d-flex gap-2 dropdown-item text-end" href="/me/profile">
+                                    <i class="bi bi-person-circle align-self-center"></i>
+                                    <span class="align-self-center">{{ userData.name }}</span> 
                                 </a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
@@ -66,7 +69,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div v-else class="d-flex align-items-center">
+                    <div v-else class="d-flex align-items-center gap-3">
                         <NuxtLink to="/login">
                             <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">{{ $t('Login') }}</button>
                         </NuxtLink>
@@ -125,6 +128,7 @@ export default defineComponent({
         const fixedMode = ref(false);
         const route:any = useRoute();
         const authStore = useAuthStore();
+        const { userData } = storeToRefs(authStore)
         
 
         const checkScroll = () => {
@@ -166,7 +170,8 @@ export default defineComponent({
             fixedMode,
             authStore,
             colorChange,
-            logout
+            logout,
+            userData
         }
     }
 })

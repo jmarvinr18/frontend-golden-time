@@ -10,13 +10,12 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     setup() {
         var route = useRoute()
-        var supplementStore = useSupplementStore()
-
+        var supplementStore = usePublicContentStore()
 
         onMounted(() => {
             supplementStore.getSupplement(route.params.id)
         })
-        return {}
+
     },
 })
 </script>

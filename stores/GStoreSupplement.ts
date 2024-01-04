@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import GApiSupplement from "~/services/GApiSupplement";
 import { useGeneralStore as generalStore } from "./GStoreGeneral";
+import type { User } from "./GStoreAuth";
 
 
 export interface Supplement {
@@ -20,6 +21,7 @@ export interface Supplement {
     features: string
     ratings: Rating
     comments: Comment[]
+    user: User
 }
 
 export interface Comment {
@@ -29,7 +31,7 @@ export interface Comment {
     reply_to: string
     sender: object
     replies: Comment[]
-    view_replies: boolean
+    view_replies?: boolean
 }
 
 export interface Rating {
@@ -40,7 +42,8 @@ export const useSupplementStore = defineStore("supplementStore", {
     state: () => {
         return {
             allSupplements: <Array<Supplement>>[],
-            supplement: <Supplement>{}
+            supplement: <Supplement>{},
+            supplementForm: <Supplement>{}
         }
     },
     actions: {
@@ -113,5 +116,10 @@ export const useSupplementStore = defineStore("supplementStore", {
                 generalStore().setError(true, msg);
             });
         },
+
+        async purgeFormContent() {
+            this.supplement = <Supplement>{}
+            this.supplementForm = <Supplement>{}
+        }
     }
 })

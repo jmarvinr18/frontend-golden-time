@@ -8,7 +8,7 @@ export interface Blog {
     title: string
     content: string
     feature_image: string
-    meta: Meta[]
+    meta: Meta[] | null
     visibility: string
     type: string
     status: string
@@ -46,7 +46,7 @@ export const useBlogStore = defineStore("blogStore", {
                 meta: [{
                     type: "text",
                     key: "",
-                    value: ""
+                    value: "",
                 }]
             }
         }
