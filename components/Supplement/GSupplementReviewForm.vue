@@ -39,7 +39,7 @@
     <div class="is-mobile g-supplement-review-form w-100 position-relative overflow-visible ">
         <div class="bg-white rounded-lg w-100 position-relative g-shadow" >
             <div class="w-100 px-2 pt-4 pb-2">
-                <SupplementGSupplementReviewItem class="mt-4 mb-5"></SupplementGSupplementReviewItem>
+                <SupplementGSupplementReviewItem :supplement="supplement" class="mt-4 mb-5"></SupplementGSupplementReviewItem>
 
                 <div class="d-flex justify-content-center gap-3 px-3" style="margin-bottom:80px; margin-top:100px">
                     <div class="w-50 px-2">
