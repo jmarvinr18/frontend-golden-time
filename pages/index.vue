@@ -73,9 +73,7 @@
             
             
             <GContainerSlider>
-                <CardsGCardNews type="schedule"></CardsGCardNews>
-                <CardsGCardNews type="schedule"></CardsGCardNews>
-                <CardsGCardNews type="schedule"></CardsGCardNews>
+                <CardsGCardEvent v-for="(event, i) in contents?.event" :event="event" ></CardsGCardEvent>
             </GContainerSlider>
         </div>
         <div class="container pt-2 pb-4">

@@ -8,9 +8,14 @@
 <script lang="ts">
 export default defineComponent({
     props: {
-        id: "",
-        is_reply: false,
-        reply_to: 0,
+        id: String || Number,
+        is_reply: Boolean,
+        reply_to: {
+            type: String || Number,
+            default() {
+                return 0;
+            }
+        },
     },
     setup(props) {
         const blogStore = useBlogStore();
@@ -21,10 +26,12 @@ export default defineComponent({
             const formData:any = {
                 blog_id: props.id,
                 comment: comment.value,
-                reply_to: 0,
-                is_reply: false
+                reply_to: props.reply_to,
+                is_reply: props.reply_to? true:false
             };
-            blogStore.createBlogComment(formData);
+            blogStore.createBlogComment(formData).then(() => {
+                comment.value = "";
+            });
         };
 
         const submitNow = () => {
