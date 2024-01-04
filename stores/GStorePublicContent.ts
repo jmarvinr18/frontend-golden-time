@@ -3,31 +3,19 @@ import GApiBlog from "~/services/GApiBlog";
 import { useGeneralStore as generalStore } from "./GStoreGeneral";
 import GApiPublicContents from "~/services/GApiPublicContents";
 import { type Supplement } from "./GStoreSupplement"
+import { type Blog } from "./GStoreBlog"
 
 export interface Contents {
-    blog: ContentDetails[]
-    event: ContentDetails[]
-    news: ContentDetails[]
+    blog: Blog[]
+    event: Blog[]
+    news: Blog[]
 }
-export interface ContentDetails {
-    id: string
-    title: string
-    content: string
-    feature_image: string
-    meta: string
-    visibility: string
-    type: string
-    status: string
-    user_id: string
-    author: string
-    email: string
-    created_at: string
-}
+
 export const usePublicContentStore = defineStore("publicContentStore", {
     state: () => {
         return {
             contents: <Contents>{},
-            blog: <ContentDetails>{},
+            blog: <Blog>{},
             supplement: <Supplement>{},
             allSupplements: <Array<Supplement>>[],
         }
