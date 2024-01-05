@@ -55,7 +55,9 @@
      <!-- SEARCH BOX AND FILTER -->
 
      <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search">
+        
         <div class="is-mobile container search-bar" style="margin-bottom:-90px">
+            <ais-configure :attributesToSnippet="['features']"/>
             <div class="input-group mb-3 rounded-pill overflow-hidden border border-dark w-100 mx-auto gl-shadow" >
                 
                 <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control border-0" placeholder="Search here" />
