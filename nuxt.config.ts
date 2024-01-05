@@ -58,8 +58,8 @@ export default defineNuxtConfig({
     '@nuxtjs/algolia'
   ],
   algolia: {
-    apiKey: 'b3a5bb09f2b7b1862b1870e078bb7f74',
-    applicationId: 'QEI3QTVDIN',
+    apiKey: import.meta.env.ALGOLIA_API_KEY,
+    applicationId: import.meta.env.ALGOLIA_APP_ID,
     instantSearch: {
       theme: 'algolia'
     }
