@@ -1,6 +1,8 @@
 <template>
     <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search" class="is-desktop w-100 rounded-lg py-5 mt-4 bg-white border border-2">
         <!-- SEARCH BOX AND FILTER -->
+        <ais-configure :attributesToSnippet="['features']"/>
+
         <div class="search-bar container py-4">
             <div class="input-group mb-3 rounded-lg border border-dark w-75 mx-auto">
 
@@ -20,7 +22,7 @@
                         <template v-slot:item="{ item }">
                             <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
                                 <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
-                                <div>
+                                <div class="search-hit-item-body">
                                     <h6 class="fw-bold">
                                         <ais-highlight
                                             attribute="name"
@@ -31,11 +33,11 @@
                                     </h6>
 
                                     <div class="fs-12">
-                                        <ais-highlight
+                                        <ais-snippet
                                             attribute="features"
                                             :hit="item"
                                             highlighted-tag-name="em"
-                                        />   
+                                        />                                        
                                     </div>                                    
                                 </div>
                             </a>
@@ -70,7 +72,7 @@
                         <template v-slot:item="{ item }">
                             <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
                                 <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
-                                <div>
+                                <div class="search-hit-item-body">
                                     <h6 class="fw-bold">
                                         <ais-highlight
                                             attribute="name"
@@ -80,11 +82,11 @@
                                        
                                     </h6>
                                     <div class="fs-12">
-                                        <ais-highlight
+                                        <ais-snippet
                                             attribute="features"
                                             :hit="item"
                                             highlighted-tag-name="em"
-                                        />
+                                        /> 
                                     </div>                                    
                                 </div>
                             </a>
@@ -104,7 +106,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { AisInstantSearch, AisSearchBox, AisHits, AisHighlight, AisSnippet} from 'vue-instantsearch/vue3/es'
+import { AisInstantSearch, AisSearchBox, AisHits, AisHighlight, AisSnippet, AisConfigure} from 'vue-instantsearch/vue3/es'
 import 'instantsearch.css/themes/algolia-min.css';
 import 'instantsearch.css/themes/reset.css';
 
@@ -115,7 +117,8 @@ export default defineComponent({
         AisSearchBox,
         AisHits,
         AisHighlight,
-        AisSnippet
+        AisSnippet,
+        AisConfigure
     },
     setup() {
         const filterOpts = ref([
@@ -214,5 +217,8 @@ export default defineComponent({
         border-radius: 5px;
         box-shadow: 0 2px 5px 0px #e3e5ec;
         padding: 0.5rem;        
+    }
+    .search-hit-item-body {
+        overflow-wrap: anywhere;
     }
 </style>
