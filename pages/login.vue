@@ -42,7 +42,7 @@
             <div class="container w-100 text-center mx-auto mt-5">
                 <div class="btn-group rounded-pill overflow-hidden bg-white border border-primary w-75 " role="group" aria-label="Basic example">
                     <button type="button" class="f12 btn btn-primary fw-bold">{{ $t('Login')}} <i class="bi bi-arrow-right mb-0 ms-1"></i></button>
-                    <NuxtLink to="/signup" type="button" class="f12 btn text-primary fw-bold rounded">{{ $t('Login')}} <i class="bi bi-plus-lg mb-0 ms-1"></i></NuxtLink>
+                    <NuxtLink to="/signup" type="button" class="f12 btn text-primary fw-bold rounded">{{ $t('SignUp')}} <i class="bi bi-plus-lg mb-0 ms-1"></i></NuxtLink>
                 </div>
             </div>
             <div class="container w-100 mx-auto mt-5 mb-4">
