@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import GApiBlog from "~/services/GApiBlog";
 import { useGeneralStore as generalStore } from "./GStoreGeneral";
 import type { Comment } from './GStoreSupplement';
+import type { User } from './GStoreAuth';
 
 export interface Blog {
     id?: string
@@ -12,7 +13,7 @@ export interface Blog {
     visibility: string
     type: string
     status: string
-    user: string
+    user: User
     created_at?: string
     likes: Like[]
     comments: Comment[]
