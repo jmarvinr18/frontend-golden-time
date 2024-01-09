@@ -41,11 +41,11 @@
                                     <i class="bi bi-search mt-2 mb-0 me-2"></i>{{ $t('SupplementSearch') }}
                                 </NuxtLink>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <NuxtLink class="dropdown-item" to="/supplement/review/post">
                                     <i class="bi bi-chat-right-text mb-0 me-2"></i>{{ $t('SupplementReview') }}
                                 </NuxtLink>
-                            </li>
+                            </li> -->
                             <li>
                                 <NuxtLink class="dropdown-item" to="/blog/post">
                                     <i class="bi bi-pencil mb-0 me-2"></i>{{ $t('BlogPost') }}
