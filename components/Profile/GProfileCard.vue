@@ -47,12 +47,12 @@
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
                         <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-up me-2"></i>23
+                            <i class="bi bi-person-up me-2"></i>{{ objData.followers_count }}
                         </NuxtLink>
                     </div>
                     <div class="mx-2">
                         <NuxtLink to="/me/following" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-down me-2"></i>89
+                            <i class="bi bi-person-down me-2"></i>{{ objData.followings_count }}
                         </NuxtLink>
                     </div>
                     <div class="mx-2">
