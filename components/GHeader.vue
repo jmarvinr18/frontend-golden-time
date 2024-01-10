@@ -13,11 +13,13 @@
                     </a>
                 </div>
                 <div class="right-side d-flex align-items-center gap-3">
-                    <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-3">
-                        <NuxtLink to="/me/profile" class="text-light text-decoration-none me-4" >
-                            <img src="/images/no-avatar.jpeg" class="me-2 rounded-circle" style="width: 30px; height: 30px;" />
-                            <div class="text-light fw-bold">
-                                <span>{{ $t("HelloGreetings") }}, {{ userData.name }}</span>
+                    <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-1">
+                        <NuxtLink to="/me/profile" class="text-decoration-none me-2" >
+                            <div class="text-light d-flex align-items-center text-decoration-none">
+                                <img src="/images/no-avatar.jpeg" class="me-2 rounded-circle" style="width: 30px; height: 30px;" />
+                                <div class="text-light fw-bold">
+                                    <span>{{ $t("HelloGreetings") }}, {{ userData.name }}</span>
+                                </div>
                             </div>
                         </NuxtLink>
                         <button class="btn btn-secondary dropdown-toggle p-0 m-0 bg-none border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">

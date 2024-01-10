@@ -56,6 +56,10 @@ export default defineComponent({
             userData.value.profile_details.image = data.file;
         });
 
+        useHead({
+            title: "Edit Profile | Golden Time"
+        });
+
         onMounted(async () => {
             await authStore.getProfile(userData.value.id).then(() => {
                 avatarImg.value = userData.value.profile_details.image  

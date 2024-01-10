@@ -92,6 +92,10 @@ export default defineComponent({
             blogStore.getBlog(route.params.id);
         });
 
+        useHead({
+            title: `${blog.value.title} | Golden Time`
+        });
+
         return {
             blog,
             isLiked,
