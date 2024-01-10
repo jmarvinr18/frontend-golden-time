@@ -4,7 +4,7 @@
     <GHeader></GHeader>
     <NuxtPage></NuxtPage>
     <GFooter></GFooter>
-    <ModalsGModalLogin></ModalsGModalLogin>
+    <!-- <ModalsGModalLogin></ModalsGModalLogin> -->
   </div>
 </template>
 <script lang="ts">

@@ -8,12 +8,6 @@
           <div v-for="(supplement) in userData.supplements" class="col-md-4 col-xs-12">
             <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
           </div>
-          <!-- <div class="col-md-4 col-xs-12">
-            <CardsGCardSuplement :update-mode="true"></CardsGCardSuplement>
-          </div>
-          <div class="col-md-4 col-xs-12">
-            <CardsGCardSuplement :update-mode="true"></CardsGCardSuplement>
-          </div> -->
           <UtilsGLoadMore></UtilsGLoadMore>
         </div>
       </div>

@@ -71,7 +71,7 @@
                 </NuxtLink>
             </div>
             <div>
-                <NuxtLink to="/supplement/review/post" class="text-light">
+                <NuxtLink to="/supplement/search" class="text-light">
                     <i class="bi bi-chat-square-text"></i>
                 </NuxtLink>
             </div>

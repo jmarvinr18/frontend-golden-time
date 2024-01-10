@@ -134,6 +134,29 @@
     line-break: anywhere;
 }
 
+.searchHitItems {
+    width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+}
+.searchHitItems i,
+.searchHitItems h6,
+.searchHitItems div {
+    color: black;
+    padding: 0.3rem;
+}
+.searchHitItems:hover *{
+    background-color: #212529 !important;
+    color: #fff !important;
+    /* opacity: 0.6; */
+    transition: 0.1s;
+
+}
+
+.search_box{
+    border: 0 !important;
+}
 @media only screen and (max-width:1009px)  {
     .is-mobile {
         display: block !important;

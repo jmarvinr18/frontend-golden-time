@@ -25,7 +25,7 @@
         </div>
         <div class="is-mobile g-supplement-item-card d-flex rounded-lg gap-1 g-shadow">
             <div class="g-supplement-item-media">
-                <img :src="supplement?.image" class="object-fit-cover" height="120" />
+                <img :src="supplement?.image" class="object-fit-cover" style="max-height: 150px; width: 100px; object-fit: cover;" />
             </div>
             <div class="g-supplement-item-content  px-3 f14">
                 <div class=" w-100 mt-1 fw-bold">{{ supplement?.name }}</div>

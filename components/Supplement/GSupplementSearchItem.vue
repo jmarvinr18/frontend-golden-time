@@ -4,25 +4,32 @@
             <SupplementGSupplementSearchItemCard :supplement="supplement"></SupplementGSupplementSearchItemCard>
         </div>
         <div class="is-desktop col-md-4 px-4">
-            <button class="btn btn-primary btn-sm rounded-pill py-2 f14">
-                <i class="bi bi-people me-2"></i>
-                My Supplement Registration 146 people
-            </button>
-            <button class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14">
-                <i class="bi bi-person-heart me-2"></i>
-                300 people who want to drink
-            </button>
+            <div class="d-flex flex-column gap-2 py-2 mt-3">
+                <button class="btn btn-primary btn-sm rounded-pill py-2 f14">
+                    <i class="bi bi-people me-2"></i>
+                    My Supplement Registration 146 people
+                </button>
+                <button class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14">
+                    <i class="bi bi-person-heart me-2"></i>
+                    300 people who want to drink
+                </button>
+            </div>
+
         </div>
-        <GContainerSlider>
-            <button class="g-search-item-extra btn btn-primary btn-sm rounded-pill py-2 f12">
-                <i class="bi bi-people me-2"></i>
-                My Supplement Registration 146 people
-            </button>
-            <button class="g-search-item-extra btn btn-outline-secondary btn-sm rounded-pill py-2 f12">
-                <i class="bi bi-person-heart me-2"></i>
-                300 people who want to drink
-            </button>
-        </GContainerSlider>
+
+        <div class="mw-100 is-mobile">
+            <div class="d-flex flex-column gap-2 py-2 mt-3">
+                <button class="g-search-item-extra btn btn-primary btn-sm rounded-pill py-2 f12">
+                    <i class="bi bi-people me-2"></i>
+                    My Supplement Registration 146 people
+                </button>
+                <button class="g-search-item-extra btn btn-outline-secondary btn-sm rounded-pill py-2 f12">
+                    <i class="bi bi-person-heart me-2"></i>
+                    300 people who want to drink
+                </button>
+            </div> 
+        </div>
+      
     </div>
 </template>
 

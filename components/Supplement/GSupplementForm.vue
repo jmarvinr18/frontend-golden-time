@@ -183,11 +183,15 @@ export default defineComponent({
             }
         };
 
-        const submitSupplement = () => {
+        const submitSupplement = async () => {
             if (route.params.id) {
-                supplementStore.updateSupplement(supplementForm.value);
+                await supplementStore.updateSupplement(supplementForm.value).then((res) => {
+                    location.href = `/supplement/review/${route.params.id}`
+                });
             } else {
-                supplementStore.createSupplement(supplementForm.value);
+                await supplementStore.createSupplement(supplementForm.value).then((res) => {
+                    location.href = `/supplement/review/${res.data.id}`
+                }) ;
             }
             
         }

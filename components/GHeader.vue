@@ -43,11 +43,11 @@
                                     <i class="bi bi-search mt-2 mb-0 me-2"></i>{{ $t('SupplementSearch') }}
                                 </NuxtLink>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <NuxtLink class="dropdown-item" to="/supplement/review/post">
                                     <i class="bi bi-chat-right-text mb-0 me-2"></i>{{ $t('SupplementReview') }}
                                 </NuxtLink>
-                            </li>
+                            </li> -->
                             <li>
                                 <NuxtLink class="dropdown-item" to="/blog/post">
                                     <i class="bi bi-pencil mb-0 me-2"></i>{{ $t('BlogPost') }}
@@ -72,7 +72,7 @@
                         </ul>
                     </div>
                     <div v-else class="d-flex align-items-center gap-3">
-                        <NuxtLink to="/login">
+                        <NuxtLink class="d-flex align-items-center text-decoration-none" to="/login">
                             <button class="btn btn-outline btn-outline-light py-1 rounded-pill px-3 me-3 f14">{{ $t('Login') }}</button>
                         </NuxtLink>
                         <NuxtLink to="/signup">

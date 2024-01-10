@@ -3,6 +3,8 @@ import GApiAuth from "~/services/GApiAuth";
 import { useGeneralStore as generalStore } from "./GStoreGeneral";
 import type { Supplement } from "./GStoreSupplement";
 import type { Blog } from "./GStoreBlog";
+import type { Follows } from "./GStoreFollow";
+
 const ACCESS_TOKEN = "access_token";
 const PROFILE = "profile";
 
@@ -17,6 +19,10 @@ export interface User {
     profile_details: ProfileData
     supplements?: Supplement
     blogs?: Blog
+    followings_count?: number
+    followers_count?: number
+    followers?: Follows[]
+    followings?: Follows[]
 }
 
 export interface ProfileData {
