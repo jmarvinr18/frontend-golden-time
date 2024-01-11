@@ -36,7 +36,7 @@ export interface ProfileData {
     bw_visibility: boolean
     body_fat_percentage: string | null
     bf_visibility: boolean
-    age: 0,
+    birth_date: 0,
     a_visibility: boolean
     sex: string,
     s_visibility: boolean
@@ -97,7 +97,7 @@ export const useAuthStore = defineStore("authStore", {
                 if (useRoute().query.vp != undefined) {
                     this.verifyEmail(useRoute().query.vp)
                 } else {
-                    useRouter().push("/")
+                    useRouter().push("/me/profile")
                 }
 
             }).catch((err: any) => {

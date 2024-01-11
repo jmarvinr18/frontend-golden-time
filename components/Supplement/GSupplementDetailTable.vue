@@ -14,7 +14,7 @@
                 {{ $t('ShapeLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
-                     {{supplement?.shape}}
+                     {{supplement?.serving_type}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -38,7 +38,7 @@
                 {{ $t('KindsLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
-                {{supplement?.kind}}
+                {{supplement?.supplement_type}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2 f12">
@@ -46,7 +46,7 @@
                 {{ $t('FeatureLabel') }}
                 </div>
                 <div class="w-50 border-bottom f10 line-break-anywhere">
-                    {{supplement?.features}}
+                    {{supplement?.description}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
@@ -74,7 +74,7 @@
                 {{ $t('ShapeLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
-                    {{supplement?.shape}}
+                    {{supplement?.serving_type}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3">
@@ -98,7 +98,7 @@
                     {{ $t('KindsLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
-                    {{supplement?.kind}}
+                    {{supplement?.supplement_type}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 ">
@@ -106,7 +106,7 @@
                     {{ $t('FeatureLabel') }}
                 </div>
                 <div class="w-75 border-bottom line-break-anywhere">
-                    {{supplement?.features}}
+                    {{supplement?.description}}
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 d-flex gap-3 ">

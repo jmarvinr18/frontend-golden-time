@@ -16,7 +16,7 @@
                     <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-1">
                         <NuxtLink to="/me/profile" class="text-decoration-none me-2" >
                             <div class="text-light d-flex align-items-center text-decoration-none">
-                                <img src="/images/no-avatar.jpeg" class="me-2 rounded-circle" style="width: 30px; height: 30px;" />
+                                <img :src="userData.profile_details.image? userData.profile_details.image:'/images/no-avatar.jpeg'" class="me-2 border rounded-circle" style="width: 30px; height: 30px;" />
                                 <div class="text-light fw-bold">
                                     <span>{{ $t("HelloGreetings") }}, {{ userData.name }}</span>
                                 </div>

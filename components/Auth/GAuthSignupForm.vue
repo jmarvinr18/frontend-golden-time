@@ -8,15 +8,15 @@
             <div class="g-form-group border-bottom pb-5">
                 <div class="mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('Nickname') }}*</label>
-                    <input type="text" class="form-control form-control-lg"  placeholder="sample nickname" v-model="registrationForm.name">
+                    <input type="text" class="form-control form-control-lg" :placeholder="$t('NicknamePlaceholder')" v-model="registrationForm.name">
                 </div>
                 <div class="mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('EmailLabel') }}*</label>
-                    <input type="email" class="form-control form-control-lg"  placeholder="sample@gmail.com" v-model="registrationForm.email">
+                    <input type="email" class="form-control form-control-lg"  :placeholder="$t('EmailRegisterPlaceholder')" v-model="registrationForm.email">
                 </div>
                 <div class="mb-4 g-form-input position-relative">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordConfirmationLabel')}}*</label>
-                    <input :type="viewPassword? 'text':'password'" class="form-control form-control-lg"  placeholder="abcde12345" v-model="registrationForm.password">
+                    <input :type="viewPassword? 'text':'password'" class="form-control form-control-lg" placeholder="Password" v-model="registrationForm.password">
                     <div class="position-absolute end-0 me-3" style="margin-top:-50px" @click="viewPassword=!viewPassword">
                         <i v-if="!viewPassword" class="bi h3 bi-eye"></i>
                         <i v-else class="bi h3 bi-eye-slash"></i>
@@ -24,22 +24,22 @@
                 </div>
                 <div class="mb-4 g-form-input position-relative">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordConfirmationLabel')}}*</label>
-                    <input :type="viewConfirmPassword? 'text':'password'" class="form-control form-control-lg"  placeholder="abcde12345" v-model="registrationForm.password_confirmation">
+                    <input :type="viewConfirmPassword? 'text':'password'" class="form-control form-control-lg"  placeholder="password" v-model="registrationForm.password_confirmation">
                     <div class="position-absolute end-0 me-3" style="margin-top:-50px" @click="viewConfirmPassword=!viewConfirmPassword">
                         <i v-if="!viewConfirmPassword" class="bi h3 bi-eye"></i>
                         <i v-else class="bi h3 bi-eye-slash"></i>
                     </div>
                 </div>
                 <div class="mb-4 g-form-input">
-                    <label  class="form-label bg-white ms-2 px-2">{{ $t('InstagramAccountLabel')}}*</label>
-                    <input type="text" class="form-control form-control-lg"  placeholder="@sample.ig" v-model="registrationForm.profile_details.social_media.instagram">
+                    <label  class="form-label bg-white ms-2 px-2">{{ $t('InstagramAccountLabel')}}</label>
+                    <input type="text" class="form-control form-control-lg" :placeholder="$t('InstagramIdPlaceholder')" v-model="registrationForm.profile_details.social_media.instagram">
                 </div>
             </div>
             <div class="g-form-group border-bottom py-5">
                 <div class="g-form-box mb-2 d-flex gap-4 w-75">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('HeightLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  v-model="registrationForm.profile_details.height">
+                        <input type="text" class="form-control form-control-lg"  v-model="registrationForm.profile_details.height" :placeholder="$t('HeightPlaceholder')">
                     </div>
                     <div class="ms-5 w-25 text-start">
                         <div>{{ !registrationForm.profile_details.h_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>
@@ -51,7 +51,7 @@
                 <div class="g-form-box mb-2 d-flex gap-4 w-75">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('BodyWeightLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  v-model="registrationForm.profile_details.body_weight">
+                        <input type="text" class="form-control form-control-lg"  v-model="registrationForm.profile_details.body_weight" :placeholder="$t('BodyWeightPlaceholder')">
                     </div>
                     <div class="ms-5 w-25 text-start">
                         <div>{{ !registrationForm.profile_details.bw_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>
@@ -63,7 +63,7 @@
                 <div class="g-form-box mb-2 d-flex gap-4 w-75">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('BodyFatPercentageLabel') }}</label>
-                        <input type="number" class="form-control form-control-lg"  v-model="registrationForm.profile_details.body_fat_percentage">
+                        <input type="number" class="form-control form-control-lg"  v-model="registrationForm.profile_details.body_fat_percentage" :placeholder="$t('BodyFatPlaceholder')">
                     </div>
                     <div class="ms-5 w-25 text-start">
                         <div>{{ !registrationForm.profile_details.bf_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>
@@ -74,8 +74,8 @@
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-75">
                     <div class="w-50 mb-4 g-form-input">
-                        <label  class="form-label bg-white ms-2 px-2">{{ $t('AgeLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  v-model="registrationForm.profile_details.age">
+                        <label  class="form-label bg-white ms-2 px-2">{{ $t('BirthDateLable') }}</label>
+                        <input type="date" class="form-control form-control-lg"  v-model="registrationForm.profile_details.birth_date">
                     </div>
                     <div class="ms-5 w-25 text-start">
                         <div>{{ !registrationForm.profile_details.a_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>
@@ -104,38 +104,38 @@
                 <div class="g-form-box mb-2 d-flex gap-4 w-100">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('YearIStartedTrainingLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="2001"  v-model="registrationForm.profile_details.year_attended_training">
+                        <input type="date" class="form-control form-control-lg"  v-model="registrationForm.profile_details.year_attended_training"  :placeholder="$t('YearIStartedPlaceholder')">
                     </div>
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('DeadliftLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="xxx" v-model="registrationForm.profile_details.deadlift">
+                        <input type="text" class="form-control form-control-lg" v-model="registrationForm.profile_details.deadlift" :placeholder="$t('DeadliftPlaceholder')">
                     </div>
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-100">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('BenchPressLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="30kg" v-model="registrationForm.profile_details.bench_press">
+                        <input type="text" class="form-control form-control-lg" v-model="registrationForm.profile_details.bench_press" :placeholder="$t('BenchPressPlaceholder')">
                     </div>
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2"> {{ $t('RespectedTraineeLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="XXX XXX" v-model="registrationForm.profile_details.respected_trainee">
+                        <input type="text" class="form-control form-control-lg" :placeholder="$t('RespectTraineePlaceholder')" v-model="registrationForm.profile_details.respected_trainee">
                     </div>
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-100">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2"> {{ $t('SquatLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="xxx" v-model="registrationForm.profile_details.squat">
+                        <input type="text" class="form-control form-control-lg" :placeholder="$t('SquatPlaceholder')" v-model="registrationForm.profile_details.squat">
                     </div>
                 </div>
             </div>
             <div class="g-form-group py-5">
                 <div class="w-100 mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2"> {{ $t('SelfIntroduction') }}</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="registrationForm.profile_details.description"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="registrationForm.profile_details.description" :placeholder="$t('SelfIntroPlaceholder')"></textarea>
                 </div>
                 <div class="w-100 mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2"> {{ $t('MyTraining') }}</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="registrationForm.profile_details.my_training"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="registrationForm.profile_details.my_training" :placeholder="$t('MyTrainingPlaceholder')"></textarea>
                 </div>
             </div>
             <div class="w-100 py-3 text-center">
@@ -155,26 +155,26 @@
             <div class="g-form-group border-bottom pb-5">
                 <div class="mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('Nickname') }}*</label>
-                    <input type="text" class="form-control form-control-lg"  placeholder="sample nickname" v-model="registrationForm.name">
+                    <input type="text" class="form-control form-control-lg" v-model="registrationForm.name" :placeholder="$t('NicknamePlaceholder')">
                 </div>
                 <div class="mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('EmailLabel') }}*</label>
-                    <input type="email" class="form-control form-control-lg"  placeholder="sample@gmail.com" v-model="registrationForm.email">
+                    <input type="email" class="form-control form-control-lg" v-model="registrationForm.email" :placeholder="$t('EmailRegisterPlaceholder')">
                 </div>
                 <div class="mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordLabel')}}*</label>
-                    <input type="password" class="form-control form-control-lg"  placeholder="abcde12345" v-model="registrationForm.password">
+                    <input type="password" class="form-control form-control-lg" v-model="registrationForm.password" :placeholder="$t('PasswordPlaceholder')">
                 </div>
                 <div class="mb-4 g-form-input">
-                    <label  class="form-label bg-white ms-2 px-2">{{ $t('InstagramAccountLabel')}}*</label>
-                    <input type="text" class="form-control form-control-lg"  placeholder="@sample.ig" v-model="registrationForm.profile_details.social_media.instagram">
+                    <label class="form-label bg-white ms-2 px-2">{{ $t('InstagramAccountLabel')}}*</label>
+                    <input type="text" class="form-control form-control-lg" v-model="registrationForm.profile_details.social_media.instagram" :placeholder="$t('InstagramIdPlaceholder')">
                 </div>
             </div>
             <div class="g-form-group border-bottom py-5 d-flex flex-wrap f10">
                 <div class="g-form-box mb-2 d-flex gap-1 w-50 justify-content-between">
                     <div class="w-75 mb-4 g-form-input pe-2">
                         <label  class="form-label bg-white px-2">{{$t('HeightLabel')}}</label>
-                        <input type="text" class="form-control"  v-model="registrationForm.profile_details.height">
+                        <input type="text" class="form-control"  v-model="registrationForm.profile_details.height" :placeholder="$t('HeightPlaceholder')">
                     </div>
                     <div class="ms-1 w-25 text-end">
                          <div>{{ !registrationForm.profile_details.h_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>
@@ -187,7 +187,7 @@
                 <div class="g-form-box mb-2 d-flex gap-1 w-50 justify-content-between">
                     <div class="w-75 mb-4 g-form-input pe-2">
                         <label  class="form-label bg-white px-2">{{ $t('BodyWeightLabel')}}</label>
-                        <input type="text" class="form-control"  v-model="registrationForm.profile_details.body_weight">
+                        <input type="text" class="form-control" v-model="registrationForm.profile_details.body_weight" :placeholder="$t('BodyWeightPlaceholder')">
                     </div>
                     <div class="ms-1 w-25 text-end">
                          <div>{{ !registrationForm.profile_details.bw_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>                        
@@ -198,8 +198,8 @@
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-1 w-50 justify-content-between">
                     <div class="w-75 mb-4 g-form-input pe-2">
-                        <label  class="form-label bg-white px-2">{{ $t('AgeLabel') }}</label>
-                        <input type="text" class="form-control"  v-model="registrationForm.profile_details.age">
+                        <label  class="form-label bg-white px-2">{{ $t('BirthDateLable') }}</label>
+                        <input type="date" class="form-control"  v-model="registrationForm.profile_details.birth_date" :placeholder="$t('BirthDatePlaceholder')">
                     </div>
                     <div class="ms-1 w-25 text-end">
                         <div>{{ !registrationForm.profile_details.a_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>                               
@@ -211,7 +211,7 @@
                 <div class="g-form-box mb-2 d-flex gap-1 w-50 justify-content-between">
                     <div class="w-75 mb-4 g-form-input pe-2">
                         <label  class="form-label bg-white px-2">{{ $t('BodyFatPercentageLabel') }}</label>
-                        <input type="number" class="form-control"  v-model="registrationForm.profile_details.body_fat_percentage">
+                        <input type="number" class="form-control" v-model="registrationForm.profile_details.body_fat_percentage" :placeholder="$t('BodyFatPlaceholder')">
                     </div>
                     <div class="ms-1 w-25 text-end">
                         <div>{{ !registrationForm.profile_details.bf_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>
@@ -240,38 +240,38 @@
                 <div class="g-form-box mb-2 d-flex gap-4 w-100 ">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('YearIStartedTrainingLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="2001" v-model="registrationForm.profile_details.year_attended_training">
+                        <input type="date" class="form-control form-control-lg"  :placeholder="$t('YearStartedPlaceholder')" v-model="registrationForm.profile_details.year_attended_training">
                     </div>
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('DeadliftLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="xxx" v-model="registrationForm.profile_details.deadlift">
+                        <input type="text" class="form-control form-control-lg"  :placeholder="$t('DeadliftPlaceholder')" v-model="registrationForm.profile_details.deadlift">
                     </div>
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-100">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('BenchPressLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="30kg" v-model="registrationForm.profile_details.bench_press">
+                        <input type="text" class="form-control form-control-lg" v-model="registrationForm.profile_details.bench_press" :placeholder="$t('BenchPressPlaceholder')">
                     </div>
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('RespectedTraineeLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="XXX XXX" v-model="registrationForm.profile_details.respected_trainee">
+                        <input type="text" class="form-control form-control-lg"  v-model="registrationForm.profile_details.respected_trainee"  :placeholder="$t('RespectTraineePlaceholder')">
                     </div>
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-100">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('SquatLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="xxx" v-model="registrationForm.profile_details.squat">
+                        <input type="text" class="form-control form-control-lg" v-model="registrationForm.profile_details.squat" :placeholder="$t('SquatPlaceholder')">
                     </div>
                 </div>
             </div>
             <div class="g-form-group py-5">
                 <div class="w-100 mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('SelfIntroduction') }}</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" v-model="registrationForm.profile_details.description"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" v-model="registrationForm.profile_details.description" :placeholder="$t('SelfIntroPlaceholder')"></textarea>
                 </div>
                 <div class="w-100 mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('MyTraining') }}</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" v-model="registrationForm.profile_details.my_training"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" v-model="registrationForm.profile_details.my_training"  :placeholder="$t('MyTrainingPlaceholder')"></textarea>
                 </div>
             </div>
             <div class="w-100 py-1 text-center">

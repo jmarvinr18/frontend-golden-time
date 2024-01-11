@@ -15,7 +15,7 @@
             <hr />
             <div class="g-review-item-head d-flex justify-content-between position-relative flex-wrap">
                 <div class="w-50 f14 lh-lg">
-                    <div>{{ $t('TasteLabel') }}: {{ supplement?.taste }}</div>
+                    <div>{{ $t('TasteLabel') }}: {{ supplement?.flavor }}</div>
                     <div>{{ $t('PriceLabel') }}: {{ supplement?.price }}</div>
                     
                 </div>
@@ -54,7 +54,7 @@
             <hr />
             <div class="w-100 g-review-item-head d-flex justify-content-between position-relative flex-wrap">
                 <div class="d-flex flex-column w-100 f14 lh-lg">
-                    <div class="align-self-start">{{ $t('TasteLabel') }}: {{ supplement?.taste }}</div>
+                    <div class="align-self-start">{{ $t('TasteLabel') }}: {{ supplement?.flavor }}</div>
                     <div class="align-self-start">{{ $t('PriceLabel') }}: {{ supplement?.price }}</div>
                 </div>
             </div>

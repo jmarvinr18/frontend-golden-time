@@ -31,7 +31,7 @@
                 <UtilsGLoadMore @on-click="viewAll('/event')"></UtilsGLoadMore>
             </div>
         </div>
-        <div class="container pt-2 pb-4">
+        <!-- <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('FeaturedPlayers')" icon="bi-stars"></GSectionTitle>
 
             <div class="row">
@@ -49,7 +49,7 @@
                 </div>
                 <UtilsGLoadMore></UtilsGLoadMore>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="is-mobile">
@@ -76,13 +76,13 @@
                 <CardsGCardEvent v-for="(event, i) in contents?.event" :event="event" ></CardsGCardEvent>
             </GContainerSlider>
         </div>
-        <div class="container pt-2 pb-4">
+        <!-- <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('FeaturedPlayers')" icon="bi-stars"></GSectionTitle>
             <GContainerSlider>
                 <CardsGCardFeature></CardsGCardFeature>
                 <CardsGCardFeature></CardsGCardFeature>
             </GContainerSlider>
-        </div>
+        </div> -->
     </div>
 </template>
 

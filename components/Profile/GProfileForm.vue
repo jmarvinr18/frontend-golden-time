@@ -15,7 +15,7 @@
                     <input type="email" class="form-control form-control-lg"  placeholder="sample@gmail.com" v-model="userData.email">
                 </div>
                 <div class="mb-4 g-form-input position-relative">
-                    <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordConfirmationLabel')}}*</label>
+                    <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordLabel')}}*</label>
                     <input :type="viewPassword? 'text':'password'" class="form-control form-control-lg"  placeholder="abcde12345" v-model="userData.password">
                     <div class="position-absolute end-0 me-3" style="margin-top:-50px" @click="viewPassword=!viewPassword">
                         <i v-if="!viewPassword" class="bi h3 bi-eye"></i>
@@ -66,8 +66,8 @@
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-75">
                     <div class="w-50 mb-4 g-form-input">
-                        <label  class="form-label bg-white ms-2 px-2">{{ $t('AgeLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  v-model="userData.profile_details.age">
+                        <label  class="form-label bg-white ms-2 px-2">{{ $t('BirthDateLable') }}</label>
+                        <input type="date" class="form-control form-control-lg"  v-model="userData.profile_details.birth_date">
                     </div>
                     <div class="ms-5 w-25 text-start">
                         <div>{{ !userData.profile_details.a_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>
@@ -96,7 +96,7 @@
                 <div class="g-form-box mb-2 d-flex gap-4 w-100">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('YearIStartedTrainingLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="2001"  v-model="userData.profile_details.year_attended_training">
+                        <input type="date" class="form-control form-control-lg"  placeholder="2001"  v-model="userData.profile_details.year_attended_training">
                     </div>
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('DeadliftLabel') }}</label>
@@ -194,8 +194,8 @@
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-1 w-50 justify-content-between">
                     <div class="w-75 mb-4 g-form-input pe-2">
-                        <label  class="form-label bg-white px-2">{{ $t('AgeLabel') }}</label>
-                        <input type="text" class="form-control"  v-model="userData.profile_details.age">
+                        <label  class="form-label bg-white px-2">{{ $t('BirthDateLable') }}</label>
+                        <input type="date" class="form-control"  v-model="userData.profile_details.birth_date">
                     </div>
                     <div class="ms-1 w-25 text-end">
                         <div>{{ !userData.profile_details.a_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>                               
@@ -236,7 +236,7 @@
                 <div class="g-form-box mb-2 d-flex gap-4 w-100 ">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('YearIStartedTrainingLabel') }}</label>
-                        <input type="text" class="form-control form-control-lg"  placeholder="2001" v-model="userData.profile_details.year_attended_training">
+                        <input type="date" class="form-control form-control-lg"  placeholder="2001" v-model="userData.profile_details.year_attended_training">
                     </div>
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('DeadliftLabel') }}</label>
