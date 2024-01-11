@@ -19,7 +19,7 @@
     </section>
 
     <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search" class="is-desktop g-hero-search w-100 d-flex justify-content-center" >
-        <ais-configure :attributesToSnippet="['features']"/>
+        <ais-configure :attributesToSnippet="['description']"/>
         <div class="w-50 search-bar">
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
                 <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')" />
@@ -40,7 +40,7 @@
 
                                     <div class="fs-12">
                                         <ais-snippet
-                                            attribute="features"
+                                            attribute="description"
                                             :hit="item"
                                             highlighted-tag-name="em"
                                         />                                        
@@ -56,7 +56,7 @@
     </ais-instant-search>    
     
     <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search" class="is-mobile g-hero-search w-100 d-flex justify-content-center" >
-        <ais-configure :attributesToSnippet="['features']"/>
+        <ais-configure :attributesToSnippet="['description']"/>
         <div class="w-100 px-3 search-bar">
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
                 <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')" />
@@ -77,7 +77,7 @@
 
                                     <div class="fs-12">
                                         <ais-snippet
-                                            attribute="features"
+                                            attribute="description"
                                             :hit="item"
                                             highlighted-tag-name="em"
                                         />                                        

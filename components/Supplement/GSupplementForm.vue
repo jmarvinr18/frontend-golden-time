@@ -7,57 +7,47 @@
         <div class="g-form-group pb-5">
             <div class="mb-4 g-form-input">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`BrandLabel`) }}*</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="supplementForm.brand">
+                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" :placeholder="$t('BrandPlaceholder')" v-model="supplementForm.brand" maxlength="25">
             </div>
             <div class="mb-4 g-form-input">
                 <label for="g-auth-form-2" class="form-label bg-white ms-2 px-2">{{ $t(`ProductNameLabel`) }}*</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-2" placeholder="samples" v-model="supplementForm.name">
+                <input type="text" class="form-control form-control-lg" id="g-auth-form-2" :placeholder="$t('ProductNamePlaceholder')" v-model="supplementForm.name" maxlength="25">
             </div>
             <div class="mb-4 g-form-input">
                 <div class="mb-4 g-form-input">
                     <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`KindsLabel`) }}*</label>
-                    <select class="form-select form-select-lg" aria-label="Default select example" v-model="supplementForm.kind">
-                        <option value="" selected>{{ $t('SelectLabel') }}</option>
-                        <option v-for="(opt,key) in shapeOpt" :value="opt.value">{{ opt.label }}</option>
+                    <select class="form-select form-select-lg" aria-label="Default select example" v-model="supplementForm.supplement_type">
+                    <option v-for="(opt,key) in typeOpt" :value="opt.value">{{ opt.label }}</option>
                     </select>
                 </div>
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`ProteinContentLabel`) }}*</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="200gr" v-model="supplementForm.protein_content">
+                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`TasteLabel`) }}*</label>
+                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" :placeholder="$t('FlavourPlaceholder')" v-model="supplementForm.flavor" maxlength="25">
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`TypeProteinLabel`) }}</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="supplementForm.protein_type">
+                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`PriceLabel`) }}*</label>
+                <input type="number" class="form-control form-control-lg" id="g-auth-form-1" :placeholder="$t('PricePlaceholder')" v-model="supplementForm.price">
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`TypeProteinLabel`) }}</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="supplementForm.taste">
-            </div>
-            <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`PriceLabel`) }}</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="supplementForm.price">
-            </div>
-            <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`ComponentLabel`) }}</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="sample" v-model="supplementForm.component">
+                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`ComponentLabel`) }}*</label>
+                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" :placeholder="$t('IngredientsPlaceholder')" maxlength="25" v-model="supplementForm.ingredients">
             </div>
             <div class="mb-4 g-form-input">
                 <div class="mb-4 g-form-input">
                     <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`ShapeLabel`) }}*</label>
-                    <select class="form-select form-select-lg" aria-label="Default select example" v-model="supplementForm.shape">
-                    <option value="" selected>{{ $t('SelectLabel') }}</option>
+                    <select class="form-select form-select-lg" aria-label="Default select example" v-model="supplementForm.serving_type">
                     <option v-for="(opt,key) in shapeOpt" :value="opt.value">{{ opt.label }}</option>
                     </select>
                 </div>
             </div>
             <div class="mb-4 g-form-input">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`UrlLabel`) }}</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" placeholder="www.sample.com" v-model="supplementForm.url">
+                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`UrlLabel`) }}*</label>
+                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" :placeholder="$t('UrlPlaceholder')" v-model="supplementForm.url">
             </div>
             <div class="w-100 mb-4 g-form-input">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`FeatureLabel`) }}</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="supplementForm.features"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="supplementForm.description" maxlength="1000" :placeholder="$t('DescriptionPlaceholder')"></textarea>
             </div>
         </div>
         <div class="w-100 py-3 d-flex justify-content-center text-center gap-3">
@@ -77,57 +67,47 @@
         <div class="g-form-group pb-2">
             <div class="mb-4 g-form-input w-75">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('BrandLabel') }}*</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="supplementForm.brand">
+                <input type="text" class="form-control " id="g-auth-form-1" :placeholder="$t('BrandPlaceholder')" maxlength="25" v-model="supplementForm.brand">
             </div>
             <div class="mb-4 g-form-input w-75">
                 <label for="g-auth-form-2" class="form-label bg-white ms-2 px-2">{{ $t('ProductNameLabel') }}*</label>
-                <input type="text" class="form-control " id="g-auth-form-2" placeholder="samples" v-model="supplementForm.name">
+                <input type="text" class="form-control " id="g-auth-form-2" :placeholder="$t('ProductNamePlaceholder')" maxlength="25" v-model="supplementForm.name">
             </div>
             <div class="mb-4 g-form-input w-75">
                 <div class="mb-4 g-form-input">
                     <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('KindsLabel') }}*</label>
-                    <select class="form-select" aria-label="Default select example" v-model="supplementForm.kind">
-                        <option value="" selected>{{ $t('SelectLabel') }}</option>
-                        <option v-for="(opt,key) in shapeOpt" :value="opt.value">{{ opt.label }}</option>
+                    <select class="form-select" aria-label="Default select example" v-model="supplementForm.supplement_type">
+                        <option v-for="(opt,key) in typeOpt" :value="opt.value">{{ opt.label }}</option>
                     </select>
                 </div>
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('ProteinContentLabel') }}*</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="200gr" v-model="supplementForm.protein_content">
+                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('TasteLabel') }}*</label>
+                <input type="text" class="form-control " id="g-auth-form-1" :placeholder="$t('FlavourPlaceholder')" maxlength="25" v-model="supplementForm.flavor">
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('TypeProteinLabel') }}</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="supplementForm.protein_type">
+                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('PriceLabel') }}*</label>
+                <input type="number" class="form-control " id="g-auth-form-1" :placeholder="$t('PricePlaceholder')" maxlength="25" v-model="supplementForm.price">
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('TasteLabel') }}</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="supplementForm.taste">
-            </div>
-            <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('PriceLabel') }}</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="supplementForm.price">
-            </div>
-            <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('ComponentLabel') }}</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="sample" v-model="supplementForm.component">
+                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('ComponentLabel') }}*</label>
+                <input type="text" class="form-control " id="g-auth-form-1" :placeholder="$t('IngredientsPlaceholder')" maxlength="25" v-model="supplementForm.ingredients">
             </div>
             <div class="mb-4 g-form-input w-75">
                 <div class="mb-4 g-form-input">
                     <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('ShapeLabel') }}*</label>
-                    <select class="form-select " aria-label="Default select example" v-model="supplementForm.shape">
-                        <option value="" selected>{{ $t('SelectLabel') }}</option>
+                    <select class="form-select " aria-label="Default select example" v-model="supplementForm.serving_type">
                         <option v-for="(opt,key) in shapeOpt" :value="opt.value">{{ opt.label }}</option>
                     </select>
                 </div>
             </div>
             <div class="mb-4 g-form-input w-75">
-                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('UrlLabel') }}</label>
-                <input type="text" class="form-control " id="g-auth-form-1" placeholder="www.sample.com" v-model="supplementForm.url">
+                <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('UrlLabel') }}*</label>
+                <input type="text" class="form-control " maxlength="25" id="g-auth-form-1" :placeholder="$t('UrlPlaceholder')" v-model="supplementForm.url">
             </div>
             <div class="w-100 mb-4 g-form-input">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('FeatureLabel') }}</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="supplementForm.features"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" v-model="supplementForm.description" :placeholder="$t('DescriptionPlaceholder')"></textarea>
             </div>
         </div>
         <div class="w-100 py-3 d-flex justify-content-center text-center gap-2">
@@ -144,6 +124,7 @@
 import { useSupplementStore } from "~/stores/GStoreSupplement";
 import { useGeneralStore } from "~/stores/GStoreGeneral";
 import { useI18n } from "vue-i18n";
+import { supplementType, servingType } from "~/composables/configSupplement";
 
 export default defineComponent({
     setup(props) {
@@ -153,30 +134,16 @@ export default defineComponent({
         const generalStore = useGeneralStore();
         const route = useRoute();
         const router = useRouter();
-        const shapeOpt = ref([
-            {
-                label: t("TabletOption"),
-                value: "tablet",
-            },
-            {
-                label: t("PowderOption"),
-                value: "powder",
-            },
-            {
-                label: t("CapsuleOption"),
-                value: "capsule",
-            },
-            {
-                label: t("OthersOption"),
-                value: "others",
-            },
-        ])
+        const shapeOpt = servingType();
+        const typeOpt = supplementType();
         
-
+        supplementForm.value.supplement_type="protein";
+        supplementForm.value.serving_type="powder";
 
         const submitNow = () => {
             supplementForm.value.price = supplementForm.value.price + ".00"
-            if (supplementForm.value.name && supplementForm.value.kind && supplementForm.value.protein_content && supplementForm.value.shape) {
+            if (supplementForm.value.name && supplementForm.value.supplement_type && supplementForm.value.serving_type && supplementForm.value.price && supplementForm.value.ingredients && supplementForm.value.url && supplementForm.value.brand) {
+                console.log(supplementForm.value)
                 submitSupplement();
             } else {
                 generalStore.setError(true, "Please make sure all required fields has been filled.")
@@ -200,6 +167,7 @@ export default defineComponent({
             supplementForm,
             router,
             shapeOpt,
+            typeOpt,
             submitNow
         }
     }

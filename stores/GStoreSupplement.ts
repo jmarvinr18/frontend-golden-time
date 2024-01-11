@@ -10,15 +10,13 @@ export interface Supplement {
     name: string
     brand: string
     image: string
-    kind: string
-    protein_content: string
-    protein_type: string
-    taste: string
+    supplement_type: string
+    flavor: string
     price: string
-    component: string
-    shape: string
+    ingredients: string
+    serving_type: string
     url: string
-    features: string
+    description: string
     ratings: Rating
     comments: Comment[]
     user: User

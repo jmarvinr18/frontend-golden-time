@@ -26,8 +26,8 @@
                             Follow
                         </button>
                         
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content mt-5">
-                            Age: {{ objData.profile_details.age }} years old
+                        <div class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content mt-5">
+                            Birth Date: {{ $formatTime(objData.profile_details.birth_date) }}
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
                             Height: {{ objData.profile_details.height }} cm
@@ -95,13 +95,13 @@
                 <div class="col-sm-6 d-flex flex-wrap align-items-center g-profile-container" v-if="objData.profile_details">
                     <div class="w-100 g-profile-content g-profile-content-first d-flex flex-wrap">
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> Big 3 total: {{ objData.profile_detailss }}
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> Big 3 total: {{ objData.profile_details.bench_press }}
                         </div>
                         <!-- <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.my_training">
                             <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ objData.profile_details.my_training }} years
                         </div> -->
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: {{ objData.profile_details.respected_trainee }} years
+                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: {{ objData.profile_details.respected_trainee }}
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                     <div class="mw-100 g-profile-content overflow-x-scroll">
                         <div class="d-flex align-items-center gap-2">
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                Age: {{ objData.profile_details.age }} years old
+                                Birth Date: {{ $formatTime(objData.profile_details.birth_date) }}
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
                                 Height: {{ objData.profile_details.height }} cm
@@ -130,12 +130,14 @@
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
                         <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-up me-2"></i>23
+                            <i class="bi bi-person-up me-2"></i>
+                            {{ objData.followers_count }}
                         </NuxtLink>
                     </div>
                     <div class="mx-2">
                         <NuxtLink to="/me/following" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-down me-2"></i>89
+                            <i class="bi bi-person-down me-2"></i>
+                            {{ objData.followings_count }}
                         </NuxtLink>
                     </div>
                     <div class="mx-2">

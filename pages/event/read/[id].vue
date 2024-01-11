@@ -98,7 +98,11 @@ export default defineComponent({
         });
 
         onMounted(() => {
-            blogStore.getBlog(route.params.id);
+            blogStore.getBlog(route.params.id).then(() => {
+                useHead({
+                    title: `${blog.value.title} | Golden Time`
+                });
+            });
         });
 
         return {

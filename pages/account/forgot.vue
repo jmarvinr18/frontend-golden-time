@@ -13,7 +13,7 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-envelope"></i>
                     </span>
-                    <input v-model="email" type="text" class="form-control border-0" :placeholder="$t('EmailPlaceholder')" aria-label="email" aria-describedby="basic-addon1">
+                    <input v-model="email" type="email" class="form-control border-0" :placeholder="$t('EmailPlaceholder')" aria-label="email" aria-describedby="basic-addon1">
                 </div>
                 
                 <div class="mb-3 mt-5 mx-auto text-center">
@@ -37,7 +37,7 @@
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-envelope"></i>
                     </span>
-                    <input v-model="email" type="text" class="form-control border-0" :placeholder="$t('EmailPlaceholder')" aria-label="email" aria-describedby="basic-addon1">
+                    <input v-model="email" type="email" class="form-control border-0" :placeholder="$t('EmailPlaceholder')" aria-label="email" aria-describedby="basic-addon1">
                 </div>
             </div>
             <div class="w-100 mb-3 mt-4 mx-auto text-center px-4">

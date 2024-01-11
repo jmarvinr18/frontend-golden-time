@@ -3,7 +3,7 @@
         <div class="is-desktop bg-white mx-auto rounded-lg w-75 py-5 px-5 position-relative g-shadow" style="min-height:500px">
             <div class="mb-4">
                 <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')"
-                v-model="blogForm.title" name="title">
+                v-model="blogForm.title" name="title" maxlength="25" >
             </div>
             <div class="mb-4 d-flex align-items-center flex-wrap">
                 <div class="h4 me-3">{{ $t("CoverImage") }}</div>
@@ -60,10 +60,12 @@
             </div>
 
 
-
+            <!-- CONTENT EDITOR -->
             <div class="mb-3 position-relative">
                 <div id="editor-container" class=" border rounded-3"></div>
-
+                <div v-if="limitError" class="f12 text-light w-100 bg-danger rounded p-3 mt-3">
+                    Maximum character for content is {{ limitDescriptionChar }}
+                </div>
                 <!-- FLOATING TOOLS -->
                 <div class="position-absolute bg-primary text-light py-0 px-0 rounded cursor-pointer" style="top:-20px; right:-20px">
                     
@@ -102,22 +104,20 @@
                 </div>
             </div>
 
-            
-
             <!-- ACTION BUTTONS -->
             <div class="d-flex w-100 mt-4 mx-auto justify-content-center align-items-center">
                 <div class="mx-auto w-75 d-flex align-items-center justify-content-end">
                     <button class="btn btn-outline-secondary rounded-pill w-25 me-3">{{ $t("SaveDraftButton") }}</button>
-                    <button class="btn btn-primary rounded-pill w-25 me-3" @click="saveBlog()">{{ $t("PostButton") }}</button>
+                    <button class="btn btn-primary rounded-pill w-25 me-3" @click="saveBlog()" :disabled="limitError || !blogForm.feature_image || !blogForm.type">{{ $t("PostButton") }}</button>
                     <button class="btn border-0 bg-none">
                         <i class="bi bi-trash me-1"></i>
-                        {{ $t("DeleteButton") }}
+                        
                     </button>
                 </div>
                 <div class="w-25 text-end">
-                    <div>Release</div>
+                    <div>{{ blogForm.visibility=='public' || blogForm.visibility==true? $t('ReleaseLabel'):$t('PrivateLabel') }}</div>
                     <div class="form-check form-switch form-check-reverse">
-                        <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                        <input v-model="blogForm.visibility" class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" value="public">
                     </div>
                 </div>
             </div>
@@ -172,21 +172,24 @@
                     </div>
                 </div>
                 <div id="editor-container-mobile" class=" border rounded-3"></div>
+                <div class="f10">
+                    <span id="counter-mobile">0</span>/3000
+                </div>
             </div>
 
             <!-- ACTION BUTTONS -->
             <div class="d-flex w-100 mt-4 mx-auto justify-content-center align-items-center flex-wrap">
                 <div class="mx-auto w-100 d-flex align-items-center g-blog-post-buttons">
-                    <button class="btn btn-outline-secondary rounded-pill me-1">Save draft</button>
-                    <button class="btn btn-primary rounded-pill me-1" @click="saveBlog">Post</button>
+                    <button class="btn btn-outline-secondary rounded-pill me-1">{{ $t("SaveDraftButton") }}</button>
+                    <button class="btn btn-primary rounded-pill me-1" :disabled="limitError || !blogForm.feature_image || !blogForm.type" @click="saveBlog">{{ $t("PostButton") }}</button>
                     <button class="btn border-0 bg-none btn-delete text-start">
                         <i class="bi bi-trash me-1"></i>
-                        delete
+                        {{ $t("DeleteButton") }}
                     </button>
                     <div class="f10 text-end">
-                        <div>Release</div>
+                        <div>{{ blogForm.visibility=='public'? $t('ReleaseLabel'):$t('PrivateLabel') }}</div>
                         <div class="form-check form-switch form-check-reverse">
-                            <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                            <input v-model="blogForm.visibility" class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" value="public" id="flexSwitchCheckChecked" checked>
                         </div>
                     </div>
                 </div>
@@ -225,6 +228,7 @@
 import { defineComponent,ref } from 'vue';
 import { useI18n } from "vue-i18n";
 import VueDatePicker from '@vuepic/vue-datepicker';
+import { checkCharNum } from "~/composables/useHelpers";
 import '@vuepic/vue-datepicker/dist/main.css'
 
 export default defineComponent({
@@ -237,7 +241,9 @@ export default defineComponent({
         const generalStore = useGeneralStore();
         const router = useRouter();
         const route = useRoute();
-        const coverImage = ref("/images/no-image.jpeg")
+        const coverImage = ref("/images/no-image.jpeg");
+        const limitDescriptionChar = 3000;
+        const limitError = ref(false);
 
         const toolShow = ref<Boolean>(false);
         const textLink:any = ref<String>();
@@ -311,7 +317,7 @@ export default defineComponent({
             const myEl:any = document.querySelector(".ql-editor");
             blogForm.value.content = myEl.innerHTML;
 
-            if (route.name == "blog-edit-id") {
+            if (blogForm.value.id) {
                 var blogId = blogForm.value.id
                 var type = blogForm.value.type
                 blogStore.updateBlog(blogForm.value).then((res: any) => {
@@ -339,9 +345,10 @@ export default defineComponent({
             }               
         }
         const loadData = () => {
-            if (route.query.id) {
-                blogStore.getBlog(route.query.id).then((res:any) => {
+            if (route.params.id) {
+                blogStore.getBlog(route.params.id).then((res:any) => {
                     blogForm.value = res;
+                    coverImage.value = res.feature_image;
                     const myEl:any = !generalStore.isMobile? document.querySelectorAll(".ql-editor")[0]:document.querySelector(".ql-editor");
                     myEl.innerHTML = res.content;
                 });
@@ -349,6 +356,19 @@ export default defineComponent({
         };
 
         const initEditor = () => {
+            Quill.register('modules/counter', function(quill:any, options:any) {
+                var container = document.querySelector(options.container);
+                quill.on('text-change', function() {
+                    var text = quill.getText();
+                    if (options.unit === 'word') {
+                    container.innerText = text.split(/\s+/).length + ' words';
+                    } else if (options.unit === 'characters') {
+                    container.innerText = text.length + ' characters';
+                    } else {
+                        container.innerText = text.length;
+                    }
+                });
+            });
             if (!generalStore.isMobile) {
                 quill = new Quill('#editor-container', {
                     modules: {
@@ -356,7 +376,7 @@ export default defineComponent({
                             [{ header: [1, 2, false] }],
                             ['bold', 'italic', 'underline'],
                             [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }]
-                        ]
+                        ],
                     },
                     placeholder: t('BlogContentPlaceholder'),
                     theme: "bubble"
@@ -369,7 +389,10 @@ export default defineComponent({
                             [{ header: [1, 2, false] }],
                             ['bold', 'italic', 'underline'],
                             [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }]
-                        ]
+                        ],
+                        counter: {
+                            container: '#counter-mobile',
+                        }
                     },
                     placeholder: t('BlogContentPlaceholder'),
                     theme: "bubble"
@@ -383,6 +406,15 @@ export default defineComponent({
                         index: range.index,
                         length: range.length
                     }
+                }
+            });
+
+            quill.on('text-change', function (delta:any, old:any, source:any) {
+                if (quill.getLength() > limitDescriptionChar) {
+                    limitError.value = true;
+                    quill.deleteText(limitDescriptionChar, quill.getLength());
+                } else {
+                    limitError.value = false;
                 }
             });
 
@@ -400,6 +432,8 @@ export default defineComponent({
             toolShow,
             gMediaUpload,
             gMediaGifLibrary,
+            limitDescriptionChar,
+            limitError,
             setCover,
             selectObj,
             selectText,

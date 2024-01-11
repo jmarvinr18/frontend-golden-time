@@ -1,7 +1,7 @@
 <template>
     <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search" class="is-desktop w-100 rounded-lg py-5 mt-4 bg-white border border-2">
         <!-- SEARCH BOX AND FILTER -->
-        <ais-configure :attributesToSnippet="['features']"/>
+        <ais-configure :attributesToSnippet="['description']"/>
 
         <div class="search-bar container py-4">
             <div class="input-group mb-3 rounded-lg border border-dark w-75 mx-auto">
@@ -34,7 +34,7 @@
 
                                     <div class="fs-12">
                                         <ais-snippet
-                                            attribute="features"
+                                            attribute="description"
                                             :hit="item"
                                             highlighted-tag-name="em"
                                         />                                        
@@ -57,7 +57,7 @@
      <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search">
         
         <div class="is-mobile container search-bar" style="margin-bottom:-90px">
-            <ais-configure :attributesToSnippet="['features']"/>
+            <ais-configure :attributesToSnippet="['description']"/>
             <div class="input-group mb-3 rounded-pill overflow-hidden border border-dark w-100 mx-auto gl-shadow" >
                 
                 <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control border-0" placeholder="Search here" />
@@ -85,7 +85,7 @@
                                     </h6>
                                     <div class="fs-12">
                                         <ais-snippet
-                                            attribute="features"
+                                            attribute="description"
                                             :hit="item"
                                             highlighted-tag-name="em"
                                         /> 

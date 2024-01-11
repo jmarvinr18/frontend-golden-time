@@ -112,7 +112,11 @@ export default defineComponent({
   name: 'PageProfile',
   setup() {
    const authStore = useAuthStore();
-   var { userData } = storeToRefs(authStore)
+   var { userData } = storeToRefs(authStore);
+
+   useHead({
+    title: "My Profile | Golden Time"
+   });
 
    onMounted(() => {
       authStore.getProfile(userData.value.id)
