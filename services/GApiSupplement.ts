@@ -27,5 +27,11 @@ export default {
     },
     async createCommentSupplement(data: any) {
         return ApiService.post(`/api/v1/supplement/user/comment`, data);
+    },
+    async addOrRemoveFromDrinkWish(supplement_id: string) {
+        return ApiService.post(`/api/v1/user-supplement-wish/${supplement_id}`);
+    },
+    async addOrRemoveFromHasDranklist(supplement_id: string) {
+        return ApiService.post(`/api/v1/user-supplement-drinking/${supplement_id}`);
     }
 }

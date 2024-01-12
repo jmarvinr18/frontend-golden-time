@@ -1,10 +1,13 @@
 <template>
-    <div class="is-desktop g-card-supplement card w-100 g-shadow rounded-lg">
-        <img :src="supplement?.image" class="card-img-top" alt="...">
+    <div class="is-desktop g-card-supplement card g-shadow rounded-lg" >
+        <div style="height: 20rem; overflow: hidden;">
+            <img :src="supplement?.image" class="card-img-top" style="max-width: 100%; object-fit: cover;" alt="...">
+        </div>
+        
         <div v-if="mode=='me'" class="card-body text-center d-block">
             <div class="w-100" v-if="updateMode">
                 <div class="btn-group g-shadow rounded-pill overflow-hidden bg-light" role="group" aria-label="Basic mixed styles example">
-                    <button type="button" class="btn btn-light px-3">{{supplement?.protein_content}} g/day</button>
+                    <!-- <button type="button" class="btn btn-light px-3">{{supplement?.protein_content}} g/day</button> -->
                     <NuxtLink :to="`/supplement/edit/${supplement?.id}`"  class="btn btn-dark rounded-pill px-3">
                         Update <strong class="bi bi-arrow-up me-2 fw-bold"></strong>
                     </NuxtLink>
@@ -41,12 +44,12 @@
         </div>
     </div>
     <div class="is-mobile g-card-supplement card w-100 g-shadow rounded-lg">
-        <img src="https://img.freepik.com/free-photo/smiling-athlete-with-earphones-holding-thumbs-up-ready-training_342744-652.jpg" class="card-img-top" alt="...">
+        <img :src="supplement?.image" class="card-img-top" alt="...">
         <div v-if="mode=='me'" class="card-body text-center d-block">
             <div class="w-100" v-if="updateMode">
                 <div class="w-100 btn-group g-shadow rounded-pill overflow-hidden bg-light" role="group" aria-label="Basic mixed styles example">
-                    <button type="button" class="btn btn-light px-3 ">20 g/day</button>
-                    <button type="button" class="btn btn-dark rounded-pill px-3 ">
+                    <!-- <button type="button" class="btn btn-light px-3 ">20 g/day</button> -->
+                    <button @click="router.push(`/supplement/edit/${supplement?.id}`)" type="button" class="btn btn-dark rounded-pill px-3 ">
                         <strong class="bi bi-arrow-up me-2 fw-bold"></strong>Update
                     </button>
                 </div>
@@ -96,6 +99,13 @@ export default defineComponent({
         supplement: Object
 
     },
+    setup(props) {
+        var router = useRouter()
+
+        return {
+            router
+        }
+    }
 })
 </script>
 <style scoped>
