@@ -81,7 +81,7 @@
                     </span>                   
             </button>
             <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
-                        <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill fs-5"></i>
+                        <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                         <span class="align-self-center">
                              <i class="bi bi-person-heart me-2"></i>
                             {{ supplement?.user_supplement_wish_count }} {{ $t('PeopleWhoWantToDrink') }}
