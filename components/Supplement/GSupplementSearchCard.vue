@@ -149,7 +149,9 @@ export default defineComponent({
         const filters = ref({
             type: [],
         })
-        var supplementStore = usePublicContentStore()
+        var authStore = useAuthStore()
+        var { isAuthenticated } = storeToRefs(authStore)
+        var supplementStore = isAuthenticated.value ? useSupplementStore() : usePublicContentStore()
         var { allSupplements } = storeToRefs(supplementStore)
 
         const toggleFilter = (val:any) => {

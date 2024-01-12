@@ -20,6 +20,12 @@ export interface Supplement {
     ratings: Rating
     comments: Comment[]
     user: User
+    on_users_wishlist?: boolean
+    user_supplement_wish_count: number
+    has_user_drank_the_supplement?: boolean
+    users_who_drank_the_supplement_count: number
+    supplement_details?: Supplement
+
 }
 
 export interface Comment {
@@ -40,11 +46,41 @@ export const useSupplementStore = defineStore("supplementStore", {
     state: () => {
         return {
             allSupplements: <Array<Supplement>>[],
-            supplement: <Supplement>{},
+            supplement: <Supplement>{
+                user_supplement_wish_count: 0,
+                users_who_drank_the_supplement_count: 0
+            },
             supplementForm: <Supplement>{}
         }
     },
     actions: {
+
+        async toggleDrinkWish(supplement_id: string, is_list = true) {
+            await GApiSupplement.addOrRemoveFromDrinkWish(supplement_id).then(() => {
+                var sup = is_list ? this.allSupplements.find(({ id }) => id == supplement_id) : this.supplement
+                if (sup != undefined) {
+                    sup.on_users_wishlist = sup?.on_users_wishlist ? false : true
+                    if (sup.on_users_wishlist) {
+                        sup.user_supplement_wish_count += 1
+                    } else {
+                        sup.user_supplement_wish_count -= 1
+                    }
+                }
+            })
+        },
+        async toggleHasDrank(supplement_id: string, is_list = true) {
+            await GApiSupplement.addOrRemoveFromHasDranklist(supplement_id).then(() => {
+                var sup = is_list ? this.allSupplements.find(({ id }) => id == supplement_id) : this.supplement
+                if (sup != undefined) {
+                    sup.has_user_drank_the_supplement = sup?.has_user_drank_the_supplement ? false : true
+                    if (sup.has_user_drank_the_supplement) {
+                        sup.users_who_drank_the_supplement_count += 1
+                    } else {
+                        sup.users_who_drank_the_supplement_count -= 1
+                    }
+                }
+            })
+        },
         async getAllSupplement(query: any = "") {
             generalStore().setIsLoading(true);
             return GApiSupplement.getAllSupplements(query).then((res: any) => {

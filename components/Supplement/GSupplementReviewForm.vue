@@ -79,7 +79,10 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     setup() {
-        var supplementStore = usePublicContentStore()
+        var authStore = useAuthStore()
+        var { isAuthenticated } = storeToRefs(authStore)
+        var supplementStore = isAuthenticated.value ? useSupplementStore() : usePublicContentStore()     
+        
         var { supplement } = storeToRefs(supplementStore);
 
         var comments = computed(() => {

@@ -10,7 +10,9 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     setup() {
         var route = useRoute()
-        var supplementStore = usePublicContentStore()
+        var authStore = useAuthStore()
+        var { isAuthenticated } = storeToRefs(authStore)
+        var supplementStore = isAuthenticated.value ? useSupplementStore() : usePublicContentStore()        
 
         onMounted(() => {
             supplementStore.getSupplement(route.params.id)
