@@ -10,18 +10,8 @@
 <script lang="ts">
 export default defineComponent({
     props: {
-        isLiked: {
-            type: Boolean,
-            default() {
-                return false;
-            }
-        },
-        id: {
-            type: String,
-            default() {
-                return 0;
-            }
-        }
+        isLiked: Boolean,
+        id: String
     },
     setup(props) {
         const blogStore = useBlogStore();
@@ -29,7 +19,7 @@ export default defineComponent({
         const { isAuthenticated } = storeToRefs(authStore);
 
         const like = () => {
-            blogStore.likeBlog(props.id);
+            blogStore.likeBlog(props?.id);
         };
 
         return {

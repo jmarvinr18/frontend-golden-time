@@ -7,6 +7,7 @@
                 {{blog.created_at}}
             </div>
             <GSectionTitle class="fw-bold" :title="blog.title" :icon-hide="true"></GSectionTitle>
+
             <div class="d-flex align-items-center mt-4 h4 text-primary">
                 <BlogFeaturesGBlogLike :isLiked="isLiked" :id="blog.id"></BlogFeaturesGBlogLike>
                 <BlogFeaturesGBlogComment :id="blog.id"></BlogFeaturesGBlogComment>
@@ -64,7 +65,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     setup() {
         const route = useRoute();
-        const blogStore = useBlogStore();
+        const blogStore = usePublicContentStore();
         const authStore = useAuthStore();
         const { blog }  = storeToRefs(blogStore);
         const { userData } = storeToRefs(authStore);

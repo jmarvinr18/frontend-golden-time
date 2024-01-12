@@ -17,6 +17,7 @@ export interface Blog {
     created_at?: string
     likes: Like[]
     comments: Comment[]
+    is_user_like_the_blog?: boolean
 }
 export interface Like {
     blog_id: string
@@ -106,11 +107,8 @@ export const useBlogStore = defineStore("blogStore", {
             });
         },
         async likeBlog(id: any) {
-            generalStore().setIsLoading(true);
-            return GApiBlog.likeBlog(id).then((res: any) => {
-                generalStore().setIsLoading(false);
-                this.getBlog(this.blog.id);
-                return res.data;
+            return GApiBlog.likeBlog(id).then(() => {
+                this.blog.is_user_like_the_blog = this.blog.is_user_like_the_blog ? false : true;
             }).catch((err: any) => {
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);

@@ -169,6 +169,11 @@
             </div>
             <div v-else class="right-side d-flex align-items-center gap-3">
                 <div>
+                    <NuxtLink to="/supplement/search" class="text-light">
+                        <i class="bi bi-search"></i>
+                    </NuxtLink>                    
+                </div>
+                <div>
                     <NuxtLink to="/login">
                         <i class="bi bi-box-arrow-in-right text-light h2 mb-0"></i>
                     </NuxtLink>
