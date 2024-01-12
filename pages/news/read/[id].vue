@@ -52,14 +52,15 @@ export default defineComponent({
     name: 'NewsDetail',
     setup() {
         const route = useRoute();
-        const blogStore = useBlogStore(); 
-        const authStore = useAuthStore();
+        var authStore = useAuthStore()
+        var { isAuthenticated } = storeToRefs(authStore)
+        var blogStore = isAuthenticated.value ? useBlogStore() : usePublicContentStore()
+        
         const { blog }  = storeToRefs(blogStore);
         const { userData } = storeToRefs(authStore);
 
         const isLiked = computed(() => {
-            const checkLike = blog.value.likes?.filter((a:any) => a.user_id == userData.value.id);
-            return checkLike?.length? true:false;
+            return blog.value.is_user_like_the_blog;
         });
 
         const commentList = computed(() => {

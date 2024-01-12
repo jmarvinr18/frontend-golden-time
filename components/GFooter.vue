@@ -50,27 +50,27 @@
     </footer>
     <div class="is-mobile position-fixed w-100 bottom-0 start-0 bg-dark p-0">
         <div class="w-100 py-4 px-4 d-flex h3 mb-0 text-light text-center justify-content-between align-items-center">
-            <div>
+            <div v-if="isAuthenticated">
                 <NuxtLink to="/" class="text-light">
                     <i class="bi bi-house-fill"></i>
                 </NuxtLink>
             </div>
-            <div>
+            <div v-if="isAuthenticated">
                 <NuxtLink to="/supplement/search" class="text-light">
                     <i class="bi bi-search"></i>
                 </NuxtLink>
             </div>
-            <div>
+            <div v-if="isAuthenticated">
                 <NuxtLink to="/blog/post" class="text-light">
                     <i class="bi bi-pencil"></i>
                 </NuxtLink>
             </div>
-            <div>
+            <div v-if="isAuthenticated">
                 <NuxtLink to="/supplement/add" class="text-light">
                     <i class="bi bi-capsule"></i>
                 </NuxtLink>
             </div>
-            <div>
+            <div v-if="isAuthenticated">
                 <NuxtLink to="/supplement/search" class="text-light">
                     <i class="bi bi-chat-square-text"></i>
                 </NuxtLink>
@@ -78,3 +78,20 @@
         </div>
     </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    setup() {
+        const authStore = useAuthStore();
+        const { isAuthenticated } = storeToRefs(authStore)
+
+
+        return {
+            isAuthenticated
+        }
+                
+    },
+})
+</script>
