@@ -130,34 +130,34 @@
                         </div>
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item mb-3">
-                                <NuxtLink data-bs-dismiss="offcanvas" to="/supplement/add" class="dropdown-item text-decoration-none">
-                                    <i class="bi bi-plus-lg mt-2 mb-0 me-2"></i>{{ $t('SupplementRegistration') }}
+                            <li data-bs-dismiss="offcanvas" class="nav-item mb-3">
+                                <NuxtLink to="/supplement/add" class="dropdown-item text-decoration-none">
+                                    <i  class="bi bi-plus-lg mt-2 mb-0 me-2"></i>{{ $t('SupplementRegistration') }}
                                 </NuxtLink>
                             </li>
-                            <li class="nav-item mb-3">
-                                <NuxtLink data-bs-dismiss="offcanvas" class="dropdown-item" to="/supplement/search">
-                                    <i class="bi bi-search mt-2 mb-0 me-2"></i>{{ $t('SupplementSearch') }}
+                            <li data-bs-dismiss="offcanvas" class="nav-item mb-3">
+                                <NuxtLink class="dropdown-item" to="/supplement/search">
+                                    <i   class="bi bi-search mt-2 mb-0 me-2"></i>{{ $t('SupplementSearch') }}
                                 </NuxtLink>
                             </li>
-                            <li class="nav-item mb-3">
-                                <NuxtLink data-bs-dismiss="offcanvas" class="dropdown-item" to="/blog/post">
-                                    <i class="bi bi-pencil mb-0 me-2"></i>{{ $t('BlogPost') }}
+                            <li data-bs-dismiss="offcanvas" class="nav-item mb-3">
+                                <NuxtLink class="dropdown-item" to="/blog/post">
+                                    <i  class="bi bi-pencil mb-0 me-2"></i>{{ $t('BlogPost') }}
                                 </NuxtLink>
                             </li>
-                            <li class="nav-item mb-3">
-                                <NuxtLink data-bs-dismiss="offcanvas" class="dropdown-item" to="/me/edit-profile">
-                                    <i class="bi bi-person mb-0 me-2"></i>{{ $t('EditProfile') }}
+                            <li data-bs-dismiss="offcanvas" class="nav-item mb-3">
+                                <NuxtLink  class="dropdown-item" to="/me/edit-profile">
+                                    <i  class="bi bi-person mb-0 me-2"></i>{{ $t('EditProfile') }}
                                 </NuxtLink>
                             </li>
                             <li><hr class="dropdown-divider"></li>
-                            <li class="nav-item mb-3">
-                                <a data-bs-dismiss="offcanvas" class="dropdown-item" href="#">
-                                    <i class="bi bi-gear mb-0 me-2"></i>{{ $t('Settings') }}
+                            <li data-bs-dismiss="offcanvas" class="nav-item mb-3">
+                                <a  class="dropdown-item" href="#">
+                                    <i  class="bi bi-gear mb-0 me-2"></i>{{ $t('Settings') }}
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <button data-bs-dismiss="offcanvas" @click="logout" class="dropdown-item" type="button">
+                            <li data-bs-dismiss="offcanvas" class="nav-item">
+                                <button @click="logout" class="dropdown-item" type="button">
                                     <i class="bi bi-box-arrow-right me-2"></i>{{ $t('Logout') }}
                                 </button>
                             </li>
