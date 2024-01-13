@@ -12,7 +12,7 @@
                 </div>
                 <div class="mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('EmailLabel') }}*</label>
-                    <input type="email" class="form-control form-control-lg"  :placeholder="$t('EmailRegisterPlaceholder')" v-model="registrationForm.email">
+                    <input type="email" class="form-control form-control-lg"  placeholder="aaa@gmail.com" v-model="registrationForm.email">
                 </div>
                 <div class="mb-4 g-form-input position-relative">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordConfirmationLabel')}}*</label>
@@ -159,7 +159,7 @@
                 </div>
                 <div class="mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('EmailLabel') }}*</label>
-                    <input type="email" class="form-control form-control-lg" v-model="registrationForm.email" :placeholder="$t('EmailRegisterPlaceholder')">
+                    <input type="email" class="form-control form-control-lg" v-model="registrationForm.email" placeholder="aaa@gmail.com">
                 </div>
                 <div class="mb-4 g-form-input">
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordLabel')}}*</label>
