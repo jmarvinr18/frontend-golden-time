@@ -20,13 +20,21 @@
                     
                 </div>
                 <div class="w-50">
-                    <button class="btn btn-primary btn-sm rounded-pill py-2 f14">
-                        <i class="bi bi-people me-2"></i>
-                        {{ $t('MySupplementRegistration') }} 146 {{ $t('People') }}
+                    <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
+                        <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
+                        <span class="align-self-center">
+                            <i class="bi bi-people me-2"></i>
+                            {{ $t('MySupplementRegistration') }} {{ supplement?.users_who_drank_the_supplement_count }} {{ $t('People') }}
+                        </span>   
+                        
+                        
                     </button>
-                    <button class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14">
-                        <i class="bi bi-person-heart me-2"></i>
-                        300 {{ $t('PeopleWhoWantToDrink') }}
+                    <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
+                        <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
+                        <span class="align-self-center">
+                            <i class="bi bi-person-heart me-2"></i>
+                            {{ supplement?.user_supplement_wish_count }} {{ $t('PeopleWhoWantToDrink') }}
+                        </span>                         
                     </button>
                 </div>
                 <div class="g-review-item-owner w-100 d-flex align-items-center position-absolute">
@@ -65,13 +73,19 @@
             <div class="f12">{{ supplement?.user?.name }}</div>
         </div>        
         <div class="w-100 px-2 mt-4">
-            <button class="btn btn-primary btn-sm rounded-pill py-2 f14">
-                <i class="bi bi-people me-2"></i>
-                {{ $t('MySupplementRegistration') }} 146 {{ $t('People') }}
+            <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
+                <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
+                <span class="align-self-center">
+                    <i class="bi bi-people me-2"></i>
+                            {{ $t('MySupplementRegistration') }} {{ supplement?.users_who_drank_the_supplement_count }} {{ $t('People') }}
+                    </span>                   
             </button>
-            <button class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14">
-                <i class="bi bi-person-heart me-2"></i>
-                300 {{ $t('PeopleWhoWantToDrink') }}
+            <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
+                        <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
+                        <span class="align-self-center">
+                             <i class="bi bi-person-heart me-2"></i>
+                            {{ supplement?.user_supplement_wish_count }} {{ $t('PeopleWhoWantToDrink') }}
+                        </span>                 
             </button>
         </div>
 
@@ -87,6 +101,16 @@ export default defineComponent({
     setup(props) {
         var authStore = useAuthStore()
         var { userData } = storeToRefs(authStore)
+        var supplementStore = useSupplementStore()
+
+        var toggleDrinkWish = (id: string) => {
+            supplementStore.toggleDrinkWish(id, false)
+        }
+
+        var toggleHasDrank = (id: string) => {
+            supplementStore.toggleHasDrank(id, false)
+        }
+
         var isContentOwner = computed(() => {
             return userData.value.id === props.supplement?.user_id
         })
@@ -97,7 +121,9 @@ export default defineComponent({
         
         return {
             isContentOwner,
-            getProfileImage
+            getProfileImage,
+            toggleDrinkWish,
+            toggleHasDrank
         }
     }  
 })

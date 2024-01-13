@@ -12,20 +12,14 @@
         </div>
       </div>
       <div class="container pt-2 pb-4">
-        <!-- <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle> -->
+        <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
 
-        <!-- <div class="row">
-          <div class="col-md-4 col-xs-12">
-            <CardsGCardSuplement></CardsGCardSuplement>
+        <div class="row">
+          <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12">
+            <CardsGCardSuplement :supplement="supplement?.supplement_details"></CardsGCardSuplement>
           </div>
-          <div class="col-md-4 col-xs-12">
-            <CardsGCardSuplement></CardsGCardSuplement>
-          </div>
-          <div class="col-md-4 col-xs-12">
-            <CardsGCardSuplement></CardsGCardSuplement>
-          </div>
-          <UtilsGLoadMore></UtilsGLoadMore>
-        </div> -->
+          <UtilsGLoadMore></UtilsGLoadMore>          
+        </div>
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
@@ -37,7 +31,7 @@
           <UtilsGLoadMore></UtilsGLoadMore>
         </div>
       </div>
-      <div class="container pt-2 pb-4">
+      <!-- <div class="container pt-2 pb-4">
         <GSectionTitle title="comments" icon="bi-chat"></GSectionTitle>
 
         <div class="row">
@@ -49,8 +43,8 @@
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>
         </div>
-      </div>
-      <div class="container pt-2 pb-4">
+      </div> -->
+      <!-- <div class="container pt-2 pb-4">
         <GSectionTitle title="notification" icon="bi-bell"></GSectionTitle>
 
         <div class="row">
@@ -59,38 +53,32 @@
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="is-mobile">
       <div class="container pt-2 pb-4">
         <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
         <GContainerSlider>
-          <CardsGCardSuplement :update-mode="true"></CardsGCardSuplement>
-          <CardsGCardSuplement :update-mode="true"></CardsGCardSuplement>
-          <CardsGCardSuplement :update-mode="true"></CardsGCardSuplement>
-          <CardsGCardSuplement :update-mode="true"></CardsGCardSuplement>
+          <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
         </GContainerSlider>
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
 
         <GContainerSlider>
-          <CardsGCardSuplement></CardsGCardSuplement>
-          <CardsGCardSuplement></CardsGCardSuplement>
-          <CardsGCardSuplement></CardsGCardSuplement>
-          <CardsGCardSuplement></CardsGCardSuplement>
+          <CardsGCardSuplement v-for="(supplement) in userData.supplement_wishes" :supplement="supplement?.supplement_details"></CardsGCardSuplement>
         </GContainerSlider>
+      
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
 
         <GContainerSlider>
-          <CardsGCardFeature></CardsGCardFeature>
-          <CardsGCardFeature></CardsGCardFeature>
+          <CardsGCardBlog v-for="(blog) in userData.blogs" :blog="blog"></CardsGCardBlog>
         </GContainerSlider>
       </div>
-      <div class="container pt-2 pb-4">
+      <!-- <div class="container pt-2 pb-4">
         <GSectionTitle title="comments" icon="bi-chat"></GSectionTitle>
 
         <GContainerSlider>
@@ -102,7 +90,7 @@
         <GSectionTitle title="notification" icon="bi-bell"></GSectionTitle>
 
         <UtilsGNotifContainer></UtilsGNotifContainer>
-      </div>
+      </div> -->
     </div>
 </template>
 <script lang="ts">

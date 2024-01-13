@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="w-100 mb-3 mt-4 mx-auto text-center px-4">
-                <button class="w-100 btn btn-primary rounded-pill g-shadow py-2 f14 mx-auto">
+                <button @click="submit" class="w-100 btn btn-primary rounded-pill g-shadow py-2 f14 mx-auto">
                     {{ $t('SendPasswordResetEmail') }}
                     <i class="bi bi-send-fill ms-2"></i>
                 </button>

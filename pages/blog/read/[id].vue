@@ -13,18 +13,19 @@
 
             <GSectionTitle class="mt-lg" title="More blogs" :icon-hide="true"></GSectionTitle>
             <div class="row mt-3">
-                <div class="col-md-3 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="w-100 rounded-lg" />
+                <div class="col-md-3 col-sm-4">
+                    <img src="https://picsum.photos/400/400" class="w-100 rounded-lg" />
                 </div>
-                <div class="col-md-3 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="w-100 rounded-lg" />
+                <div class="col-md-3 col-sm-4">
+                    <img src="https://picsum.photos/400/400" class="w-100 rounded-lg" />
                 </div>
-                <div class="col-md-3 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="w-100 rounded-lg" />
+                <div class="col-md-3 col-sm-4">
+                    <img src="https://picsum.photos/400/400" class="w-100 rounded-lg" />
                 </div>
-                <div class="col-md-3 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="w-100 rounded-lg" />
+                <div class="col-md-3 col-sm-4">
+                    <img src="https://picsum.photos/400/400" class="w-100 rounded-lg" />
                 </div>
+                
             </div>
             <hr class="mt-5 mb-3" />
             <div class="d-flex align-items-center justify-content-end h4 text-primary">
@@ -55,14 +56,15 @@ export default defineComponent({
     name: 'BlogDetail',
     setup() {
         const route = useRoute();
-        const blogStore = usePublicContentStore();
-        const authStore = useAuthStore();
+        var authStore = useAuthStore()
+        var { isAuthenticated } = storeToRefs(authStore)
+        var blogStore = isAuthenticated.value ? useBlogStore() : usePublicContentStore()
+
         const { userData } = storeToRefs(authStore);
         const { blog }  = storeToRefs(blogStore);
 
         const isLiked = computed(() => {
-            const checkLike = blog.value.likes?.filter((a:any) => a.user_id == userData.value.id);
-            return checkLike?.length? true:false;
+            return blog.value.is_user_like_the_blog;
         });
 
         const commentList = computed(() => {

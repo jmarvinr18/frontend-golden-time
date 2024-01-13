@@ -23,6 +23,7 @@ export interface User {
     followers_count?: number
     followers?: Follows[]
     followings?: Follows[]
+    supplement_wishes: Supplement
 }
 
 export interface ProfileData {
