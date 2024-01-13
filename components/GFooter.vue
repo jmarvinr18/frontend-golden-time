@@ -3,7 +3,7 @@
         <div class="container-xs py-5 text-light">
             <div class="logo">
                 <NuxtLink to="/">
-                    <img src="/logo.png" width="60" />
+                    <img src="/logo.png" style="width:60px;" />
                 </NuxtLink>
             </div>
 

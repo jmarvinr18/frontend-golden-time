@@ -2,7 +2,7 @@
     <GSection>
         <div class="is-desktop">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="/images/img-forgot.svg" width="20%" />
+                <img src="/images/img-forgot.svg" style="width: 20%;" />
             </div>
             <div class="container w-25 text-center mx-auto mt-5">
                 <div class="h3">{{ $t('ChangePasswordHeader') }}</div>
@@ -26,7 +26,7 @@
         </div>
         <div class="is-mobile">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="/images/img-forgot.svg" width="50%" />
+                <img src="/images/img-forgot.svg" style="width: 50%;" />
             </div>
             <div class="container w-100 text-center mx-auto mt-3">
                 <div class="h3">{{ $t('ChangePasswordHeader') }}</div>
