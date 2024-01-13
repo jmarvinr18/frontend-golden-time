@@ -240,7 +240,7 @@
                 <div class="g-form-box mb-2 d-flex gap-4 w-100 ">
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('YearIStartedTrainingLabel') }}</label>
-                        <input type="date" class="form-control form-control-lg"  :placeholder="$t('YearStartedPlaceholder')" v-model="registrationForm.profile_details.year_attended_training">
+                        <input type="date" class="form-control form-control-lg"  :placeholder="$t('YearIStartedPlaceholder')" v-model="registrationForm.profile_details.year_attended_training">
                     </div>
                     <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('DeadliftLabel') }}</label>
