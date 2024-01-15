@@ -54,34 +54,10 @@
                             <div class="mt-3 f14 text-light">
                                 <div v-html="useTruncateText(blog?.content,50)"></div>
                             </div>                            
-                            <!-- <div class="d-flex mt-1">
-                                <span>{{ blog?.comments?.length }}<i class="bi bi-chat-square-text me-2 text-primary"></i></span>
-                                <span>{{ blog?.likes?.length }}<i class="bi bi-heart-fill text-primary"></i></span>
-                            </div> -->
-
 
                         </div>               
                 </div>
-                <!-- <div class="g-card-info p-2">
-                    <div class="h5">{{ useTruncateText(blog?.title, 45) }}</div>
-                    <div class="d-flex align-items-center">
-                        <div class="text-muted f10">30 seconds ago</div>
-                        <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
-                        <div class="d-flex ms-3 align-items-center">
-                            <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" width="20" height="20" class="object-fit-cover rounded-pill f14" />
-                            <div class="ms-2 f12">{{ blog?.user }}</div>
-                        </div>
-                        </NuxtLink>
-                    </div>
-                    <div class="d-flex mt-1">
-                        <span>{{ blog?.comments?.length }}<i class="bi bi-chat-square-text me-2 text-primary"></i></span>
-                        <span>{{ blog?.likes?.length }}<i class="bi bi-heart-fill text-primary"></i></span>
-                    </div>
 
-                    <div class="mt-3 f14">
-                        <div v-html="useTruncateText(blog?.content,100)"></div>
-                    </div>
-                </div> -->
             </div>
         </a>
     </div>
