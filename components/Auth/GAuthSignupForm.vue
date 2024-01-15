@@ -161,22 +161,34 @@
                     <label  class="form-label bg-white ms-2 px-2">{{ $t('EmailLabel') }}*</label>
                     <input type="email" class="form-control form-control-lg" v-model="registrationForm.email" :placeholder="$t('EmailRegisterPlaceholder')">
                 </div>
-                <div class="mb-4 g-form-input">
-                    <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordLabel')}}*</label>
-                    <input type="password" class="form-control form-control-lg" v-model="registrationForm.password" :placeholder="$t('PasswordPlaceholder')">
-                </div>
+                <div class="mb-4 g-form-input position-relative">
+                    <label class="form-label bg-white ms-2 px-2">{{ $t('PasswordLabel')}}*</label>
+                    <input :type="viewPassword? 'text':'password'" class="form-control form-control-lg" v-model="registrationForm.password" :placeholder="$t('PasswordPlaceholder')">
+                    <div class="position-absolute end-0 me-3" style="margin-top:-50px" @click="viewPassword=!viewPassword">
+                        <i v-if="!viewPassword" class="bi h3 bi-eye"></i>
+                        <i v-else class="bi h3 bi-eye-slash"></i>
+                    </div>               
+                </div>    
+                <div class="mb-4 g-form-input position-relative">
+                    <label  class="form-label bg-white ms-2 px-2">{{ $t('PasswordConfirmationLabel')}}*</label>
+                    <input :type="viewConfirmPassword? 'text':'password'" class="form-control form-control-lg" v-model="registrationForm.password_confirmation" :placeholder="$t('PasswordPlaceholder')">
+                    <div class="position-absolute end-0 me-3" style="margin-top:-50px" @click="viewConfirmPassword=!viewConfirmPassword">
+                        <i v-if="!viewConfirmPassword" class="bi h3 bi-eye"></i>
+                        <i v-else class="bi h3 bi-eye-slash"></i>
+                    </div>              
+                </div>                            
                 <div class="mb-4 g-form-input">
                     <label class="form-label bg-white ms-2 px-2">{{ $t('InstagramAccountLabel')}}*</label>
                     <input type="text" class="form-control form-control-lg" v-model="registrationForm.profile_details.social_media.instagram" :placeholder="$t('InstagramIdPlaceholder')">
                 </div>
             </div>
             <div class="g-form-group border-bottom py-5 d-flex flex-wrap f10">
-                <div class="g-form-box mb-2 d-flex gap-1 w-50 justify-content-between">
-                    <div class="w-75 mb-4 g-form-input pe-2">
-                        <label  class="form-label bg-white px-2">{{$t('HeightLabel')}}</label>
+                <div class="row w-100">
+                    <div class="col-8 mb-4 g-form-input pe-2">
+                        <label class="form-label bg-white px-2">{{$t('HeightLabel')}}</label>
                         <input type="text" class="form-control"  v-model="registrationForm.profile_details.height" :placeholder="$t('HeightPlaceholder')">
                     </div>
-                    <div class="ms-1 w-25 text-end">
+                    <div class="col-4 ms-1 w-25 text-end">
                          <div>{{ !registrationForm.profile_details.h_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>
                 
                         <div class="form-check form-switch pull-right">
@@ -184,81 +196,81 @@
                         </div>
                     </div>
                 </div>
-                <div class="g-form-box mb-2 d-flex gap-1 w-50 justify-content-between">
-                    <div class="w-75 mb-4 g-form-input pe-2">
+                <div class="row w-100">
+                    <div class="col-8 mb-4 g-form-input pe-2">
                         <label  class="form-label bg-white px-2">{{ $t('BodyWeightLabel')}}</label>
                         <input type="text" class="form-control" v-model="registrationForm.profile_details.body_weight" :placeholder="$t('BodyWeightPlaceholder')">
                     </div>
-                    <div class="ms-1 w-25 text-end">
+                    <div class="col-4 ms-1 w-25 text-end">
                          <div>{{ !registrationForm.profile_details.bw_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>                        
                         <div class="form-check form-switch pull-right">
                             <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="registrationForm.profile_details.bw_visibility">
                         </div>
                     </div>
                 </div>
-                <div class="g-form-box mb-2 d-flex gap-1 w-50 justify-content-between">
-                    <div class="w-75 mb-4 g-form-input pe-2">
+                <div class="row w-100">
+                    <div class="col-8 mb-4 g-form-input pe-2">
                         <label  class="form-label bg-white px-2">{{ $t('BirthDateLable') }}</label>
                         <input type="date" class="form-control"  v-model="registrationForm.profile_details.birth_date" :placeholder="$t('BirthDatePlaceholder')">
                     </div>
-                    <div class="ms-1 w-25 text-end">
+                    <div class="col-4 ms-1 w-25 text-end">
                         <div>{{ !registrationForm.profile_details.a_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>                               
                         <div class="form-check form-switch pull-right">
                             <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="registrationForm.profile_details.a_visibility">
                         </div>
                     </div>
                 </div>
-                <div class="g-form-box mb-2 d-flex gap-1 w-50 justify-content-between">
-                    <div class="w-75 mb-4 g-form-input pe-2">
+                <div class="row w-100">
+                    <div class="col-8 mb-4 g-form-input pe-2">
                         <label  class="form-label bg-white px-2">{{ $t('BodyFatPercentageLabel') }}</label>
                         <input type="number" class="form-control" v-model="registrationForm.profile_details.body_fat_percentage" :placeholder="$t('BodyFatPlaceholder')">
                     </div>
-                    <div class="ms-1 w-25 text-end">
+                    <div class="col-4 ms-1 w-25 text-end">
                         <div>{{ !registrationForm.profile_details.bf_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>
                         <div class="form-check form-switch pull-right">
                             <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="registrationForm.profile_details.bf_visibility">
                         </div>
                     </div>
                 </div>
-                <div class="g-form-box mb-2 d-flex gap-1 w-50">
-                    <div class="w-75 mb-4 g-form-input pe-2">
+                <div class="row w-100">
+                    <div class="col-8 mb-4 g-form-input pe-2">
                         <label  class="form-label bg-white px-2">{{ $t('SexLabel') }}</label>
                         <select class="form-select" aria-label="Default select example" v-model="registrationForm.profile_details.sex">
                             <option :value="null" selected>Select</option>
                             <option v-for="(gender,key) in genderData" :key="key" :value="gender.value">{{ gender.text }}</option>
                         </select>
                     </div>
-                    <div class=" w-25 text-start">
+                    <div class="col-4 ms-1 w-25 text-end">
                         <div>{{ !registrationForm.profile_details.s_visibility ?  $t('PrivateLabel') : $t('ReleaseLabel') }}</div>                        
-                        <div class="form-check form-switch">
+                        <div class="form-check form-switch pull-right">
                             <input class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="registrationForm.profile_details.s_visibility">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="g-form-group border-bottom py-5 f10">
-                <div class="g-form-box mb-2 d-flex gap-4 w-100 ">
-                    <div class="w-50 mb-4 g-form-input">
+                <div class="g-form-box mb-2 d-flex flex-column gap-4 w-100 ">
+                    <div class="w-100 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('YearIStartedTrainingLabel') }}</label>
                         <input type="date" class="form-control form-control-lg"  :placeholder="$t('YearIStartedPlaceholder')" v-model="registrationForm.profile_details.year_attended_training">
                     </div>
-                    <div class="w-50 mb-4 g-form-input">
+                    <div class="w-100 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('DeadliftLabel') }}</label>
                         <input type="text" class="form-control form-control-lg"  :placeholder="$t('DeadliftPlaceholder')" v-model="registrationForm.profile_details.deadlift">
                     </div>
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-100">
-                    <div class="w-50 mb-4 g-form-input">
+                    <div class="w-100 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('BenchPressLabel') }}</label>
                         <input type="text" class="form-control form-control-lg" v-model="registrationForm.profile_details.bench_press" :placeholder="$t('BenchPressPlaceholder')">
                     </div>
-                    <div class="w-50 mb-4 g-form-input">
+                    <div class="w-100 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('RespectedTraineeLabel') }}</label>
                         <input type="text" class="form-control form-control-lg"  v-model="registrationForm.profile_details.respected_trainee"  :placeholder="$t('RespectTraineePlaceholder')">
                     </div>
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-100">
-                    <div class="w-50 mb-4 g-form-input">
+                    <div class="w-100 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('SquatLabel') }}</label>
                         <input type="text" class="form-control form-control-lg" v-model="registrationForm.profile_details.squat" :placeholder="$t('SquatPlaceholder')">
                     </div>

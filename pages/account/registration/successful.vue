@@ -26,7 +26,7 @@
                     <h5>{{ $t('YourRegistrationHasBeenSuccesful') }}</h5>
                 </div>
                 <div class="mb-3 w-100 mt-5 mx-auto text-center">
-                    <nuxt-link to="/me" class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14">{{ $t('Login') }}</nuxt-link>
+                    <nuxt-link to="/login" class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14">{{ $t('Login') }}</nuxt-link>
                 </div>
             </div>
         </div>
