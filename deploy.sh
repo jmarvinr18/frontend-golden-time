@@ -13,8 +13,9 @@ echo "#############################################"
 echo "Pulling update from GIT"
 echo "#############################################"
 cd /var/repo/frontend-golden-time.git/
-GIT_WORK_TREE=/var/www/golden-time-ui git fetch --update-head-ok
-GIT_WORK_TREE=/var/www/golden-time-ui git reset --hard HEAD
+git checkout develop
+GIT_WORK_TREE=/var/www/html git fetch --update-head-ok
+GIT_WORK_TREE=/var/www/html git reset --hard HEAD
 echo
 
 # Pulling update from GIT
