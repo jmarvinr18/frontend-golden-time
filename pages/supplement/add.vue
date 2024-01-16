@@ -7,7 +7,7 @@
             </span>
             {{ prodImage? $t('ChangeImage'): $t('AddImage') }}
         </button>
-        <img :src="prodImage" height="180" width="180" class="cursor-pointer object-fit-cover rounded-circle mx-auto g-shadow" data-bs-toggle="modal" data-bs-target="#photo-modal" />
+        <img :src="prodImage" style="height:180px;width:180px;" class="cursor-pointer object-fit-cover rounded-circle mx-auto g-shadow" data-bs-toggle="modal" data-bs-target="#photo-modal" />
     </div>
     <div class="is-mobile container w-100 text-center position-relative" style="margin-bottom:-100px">
         <button class="f12 btn position-absolute top-0 rounded-pill py-2" style="right:10%" data-bs-toggle="modal" data-bs-target="#photo-modal">
@@ -16,7 +16,7 @@
             </span>
             {{ $t('AddImage') }}
         </button>
-        <img :src="prodImage" height="120" width="120" class="cursor-pointer object-fit-cover rounded-circle mx-auto g-shadow" data-bs-toggle="modal" data-bs-target="#photo-modal" />
+        <img :src="prodImage" style="height:120px;width:120px;" class="cursor-pointer object-fit-cover rounded-circle mx-auto g-shadow" data-bs-toggle="modal" data-bs-target="#photo-modal" />
     </div>
     <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
         <!-- ADD / EDIT FORM -->
