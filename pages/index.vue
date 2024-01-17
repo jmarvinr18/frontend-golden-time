@@ -2,7 +2,7 @@
     <GHero></GHero>
     <div class="is-desktop">
         <div class="container pt-2 pb-4">
-            <GSectionTitle :title="$t('Blog')asdfsdfsdf" icon="bi-journals"></GSectionTitle>
+            <GSectionTitle :title="$t('Blogasdfsdfsdf')" icon="bi-journals"></GSectionTitle>
 
             <div class="row">
                 <div v-for="(blog, i) in contents?.blog" class="col-md-6 col-xs-12 mb-5">
