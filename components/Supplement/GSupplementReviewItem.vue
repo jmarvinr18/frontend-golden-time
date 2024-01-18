@@ -24,7 +24,7 @@
                         <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                         <span class="align-self-center">
                             <i class="bi bi-people me-2"></i>
-                            {{ $t('MySupplementRegistration') }} {{ supplement?.users_who_drank_the_supplement_count }} {{ $t('People') }}
+                            {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
                         </span>   
                         
                         
@@ -33,7 +33,7 @@
                         <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                         <span class="align-self-center">
                             <i class="bi bi-person-heart me-2"></i>
-                            {{ supplement?.user_supplement_wish_count }} {{ $t('PeopleWhoWantToDrink') }}
+                            {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
                         </span>                         
                     </button>
                 </div>
@@ -77,14 +77,14 @@
                 <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                 <span class="align-self-center">
                     <i class="bi bi-people me-2"></i>
-                            {{ $t('MySupplementRegistration') }} {{ supplement?.users_who_drank_the_supplement_count }} {{ $t('People') }}
+                            {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
                     </span>                   
             </button>
             <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
                         <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                         <span class="align-self-center">
                              <i class="bi bi-person-heart me-2"></i>
-                            {{ supplement?.user_supplement_wish_count }} {{ $t('PeopleWhoWantToDrink') }}
+                            {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
                         </span>                 
             </button>
         </div>

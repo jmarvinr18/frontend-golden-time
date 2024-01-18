@@ -9,7 +9,7 @@
             <input type="file" id="g-file-input" style="width: 0;" @change="getFile" />
         </div>
         <div v-else class="text-center w-100">
-            <img v-if="uploadedFile" :src="uploadedFile" class="w-100 object-fit-contain bg-dark" height="210" />
+            <img v-if="uploadedFile" :src="uploadedFile" class="w-100 object-fit-contain bg-dark" style="height:210px;" />
             <div class="my-3 text-primary f12 cursor-pointer" @click="uploadedFile=''">
                 <i class="bi bi-trash me-2"></i>
                 {{ $t('ChangeFile') }}...

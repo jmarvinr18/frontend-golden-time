@@ -2,7 +2,7 @@
     <div v-if="objData.users" class="w-100 py-2 d-flex align-items-center">
         <div class="g-author-img me-3">
             <NuxtLink to="/users/detail" class="text-decoration-none">
-                <img src="https://picsum.photos/seed/picsum/300/300" class="rounded-circle" style="width: 80px; height: 80px;" />
+                <img src="https://picsum.photos/seed/picsum/300/300" style="height: 80px; width: 80px;" class="rounded-circle" />
             </NuxtLink>
         </div>
         <div class="g-author-name me-3">

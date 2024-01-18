@@ -1,22 +1,49 @@
 <template>
-    <a :href="`/news/read/${news?.id}`" class="text-decoration-none">
-        <div class="g-card-news card w-100 g-shadow rounded-lg">
-            <img :src="news?.feature_image" class="card-img-top" alt="...">
-            <div class="card-body">
-                <div class="h5 g-card-title">
-                    {{ useTruncateText(news?.title, 35) }}
-                </div>
-                <div class="card-created-time f12 text-secondary">
-                    <div>
-                        2 seconds ago
+    <div class="is-desktop">
+        <a :href="`/news/read/${news?.id}`" class="text-decoration-none">
+            <div class="g-card-news card w-100 g-shadow rounded-lg">
+                <img :src="news?.feature_image" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="h5 g-card-title">
+                        {{ useTruncateText(news?.title, 35) }}
                     </div>
+                    <div class="card-created-time f12 text-secondary">
+                        <div>
+                            2 seconds ago
+                        </div>
+                    </div>
+                    <hr class="border-secondary mb-1" />
+                    <p class="card-text f12 text-secondary">{{ useTruncateText(news?.content, 100) }}</p>
                 </div>
-                <hr class="border-secondary mb-1" />
-                <p class="card-text f12 text-secondary">{{ useTruncateText(news?.content, 100) }}</p>
+            </div>
+        </a>
+    </div>
+    <div class="is-mobile g-card-blog bg-white w-100 rounded-lg g-shadow overflow-hidden">
+        <a :href="`/blog/read/${news?.id}`" class="text-decoration-none text-dark">
+            <div class="g-card-head w-100 border overflow-hidden">
+                <div class="g-card-image rounded me-2 w-100" style="position: relative;">
+                    <img :src="news?.feature_image" class="w-100 object-fit-cover">
+                        <div class="g-card-info p-3 overlay" style="position: absolute; top: 0;">
+                            <div class="h5 text-light">{{ useTruncateText(news?.title, 45) }}</div>
+                            <div class="d-flex align-items-center ">
+                                <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
+                                <div class="d-flex align-items-center">
+                                    <img :src="news?.feature_image" style="width: 20px; height: 20px;" class="object-fit-cover rounded-pill f14" />
+                                    <div class="ms-2 f12 text-light">{{ news?.user }}</div>
+                                </div>
+                                </NuxtLink>
+                            </div>
+                            <div class="mt-3 f14 text-light">
+                                <div v-html="useTruncateText(news?.content,50)"></div>
+                            </div>                            
+
+                        </div>               
+                </div>
 
             </div>
-        </div>
-    </a>
+        </a>
+    </div>
+
 </template>
 <script lang="ts">
 export default defineComponent({
