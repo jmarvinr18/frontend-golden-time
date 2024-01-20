@@ -85,11 +85,11 @@
                     </div>
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-75">
-                    <div class="w-25 mb-4 g-form-input">
+                    <div class="w-50 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('SexLabel') }}</label>
                         <select class="form-select form-select-lg" aria-label="Default select example" v-model="registrationForm.profile_details.sex">
-                        <option :value="null" selected>Select</option>
-                        <option v-for="(gender,key) in genderData" :key="key" :value="gender.value">{{ gender.text }}</option>
+                            <option :value="null" selected>Select</option>
+                            <option v-for="(gender,key) in genderData" :key="key" :value="gender.value">{{ gender.text }}</option>
                         </select>
                     </div>
                     <div class="ms-5 w-25 text-start">
@@ -235,7 +235,7 @@
                 <div class="row w-100">
                     <div class="col-8 mb-4 g-form-input pe-2">
                         <label  class="form-label bg-white px-2">{{ $t('SexLabel') }}</label>
-                        <select class="form-select" aria-label="Default select example" v-model="registrationForm.profile_details.sex">
+                        <select class="w-100 form-select" aria-label="Default select example" v-model="registrationForm.profile_details.sex">
                             <option :value="null" selected>Select</option>
                             <option v-for="(gender,key) in genderData" :key="key" :value="gender.value">{{ gender.text }}</option>
                         </select>
