@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <hr class="border-secondary mb-1" />
-                    <p class="card-text f12 text-secondary">{{ useTruncateText(news?.content, 100) }}</p>
+                    <p class="card-text f12 text-secondary" v-html="useTruncateText(news?.content, 100)"></p>
                 </div>
             </div>
         </a>

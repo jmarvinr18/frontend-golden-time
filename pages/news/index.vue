@@ -3,8 +3,8 @@
         <div class="container">
             <div class="row">
                 <GSectionTitle :title="$t('MuscleNews')" icon="bi-newspaper" class="mb-4"></GSectionTitle>
-                <div class="col-md-6 col-xs-12 mb-4" v-for="blog in blogList">
-                    <CardsGCardNews :blog="blog"></CardsGCardNews>
+                <div class="col-md-4 col-xs-12 mb-4" v-for="blog in blogList">
+                    <CardsGCardNews :news="blog"></CardsGCardNews>
                 </div>
             </div>
         </div>
@@ -16,7 +16,10 @@ import { useBlogStore } from '~/stores/GStoreBlog';
 export default defineComponent({
     name: 'GNews',
     setup() {
-        const blogStore = useBlogStore();
+        
+        var authStore = useAuthStore()
+        var { isAuthenticated } = storeToRefs(authStore)        
+        var blogStore = isAuthenticated.value ? useBlogStore() : usePublicContentStore()
         const { blogList } = storeToRefs(blogStore);
 
         useHead({

@@ -114,7 +114,7 @@
                              <i class="bi bi-person text-light h2 mb-0"></i>
                         </button>
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                        <div class="offcanvas-header">
+                        <div class="offcanvas-header" data-bs-dismiss="offcanvas">
                             <!-- <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
                                 <NuxtLink to="/me/profile" class="text-decoration-none me-2" >
                                     <div class="text-light d-flex align-items-center text-decoration-none">

@@ -16,7 +16,7 @@
             <div class="g-blog-body mt-5 lh-lg" v-html=" blog.content">
             </div>
             <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
-            <div class="row mt-3">
+            <div class="is-desktop row mt-3">
                 <div class="col-md-4 col-xs-12">
                     <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
                 </div>
