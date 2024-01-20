@@ -16,7 +16,9 @@ import { useBlogStore } from '~/stores/GStoreBlog';
 export default defineComponent({
     name: 'GBlog',
     setup() {
-        const blogStore = useBlogStore();
+        var authStore = useAuthStore()
+        var { isAuthenticated } = storeToRefs(authStore)        
+        var blogStore = isAuthenticated.value ? useBlogStore() : usePublicContentStore()
         const { blogList } = storeToRefs(blogStore);
 
         useHead({
