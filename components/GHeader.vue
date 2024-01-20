@@ -11,6 +11,10 @@
                     <a v-if="authStore.isAuthenticated" href="/supplement/add" class="text-decoration-none">
                         <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>{{ $t('SupplementRegistration') }}</div>
                     </a>
+
+                    <a v-else href="/supplement/search" class="text-decoration-none">
+                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-search mt-2 mb-0 me-2"></i></span>{{ $t('SupplementSearch') }}</div>
+                    </a>                    
                 </div>
                 <div class="right-side d-flex align-items-center gap-3">
                     <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-1">
