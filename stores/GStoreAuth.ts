@@ -95,11 +95,7 @@ export const useAuthStore = defineStore("authStore", {
 
                 generalStore().setSuccess(true, "Welcome back!");
 
-                if (useRoute().query.vp != undefined) {
-                    this.verifyEmail(useRoute().query.vp)
-                } else {
-                    useRouter().push("/me/profile")
-                }
+                useRouter().push("/me/profile")
 
             }).catch((err: any) => {
                 const msg = err.response.data.message;

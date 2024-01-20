@@ -6,7 +6,7 @@
         <div class="search-bar container py-4">
             <div class="input-group mb-3 rounded-lg border border-dark w-75 mx-auto">
 
-                <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0" placeholder="Search here" />
+                <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0" placeholder="Search here" />
         
                 <span class="input-group-text bg-dark text-light px-4 border-0" id="basic-addon2" style="border-radius:0 0 0 30px">
                     <i class="bi bi-sort-up"></i>
@@ -123,6 +123,7 @@ export default defineComponent({
         AisConfigure
     },
     setup() {
+        var searchKeyword =ref<any>("")
         const filterOpts = ref([
             {
                 title:"Protein",
@@ -146,6 +147,8 @@ export default defineComponent({
             }
         ])
 
+        var route = useRoute()
+
         const filters = ref({
             type: [],
         })
@@ -165,7 +168,12 @@ export default defineComponent({
 
         const search = useAlgoliaRef()
         onMounted(async() => {
+            searchKeyword.value = route.query.kw
             supplementStore.getAllSupplement()
+        })
+        onBeforeMount(() => {
+            
+
         })
         var searchBox = ref()
 
@@ -189,7 +197,8 @@ export default defineComponent({
             filterOpts,
             filters,
             toggleFilter,
-            onActiveSearch
+            onActiveSearch,
+            searchKeyword
         }
     }
 })
