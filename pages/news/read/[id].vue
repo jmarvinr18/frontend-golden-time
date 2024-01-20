@@ -1,7 +1,7 @@
 <template>
     <GSection>
         <div class="container">
-            <img :src="blog?.feature_image" class="rounded-lg mt-3 w-100" />
+            <img :src="blog?.feature_image" style="height: 35rem; object-fit: cover;" class="rounded-lg mt-3 w-100" />
             <div class="g-blog-date text-secondary f12 mt-2">
                 <i class="bi bi-clock me-2 f14"></i>
                 {{blog.created_at}}
@@ -16,17 +16,28 @@
             <div class="g-blog-body mt-5 lh-lg" v-html=" blog.content">
             </div>
             <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
-            <div class="is-desktop row mt-3">
-                <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="rounded-lg w-100" />
-                </div>
+            <div class="is-desktop d-flex">
+                <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_news">
+                    <div class="p-3" style="width: 20rem; height: 20rem;">
+                        <img  :src="b.feature_image" style="width: 20rem; height: 20rem; object-fit: cover;" class="w-100 rounded-lg" />
+                    </div>  
+                </a>              
+
             </div>
+            <div class="is-mobile d-flex flex-column mt-3">
+                <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_blog" class="d-flex p-3 text-decoration-none text-dark">
+                   
+                    <div style="width: 8rem; height: 8rem;">
+                        <img :src="b.feature_image" style="width: 8rem; height: 8rem; object-fit: cover;" class="rounded-lg" />
+                    </div>
+                    
+                    <div class="px-3">
+                        <h5>{{ b?.title }}</h5>
+                        <div v-html="useTruncateText(b?.content, 50)"></div>
+                    </div>
+                </a>
+                
+            </div>              
             <hr class="my-4" />
             <!-- COMMENT SECTIONS -->
             <div class="w-75 mx-auto">

@@ -8,7 +8,7 @@
                 <i class="bi bi-clock me-2 f14"></i>
                 {{ $formatTime(blog.created_at) }}
             </div>
-            <img :src="blog.feature_image" class="rounded-lg mt-3 w-100" />
+            <img :src="blog.feature_image"  style="height: 35rem; object-fit: cover;" class="rounded-lg mt-3 w-100" />
             <div class="g-blog-body mt-5 lh-lg" v-html="blog.content"></div>
 
             <GSectionTitle class="mt-lg p-3" title="More blogs" :icon-hide="true"></GSectionTitle>
