@@ -18,7 +18,7 @@
     </div>
     <div class="is-mobile">
         <div class="container w-100 text-center position-relative mt-5 cursor-pointer" style="margin-bottom:-60px" data-bs-toggle="modal" data-bs-target="#photo-modal">
-            <img src="https://www.muscleandfitness.com/wp-content/uploads/2019/01/man-tire-pull-1109.jpg?quality=86&strip=all" style="height: 110px; width: 110px;"  class="object-fit-cover rounded-circle mx-auto g-shadow" />
+            <img :src="avatarImg?avatarImg:'/images/no-avatar.jpeg'" style="height: 110px; width: 110px;"  class="object-fit-cover rounded-circle mx-auto g-shadow" />
             <button class="btn position-absolute bottom-0 rounded-pill py-2" style="right:0%">
                 <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
                     <i class="bi bi-camera "></i>
