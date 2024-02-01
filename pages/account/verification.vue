@@ -8,11 +8,7 @@
             <div class="container w-25 mx-auto mt-5 mb-4">
 
                 <div class="text-center">
-                    <h5>{{ $t('YourAccountHasBeenVerified') }}</h5>
-                </div>
-
-                <div class="mb-3 w-75 mt-5 mx-auto text-center">
-                    <nuxt-link to="/login" class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14">{{ $t('Login') }}</nuxt-link>
+                    <h5>{{ $t('VerifyingYourAccount') }}</h5>
                 </div>
             </div>
         </div>
@@ -23,12 +19,25 @@
 
             <div class="container w-100 mx-auto mt-5 mb-4">
                 <div class="text-center">
-                    <h5>{{ $t('YourAccountHasBeenVerified') }}</h5>
-                </div>
-                <div class="mb-3 w-100 mt-5 mx-auto text-center">
-                    <nuxt-link to="/login" class="btn btn-primary rounded-pill g-shadow px-5 py-2 f14">{{ $t('Login') }}</nuxt-link>
+                    <h5>{{ $t('VerifyingYourAccount') }}</h5>
                 </div>
             </div>
         </div>
     </GSection>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    setup() {
+        var authStore = useAuthStore()
+        var route = useRoute()
+        onMounted(() => {
+            if (route.query.vp != undefined) {
+                authStore.verifyEmail(route.query.vp)
+            }
+        })
+    },
+})
+</script>

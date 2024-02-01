@@ -11,6 +11,10 @@
                     <a v-if="authStore.isAuthenticated" href="/supplement/add" class="text-decoration-none">
                         <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>{{ $t('SupplementRegistration') }}</div>
                     </a>
+
+                    <a v-else href="/supplement/search" class="text-decoration-none">
+                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-search mt-2 mb-0 me-2"></i></span>{{ $t('SupplementSearch') }}</div>
+                    </a>                    
                 </div>
                 <div class="right-side d-flex align-items-center gap-3">
                     <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-1">
@@ -114,7 +118,7 @@
                              <i class="bi bi-person text-light h2 mb-0"></i>
                         </button>
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                        <div class="offcanvas-header">
+                        <div class="offcanvas-header" data-bs-dismiss="offcanvas">
                             <!-- <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
                                 <NuxtLink to="/me/profile" class="text-decoration-none me-2" >
                                     <div class="text-light d-flex align-items-center text-decoration-none">

@@ -18,83 +18,31 @@
         </div>
     </section>
 
-    <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search" class="is-desktop g-hero-search w-100 d-flex justify-content-center" >
-        <ais-configure :attributesToSnippet="['description']"/>
+    <di class="is-desktop g-hero-search w-100 d-flex justify-content-center" >
+        
         <div class="w-50 search-bar">
+              <i class="bi bi-search"></i>
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
-                <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')" />
+                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')">
+                <a href="javascript:void(0)" @click="searchNow" class="input-group-text border-0 bg-white" id="basic-addon2">
+                    <i class="bi bi-search me-3"></i>
+                </a>                
             </div>
-                <div v-if="onActiveSearch" class="search-result">
-                    <ais-hits :class-names="{'ais-Hits-item': 'searchHitItems'}">
-                        <template v-slot:item="{ item }">
-                            <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
-                                <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
-                                <div class="search-hit-item-body">
-                                    <h6 class="fw-bold">
-                                        <ais-highlight
-                                            attribute="name"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        />                                       
-                                    </h6>
-
-                                    <div class="fs-12">
-                                        <ais-snippet
-                                            attribute="description"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        />                                        
-                                    </div>                                    
-                                </div>
-                            </a>
-                             
-                        </template>
-                       
-                    </ais-hits>               
-                </div>          
+         
         </div>                
-    </ais-instant-search>    
+    </di>    
     
-    <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search" class="is-mobile g-hero-search w-100 d-flex justify-content-center" >
-        <ais-configure :attributesToSnippet="['description']"/>
+    <div class="is-mobile g-hero-search w-100 d-flex justify-content-center" >
+        
         <div class="w-100 px-3 search-bar">
-            <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
-                <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')" />
-            </div>
-                <div v-if="onActiveSearch" class="search-result">
-                    <ais-hits :class-names="{'ais-Hits-item': 'searchHitItems'}">
-                        <template v-slot:item="{ item }">
-                            <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
-                                <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
-                                <div class="search-hit-item-body">
-                                    <h6 class="fw-bold">
-                                        <ais-highlight
-                                            attribute="name"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        />                                       
-                                    </h6>
-
-                                    <div class="fs-12">
-                                        <ais-snippet
-                                            attribute="description"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        />                                        
-                                    </div>                                    
-                                </div>
-                            </a>
-
-                        
-                        {{ item.length }}
-                        
-                        </template>
-
-
-                    </ais-hits>                     
-                </div>          
+            <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">                
+                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')">
+                <a href="javascript:void(0)" @click="searchNow" class="input-group-text border-0 bg-white" id="basic-addon2">
+                    <i class="bi bi-search me-3"></i>
+                </a>             
+            </div>        
         </div>                
-    </ais-instant-search>       
+    </div>       
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
@@ -112,8 +60,9 @@ export default defineComponent({
         AisConfigure
     },    
     setup() {
+        var searchKeyword = ref("")
         const search = useAlgoliaRef()
-
+        const router = useRouter()
         var searchBox = ref()
 
         var onStateChange = ({ uiState, setUiState }: any) => {
@@ -128,8 +77,23 @@ export default defineComponent({
 
             return searchBox.value == undefined ? false : true
         })  
+
+        var searchNow = (val: object) => {
+            var value;
+            if(val.target.value != undefined) {
+                value = val.target.value
+            } else {
+                
+                value = searchKeyword.value
+            }
+
+            router.push(`/supplement/search?kw=${value}`)
+            
+        }
         
         return {
+            searchKeyword,
+            searchNow,
             search,
             searchBox,
             onStateChange,

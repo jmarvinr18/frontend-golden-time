@@ -18,6 +18,8 @@ export interface Blog {
     likes: Like[]
     comments: Comment[]
     is_user_like_the_blog?: boolean
+    related_blog: Blog
+    related_news: Blog
 }
 export interface Like {
     blog_id: string

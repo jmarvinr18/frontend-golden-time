@@ -16,6 +16,7 @@ export const usePublicContentStore = defineStore("publicContentStore", {
         return {
             contents: <Contents>{},
             blog: <Blog>{},
+            blogList: <Array<Blog>>[],
             supplement: <Supplement>{},
             allSupplements: <Array<Supplement>>[],
         }
@@ -35,6 +36,14 @@ export const usePublicContentStore = defineStore("publicContentStore", {
                         meta: JSON.parse(element.meta)
                     })
                 });
+                return res.data;
+            });
+        },
+        async getAllBlogs() {
+            generalStore().setIsLoading(true);
+            return GApiPublicContents.getAllBlog('').then((res: any) => {
+                generalStore().setIsLoading(false);
+                this.blogList = res.data.data
                 return res.data;
             });
         },

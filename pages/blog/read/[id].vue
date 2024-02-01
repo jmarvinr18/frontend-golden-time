@@ -8,25 +8,32 @@
                 <i class="bi bi-clock me-2 f14"></i>
                 {{ $formatTime(blog.created_at) }}
             </div>
-            <img :src="blog.feature_image" class="rounded-lg mt-3 w-100" />
+            <img :src="blog.feature_image"  style="height: 35rem; object-fit: cover;" class="rounded-lg mt-3 w-100" />
             <div class="g-blog-body mt-5 lh-lg" v-html="blog.content"></div>
 
-            <GSectionTitle class="mt-lg" title="More blogs" :icon-hide="true"></GSectionTitle>
-            <div class="row mt-3">
-                <div class="col-md-3 col-sm-4">
-                    <img src="https://picsum.photos/400/400" class="w-100 rounded-lg" />
-                </div>
-                <div class="col-md-3 col-sm-4">
-                    <img src="https://picsum.photos/400/400" class="w-100 rounded-lg" />
-                </div>
-                <div class="col-md-3 col-sm-4">
-                    <img src="https://picsum.photos/400/400" class="w-100 rounded-lg" />
-                </div>
-                <div class="col-md-3 col-sm-4">
-                    <img src="https://picsum.photos/400/400" class="w-100 rounded-lg" />
-                </div>
-                
+            <GSectionTitle class="mt-lg p-3" title="More blogs" :icon-hide="true"></GSectionTitle>
+            <div class="is-desktop d-flex">
+                <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_blog">
+                    <div class="p-3" style="width: 20rem; height: 20rem;">
+                        <img  :src="b.feature_image" style="width: 20rem; height: 20rem; object-fit: cover;" class="w-100 rounded-lg" />
+                    </div>  
+                </a>              
+
             </div>
+            <div class="is-mobile d-flex flex-column mt-3">
+                <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_blog" class="d-flex p-3 text-decoration-none text-dark">
+                   
+                    <div style="width: 8rem; height: 8rem;">
+                        <img :src="b.feature_image" style="width: 8rem; height: 8rem; object-fit: cover;" class="rounded-lg" />
+                    </div>
+                    
+                    <div class="px-3">
+                        <h5>{{ b?.title }}</h5>
+                        <div v-html="useTruncateText(b?.content, 50)"></div>
+                    </div>
+                </a>
+                
+            </div>            
             <hr class="mt-5 mb-3" />
             <div class="d-flex align-items-center justify-content-end h4 text-primary">
                 <BlogFeaturesGBlogLike :is-liked="isLiked" :id="blog.id"></BlogFeaturesGBlogLike>
