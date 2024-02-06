@@ -138,6 +138,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 PostLabel: "Post",
                 Replies: "replies",
                 WriteAComment: "write a comment",
+                ViewSupplementLabel: "View Supplement",
                 MySupplementRegistration: "My Supplement Registration {count} people",
                 PeopleWhoWantToDrink: "{count}{' people who want to drink'}",
                 EditInformation: "Edit information",
@@ -149,7 +150,8 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 SubmitButton: "Submit",
                 InsertProfilePhoto: "Insert profile photo",
                 HelloGreetings: "Hello",
-                VerifyingYourAccount: "Verifying your account..."
+                VerifyingYourAccount: "Verifying your account...",
+                ErrorWrongPassword: "These credentials do not match our records.",
             },
             ja: {
                 SupplementRegistration: 'サプリ登録',
@@ -282,8 +284,9 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 PostLabel: "ポスト",
                 Replies: "件の返信",
                 WriteAComment: "コメントを書く",
-                MySupplementRegistration: "マイサプリメント登録 {count} 人々",
-                PeopleWhoWantToDrink: "{count}{' 飲みたい人'}",
+                ViewSupplementLabel: "サプリメントへ遷移",
+                MySupplementRegistration: "{'マイサプリメント登録 '} {count}{'人'}",
+                PeopleWhoWantToDrink: "{'飲みたい登録 '} {count}{'人'}",
                 EditInformation: "情報を編集する",
                 UploadYourFile: "ファイルをアップロードしてください",
                 ClickHereToUpload: "ここをクリックしてアップロードを開始します",
@@ -293,7 +296,8 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 SubmitButton: "投稿",
                 InsertProfilePhoto: "プロフィール写真の挿入",
                 HelloGreetings: "こんにちは",
-                VerifyingYourAccount: "アカウントを確認しています..."
+                VerifyingYourAccount: "アカウントを確認しています...",
+                ErrorWrongPassword: "パスワードが一致します。再度ご入力ください",
             }
         }
     })

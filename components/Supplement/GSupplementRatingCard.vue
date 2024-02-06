@@ -15,7 +15,7 @@
                     <i v-if="type=='taste'" v-for="(taste, t) in avg_taste" :key="t" class="bi h3 text-grad-1" :class="taste"></i>
                     <i v-else v-for="(effect, e) in avg_effect" :key="e" class="bi h3 text-grad-2" :class="effect"></i>
                 </div>
-                <button class="btn  mx-auto rounded-pill py-2 mb-3 mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'" data-bs-toggle="modal" :data-bs-target="`#rating-modal-${type}`">{{ $t("PostRatingLabel") }} <i class="bi bi-arrow-up ms-2"></i></button>
+                <button class="btn  mx-auto rounded-pill py-2 mb-3 mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'" data-bs-toggle="modal" :data-bs-target="`#rating-modal-${type}`">{{ $t("PostRatingLabel") }}</button>
             </div>
         </div>
         <div class="is-mobile overflow-hidden rounded-lg p-1" :class="type=='taste'? 'bg-grad-1':'bg-grad-2'">
@@ -27,7 +27,7 @@
                     <i v-if="type=='taste'" v-for="(taste, t) in avg_taste" :key="t" class="bi  text-grad-1" :class="taste"></i>
                     <i v-else v-for="(effect, e) in avg_effect" :key="e" class="bi  text-grad-2" :class="effect"></i>
                 </div>
-                <button style="width: 90%" class="btn rounded-pill mb-3 f10 py-2 fw-bold mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'" data-bs-toggle="modal" :data-bs-target="`#rating-modal-${type}`">{{ $t("PostRatingLabel") }} <i class="bi bi-arrow-up ms-1"></i></button>
+                <button style="width: 90%" class="btn rounded-pill mb-3 f10 py-2 fw-bold mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'" data-bs-toggle="modal" :data-bs-target="`#rating-modal-${type}`">{{ $t("PostRatingLabel") }}</button>
             </div>
         </div>
     </div>
