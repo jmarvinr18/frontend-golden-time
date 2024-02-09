@@ -152,6 +152,8 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 HelloGreetings: "Hello",
                 VerifyingYourAccount: "Verifying your account...",
                 ErrorWrongPassword: "These credentials do not match our records.",
+                NoResultsFound: "No results have been found for {query}",
+                ClearRefinements: "Clear all refinements"
             },
             ja: {
                 SupplementRegistration: 'サプリ登録',
@@ -298,6 +300,8 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 HelloGreetings: "こんにちは",
                 VerifyingYourAccount: "アカウントを確認しています...",
                 ErrorWrongPassword: "パスワードが一致します。再度ご入力ください",
+                NoResultsFound: "結果は見つかりませんでした {query}",
+                ClearRefinements: "すべての絞り込みをクリア"
             }
         }
     })

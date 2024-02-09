@@ -18,32 +18,45 @@
             </div>
 
                 <div v-if="onActiveSearch" class="search-result">
-                    <ais-hits :class-names="{'ais-Hits-item': 'searchHitItems'}">
-                        <template v-slot:item="{ item }">
-                            <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
-                                <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
-                                <div class="search-hit-item-body">
-                                    <h6 class="fw-bold">
-                                        <ais-highlight
-                                            attribute="name"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        />                                       
-                                       
-                                    </h6>
 
-                                    <div class="fs-12">
-                                        <ais-snippet
-                                            attribute="description"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        />                                        
-                                    </div>                                    
-                                </div>
-                            </a>
+                    <ais-state-results>
+                    <template v-slot="{ state: { query }, results: { hits } }">
+                        <ais-hits v-if="hits.length > 0" :class-names="{'ais-Hits-item': 'searchHitItems'}">
+                            <template v-slot:item="{ item }">
+                                <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
+                                    <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
+                                    <div class="search-hit-item-body">
+                                        <h6 class="fw-bold">
+                                            <ais-highlight
+                                                attribute="name"
+                                                :hit="item"
+                                                highlighted-tag-name="em"
+                                            />                                       
+                                        
+                                        </h6>
 
-                        </template>
-                    </ais-hits>                     
+                                        <div class="fs-12">
+                                            <ais-snippet
+                                                attribute="description"
+                                                :hit="item"
+                                                highlighted-tag-name="em"
+                                            />                                        
+                                        </div>                                    
+                                    </div>
+                                </a>
+
+                            </template>
+                        </ais-hits>                              
+                        <div class="p-2 text-center searchHitItems" v-else>
+                            {{ $t('NoResultsFound', { query: query })  }}.
+                            <ais-clear-refinements :excluded-attributes="[]">
+                                <template v-slot:resetLabel>
+                                    <span class="text-danger fs-8">{{ $t('ClearRefinements') }}</span>
+                                </template>
+                            </ais-clear-refinements>
+                        </div>
+                    </template>
+                    </ais-state-results>                                      
                 </div>  
         </div>
         <!-- SEARCH RESULT -->
@@ -60,7 +73,7 @@
             <ais-configure :attributesToSnippet="['description']"/>
             <div class="input-group mb-3 rounded-pill overflow-hidden border border-dark w-100 mx-auto gl-shadow" >
                 
-                <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control border-0" placeholder="Search here" />
+                <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control border-0" placeholder="Search here" />
                 <span class="input-group-text bg-dark text-light px-4 border-0" id="basic-addon2" style="border-radius:0 0 0 30px">
                     <i class="bi bi-sort-up"></i>
                 </span>
@@ -70,32 +83,46 @@
             </div>
             <!-- v-if="onActiveSearch" -->
                 <div v-if="onActiveSearch" class="search-result-mobile">
-                    <ais-hits :class-names="{'ais-Hits-item': 'searchHitItems'}">
-                        <template v-slot:item="{ item }">
-                            <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
-                                <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
-                                <div class="search-hit-item-body">
-                                    <h6 class="fw-bold">
-                                        <ais-highlight
-                                            attribute="name"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        >  {{ item.name }}</ais-highlight>                                       
-                                       
-                                    </h6>
-                                    <div class="fs-12">
-                                        <ais-snippet
-                                            attribute="description"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        /> 
-                                    </div>                                    
-                                </div>
-                            </a>
+                    <ais-state-results>
+                    <template v-slot="{ state: { query }, results: { hits } }">
+                        <ais-hits v-if="hits.length > 0" :class-names="{'ais-Hits-item': 'searchHitItems'}">
+                            <template v-slot:item="{ item }">
 
-                        </template>
-                    </ais-hits>                     
-                </div>            
+                                <a v-if="item.id" :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
+                                    <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
+                                    <div class="search-hit-item-body">
+                                        <h6 class="fw-bold">
+                                            <ais-highlight
+                                                attribute="name"
+                                                :hit="item"
+                                                highlighted-tag-name="em"
+                                            >  {{ item.name }}</ais-highlight>                                       
+                                        
+                                        </h6>
+                                        <div class="fs-12">
+                                            <ais-snippet
+                                                attribute="description"
+                                                :hit="item"
+                                                highlighted-tag-name="em"
+                                            /> 
+                                        </div>                                    
+                                    </div>
+                                </a> 
+                            </template>                        
+                        </ais-hits>
+                        <div class="p-2 text-center searchHitItems" v-else>
+                            {{ $t('NoResultsFound', { query: query })  }}.
+                            <ais-clear-refinements :excluded-attributes="[]">
+                                <template v-slot:resetLabel>
+                                    <span class="text-danger fs-8">{{ $t('ClearRefinements') }}</span>
+                                </template>
+                            </ais-clear-refinements>
+                        </div>
+                    </template>
+                    </ais-state-results>                    
+
+                </div>    
+     
         </div>
         <div class="is-mobile w-100 rounded-lg py-5 mt-4 bg-white border border-2">
             <!-- SEARCH RESULTs -->
@@ -108,7 +135,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { AisInstantSearch, AisSearchBox, AisHits, AisHighlight, AisSnippet, AisConfigure} from 'vue-instantsearch/vue3/es'
+import { 
+    AisInstantSearch, 
+    AisSearchBox, 
+    AisHits, 
+    AisHighlight, 
+    AisSnippet, 
+    AisConfigure, 
+    AisStateResults,
+    AisClearRefinements
+} from 'vue-instantsearch/vue3/es'
 import 'instantsearch.css/themes/algolia-min.css';
 import 'instantsearch.css/themes/reset.css';
 
@@ -120,7 +156,9 @@ export default defineComponent({
         AisHits,
         AisHighlight,
         AisSnippet,
-        AisConfigure
+        AisConfigure,
+        AisStateResults,
+        AisClearRefinements
     },
     setup() {
         var searchKeyword =ref<any>("")
@@ -171,18 +209,11 @@ export default defineComponent({
             searchKeyword.value = route.query.kw
             supplementStore.getAllSupplement()
         })
-        onBeforeMount(() => {
-            
 
-        })
         var searchBox = ref()
 
         var onStateChange = ({ uiState, setUiState }: any) => {
-
             searchBox.value = uiState.supplements.query
-            console.log("uiState", uiState)
-            console.log("searchBox: ", searchBox.value)
-
             setUiState(uiState);
         }
         var onActiveSearch = computed(() => {
