@@ -3,16 +3,16 @@
         <div v-if="!uploadedFile" class="w-100 text-center ">
             <label for="g-file-input" class="g-upload-media-container cursor-pointer">
                 <i class="bi bi-cloud-upload-fill text-muted display-3"></i>
-                <div class="mt-3">Upload your file</div>
-                <div class="mt-1 text-muted f12">Click here to start upload</div>
+                <div class="mt-3">{{ $t('UploadYourFile') }}</div>
+                <div class="mt-1 text-muted f12">{{ $t('ClickHereToUpload') }}</div>
             </label>
             <input type="file" id="g-file-input" style="width: 0;" @change="getFile" />
         </div>
         <div v-else class="text-center w-100">
-            <img v-if="uploadedFile" :src="uploadedFile" class="w-100 object-fit-contain bg-dark" height="210" />
+            <img v-if="uploadedFile" :src="uploadedFile" class="w-100 object-fit-contain bg-dark" style="height:210px;" />
             <div class="my-3 text-primary f12 cursor-pointer" @click="uploadedFile=''">
                 <i class="bi bi-trash me-2"></i>
-                Change file...
+                {{ $t('ChangeFile') }}...
             </div>
         </div>
     </div>
@@ -29,8 +29,10 @@ export default defineComponent({
             reader.readAsDataURL(thisFile);
             reader.onload = () => {
                 uploadedFile.value = reader.result;
-                event.target.value='';
-                emit("on-get-file", reader.result);
+                emit("on-get-file", {
+                    file: event.target.files[0],
+                    src: reader.result
+                });
             };
         };
 

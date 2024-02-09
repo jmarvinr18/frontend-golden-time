@@ -1,15 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  nitro: {
-    output: {
-      dir: '~/static_pages',
-      publicDir: '~/static_pages'
-    }
-  },
   app: {
     head: {
       title: 'Golden Time Food Suplement',
       link: [
+        {
+          rel: 'stylesheet',
+          href: "https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/reset-min.css"
+        },
         {
           rel: 'stylesheet',
           href: "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap"
@@ -43,8 +41,33 @@ export default defineNuxtConfig({
         {
           src: 'https://cdn.quilljs.com/1.3.6/quill.js',
           body: true
+        },
+        {
+          src: 'https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js',
         }
       ]
     }
-  }
+  },
+
+  build: {
+    transpile: ['@vuepic/vue-datepicker']
+  },
+  modules: [
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/algolia'
+  ],
+  algolia: {
+    apiKey: import.meta.env.ALGOLIA_API_KEY,
+    applicationId: import.meta.env.ALGOLIA_APP_ID,
+    instantSearch: {
+      theme: 'algolia'
+    }
+  },
+  piniaPersistedstate: {
+    cookieOptions: {
+      sameSite: 'strict',
+    },
+    storage: 'localStorage'
+  },
 })

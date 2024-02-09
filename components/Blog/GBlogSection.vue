@@ -1,10 +1,8 @@
 <template>
     
     <section id="section-hero" class="g-profile-section position-relative">
-        <GSection>
-            <GBlogForm></GBlogForm>
-        </GSection>
     </section>
+    <GBlogForm></GBlogForm>
 </template>
 <script lang="ts">
 import GBlogForm from './GBlogForm.vue';

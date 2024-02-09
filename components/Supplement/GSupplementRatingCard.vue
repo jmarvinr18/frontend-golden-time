@@ -9,31 +9,25 @@
         <div class="is-desktop overflow-hidden rounded-lg p-1" :class="type=='taste'? 'bg-grad-1':'bg-grad-2'">
             <div class="bg-white rounded-lg">
                 <div class="mt-5 text-center mb-3">
-                    {{ type=='taste'? 'Taste/drinkability':'Effect' }}
+                    {{ type=='taste'? $t('TasteSupplementLabel'):$t('EffectSupplementLabel') }}
                 </div>
                 <div class="g-rating-stars text-center mb-2" style="letter-spacing:.4em">
-                    <i class="bi bi-star-fill h3" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
-                    <i class="bi bi-star-fill h3" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
-                    <i class="bi bi-star-fill h3" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
-                    <i class="bi bi-star-fill h3" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
-                    <i class="bi bi-star-fill h3" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
+                    <i v-if="type=='taste'" v-for="(taste, t) in avg_taste" :key="t" class="bi h3 text-grad-1" :class="taste"></i>
+                    <i v-else v-for="(effect, e) in avg_effect" :key="e" class="bi h3 text-grad-2" :class="effect"></i>
                 </div>
-                <button class="btn  mx-auto rounded-pill py-2 mb-3 mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'">Post a rating <i class="bi bi-arrow-up ms-2"></i></button>
+                <button class="btn  mx-auto rounded-pill py-2 mb-3 mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'" data-bs-toggle="modal" :data-bs-target="`#rating-modal-${type}`">{{ $t("PostRatingLabel") }}</button>
             </div>
         </div>
         <div class="is-mobile overflow-hidden rounded-lg p-1" :class="type=='taste'? 'bg-grad-1':'bg-grad-2'">
             <div class="bg-white rounded-lg">
                 <div class="mt-5 text-center mb-3">
-                    {{ type=='taste'? 'Taste/drinkability':'Effect' }}
+                    {{ type=='taste'? $t('TasteSupplementLabel'):$t('EffectSupplementLabel') }}
                 </div>
                 <div class="g-rating-stars text-center mb-2" style="letter-spacing:.4em">
-                    <i class="bi bi-star-fill h5 mb-0" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
-                    <i class="bi bi-star-fill h5 mb-0" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
-                    <i class="bi bi-star-fill h5 mb-0" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
-                    <i class="bi bi-star-fill h5 mb-0" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
-                    <i class="bi bi-star-fill h5 mb-0" :class="type=='taste'? 'text-grad-1':'text-grad-2'"></i>
+                    <i v-if="type=='taste'" v-for="(taste, t) in avg_taste" :key="t" class="bi  text-grad-1" :class="taste"></i>
+                    <i v-else v-for="(effect, e) in avg_effect" :key="e" class="bi  text-grad-2" :class="effect"></i>
                 </div>
-                <button style="width: 90%" class="btn rounded-pill mb-3 f10 py-2 fw-bold mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'">Post a rating <i class="bi bi-arrow-up ms-1"></i></button>
+                <button style="width: 90%" class="btn rounded-pill mb-3 f10 py-2 fw-bold mt-2 g-shadow" :class="type=='taste'? 'text-grad-1 btn-outline-success':'btn-outline-primary text-grad-2'" data-bs-toggle="modal" :data-bs-target="`#rating-modal-${type}`">{{ $t("PostRatingLabel") }}</button>
             </div>
         </div>
     </div>
@@ -41,10 +35,26 @@
 <script lang="ts">
 export default defineComponent({
     props: {
+        supplement: Object,
         type: {
             type: String,
             default: "taste" // effect or taste
         }
+    },
+    setup(props) {
+
+        var avg_effect = computed(() => {
+            return useSupplementRating(props.supplement?.ratings?.avg_effect)
+        })
+        var avg_taste = computed(() => {
+            return useSupplementRating(props.supplement?.ratings?.avg_taste)
+        })
+
+        return {
+            avg_effect,
+            avg_taste
+        }
     }
+
 })
 </script>

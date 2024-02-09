@@ -1,16 +1,73 @@
 <template>
-    <div class="is-desktop mt-5 bg-light py-5 w-100 text-center">
-        <div class="mb-3 w-50 mx-auto">
-            <textarea class="g-shadow rounded-3 border-dark form-control" placeholder="write a comment" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
+    <div v-if="isReplay" class="ms-5 text-right position-relative w-100">
+        <SupplementGSupplementReviewCommentFormDisabled v-if="!isAuthenticated" :is-replay="isReplay"></SupplementGSupplementReviewCommentFormDisabled>
+        <textarea class="g-shadow rounded-3 border-dark form-control" :placeholder="$t('WriteAComment')" id="commentInput1" rows="3" v-model="comment"></textarea>
 
-        <button class="rounded-pill px-4 shadow mt-3 mx-auto btn btn-primary">Post a comment <i class="bi bi-arrow-up fw-bold"></i></button>
+       <div class="text-end d-flex align-items-center justify-content-end">
+        <button class="btn f12 text-dark mt-3" data-bs-toggle="collapse" :data-bs-target="`#reply-${commentId}`">Close</button>
+        <button class="is-desktop rounded-pill px-4 shadow mt-3 btn f12" :class="comment? 'btn-primary shadow':'btn-dark opacity-50'" :disabled="!comment.length" @click="submitComment">{{ $t("PostCommentLabel") }} <i class="bi bi-arrow-up fw-bold"></i></button>
+        <button class="is-mobile rounded-pill px-4 shadow mt-3 btn f12" :class="comment? 'btn-primary shadow':'btn-dark opacity-50'" :disabled="!comment.length" @click="submitComment">{{ $t("PostLabel") }} <i class="bi bi-arrow-up fw-bold"></i></button>
+       </div>
     </div>
-    <div class="is-mobile mt-2 bg-light py-3 w-100 text-center mb-5 pb-5">
-        <div class="mb-3 w-75 mx-auto">
-            <textarea class="g-shadow rounded-3 border-dark form-control" placeholder="write a comment" id="exampleFormControlTextarea1" rows="2"></textarea>
-        </div>
+    <div v-else>
+        <div class="is-desktop position-relative mt-5 bg-light py-5 w-100 text-center">
+            <SupplementGSupplementReviewCommentFormDisabled v-if="!isAuthenticated" :is-replay="isReplay"></SupplementGSupplementReviewCommentFormDisabled>
+            <div class="mb-3 w-50 mx-auto">
+                <textarea class="g-shadow rounded-3 border-dark form-control" :placeholder="$t('WriteAComment')" id="commentInput1" rows="3" v-model="comment"></textarea>
+            </div>
 
-        <button class="rounded-pill px-4 shadow mt-3 mx-auto btn btn-primary">Post a comment <i class="bi bi-arrow-up fw-bold"></i></button>
+            <button class="rounded-pill px-4 mt-3 mx-auto btn btn-primary" :class="comment? 'btn-primary shadow':'btn-dark opacity-50'" :disabled="!comment.length" @click="submitComment">{{ $t("PostCommentLabel") }} <i class="bi bi-arrow-up fw-bold"></i></button>
+        </div>
+        <div class="is-mobile mt-2 bg-light py-3 w-100 text-center pb-3 position-relative">
+            <SupplementGSupplementReviewCommentFormDisabled v-if="!isAuthenticated" :is-replay="isReplay"></SupplementGSupplementReviewCommentFormDisabled>
+            <div class="mb-3 w-75 mx-auto">
+                <textarea class="g-shadow rounded-3 border-dark form-control" :placeholder="$t('WriteAComment')" id="commentInput2" rows="2" v-model="comment"></textarea>
+            </div>
+
+            <button class="rounded-pill px-4 shadow mt-3 mx-auto btn" :class="comment? 'btn-primary shadow':'btn-dark opacity-50'" @click="submitComment"> {{ $t("PostCommentLabel") }} <i class="bi bi-arrow-up fw-bold"></i></button>
+        </div>
     </div>
 </template>
+<script lang="ts">
+export default defineComponent({
+    props: {
+        isReplay:String,
+        commentId: String,
+    },
+    setup(props) {
+        const comment = ref("");
+        const authStore = useAuthStore();
+        const supplementStore = useSupplementStore();
+        const { isAuthenticated } = storeToRefs(authStore);
+        const route = useRoute();
+
+        const submitComment = () => {
+            let objData;
+            if (props.isReplay === 'true') {
+                objData = {
+                    comment: comment.value,
+                    supplement_id: route.params.id,
+                    is_reply: true,
+                    reply_to: props.commentId
+                }
+            } else {
+                objData = {
+                    comment: comment.value,
+                    supplement_id: route.params.id,
+                    is_reply: false,
+                }
+            }
+
+            supplementStore.createCommentSupplement(objData).then(()=>{
+                comment.value = "";
+            });
+        }
+
+        return {
+            comment,
+            isAuthenticated,
+            submitComment
+        }
+    }
+});
+</script>

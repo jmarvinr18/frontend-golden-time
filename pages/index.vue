@@ -2,69 +2,37 @@
     <GHero></GHero>
     <div class="is-desktop">
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Blog" icon="bi-journals"></GSectionTitle>
-            <div class="row">
-                <div class="col-md-6 col-xs-12">
-                    <CardsGCardBlog></CardsGCardBlog>
-                </div>
-                <div class="col-md-6 col-xs-12">
-                    <CardsGCardBlog></CardsGCardBlog>
-                </div>
-                <UtilsGLoadMore></UtilsGLoadMore>
-            </div>
-        </div>
-        <div class="container pt-2 pb-4">
-            <GSectionTitle title="Muscle News" icon="bi-newspaper"></GSectionTitle>
+            <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
 
             <div class="row">
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews></CardsGCardNews>
+                <div v-for="(blog, i) in contents?.blog" class="col-md-6 col-xs-12 mb-5">
+                    <CardsGCardBlog :blog="blog" ></CardsGCardBlog>
                 </div>
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews></CardsGCardNews>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews></CardsGCardNews>
-                </div>
-                <UtilsGLoadMore></UtilsGLoadMore>
+                <UtilsGLoadMore @on-click="viewAll('/blog')"></UtilsGLoadMore>
             </div>
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Tournament Information" icon="bi-calendar-check"></GSectionTitle>
+            <GSectionTitle :title="$t('MuscleNews')" icon="bi-newspaper"></GSectionTitle>
 
             <div class="row">
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews
-                    type="agenda"
-                    start-time="09:00"
-                    open-time="07:00"
-                    player-gathering="08:00"
-                    location-name="Spanish Cultural Center">
-                </CardsGCardNews>
+                <div v-for="(news, i) in contents?.news" class="col-md-4 col-xs-12">
+                    <CardsGCardNews :news="news"></CardsGCardNews>
                 </div>
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews
-                    type="agenda"
-                    start-time="09:00"
-                    open-time="07:00"
-                    player-gathering="08:00"
-                    location-name="Spanish Cultural Center">
-                </CardsGCardNews>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                <CardsGCardNews
-                    type="agenda"
-                    start-time="09:00"
-                    open-time="07:00"
-                    player-gathering="08:00"
-                    location-name="Spanish Cultural Center">
-                </CardsGCardNews>
-                </div>
-                <UtilsGLoadMore></UtilsGLoadMore>
+                <UtilsGLoadMore @on-click="viewAll('/news')"></UtilsGLoadMore>
             </div>
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Featured players" icon="bi-stars"></GSectionTitle>
+            <GSectionTitle :title="$t('TournamentInformation')" icon="bi-calendar-check"></GSectionTitle>
+
+            <div class="row">
+                <div v-for="(event, i) in contents?.event" class="col-md-4 col-xs-12">
+                    <CardsGCardEvent :event="event"></CardsGCardEvent>
+                </div>
+                <UtilsGLoadMore @on-click="viewAll('/event')"></UtilsGLoadMore>
+            </div>
+        </div>
+        <!-- <div class="container pt-2 pb-4">
+            <GSectionTitle :title="$t('FeaturedPlayers')" icon="bi-stars"></GSectionTitle>
 
             <div class="row">
                 <div class="col-md-6 col-xs-12">
@@ -81,40 +49,67 @@
                 </div>
                 <UtilsGLoadMore></UtilsGLoadMore>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="is-mobile">
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Blog" icon="bi-journals"></GSectionTitle>
-            <CardsGCardBlog></CardsGCardBlog>
+            <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
+            <!-- <CardsGCardBlog></CardsGCardBlog> -->
+
+            <GContainerSlider>
+                <CardsGCardBlog v-for="(blog, i) in contents?.blog" :blog="blog"></CardsGCardBlog>
+            </GContainerSlider>            
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Muscle News" icon="bi-newspaper"></GSectionTitle>
+            <GSectionTitle :title="$t('MuscleNews')" icon="bi-newspaper"></GSectionTitle>
             
             <GContainerSlider>
-                <CardsGCardNews></CardsGCardNews>
-                <CardsGCardNews></CardsGCardNews>
-                <CardsGCardNews></CardsGCardNews>
+                <CardsGCardNews v-for="(news, i) in contents?.news" :news="news"></CardsGCardNews>
             </GContainerSlider>
         </div>
         <div class="container pt-2 pb-4">
-            <GSectionTitle title="Tournament information" icon="bi-calendar-check"></GSectionTitle>
+            <GSectionTitle :title="$t('TournamentInformation')" icon="bi-calendar-check"></GSectionTitle>
             
             
             <GContainerSlider>
-                <CardsGCardNews type="schedule"></CardsGCardNews>
-                <CardsGCardNews type="schedule"></CardsGCardNews>
-                <CardsGCardNews type="schedule"></CardsGCardNews>
+                <CardsGCardEvent v-for="(event, i) in contents?.event" :event="event" ></CardsGCardEvent>
             </GContainerSlider>
         </div>
-        <div class="container pt-2 pb-4">
-            <GSectionTitle title="Featured players" icon="bi-stars"></GSectionTitle>
+        <!-- <div class="container pt-2 pb-4">
+            <GSectionTitle :title="$t('FeaturedPlayers')" icon="bi-stars"></GSectionTitle>
             <GContainerSlider>
                 <CardsGCardFeature></CardsGCardFeature>
                 <CardsGCardFeature></CardsGCardFeature>
             </GContainerSlider>
-        </div>
+        </div> -->
     </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { usePublicContentStore } from '~/stores/GStorePublicContent'
+
+export default defineComponent({
+    setup() {
+        var publicContentStore = usePublicContentStore()
+        var { contents } = storeToRefs(publicContentStore)
+        const router = useRouter();
+
+        onMounted(() => {
+          publicContentStore.getHomeContents("?blog_limit=2&news_limit=3&event_limit=3")  
+        })
+
+        const viewAll = (str:any) => {
+            router.push(str);
+        }
+
+        return {
+            contents,
+            viewAll
+        }
+    },
+})
+</script>
+
   
