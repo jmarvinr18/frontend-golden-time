@@ -98,7 +98,7 @@
                 </div>            
         </div>
         <div class="is-mobile w-100 rounded-lg py-5 mt-4 bg-white border border-2">
-            <!-- SEARCH RESULT -->
+            <!-- SEARCH RESULTs -->
             <div class="container mx-auto mt-5">
                 <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in allSupplements" :key="supplement.id"></SupplementGSupplementSearchItem>
             </div>
