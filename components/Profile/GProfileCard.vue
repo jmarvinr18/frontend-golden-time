@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="position-absolute top-10 w-100 g-profile-dp">
-                <img :src="userImage" style="height: 270px; width: 270px;" class="object-fit-cover rounded-circle mx-auto g-shadow" />
+                <img :src="userImage? userImage:'/images/no-image.jpeg'" style="height: 270px; width: 270px;" class="object-fit-cover rounded-circle mx-auto g-shadow" />
                 <div class="h2 mt-4 fw-bold mt-5">{{ objData.name }}</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="position-absolute w-100 g-profile-dp ">
-                <img :src="userImage" style="height: 170px; width: 170px;" class="object-fit-cover rounded-circle mx-auto g-shadow user__image" />
+                <img :src="userImage? userImage:'/images/no-image.jpeg'" style="height: 170px; width: 170px;" class="object-fit-cover rounded-circle mx-auto g-shadow user__image" />
                 <div class="h2 mt-4 fw-bold">{{ objData.name }}</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">

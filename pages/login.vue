@@ -2,7 +2,7 @@
     <GSection>
         <div class="is-desktop">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="/images/img-login.svg" class="w-25" />
+                <img src="/images/img-login.svg" class="img-login" />
             </div>
             <div class="container w-25 text-center mx-auto mt-5">
                 <div class="btn-group rounded-pill overflow-hidden bg-white border border-primary w-75 " role="group" aria-label="Basic example">
@@ -95,3 +95,8 @@ export default defineComponent({
     }
 })
 </script>
+<style>
+.img-login {
+    width: 15%;
+}
+</style>

@@ -1,5 +1,10 @@
 <template>
     <div class="is-desktop">
+        <div class="w-100 text-center mb-5">
+            <a :href="supplement?.url" class="mx-auto w-25 mx-auto btn btn-primary rounded-pill" target="_blank">
+                {{ $t('ViewSupplementLabel') }}
+            </a>
+        </div>
         <div class="row f14 lh-lg justify-content-between align-items-start">
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
@@ -25,14 +30,14 @@
                  {{supplement?.name}}
                 </div>
             </div>
-            <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
+            <!-- <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
                 {{ $t('UrlLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
                    {{supplement?.url}}
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
                 {{ $t('KindsLabel') }}
@@ -60,6 +65,11 @@
         </div>
     </div>
     <div class="is-mobile">
+        <div class="w-100 text-center mb-5">
+            <a :href="supplement?.url" class="mx-auto w-75 btn-lg mx-auto btn btn-primary rounded-pill" target="_blank">
+                {{ $t('ViewSupplementLabel') }}
+            </a>
+        </div>
         <div class="row f14 lh-lg justify-content-between">
             <div class="col-md-6 col-xs-12 d-flex gap-3">
                 <div class="w-25 me-2 text-muted">
@@ -85,14 +95,14 @@
                     {{supplement?.name}}
                 </div>
             </div>
-            <div class="col-md-6 col-xs-12 d-flex gap-3">
+            <!-- <div class="col-md-6 col-xs-12 d-flex gap-3">
                 <div class="w-25 me-2 text-muted">
                 {{ $t('UrlLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
                     {{supplement?.url}}
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-6 col-xs-12 d-flex gap-3">
                 <div class="w-25 me-2 text-muted">
                     {{ $t('KindsLabel') }}
