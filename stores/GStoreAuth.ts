@@ -84,7 +84,6 @@ export const useAuthStore = defineStore("authStore", {
     },
     actions: {
         async login(data: any) {
-            const { t } = useI18n();
 
             generalStore().setIsLoading(true);
             return GApiAuth.login(data).then((res: any) => {
