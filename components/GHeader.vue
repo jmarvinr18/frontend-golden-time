@@ -5,7 +5,7 @@
                 <div class="left-side d-flex align-items-center">
                     <div class="me-5">
                         <NuxtLink to="/">
-                            <img src="/logo.png" style="width: 80px;" />
+                            <img src="/images/icon.jpeg" style="width: 50px;" />
                         </NuxtLink>
                     </div>
                     <a v-if="authStore.isAuthenticated" href="/supplement/add" class="text-decoration-none">
@@ -95,7 +95,7 @@
             <div class="left-side d-flex align-items-center" style="width: 15%;">
                 <div class="me-5">
                     <NuxtLink to="/">
-                        <img src="/logo.png" style="width: 60px;" />
+                        <img src="/images/icon.jpeg" style="width: 40px;" />
                     </NuxtLink>
                 </div>
             </div>
