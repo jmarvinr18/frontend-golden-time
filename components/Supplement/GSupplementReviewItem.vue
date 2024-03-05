@@ -27,14 +27,16 @@
                             {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
                         </span>
                     </button>
-                    <NuxtLink v-else to="/login?ref=supplement" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }}</NuxtLink>
-                    <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
-                        <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
-                        <span class="align-self-center">
-                            <i class="bi bi-person-heart me-2"></i>
-                            {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
-                        </span>                         
-                    </button>
+                    <div v-else>
+                        <NuxtLink to="/login?ref=supplement" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }}</NuxtLink>
+                        <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
+                            <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
+                            <span class="align-self-center">
+                                <i class="bi bi-person-heart me-2"></i>
+                                {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
+                            </span>                         
+                        </button>
+                    </div>
                 </div>
                 <div class="g-review-item-owner w-100 d-flex align-items-center position-absolute">
                     <img class="rounded-circle me-2" :src="getProfileImage" style="height: 30px; width: 30px;" />

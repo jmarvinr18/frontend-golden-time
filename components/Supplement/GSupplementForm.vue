@@ -23,7 +23,7 @@
             </div>
             <div class="mb-4 g-form-input">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`TasteLabel`) }}*</label>
-                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" :placeholder="$t('FlavourPlaceholder')" v-model="supplementForm.flavor" maxlength="25">
+                <input type="text" class="form-control form-control-lg" id="g-auth-form-1" :placeholder="$t('FlavourPlaceholder')" v-model="supplementForm.flavor" maxlength="25" :disabled="route.params.id!==undefined">
             </div>
             <div class="mb-4 g-form-input">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`PriceLabel`) }}*</label>
@@ -83,7 +83,7 @@
             </div>
             <div class="mb-4 g-form-input w-75">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('TasteLabel') }}*</label>
-                <input type="text" class="form-control " id="g-auth-form-1" :placeholder="$t('FlavourPlaceholder')" maxlength="25" v-model="supplementForm.flavor">
+                <input type="text" class="form-control " id="g-auth-form-1" :placeholder="$t('FlavourPlaceholder')" maxlength="25" v-model="supplementForm.flavor" :disabled="route.params.id!==undefined">
             </div>
             <div class="mb-4 g-form-input w-75">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('PriceLabel') }}*</label>
@@ -141,7 +141,6 @@ export default defineComponent({
         supplementForm.value.serving_type="powder";
 
         const submitNow = () => {
-            supplementForm.value.price = supplementForm.value.price + ".00"
             if (supplementForm.value.name && supplementForm.value.supplement_type && supplementForm.value.serving_type && supplementForm.value.price && supplementForm.value.ingredients && supplementForm.value.url && supplementForm.value.brand) {
                 console.log(supplementForm.value)
                 submitSupplement();
@@ -165,6 +164,7 @@ export default defineComponent({
 
         return {
             supplementForm,
+            route,
             router,
             shapeOpt,
             typeOpt,

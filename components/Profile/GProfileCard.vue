@@ -17,14 +17,11 @@
                 </div>
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container ps-3">
                     <div class="w-100 g-profile-content">
-                        <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                        <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2 position-relative">
                             <i class="bi bi-pencil me-1"></i>
-                            Edit Profile
+                            {{ $t("EditProfile") }}
                         </NuxtLink>
-                        <button v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
-                            <i class="bi bi-person-plus me-1"></i>
-                            Follow
-                        </button>
+                        <ProfileGProfileFollowBtn v-else></ProfileGProfileFollowBtn>
                         
                         <div class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content mt-5">
                             Birth Date: {{ $formatTime(objData.profile_details.birth_date) }}
@@ -86,9 +83,11 @@
         <div class="is-mobile g-profile-card-main bg-white mx-auto rounded-lg g-shadow w-100 p-3" style="min-height:500px">
             <div class="row align-items-center justify-content-between mt-5">
                 <div class="col-xs-12">
-                    <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right ">
-                        <i class="bi bi-pencil me-1"></i>
-                        Edit Profile
+                    <NuxtLink v-if="mode=='me'" to="/me/edit-profile">
+                        <button class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right position-relative"  style="z-index: 900;">
+                            <i class="bi bi-pencil me-1"></i>
+                            {{ $t("EditProfile") }}
+                        </button>
                     </NuxtLink>
                     <ProfileGProfileFollowBtn v-else></ProfileGProfileFollowBtn>
                 </div>

@@ -4,14 +4,28 @@
         <ais-configure :attributesToSnippet="['description']"/>
 
         <div class="search-bar container py-4">
-            <div class="input-group mb-3 rounded-lg border border-dark w-75 mx-auto">
+            <div class="d-flex w-75 mx-auto ">
+                <div class="input-group mb-3 w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
 
-                <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0" placeholder="Search here" />
-        
-                <span class="input-group-text bg-dark text-light px-4 border-0" id="basic-addon2" style="border-radius:0 0 0 30px">
-                    <i class="bi bi-sort-up"></i>
-                </span>
-              
+                    <input type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0" placeholder="Search here" />
+
+                    <!-- <span class="input-group-text bg-dark text-light px-4 border-0" id="basic-addon2" style="border-radius:0 0 0 30px">
+                        <i class="bi bi-sort-up"></i>
+                    </span> -->
+                </div>
+                    <!-- SEARCH BOX AND FILTER -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary bg-dark dropdown-toggle px-3 py-1 border-2 border-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius:0 0 20px 0">
+                        <i class="bi bi-sort-up h2"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><h6 class="dropdown-header">Sort Supplements</h6></li>
+                        <li><a class="dropdown-item" href="#">Lowest Price</a></li>
+                        <li><a class="dropdown-item" href="#">Most Registration</a></li>
+                        <li><a class="dropdown-item" href="#">High effective Rate</a></li>
+                        <li><a class="dropdown-item" href="#">High easy to consume Rate</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="gl-search-filter-category d-flex justify-content-between w-50 mx-auto">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
@@ -51,51 +65,38 @@
             <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in allSupplements" :key="supplement.id"></SupplementGSupplementSearchItem>
         </div>
 
-     </ais-instant-search>   
-     <!-- SEARCH BOX AND FILTER -->
-
-     <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search">
+    </ais-instant-search>   
+    
+    <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search">
         
         <div class="is-mobile container search-bar" style="margin-bottom:-90px">
             <ais-configure :attributesToSnippet="['description']"/>
-            <div class="input-group mb-3 rounded-pill overflow-hidden border border-dark w-100 mx-auto gl-shadow" >
-                
-                <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control border-0" placeholder="Search here" />
-                <span class="input-group-text bg-dark text-light px-4 border-0" id="basic-addon2" style="border-radius:0 0 0 30px">
-                    <i class="bi bi-sort-up"></i>
-                </span>
+            <div class="d-flex w-100 mx-auto ">
+                <div class="input-group mb-3 w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
+
+                    <input type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
+
+                    <span class="input-group-text px-4 border-0" id="basic-addon2" >
+                        <i class="bi bi-search"></i>
+                    </span>
+                </div>
+                    <!-- SEARCH BOX AND FILTER -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary bg-dark dropdown-toggle px-3 py-1 border-3 border-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius:0 0 20px 0">
+                        <i class="bi bi-sort-up h2"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><h6 class="dropdown-header">Sort Supplements</h6></li>
+                        <li><a class="dropdown-item" href="#">Lowest Price</a></li>
+                        <li><a class="dropdown-item" href="#">Most Registration</a></li>
+                        <li><a class="dropdown-item" href="#">High effective Rate</a></li>
+                        <li><a class="dropdown-item" href="#">High easy to consume Rate</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="gl-search-filter-category d-flex justify-content-between w-100 mx-auto px-4">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
-            </div>
-            <!-- v-if="onActiveSearch" -->
-                <div v-if="onActiveSearch" class="search-result-mobile">
-                    <ais-hits :class-names="{'ais-Hits-item': 'searchHitItems'}">
-                        <template v-slot:item="{ item }">
-                            <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
-                                <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
-                                <div class="search-hit-item-body">
-                                    <h6 class="fw-bold">
-                                        <ais-highlight
-                                            attribute="name"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        >  {{ item.name }}</ais-highlight>                                       
-                                       
-                                    </h6>
-                                    <div class="fs-12">
-                                        <ais-snippet
-                                            attribute="description"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        /> 
-                                    </div>                                    
-                                </div>
-                            </a>
-
-                        </template>
-                    </ais-hits>                     
-                </div>            
+            </div>         
         </div>
         <div class="is-mobile w-100 rounded-lg py-5 mt-4 bg-white border border-2">
             <!-- SEARCH RESULT -->
@@ -104,6 +105,8 @@
             </div>
         </div>
     </ais-instant-search>
+
+   
 </template>
 
 <script lang="ts">
