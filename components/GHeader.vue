@@ -5,7 +5,8 @@
                 <div class="left-side d-flex align-items-center">
                     <div class="me-5">
                         <NuxtLink to="/">
-                            <img src="/images/icon.jpeg" style="width: 50px;" />
+                            <!-- <img src="/images/icon.jpeg" style="width: 50px;" /> -->
+                            <div style="background: url('/images/logo.png') no-repeat center center; width: 100px; height: 40px; background-size: cover;"></div>
                         </NuxtLink>
                     </div>
                     <a v-if="authStore.isAuthenticated" href="/supplement/add" class="text-decoration-none">

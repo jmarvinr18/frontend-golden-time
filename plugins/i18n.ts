@@ -152,6 +152,10 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 HelloGreetings: "Hello",
                 VerifyingYourAccount: "Verifying your account...",
                 ErrorWrongPassword: "These credentials do not match our records.",
+                LoginRequired: "Log in required",
+                LoginRequiredBody: "You need to be logged in first, before do this action. Continue login?",
+                ReadMoreLabel: "Read more",
+                UpdateLabel: "Update",
                 NoResultsFound: "No results have been found for {query}",
                 ClearRefinements: "Clear all refinements"
             },
@@ -299,7 +303,11 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 InsertProfilePhoto: "プロフィール写真の挿入",
                 HelloGreetings: "こんにちは",
                 VerifyingYourAccount: "アカウントを確認しています...",
-                ErrorWrongPassword: "パスワードが一致しません。再度ご入力ください",
+                ErrorWrongPassword: "パスワードが一致します。再度ご入力ください",
+                LoginRequired: "ログインが必要",
+                LoginRequiredBody: "この操作を行う前に、まずログインする必要があります。ログインを続けますか？",
+                ReadMoreLabel: "もっと読む",
+                UpdateLabel: "更新",
                 NoResultsFound: "結果は見つかりませんでした {query}",
                 ClearRefinements: "すべての絞り込みをクリア"
             }

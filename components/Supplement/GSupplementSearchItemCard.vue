@@ -5,7 +5,7 @@
                 <img :src="supplement?.image" class="object-fit-cover" />
             </div>
             <div class="g-supplement-item-content py-2 px-3 f14">
-                <div class="h4 w-100"> {{ supplement?.name }} </div>
+                <div class="h4 w-100"> {{ supplement?.name? supplement.name:'&nbsp;' }} </div>
                 <div class="sup-description"> {{ useTruncateText(supplement?.description) }} </div>
                 <div class="g-supplement-item-ratings d-flex justify-content-around mt-4 w-100 mx-auto">
                     <div class="g-supplement-item-rating text-center">
@@ -28,7 +28,7 @@
                 <img :src="supplement?.image" class="object-fit-cover" style="max-height: 150px; width: 100px; object-fit: cover;" />
             </div>
             <div class="g-supplement-item-content  px-3 f14">
-                <div class=" w-100 mt-1 fw-bold">{{ supplement?.name }}</div>
+                <div class=" w-100 mt-1 fw-bold">{{ supplement?.name? supplement.name:'&nbsp;' }}</div>
                 <div class="f12 mb-2 sup-description text-truncate mt-2">{{ useTruncateText(supplement?.description) }}</div>
                 <div class="g-supplement-item-ratings d-flex justify-content-around mt-3 w-100 mx-auto">
                     <div class="g-supplement-item-rating text-center">

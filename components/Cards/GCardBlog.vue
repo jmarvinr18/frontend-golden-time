@@ -10,7 +10,8 @@
                     <div class="text-muted f10">30 seconds ago</div>
                     <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
                     <div class="d-flex ms-3 align-items-center">
-                        <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" />
+                        <!-- <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" /> -->
+                        <i class="bi bi-person-circle h5"></i>
                         <div class="ms-2"> {{ blog?.user }} </div>
                     </div>
                     </NuxtLink>
@@ -24,15 +25,14 @@
         </div>
         <div class="g-card-body p-3 position-relative">
             <div v-html="useTruncateText(blog?.content,200)"></div>
-                <div class="g-card-more w-100 text-light position-absolute bottom-2 d-flex justify-content-center">
-                    <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
-                        read more <i class="ms-2 bi bi-chevron-down rounded-pill"></i>
-                    </a>
-                    <a v-if="isContentOwner"  :href="`/blog/edit/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
-                        Update <strong class="bi bi-arrow-up me-2 fw-bold"></strong>
-                    </a>
-                </div>
-          
+            <div class="g-card-more w-100 text-light position-absolute bottom-2 d-flex justify-content-center">
+                <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
+                    {{ $t("ReadMoreLabel") }} <i class="ms-2 bi bi-chevron-down rounded-pill"></i>
+                </a>
+                <a v-if="isContentOwner"  :href="`/blog/edit/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
+                    {{ $t("UpdateLabel") }} <strong class="bi bi-arrow-up me-2 fw-bold"></strong>
+                </a>
+            </div>
         </div>
     </div>
     <div class="is-mobile g-card-blog bg-white w-100 rounded-lg g-shadow overflow-hidden">
@@ -47,7 +47,7 @@
                                 <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
                                 <div class="d-flex align-items-center">
                                     <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="width: 20px; height: 20px;" class="object-fit-cover rounded-pill f14" />
-                                    <div class="ms-2 f12 text-light">{{ blog?.user }} Marvin</div>
+                                    <div class="ms-2 f12 text-light">{{ blog?.user }} </div>
                                 </div>
                                 </NuxtLink>
                             </div>
@@ -88,7 +88,7 @@ export default defineComponent({
 
 <style>
 .g-card-body {
-    min-height: 200px;
+    height: 190px;
 
 }
 

@@ -13,7 +13,7 @@
                     </span>
                    
                 </button>
-                <NuxtLink to="/login?ref=search" v-else class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }}</NuxtLink>
+                <button to="/login?ref=search" v-else class="btn btn-primary btn-sm rounded-pill py-2 f14" @click="askLogin">{{ $t("MySupplementRegistration") }}</button>
                 <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
                     <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                     <span class="align-self-center">
@@ -35,7 +35,7 @@
                     </span>                  
                 
                 </button>
-                <NuxtLink to="/login?ref=search" v-else class="g-search-item-extra btn btn-primary btn-sm rounded-pill py-2 f12">{{ $t("Login") }}</NuxtLink>
+                <button to="/login?ref=search" v-else class="g-search-item-extra btn btn-primary btn-sm rounded-pill py-2 f12" @click="askLogin">{{ $t("MySupplementRegistration") }}</button>
                 <button @click="toggleDrinkWish(supplement?.id)" class="g-search-item-extra btn btn-outline-secondary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
                     <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                     <span class="align-self-center">
@@ -51,6 +51,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Swal from 'sweetalert2';
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
 
@@ -59,8 +61,10 @@ export default defineComponent({
     },
     setup() {
         var authStore = useAuthStore();
+        var router = useRouter();
         var { isAuthenticated } = storeToRefs(authStore);
         var supplementStore = useSupplementStore();
+        const {t} = useI18n();
         var toggleDrinkWish = (id: string) => {
             supplementStore.toggleDrinkWish(id)
         }
@@ -68,8 +72,25 @@ export default defineComponent({
             supplementStore.toggleHasDrank(id)
         }
 
+        var askLogin = () => {
+            Swal.fire({
+                icon: 'info',
+                title: t("LoginRequired"),
+                text: t("LoginRequiredBody"),
+                showCancelButton: true,
+                confirmButtonText: `${t("Login")}&nbsp;<i class="bi bi-arrow-right"></i>`,
+                cancelButtonText: t("CancelButton"),
+                reverseButtons: true
+            }).then((res) => {
+                if(res.isConfirmed) {
+                    router.push('/login?ref=search')
+                }
+            })
+        }
+
         return {
             isAuthenticated,
+            askLogin,
             toggleDrinkWish,
             toggleHasDrank
         }
