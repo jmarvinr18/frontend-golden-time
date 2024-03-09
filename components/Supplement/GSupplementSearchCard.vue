@@ -30,35 +30,6 @@
             <div class="gl-search-filter-category d-flex justify-content-between w-50 mx-auto">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
             </div>
-
-                <div v-if="onActiveSearch" class="search-result">
-                    <ais-hits :class-names="{'ais-Hits-item': 'searchHitItems'}">
-                        <template v-slot:item="{ item }">
-                            <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
-                                <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
-                                <div class="search-hit-item-body">
-                                    <h6 class="fw-bold">
-                                        <ais-highlight
-                                            attribute="name"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        />                                       
-                                       
-                                    </h6>
-
-                                    <div class="fs-12">
-                                        <ais-snippet
-                                            attribute="description"
-                                            :hit="item"
-                                            highlighted-tag-name="em"
-                                        />                                        
-                                    </div>                                    
-                                </div>
-                            </a>
-
-                        </template>
-                    </ais-hits>                     
-                </div>  
         </div>
         <!-- SEARCH RESULT -->
         <div class="container mx-auto mt-5">
@@ -99,7 +70,7 @@
             </div>         
         </div>
         <div class="is-mobile w-100 rounded-lg py-5 mt-4 bg-white border border-2">
-            <!-- SEARCH RESULT -->
+            <!-- SEARCH RESULTs -->
             <div class="container mx-auto mt-5">
                 <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in allSupplements" :key="supplement.id"></SupplementGSupplementSearchItem>
             </div>
@@ -111,7 +82,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { AisInstantSearch, AisSearchBox, AisHits, AisHighlight, AisSnippet, AisConfigure} from 'vue-instantsearch/vue3/es'
+import { 
+    AisInstantSearch, 
+    AisSearchBox, 
+    AisHits, 
+    AisHighlight, 
+    AisSnippet, 
+    AisConfigure, 
+    AisStateResults,
+    AisClearRefinements
+} from 'vue-instantsearch/vue3/es'
 import 'instantsearch.css/themes/algolia-min.css';
 import 'instantsearch.css/themes/reset.css';
 
@@ -123,7 +103,9 @@ export default defineComponent({
         AisHits,
         AisHighlight,
         AisSnippet,
-        AisConfigure
+        AisConfigure,
+        AisStateResults,
+        AisClearRefinements
     },
     setup() {
         var searchKeyword =ref<any>("")
@@ -174,18 +156,11 @@ export default defineComponent({
             searchKeyword.value = route.query.kw
             supplementStore.getAllSupplement()
         })
-        onBeforeMount(() => {
-            
 
-        })
         var searchBox = ref()
 
         var onStateChange = ({ uiState, setUiState }: any) => {
-
             searchBox.value = uiState.supplements.query
-            console.log("uiState", uiState)
-            console.log("searchBox: ", searchBox.value)
-
             setUiState(uiState);
         }
         var onActiveSearch = computed(() => {
