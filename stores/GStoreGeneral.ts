@@ -17,10 +17,10 @@ export const useGeneralStore = defineStore("generalStore", {
         }
     },
     actions: {
-        setIsLoading(value:any) {
+        setIsLoading(value: any) {
             this.isLoading = value;
         },
-        setError(value:any, message:any) {
+        setError(value: any, message: any) {
             this.setIsLoading(false);
             this.error = {
                 message: message,
@@ -33,7 +33,7 @@ export const useGeneralStore = defineStore("generalStore", {
                 text: message
             });
         },
-        setSuccess(value:any, message:any) {
+        setSuccess(value: any, message: any) {
             this.setIsLoading(false);
             this.success = {
                 message: message,
@@ -46,8 +46,9 @@ export const useGeneralStore = defineStore("generalStore", {
                 text: message
             });
         },
-        setMobile(value:any) {
+        setMobile(value: any) {
             this.isMobile = value;
         }
-    }
+    },
+
 })

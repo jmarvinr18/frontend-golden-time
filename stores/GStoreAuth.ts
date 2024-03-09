@@ -84,6 +84,7 @@ export const useAuthStore = defineStore("authStore", {
     },
     actions: {
         async login(data: any) {
+
             generalStore().setIsLoading(true);
             return GApiAuth.login(data).then((res: any) => {
 
@@ -99,7 +100,7 @@ export const useAuthStore = defineStore("authStore", {
 
             }).catch((err: any) => {
                 const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                generalStore().setError(true, "パスワードが一致します。再度ご入力ください");
             });
         },
         async verifyEmail(data: any) {

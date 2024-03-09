@@ -308,7 +308,6 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 LoginRequiredBody: "この操作を行う前に、まずログインする必要があります。ログインを続けますか？",
                 ReadMoreLabel: "もっと読む",
                 UpdateLabel: "更新",
-                ErrorWrongPassword: "パスワードが一致しません。再度ご入力ください",
                 NoResultsFound: "結果は見つかりませんでした {query}",
                 ClearRefinements: "すべての絞り込みをクリア"
             }
