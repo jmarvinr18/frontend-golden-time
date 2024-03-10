@@ -31,25 +31,7 @@
                 <UtilsGLoadMore @on-click="viewAll('/event')"></UtilsGLoadMore>
             </div>
         </div>
-        <!-- <div class="container pt-2 pb-4">
-            <GSectionTitle :title="$t('FeaturedPlayers')" icon="bi-stars"></GSectionTitle>
 
-            <div class="row">
-                <div class="col-md-6 col-xs-12">
-                <CardsGCardFeature></CardsGCardFeature>
-                </div>
-                <div class="col-md-6 col-xs-12">
-                <CardsGCardFeature></CardsGCardFeature>
-                </div>
-                <div class="col-md-6 col-xs-12">
-                <CardsGCardFeature></CardsGCardFeature>
-                </div>
-                <div class="col-md-6 col-xs-12">
-                <CardsGCardFeature></CardsGCardFeature>
-                </div>
-                <UtilsGLoadMore></UtilsGLoadMore>
-            </div>
-        </div> -->
     </div>
 
     <div class="is-mobile">

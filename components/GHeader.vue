@@ -14,7 +14,7 @@
                     </a>
 
                     <a v-else href="/supplement/search" class="text-decoration-none">
-                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-search mt-2 mb-0 me-2"></i></span>{{ $t('SupplementSearch') }}</div>
+                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-search mt-2 mb-0 me-2"></i></span>{{ $t('SupplementSearch') }}</div>                
                     </a>                    
                 </div>
                 <div class="right-side d-flex align-items-center gap-3">
@@ -197,6 +197,30 @@ export default defineComponent({
         const { userData } = storeToRefs(authStore)
         
 
+        var searchKeyword =ref<any>("")
+        const filterOpts = ref([
+            {
+                title:"Protein",
+                value:"protein"
+            },
+            {
+                title:"EAA",
+                value:"eaa"
+            },
+            {
+                title:"Creatine",
+                value:"creatine"
+            },
+            {
+                title:"Glutamine",
+                value:"glutamine"
+            },
+            {
+                title:"HMB",
+                value:"hmb"
+            }
+        ])
+
         const checkScroll = () => {
             const spotlight = document.getElementById('section-hero');
             if (spotlight) {
@@ -237,7 +261,7 @@ export default defineComponent({
             authStore,
             colorChange,
             logout,
-            userData
+            userData,
         }
     }
 })
