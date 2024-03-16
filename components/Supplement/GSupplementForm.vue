@@ -123,12 +123,11 @@
 <script lang="ts">
 import { useSupplementStore } from "~/stores/GStoreSupplement";
 import { useGeneralStore } from "~/stores/GStoreGeneral";
-import { useI18n } from "vue-i18n";
 import { supplementType, servingType } from "~/composables/configSupplement";
+import { i18n } from "~/plugins/i18n";
 
 export default defineComponent({
     setup(props) {
-        const {t} = useI18n();
         const supplementStore = useSupplementStore();
         const { supplementForm } = storeToRefs(supplementStore);
         const generalStore = useGeneralStore();
@@ -145,18 +144,23 @@ export default defineComponent({
                 console.log(supplementForm.value)
                 submitSupplement();
             } else {
-                generalStore.setError(true, "Please make sure all required fields has been filled.")
+                generalStore.setError(true, i18n.global.t("MakeSureAllFieldsHasBeenFilled"))
             }
         };
 
         const submitSupplement = async () => {
             if (route.params.id) {
                 await supplementStore.updateSupplement(supplementForm.value).then((res) => {
-                    location.href = `/supplement/review/${route.params.id}`
+                    setTimeout(() => {
+                        location.href = `/supplement/review/${route.params.id}`
+                    }, 2000)
                 });
             } else {
                 await supplementStore.createSupplement(supplementForm.value).then((res) => {
-                    location.href = `/supplement/review/${res.data.id}`
+                    setTimeout(() => {
+                        location.href = `/supplement/review/${res.data.id}`
+                    }, 2000)                    
+
                 }) ;
             }
             

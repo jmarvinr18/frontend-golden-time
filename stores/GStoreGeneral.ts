@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import Swal from "sweetalert2";
+import { i18n } from "~/plugins/i18n";
 
 export const useGeneralStore = defineStore("generalStore", {
     state: () => {
@@ -29,7 +30,7 @@ export const useGeneralStore = defineStore("generalStore", {
 
             Swal.fire({
                 icon: "error",
-                title: "Oops!",
+                title: i18n.global.t("Oops"),
                 text: message
             });
         },
@@ -42,7 +43,7 @@ export const useGeneralStore = defineStore("generalStore", {
 
             Swal.fire({
                 icon: "success",
-                title: "Great!",
+                title: i18n.global.t("Great"),
                 text: message
             });
         },
