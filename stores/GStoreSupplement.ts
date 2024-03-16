@@ -104,8 +104,15 @@ export const useSupplementStore = defineStore("supplementStore", {
                 generalStore().setSuccess(true,  i18n.global.t("SupplementCreatedMsg"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async updateSupplement(data: any) {
@@ -115,8 +122,15 @@ export const useSupplementStore = defineStore("supplementStore", {
                 generalStore().setSuccess(true, i18n.global.t("SupplementUpdatedMsg"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async deleteSupplement(id: any) {
@@ -135,9 +149,15 @@ export const useSupplementStore = defineStore("supplementStore", {
                 generalStore().setSuccess(true, i18n.global.t("RatingSubmitted"));
                 return res.data;
             }).catch((err: any) => {
-                console.log(err)
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async createCommentSupplement(data: any) {
@@ -148,8 +168,15 @@ export const useSupplementStore = defineStore("supplementStore", {
                 this.getSupplement(data?.supplement_id);
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
 

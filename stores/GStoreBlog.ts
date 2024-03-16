@@ -83,8 +83,15 @@ export const useBlogStore = defineStore("blogStore", {
                 generalStore().setSuccess(true, i18n.global.t("BlogCreated"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async updateBlog(data: any) {
@@ -94,8 +101,15 @@ export const useBlogStore = defineStore("blogStore", {
                 generalStore().setSuccess(true, i18n.global.t("BlogUpdated"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async deleteBlog(id: any) {
@@ -105,8 +119,15 @@ export const useBlogStore = defineStore("blogStore", {
                 generalStore().setSuccess(true, i18n.global.t("BlogRemoved"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async likeBlog(id: any) {
@@ -125,8 +146,15 @@ export const useBlogStore = defineStore("blogStore", {
                 this.getBlog(this.blog.id);
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async updateBlogComment(data: any) {
@@ -136,8 +164,15 @@ export const useBlogStore = defineStore("blogStore", {
                 generalStore().setSuccess(true, i18n.global.t("BlogCommentUpdated"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async deleteBlogComment(id: any) {
@@ -147,8 +182,15 @@ export const useBlogStore = defineStore("blogStore", {
                 generalStore().setSuccess(true, i18n.global.t("BlogCommentDeleted"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
     }

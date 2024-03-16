@@ -176,7 +176,11 @@ export const i18n = createI18n({
             BlogRemoved: "Your blog has been successfully removed!",
             BlogCommentCreated: "Your blog comment has been successfully created!",
             BlogCommentUpdated: "Your blog comment has been successfully updated!",
-            BlogCommentDeleted: "Your blog comment has been successfully deleted!"
+            BlogCommentDeleted: "Your blog comment has been successfully deleted!",
+            Unauthenticated: "You are not currently logged in.",
+            ProblemOccured: "There's a problem on this request. Please contact the administrator.",
+            CommentFieldMustNotBeEmpty: "Please make sure that the comment field isn't empty",
+            GiveSomeRatings: "Please give some ratings."
         },
         ja: {
             SupplementRegistration: 'サプリ登録',
@@ -346,7 +350,11 @@ export const i18n = createI18n({
             BlogRemoved: "あなたのブログは正常に削除されました。",
             BlogCommentCreated: "ブログのコメントが正常に作成されました。",
             BlogCommentUpdated: "ブログのコメントが正常に更新されました",
-            BlogCommentDeleted: "ブログのコメントは正常に削除されました。"               
+            BlogCommentDeleted: "ブログのコメントは正常に削除されました。",
+            Unauthenticated: "現在ログインしていません。",
+            ProblemOccured: "このリクエストには問題があります。管理者にお問い合わせください。",
+            CommentFieldMustNotBeEmpty: "コメントフィールドが空でないことを確認してください",
+            GiveSomeRatings: "いくつかの評価をお願いします。"
         }
     }
 })

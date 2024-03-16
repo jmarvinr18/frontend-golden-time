@@ -139,8 +139,15 @@ export const useAuthStore = defineStore("authStore", {
                 }, 3000)
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async getProfile(id: any) {
@@ -149,8 +156,15 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setIsLoading(false);
                 this.userData = res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async sendForgotPasswordRequest(payload: any) {
