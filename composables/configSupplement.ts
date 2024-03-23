@@ -9,19 +9,19 @@ export const servingType = () => {
         },
         {
             label: t("PowderOption"),
-            value: "powder",
+            value: "粉末",
         },
         {
             label: t("CapsuleOption"),
-            value: "capsule",
+            value: "カプセル",
         },
         {
             label: t("TabletOption"),
-            value: "tablet",
+            value: "タブレット",
         },
         {
             label: t("OthersOption"),
-            value: "other",
+            value: "その他",
         },
     ]
 };
@@ -35,7 +35,7 @@ export const supplementType = () => {
         },
         {
             label: t("ProteinOption"),
-            value: "protein",
+            value: "プロテイン",
         },
         {
             label: t("BCAAOption"),
@@ -47,43 +47,43 @@ export const supplementType = () => {
         },
         {
             label: t("GlutamineOption"),
-            value: "glutamine"
+            value: "グルタミン"
         },
         {
             label: t("CreatineOption"),
-            value: "creatine"
+            value: "クレアチン"
         },
         {
             label: t("MultivitaminOption"),
-            value: "multivitamin"
+            value: "マルチビタミン"
         },
         {
             label: t("CitrullineOption"),
-            value: "citrulline"
+            value: "シトルリン"
         },
         {
             label: t("AgrinineOption"),
-            value: "agrinine"
+            value: "アルギニン"
         },
         {
             label: t("Omega3Option"),
-            value: "omega-3"
+            value: "オメガ3"
         },
         {
             label: t("TaurineOption"),
-            value: "taurine"
+            value: "タウリン"
         },
         {
             label: t("CaffeineOption"),
-            value: "caffeine"
+            value: "カフェリン"
         },
         {
             label: t("AgmatineOption"),
-            value: "agmatine"
+            value: "アグマチン"
         },
         {
             label: t("PeptideOption"),
-            value: "peptide"
+            value: "ペプチド"
         },
         {
             label: t("HMBOption"),
