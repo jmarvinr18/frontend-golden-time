@@ -6,6 +6,7 @@
     </ModalsGModal>
 </template>
 <script lang="ts">
+import { i18n } from "~/plugins/i18n";
 export default defineComponent({
     props: {
         id: String || Number,
@@ -38,7 +39,7 @@ export default defineComponent({
             if (comment.value) {
                 submitComment();
             } else {
-                generalStore.setError(true, "Please make sure that the comment field isn't empty")
+                generalStore.setError(true, i18n.global.t("CommentFieldMustNotBeEmpty"))
             }
         }
 

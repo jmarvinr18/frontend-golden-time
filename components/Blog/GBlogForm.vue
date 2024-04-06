@@ -94,11 +94,11 @@
                                 </button>
                             </li>
                             
-                            <li class="py-2">
+                            <!-- <li class="py-2">
                                 <a class="dropdown-item h2 mb-0" href="#">
                                     <i class="bi bi-fonts"></i>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -163,11 +163,11 @@
                                 </button>
                             </li>
                             
-                            <li class="py-2">
+                            <!-- <li class="py-2">
                                 <a class="dropdown-item h2 mb-0" href="#">
                                     <i class="bi bi-fonts"></i>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>

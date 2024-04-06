@@ -13,6 +13,7 @@
     </ModalsGModal>
 </template>
 <script lang="ts">
+import { i18n } from "~/plugins/i18n";
 export default defineComponent({
     name: "RatingForm",
     props: {
@@ -68,8 +69,8 @@ export default defineComponent({
             if (rates.value > 0) {
                 submitRating();
             } else {
-                msg.value = "Please give some ratings.";
-                generalStore.setError(true, "Please give some ratings.");
+                msg.value = i18n.global.t("GiveSomeRatings");
+                generalStore.setError(true, i18n.global.t("GiveSomeRatings"));
             }
         }
 

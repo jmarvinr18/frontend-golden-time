@@ -5,7 +5,8 @@
                 <div class="left-side d-flex align-items-center">
                     <div class="me-5">
                         <NuxtLink to="/">
-                            <img src="/logo.png" style="width: 80px;" />
+                            <!-- <img src="/images/icon.jpeg" style="width: 50px;" /> -->
+                            <div style="background: url('/images/GT_logo_white2.png') no-repeat center center; width: 100px; height: 40px; background-size: cover;"></div>
                         </NuxtLink>
                     </div>
                     <a v-if="authStore.isAuthenticated" href="/supplement/add" class="text-decoration-none">
@@ -13,7 +14,7 @@
                     </a>
 
                     <a v-else href="/supplement/search" class="text-decoration-none">
-                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-search mt-2 mb-0 me-2"></i></span>{{ $t('SupplementSearch') }}</div>
+                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-search mt-2 mb-0 me-2"></i></span>{{ $t('SupplementSearch') }}</div>                
                     </a>                    
                 </div>
                 <div class="right-side d-flex align-items-center gap-3">
@@ -95,7 +96,7 @@
             <div class="left-side d-flex align-items-center" style="width: 15%;">
                 <div class="me-5">
                     <NuxtLink to="/">
-                        <img src="/logo.png" style="width: 60px;" />
+                        <img src="/images/GT_logo_white2.png" style="width: 40px;" />
                     </NuxtLink>
                 </div>
             </div>
@@ -196,6 +197,30 @@ export default defineComponent({
         const { userData } = storeToRefs(authStore)
         
 
+        var searchKeyword =ref<any>("")
+        const filterOpts = ref([
+            {
+                title:"Protein",
+                value:"protein"
+            },
+            {
+                title:"EAA",
+                value:"eaa"
+            },
+            {
+                title:"Creatine",
+                value:"creatine"
+            },
+            {
+                title:"Glutamine",
+                value:"glutamine"
+            },
+            {
+                title:"HMB",
+                value:"hmb"
+            }
+        ])
+
         const checkScroll = () => {
             const spotlight = document.getElementById('section-hero');
             if (spotlight) {
@@ -236,7 +261,7 @@ export default defineComponent({
             authStore,
             colorChange,
             logout,
-            userData
+            userData,
         }
     }
 })

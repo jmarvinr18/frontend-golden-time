@@ -2,15 +2,15 @@
     <ModalsGModal title="Share blog" :submitBtn="false" size="sm" :id="id">
         <div class="text-center my-4">
             <div class="h5 text-secondary">Select your social media</div>
-            <div class="mt-3">
+            <div class="mt-3 d-flex align-items-center justify-content-between">
                 <a :href="`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${objData.title}`" target="_blank" class="mx-2">
                     <i class="bi bi-facebook h2"></i>
                 </a>
                 <a :href="`http://twitter.com/share?text=Read ${objData.title}&url=${url}`" target="_blank" class="mx-2">
-                    <i class="bi bi-twitter h2"></i>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/X_icon_2.svg" style="width:30px" />
                 </a>
                 <a :href="`https://api.whatsapp.com/send?text=${objData.title} - ${url}`" target="_blank" class="mx-2">
-                    <i class="bi bi-whatsapp h2"></i>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:30px" />
                 </a>
                 <a :href="`mailto:?subject=Read ${objData.title}&body=${url}`" target="_blank" class="mx-2">
                     <i class="bi bi-envelope h2"></i>

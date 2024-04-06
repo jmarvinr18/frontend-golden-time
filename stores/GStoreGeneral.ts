@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import Swal from "sweetalert2";
+import { i18n } from "~/plugins/i18n";
 
 export const useGeneralStore = defineStore("generalStore", {
     state: () => {
@@ -17,10 +18,10 @@ export const useGeneralStore = defineStore("generalStore", {
         }
     },
     actions: {
-        setIsLoading(value:any) {
+        setIsLoading(value: any) {
             this.isLoading = value;
         },
-        setError(value:any, message:any) {
+        setError(value: any, message: any) {
             this.setIsLoading(false);
             this.error = {
                 message: message,
@@ -29,11 +30,11 @@ export const useGeneralStore = defineStore("generalStore", {
 
             Swal.fire({
                 icon: "error",
-                title: "Oops!",
+                title: i18n.global.t("Oops"),
                 text: message
             });
         },
-        setSuccess(value:any, message:any) {
+        setSuccess(value: any, message: any) {
             this.setIsLoading(false);
             this.success = {
                 message: message,
@@ -42,12 +43,13 @@ export const useGeneralStore = defineStore("generalStore", {
 
             Swal.fire({
                 icon: "success",
-                title: "Great!",
+                title: i18n.global.t("Great"),
                 text: message
             });
         },
-        setMobile(value:any) {
+        setMobile(value: any) {
             this.isMobile = value;
         }
-    }
+    },
+
 })

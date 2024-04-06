@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import GApiSupplement from "~/services/GApiSupplement";
 import { useGeneralStore as generalStore } from "./GStoreGeneral";
 import type { User } from "./GStoreAuth";
-
+import { i18n } from "~/plugins/i18n";
 
 export interface Supplement {
     id: string
@@ -101,53 +101,82 @@ export const useSupplementStore = defineStore("supplementStore", {
             generalStore().setIsLoading(true);
             return GApiSupplement.createSupplement(data).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your supplement has been successfully created!");
+                generalStore().setSuccess(true,  i18n.global.t("SupplementCreatedMsg"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async updateSupplement(data: any) {
             generalStore().setIsLoading(true);
             return GApiSupplement.updateSupplement(data).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your supplement has been successfully updated!");
+                generalStore().setSuccess(true, i18n.global.t("SupplementUpdatedMsg"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async deleteSupplement(id: any) {
             generalStore().setIsLoading(true);
             return GApiSupplement.deleteSupplement(id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your supplement has been successfully removed!");
+                generalStore().setSuccess(true, i18n.global.t("SupplemenRemovedMsg"));
                 return res.data;
             });
         },
         async ratingSupplement(data: any) {
+            // const { t } = useI18n();
             generalStore().setIsLoading(true);
             return GApiSupplement.ratingSupplement(data).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your rating has been successfully submitted!");
+                generalStore().setSuccess(true, i18n.global.t("RatingSubmitted"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async createCommentSupplement(data: any) {
             generalStore().setIsLoading(true);
             return GApiSupplement.createCommentSupplement(data).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your comment has been successfully added!");
+                generalStore().setSuccess(true, i18n.global.t("CommentAddedMsg"));
                 this.getSupplement(data?.supplement_id);
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
 
