@@ -178,18 +178,22 @@ export default defineComponent({
 })
 </script>
 <style>
-.g-form-input input, .g-form-input select, .g-form-input textarea{
-    margin-top:-16px;
-    padding: 16px 13px !important;
+.g-form-input input,
+.g-form-input select,
+.g-form-input textarea {
+  margin-top: -16px;
+  padding: 16px 13px !important;
 }
 
 .g-form-input input::placeholder {
-    color:#e4e4e4;
+  color: #e4e4e4;
 }
 
-@media only screen and (max-width:1009px)  {
-    .g-form-input input, .g-form-input select, .g-form-input textarea{
-        padding: 8px 10px !important;
-    }
+@media only screen and (max-width: 1009px) {
+  .g-form-input input,
+  .g-form-input select,
+  .g-form-input textarea {
+    padding: 8px 10px !important;
+  }
 }
 </style>
