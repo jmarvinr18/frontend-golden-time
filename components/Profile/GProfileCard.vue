@@ -41,7 +41,7 @@
             <div class="position-absolute top-10 w-100 g-profile-dp">
                 <img :src="userImage? userImage:'/images/no-image.jpeg'" style="height: 270px; width: 270px;" class="bg-white object-fit-contain rounded-circle mx-auto g-shadow" />
                 <div class="h2 mt-4 fw-bold mt-5">{{ objData.name }}</div>
-                <div class="d-flex justify-content-center mb-3">
+                <div v-if="mode=='me'" class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
                         <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
                             <i class="bi bi-person-up me-2"></i>{{ objData.followers_count }}
@@ -49,6 +49,24 @@
                     </div>
                     <div class="mx-2">
                         <NuxtLink to="/me/following" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-down me-2"></i>{{ objData.followings_count }}
+                        </NuxtLink>
+                    </div>
+                    <div class="mx-2">
+                        <i class="bi bi-instagram me-2"></i>
+                    </div>
+                    <div class="mx-2">
+                        <i class="bi bi-facebook me-2"></i>
+                    </div>
+                </div>
+                <div v-else class="d-flex justify-content-center mb-3">
+                    <div class="mx-2">
+                        <NuxtLink :to="`/users/${objData.id}/followers`" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-up me-2"></i>{{ objData.followers_count }}
+                        </NuxtLink>
+                    </div>
+                    <div class="mx-2">
+                        <NuxtLink :to="`/users/${objData.id}/following`" class="text-decoration-none text-dark">
                             <i class="bi bi-person-down me-2"></i>{{ objData.followings_count }}
                         </NuxtLink>
                     </div>

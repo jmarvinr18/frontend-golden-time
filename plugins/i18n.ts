@@ -157,7 +157,12 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 ReadMoreLabel: "Read more",
                 UpdateLabel: "Update",
                 NoResultsFound: "No results have been found for {query}",
-                ClearRefinements: "Clear all refinements"
+                ClearRefinements: "Clear all refinements",
+                SortLabel: "Sort Supplements",
+                SortLowestPrice: "Lowest Price",
+                SortMostRegistration: "Most Registration",
+                SortHighEffectiveRate: "High Effective Rate",
+                SortHighEasyToConsume: "High Easy to Consume Rate"
             },
             ja: {
                 SupplementRegistration: 'サプリ登録',
@@ -309,7 +314,12 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 ReadMoreLabel: "もっと読む",
                 UpdateLabel: "更新",
                 NoResultsFound: "結果は見つかりませんでした {query}",
-                ClearRefinements: "すべての絞り込みをクリア"
+                ClearRefinements: "すべての絞り込みをクリア",
+                SortLabel:"サプリメントの分類",
+                SortLowestPrice: "最低価格",
+                SortMostRegistration: "ほとんどの登録",
+                SortHighEffectiveRate: "高い有効率",
+                SortHighEasyToConsume: "高い消費しやすさ"
             }
         }
     })

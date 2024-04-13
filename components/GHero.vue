@@ -28,7 +28,9 @@
                     <i class="bi bi-search me-3"></i>
                 </a>                
             </div>
-         
+            <div class="d-flex w-75 mx-auto justify-content-between">
+                <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
+            </div>
         </div>                
     </di>    
     
@@ -63,7 +65,41 @@ export default defineComponent({
         var searchKeyword = ref("")
         const search = useAlgoliaRef()
         const router = useRouter()
-        var searchBox = ref()
+        var searchBox = ref();
+        const filterOpts = ref([
+            {
+                title:"Protein",
+                value:"protein"
+            },
+            {
+                title:"EAA",
+                value:"eaa"
+            },
+            {
+                title:"Creatine",
+                value:"creatine"
+            },
+            {
+                title:"Glutamine",
+                value:"glutamine"
+            },
+            {
+                title:"HMB",
+                value:"hmb"
+            }
+        ]);
+        const filters = ref({
+            type: [],
+        });
+
+        const toggleFilter = (val:any) => {
+            if (filters.value.type.includes(val)) {
+                const getIdx = filters.value.type.indexOf(val);
+                filters.value.type.splice(getIdx, 1);
+            } else {
+                filters.value.type.push(val);
+            }
+        }
 
         var onStateChange = ({ uiState, setUiState }: any) => {
 
@@ -79,20 +115,23 @@ export default defineComponent({
         })  
 
         var searchNow = (val: object) => {
-            var value;
-            if(val.target.value != undefined) {
-                value = val.target.value
-            } else {
-                
-                value = searchKeyword.value
+            var value = "";
+            if(searchKeyword.value) {
+                value = value + `k=${searchKeyword.value}&`
             }
 
-            router.push(`/supplement/search?kw=${value}`)
-            
+            if (filters.value.type.length > 0) {
+                value = value + `supplement_type=${filters.value.type.toString()}`
+            }
+
+            router.push(`/supplement/search?${value}`)
         }
         
         return {
             searchKeyword,
+            filterOpts,
+            filters,
+            toggleFilter,
             searchNow,
             search,
             searchBox,
