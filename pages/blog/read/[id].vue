@@ -36,7 +36,7 @@
             </div>            
             <hr class="mt-5 mb-3" />
             <div class="d-flex align-items-center justify-content-end h4 text-primary">
-                <BlogFeaturesGBlogLike :is-liked="isLiked" :id="blog.id"></BlogFeaturesGBlogLike>
+                <!-- <BlogFeaturesGBlogLike :is-liked="isLiked" :id="blog.id"></BlogFeaturesGBlogLike> -->
                 <BlogFeaturesGBlogComment :id="blog.id"></BlogFeaturesGBlogComment>
                 <BlogFeaturesGBlogShare :objData="blog" id="share-modal"></BlogFeaturesGBlogShare>
             </div>

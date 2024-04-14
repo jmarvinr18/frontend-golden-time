@@ -89,6 +89,14 @@ export const useSupplementStore = defineStore("supplementStore", {
                 return res.data;
             });
         },
+        async searchSupplement(query: any = "") {
+            generalStore().setIsLoading(true);
+            return GApiSupplement.SearchSupplements(query).then((res: any) => {
+                generalStore().setIsLoading(false);
+                this.allSupplements = res.data.data;
+                return res.data;
+            });
+        },
         async getSupplement(id: any) {
             generalStore().setIsLoading(true);
             return GApiSupplement.getDetailSupplement(id).then((res: any) => {

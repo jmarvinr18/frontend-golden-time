@@ -7,12 +7,13 @@
             <div class="g-card-info">
                 <div class="g-card-title h5"> {{ useTruncateText(blog?.title, 45) }}</div>
                 <div class="d-flex align-items-center">
-                    <div class="text-muted f10">30 seconds ago</div>
-                    <NuxtLink :to="`/users/detail/${blog?.user_id}`" class="text-decoration-none text-dark">
+                    <div class="text-muted f10">{{ $formatTime(blog?.created_at) }}</div>
+                    <NuxtLink :to="`/users/${blog?.user_id}`" class="text-decoration-none text-dark">
                     <div class="d-flex ms-3 align-items-center">
-                        <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" />
-                        <!-- <i class="bi bi-person-circle h5"></i> -->
-                        <!-- <div class="ms-2"> {{ blog?.user_id }} </div> -->
+                        <!-- <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" /> -->
+                        <i class="bi bi-person-circle h5 mb-0"></i>
+                        <div class="ms-2" v-if="blog.users"> {{ blog?.users?.name }} </div>
+                        <div class="ms-2" v-else> {{ blog?.author }} </div>
                     </div>
                     </NuxtLink>
                 </div>

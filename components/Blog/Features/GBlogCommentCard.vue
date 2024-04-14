@@ -15,8 +15,8 @@
             <div class="mt-2 d-flex gap-2 text-primary">
                 <i v-if="comment?.is_reply" class="bi bi-arrow-90deg-left cursor-pointer" data-bs-toggle="collapse" :data-bs-target="`#reply-${comment?.reply_to}`" aria-expanded="false" :aria-controls="`reply-${comment?.reply_to}`"></i>
                 <i v-else class="bi bi-arrow-90deg-left cursor-pointer" data-bs-toggle="collapse" :data-bs-target="`#reply-${comment?.id}`" aria-expanded="false" :aria-controls="`reply-${comment?.id}`"></i>
-                <i class="bi bi-heart-fill"></i>
-                <i class="bi bi-person-plus"></i>
+                <!-- <i class="bi bi-heart-fill"></i>
+                <i class="bi bi-person-plus"></i> -->
             </div>
         </div>
     </div>
@@ -38,8 +38,8 @@
                 <div class="mt-1 d-flex gap-2 text-primary">
                     <i v-if="comment?.is_reply" class="bi bi-arrow-90deg-left cursor-pointer" data-bs-toggle="collapse" :data-bs-target="`#reply-${comment?.reply_to}`" aria-expanded="false" :aria-controls="`reply-${comment?.reply_to}`"></i>
                     <i v-else class="bi bi-arrow-90deg-left cursor-pointer" data-bs-toggle="collapse" :data-bs-target="`#reply-${comment?.id}`" aria-expanded="false" :aria-controls="`reply-${comment?.id}`"></i>
-                    <i class="bi bi-heart-fill"></i>
-                    <i class="bi bi-person-plus"></i>
+                    <!-- <i class="bi bi-heart-fill"></i>
+                    <i class="bi bi-person-plus"></i> -->
                 </div>
             </div>
         </div>

@@ -10,6 +10,9 @@ export default {
     async getAllSupplements(query: any) {
         return ApiService.get(`/api/v1/supplement${query}`);
     },
+    async SearchSupplements(query: any) {
+        return ApiService.get(`/api/v1/public/supplement${query}`);
+    },
     async getDetailSupplement(id: any) {
         return ApiService.get(`/api/v1/supplement/${id}`);
     },
