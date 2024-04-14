@@ -13,7 +13,7 @@
                     </NuxtLink>
                 </div>
             </div>
-            <button class="btn btn-outline-secondary rounded-pill mt-3 w-50"><i class="bi bi-trash me-2"></i>Exclusion</button>
+            <button class="btn btn-outline-secondary rounded-pill mt-3 w-50"><i class="bi bi-trash me-2"></i>削除する</button>
         </div>
         <div v-else class="card-body text-center d-flex align-items-center">
             <div :class="updateMode? 'w-75':'w-100'">
@@ -54,7 +54,7 @@
                     </button>
                 </div>
             </div>
-            <button class="w-100 btn btn-outline-secondary rounded-pill mt-3 w-50 f10"><i class="bi bi-trash me-2"></i>Exclusion</button>
+            <button class="w-100 btn btn-outline-secondary rounded-pill mt-3 w-50 f10"><i class="bi bi-trash me-2"></i>削除する</button>
         </div>
         <div v-else class="card-body text-center p-1 align-items-center">
             <div class="d-flex justify-between w-100">
