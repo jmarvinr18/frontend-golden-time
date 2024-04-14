@@ -19,11 +19,11 @@
                         <i class="bi bi-sort-up h2"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><h6 class="dropdown-header">Sort Supplements</h6></li>
-                        <li><a class="dropdown-item" href="#">Lowest Price</a></li>
-                        <li><a class="dropdown-item" href="#">Most Registration</a></li>
-                        <li><a class="dropdown-item" href="#">High effective Rate</a></li>
-                        <li><a class="dropdown-item" href="#">High easy to consume Rate</a></li>
+                        <li><h6 class="dropdown-header">{{ $t("SortLabel") }}</h6></li>
+                        <li><a class="dropdown-item" href="#">{{ $t("SortLowestPrice") }}</a></li>
+                        <li><a class="dropdown-item" href="#">{{ $t("SortMostRegistration") }}</a></li>
+                        <li><a class="dropdown-item" href="#">{{ $t("SortHighEffectiveRate") }}</a></li>
+                        <li><a class="dropdown-item" href="#">{{ $t("SortHighEasyToConsume") }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -34,6 +34,23 @@
         <!-- SEARCH RESULT -->
         <div class="container mx-auto mt-5">
             <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in allSupplements" :key="supplement.id"></SupplementGSupplementSearchItem>
+
+            <div class="d-flex justify-content-between align-items-center mt-lg">
+                <div class="w-25">
+                    <select class="form-select" aria-label="Default select example" v-model="searchData.meta.per_page" @change="searchNow">
+                        <option value="">Supplements Per Page</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination mb-0">
+                        <li v-for="(link, idx) in searchData.meta.links" class="page-item" :class="{ 'active':link.active, 'disabled':idx==0 && !checkPrev || idx==(searchData.meta.links.length-1) && !checkNext }"><a class="page-link"  v-html="link.label" @click="searchNow(link.label)"></a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
 
     </ais-instant-search>   
@@ -57,11 +74,11 @@
                         <i class="bi bi-sort-up h2"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><h6 class="dropdown-header">Sort Supplements</h6></li>
-                        <li><a class="dropdown-item" href="#">Lowest Price</a></li>
-                        <li><a class="dropdown-item" href="#">Most Registration</a></li>
-                        <li><a class="dropdown-item" href="#">High effective Rate</a></li>
-                        <li><a class="dropdown-item" href="#">High easy to consume Rate</a></li>
+                        <li><h6 class="dropdown-header">{{ $t("SortLabel") }}</h6></li>
+                        <li><a class="dropdown-item" href="#">{{ $t("SortLowestPrice") }}</a></li>
+                        <li><a class="dropdown-item" href="#">{{ $t("SortMostRegistration") }}</a></li>
+                        <li><a class="dropdown-item" href="#">{{ $t("SortHighEffectiveRate") }}</a></li>
+                        <li><a class="dropdown-item" href="#">{{ $t("SortHighEasyToConsume") }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -81,7 +98,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { 
     AisInstantSearch, 
     AisSearchBox, 
@@ -140,7 +157,20 @@ export default defineComponent({
         var authStore = useAuthStore()
         var { isAuthenticated } = storeToRefs(authStore)
         var supplementStore = isAuthenticated.value ? useSupplementStore() : usePublicContentStore()
-        var { allSupplements } = storeToRefs(supplementStore)
+        var { allSupplements } = storeToRefs(supplementStore);
+        var searchData = ref({
+            meta:{
+                links:[],
+                per_page: 10,
+                current_page:1
+            }
+        });
+        var checkPrev = computed(() => {
+            return searchData.value.meta.current_page > 1;
+        });
+        var checkNext = computed(() => {
+            return searchData.value.meta.current_page < searchData.value.meta.last_page;
+        });
 
         const toggleFilter = (val:any) => {
             if (filters.value.type.includes(val)) {
@@ -149,15 +179,74 @@ export default defineComponent({
             } else {
                 filters.value.type.push(val);
             }
+
+            searchNow('');
         }
 
-        const search = useAlgoliaRef()
+        const search = useAlgoliaRef();
+
+        const searchNow = (page:any) => {
+            let q = "?";
+            q = q + `page_size=${searchData.value.meta.per_page}&`;
+
+            if (page.length > 0) {
+                if (page.toLowerCase().includes('next') || page.toLowerCase().includes('previous')) {
+                    if (page.toLowerCase().includes('next')) {
+                        q = q + `page=${searchData.value.meta.current_page + 1}&`;
+                    } else {
+                        q = q + `page=${searchData.value.meta.current_page - 1}&`;
+                    }
+                } else {
+                    q = q + `page=${page}&`;
+                }
+            };
+
+            if (route.query.kw) {
+                q = `?keyword=${route.query.kw}&`;
+            }
+
+            if (filters.value.type.length > 0) {
+                q = q + 'supplement_type=' + filters.value.type;
+            }
+
+            
+            supplementStore.searchSupplement(q).then((res:any) => {
+                searchData.value = res;
+            })
+        }
+
+        const initSearch = (page:any) => {
+            let q = "?";
+            q = q + `page_size=${searchData.value.meta.per_page}&`;
+
+            if (page) {
+                q = q + `page=${page}&`;
+            };
+
+            if (route.query.kw) {
+                q = `?keyword=${route.query.kw}&`;
+                searchKeyword.value = route.query.kw;
+            }
+            
+            if (route.query.supplement_type) {
+                const supp_type = route.query.supplement_type.split(",");
+                supp_type.map((item:any) => {
+                    toggleFilter(item);
+                })
+            }
+
+            q = q + 'supplement_type=' + filters.value.type;
+
+            supplementStore.searchSupplement(q).then((res:any) => {
+                searchData.value = res;
+            })
+        }
+
         onMounted(async() => {
-            searchKeyword.value = route.query.kw
-            supplementStore.getAllSupplement()
+            initSearch('');
         })
 
-        var searchBox = ref()
+        var searchBox = ref();
 
         var onStateChange = ({ uiState, setUiState }: any) => {
             searchBox.value = uiState.supplements.query
@@ -170,13 +259,25 @@ export default defineComponent({
 
         return {
             onStateChange,
+            searchNow,
+            checkNext,
+            checkPrev,
             search,
+            searchData,
             allSupplements,
             filterOpts,
             filters,
             toggleFilter,
             onActiveSearch,
             searchKeyword
+        }
+    },
+    watch: {
+        filters: {
+            type(val) {
+                console.log(val)
+            },
+            deep: true,
         }
     }
 })

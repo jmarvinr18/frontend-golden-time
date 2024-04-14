@@ -113,20 +113,23 @@ export default defineComponent({
         })  
 
         var searchNow = (val: object) => {
-            var value;
-            if(val.target.value != undefined) {
-                value = val.target.value
-            } else {
-                
-                value = searchKeyword.value
+            var value = "";
+            if(searchKeyword.value) {
+                value = value + `k=${searchKeyword.value}&`
             }
 
-            router.push(`/supplement/search?kw=${value}`)
-            
+            if (filters.value.type.length > 0) {
+                value = value + `supplement_type=${filters.value.type.toString()}`
+            }
+
+            router.push(`/supplement/search?${value}`)
         }
         
         return {
             searchKeyword,
+            filterOpts,
+            filters,
+            toggleFilter,
             searchNow,
             search,
             searchBox,
