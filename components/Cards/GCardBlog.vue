@@ -8,11 +8,11 @@
                 <div class="g-card-title h5"> {{ useTruncateText(blog?.title, 45) }}</div>
                 <div class="d-flex align-items-center">
                     <div class="text-muted f10">30 seconds ago</div>
-                    <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
+                    <NuxtLink :to="`/users/detail/${blog?.user_id}`" class="text-decoration-none text-dark">
                     <div class="d-flex ms-3 align-items-center">
-                        <!-- <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" /> -->
-                        <i class="bi bi-person-circle h5"></i>
-                        <div class="ms-2"> {{ blog?.user }} </div>
+                        <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" />
+                        <!-- <i class="bi bi-person-circle h5"></i> -->
+                        <!-- <div class="ms-2"> {{ blog?.user_id }} </div> -->
                     </div>
                     </NuxtLink>
                 </div>
@@ -47,7 +47,7 @@
                                 <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
                                 <div class="d-flex align-items-center">
                                     <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="width: 20px; height: 20px;" class="object-fit-cover rounded-pill f14" />
-                                    <div class="ms-2 f12 text-light">{{ blog?.user }} </div>
+                                    <div class="ms-2 f12 text-light">{{ blog?.user_id }} </div>
                                 </div>
                                 </NuxtLink>
                             </div>

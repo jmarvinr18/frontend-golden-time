@@ -6,15 +6,15 @@
 
             <div class="row">
                 <div class="col-md-4 col-xs-12">
-                <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+                    <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+                    <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
+                    <CardsGCardSuplement :update-mode="true" mode="other"></CardsGCardSuplement>
                 </div>
-                <UtilsGLoadMore></UtilsGLoadMore>
+                    <UtilsGLoadMore></UtilsGLoadMore>
             </div>
         </div>
         <div class="container pt-2 pb-4">
@@ -76,3 +76,22 @@
         </div>
     </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, onMounted } from 'vue'
+import { useRoute } from 'vue-router';
+
+export default defineComponent({
+    setup() {
+        const route = useRoute();
+
+        onMounted(() =>{
+            console.log(route)
+        })
+
+        return {
+
+        }
+    }
+})
+</script>
