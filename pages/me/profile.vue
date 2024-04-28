@@ -5,7 +5,7 @@
         <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
         <div class="row">
-          <div v-for="(supplement) in userData.supplements" class="col-md-4 col-xs-12">
+          <div v-for="(supplement) in userData.supplements" class="col-md-3 col-xs-12">
             <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>
@@ -15,7 +15,7 @@
         <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
 
         <div class="row">
-          <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12">
+          <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12 mb-5">
             <CardsGCardSuplement :supplement="supplement?.supplement_details"></CardsGCardSuplement>
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>          
@@ -25,7 +25,7 @@
         <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
 
         <div class="row">
-          <div v-for="(blog) in userData.blogs" class="col-md-6 col-xs-12 mb-5">
+          <div v-for="(blog) in userData.blogs" class="col-md-5 col-xs-12 mb-5">
             <CardsGCardBlog :blog="blog"></CardsGCardBlog>
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>

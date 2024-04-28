@@ -62,6 +62,7 @@ export const usePublicContentStore = defineStore("publicContentStore", {
             generalStore().setIsLoading(true);
             return GApiPublicContents.getAllSupplement().then((res: any) => {
                 generalStore().setIsLoading(false);
+                console.log("SUPPLEMENTS: ", res.data.data)
                 this.allSupplements = res.data.data
             });
         },

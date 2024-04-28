@@ -33,7 +33,7 @@
         </div>
         <!-- SEARCH RESULT -->
         <div class="container mx-auto mt-5">
-            <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in allSupplements" :key="supplement.id"></SupplementGSupplementSearchItem>
+            <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="supplement.id"></SupplementGSupplementSearchItem>
 
             <div class="d-flex justify-content-between align-items-center mt-lg">
                 <div class="w-25">
@@ -89,7 +89,7 @@
         <div class="is-mobile w-100 rounded-lg py-5 mt-4 bg-white border border-2">
             <!-- SEARCH RESULTs -->
             <div class="container mx-auto mt-5">
-                <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in allSupplements" :key="supplement.id"></SupplementGSupplementSearchItem>
+                <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="supplement.id"></SupplementGSupplementSearchItem>
             </div>
         </div>
     </ais-instant-search>
@@ -210,12 +210,12 @@ export default defineComponent({
             }
 
             
-            supplementStore.searchSupplement(q).then((res:any) => {
+            useSupplementStore().searchSupplement(q).then((res:any) => {
                 searchData.value = res;
             })
         }
 
-        const initSearch = (page:any) => {
+        const initSearch = (page:any = "") => {
             let q = "?";
             q = q + `page_size=${searchData.value.meta.per_page}&`;
 
@@ -237,13 +237,14 @@ export default defineComponent({
 
             q = q + 'supplement_type=' + filters.value.type;
 
-            supplementStore.searchSupplement(q).then((res:any) => {
+            useSupplementStore().searchSupplement(q).then((res:any) => {
+                console.log("Q: ", res.data)
                 searchData.value = res;
             })
         }
 
         onMounted(async() => {
-            initSearch('');
+            initSearch();
         })
 
         var searchBox = ref();
@@ -272,14 +273,14 @@ export default defineComponent({
             searchKeyword
         }
     },
-    watch: {
-        filters: {
-            type(val) {
-                console.log(val)
-            },
-            deep: true,
-        }
-    }
+    // watch: {
+    //     filters: {
+    //         type(val) {
+    //             console.log(val)
+    //         },
+    //         deep: true,
+    //     }
+    // }
 })
 
 

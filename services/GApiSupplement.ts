@@ -32,9 +32,12 @@ export default {
         return ApiService.post(`/api/v1/supplement/user/comment`, data);
     },
     async addOrRemoveFromDrinkWish(supplement_id: string) {
-        return ApiService.post(`/api/v1/user-supplement-wish/${supplement_id}`);
+        return ApiService.put(`/api/v1/user-supplement-wish/${supplement_id}`);
     },
     async addOrRemoveFromHasDranklist(supplement_id: string) {
         return ApiService.post(`/api/v1/user-supplement-drinking/${supplement_id}`);
+    },
+    async removeDrinkWish(supplement_id: string){
+        return ApiService.delete(`/api/v1/user-supplement-wish/${supplement_id}`);
     }
-}
+}   

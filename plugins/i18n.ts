@@ -163,7 +163,11 @@ export const i18n = createI18n({
             SupplementCreatedMsg: "Your supplement has been successfully created!",
             SupplementUpdatedMsg: "Your supplement has been successfully updated!",
             SupplemenRemovedMsg: "Your supplement has been successfully removed!",
+            SupplementWishRemovedMsg: "Your supplement wish has been successfully removed.",
+            SupplementWishRemovalQuestion: "are you sure you want to remove this from your drink list?",
+            SupplementRemovalTitle: "Remove from your drink list.",
             CommentAddedMsg: "Your comment has been successfully added!",
+            Yes: "Yes",
             Great: "Great!",
             Oops: "Oops!",         
             WelcomeBack: "Welcome back!",
@@ -180,7 +184,12 @@ export const i18n = createI18n({
             Unauthenticated: "You are not currently logged in.",
             ProblemOccured: "There's a problem on this request. Please contact the administrator.",
             CommentFieldMustNotBeEmpty: "Please make sure that the comment field isn't empty",
-            GiveSomeRatings: "Please give some ratings."
+            GiveSomeRatings: "Please give some ratings.",
+            SortLowestPrice: "Lowest Price",
+            SortMostRegistration: "Most Registration",
+            SortHighEffectiveRate: "High effective Rate",
+            SortHighEasyToConsume: "High easy to consusme Rate",
+            SortLabel: "Sort label"
         },
         ja: {
             SupplementRegistration: 'サプリ登録',
@@ -338,6 +347,10 @@ export const i18n = createI18n({
             SupplementCreatedMsg: "→サプリメントを登録しました！",
             SupplementUpdatedMsg: "→サプリメントを更新しました！",
             SupplemenRemovedMsg: "→サプリメントを削除しました！",
+            SupplementWishRemovedMsg: "あなたのサプリメントの願いは正常に削除されました。",
+            SupplementWishRemovalQuestion: "これを飲み物リストから削除してもよろしいですか?",
+            SupplementRemovalTitle: "飲み物リストから削除してください。",
+            Yes: "はい",
             CommentAddedMsg: "→コメントを投稿できました！",
             Great: "ログイン成功",
             Oops: "ユーザ登録/ログインしてください",
@@ -354,7 +367,12 @@ export const i18n = createI18n({
             Unauthenticated: "ログインしてください",
             ProblemOccured: "このリクエストには問題があります。管理者にお問い合わせください。",
             CommentFieldMustNotBeEmpty: "コメントが空でないことを確認してください",
-            GiveSomeRatings: "評価をお願いします。"
+            GiveSomeRatings: "評価をお願いします。",
+            SortLowestPrice: "安い順",
+            SortMostRegistration: "登録が多い順",
+            SortHighEffectiveRate: "H効果順",
+            SortHighEasyToConsume: "食べやすさ順",
+            SortLabel: "ソートラベル"
         }
     }
 })
