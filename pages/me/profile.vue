@@ -25,7 +25,7 @@
         <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
 
         <div class="row">
-          <div v-for="(blog) in userData.blogs" class="col-md-5 col-xs-12 mb-5">
+          <div v-for="(blog) in userData.blogs" class="col-md-6 col-xs-12 mb-5">
             <CardsGCardBlog :blog="blog"></CardsGCardBlog>
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>
