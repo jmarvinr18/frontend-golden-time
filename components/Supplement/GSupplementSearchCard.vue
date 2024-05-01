@@ -318,12 +318,9 @@ export default defineComponent({
 
         var onStateChange = ({ uiState, setUiState }: any) => {
             searchBox.value = uiState.supplements.query
-
-            console.log(uiState.supplements)
             setUiState(uiState);
         }
         var onActiveSearch = computed(() => {
-
             return searchBox.value == undefined ? false : true
         })
 
