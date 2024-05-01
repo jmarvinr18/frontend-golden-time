@@ -1,5 +1,5 @@
 <template>
-    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="searchClient" class="is-desktop w-100 rounded-lg py-5 mt-4 bg-white border border-2">
+    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search" class="is-desktop w-100 rounded-lg py-5 mt-4 bg-white border border-2">
         <!-- SEARCH BOX AND FILTER -->
         <ais-configure :attributesToSnippet="['description']"/>
         
@@ -94,7 +94,7 @@
 
     </ais-instant-search>   
     
-    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :on-state-change="onStateChange" index-name="supplements" :search-client="searchClient">
+    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
         
         <div class="is-mobile container search-bar" style="margin-bottom:-90px">
             <ais-configure :attributesToSnippet="['description']"/>
@@ -123,7 +123,35 @@
             </div>
             <div class="gl-search-filter-category d-flex justify-content-between w-100 mx-auto px-4">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
-            </div>         
+            </div>
+            <!-- v-if="onActiveSearch" -->
+            <div v-if="onActiveSearch" class="search-result-mobile">
+                    <ais-hits :class-names="{'ais-Hits-item': 'searchHitItems'}">
+                        <template v-slot:item="{ item }">
+                            <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
+                                <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
+                                <div class="search-hit-item-body">
+                                    <h6 class="fw-bold">
+                                        <ais-highlight
+                                            attribute="name"
+                                            :hit="item"
+                                            highlighted-tag-name="em"
+                                        >  {{ item.name }}</ais-highlight>                                       
+                                       
+                                    </h6>
+                                    <div class="fs-12">
+                                        <ais-snippet
+                                            attribute="description"
+                                            :hit="item"
+                                            highlighted-tag-name="em"
+                                        /> 
+                                    </div>                                    
+                                </div>
+                            </a>
+
+                        </template>
+                    </ais-hits>                     
+                </div>                           
         </div>
         <div class="is-mobile w-100 rounded-lg py-5 mt-4 bg-white border border-2">
             <!-- SEARCH RESULTs -->
@@ -222,7 +250,7 @@ export default defineComponent({
             searchNow('');
         }
 
-        const searchClient = useAlgoliaRef();
+        const search = useAlgoliaRef();
 
         const searchNow = (page:any) => {
             let q = "?";
@@ -264,7 +292,7 @@ export default defineComponent({
 
             if (route.query.kw) {
                 q = `?keyword=${route.query.kw}&`;
-                searchKeyword.value = route.query.kw;
+                searchKeyword.value = route.query.k;
             }
             
             if (route.query.supplement_type) {
@@ -282,6 +310,7 @@ export default defineComponent({
         }
 
         onMounted(async() => {
+            searchKeyword.value = route.query.k
             initSearch();
         })
 
@@ -303,7 +332,7 @@ export default defineComponent({
             searchNow,
             checkNext,
             checkPrev,
-            searchClient,
+            search,
             searchData,
             allSupplements,
             filterOpts,
