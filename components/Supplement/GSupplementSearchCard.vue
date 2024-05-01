@@ -1,17 +1,15 @@
 <template>
-    <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search" class="is-desktop w-100 rounded-lg py-5 mt-4 bg-white border border-2">
+    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="searchClient" class="is-desktop w-100 rounded-lg py-5 mt-4 bg-white border border-2">
         <!-- SEARCH BOX AND FILTER -->
         <ais-configure :attributesToSnippet="['description']"/>
-
+        
         <div class="search-bar container py-4">
             <div class="d-flex w-75 mx-auto ">
                 <div class="input-group mb-3 w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
 
-                    <input type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0" placeholder="Search here" />
-
-                    <!-- <span class="input-group-text bg-dark text-light px-4 border-0" id="basic-addon2" style="border-radius:0 0 0 30px">
-                        <i class="bi bi-sort-up"></i>
-                    </span> -->
+                    <!-- <input id="tes" type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0" placeholder="Search here" /> -->
+                    <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0" placeholder="Search here" />                
+      
                 </div>
                     <!-- SEARCH BOX AND FILTER -->
                 <div class="dropdown">
@@ -31,13 +29,54 @@
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
             </div>
         </div>
+
+        <div v-if="onActiveSearch" class="search-result">
+            <ais-state-results>
+            <template v-slot="{ state: { query }, results: { hits } }">
+                <ais-hits v-if="hits.length > 0" :class-names="{'ais-Hits-item': 'searchHitItems'}">
+                    <template v-slot:item="{ item }">
+                        <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
+                            <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
+                            <div class="search-hit-item-body">
+                                <h6 class="fw-bold">
+                                    <ais-highlight
+                                        attribute="name"
+                                        :hit="item"
+                                        highlighted-tag-name="em"
+                                    />                                       
+                                
+                                </h6>
+
+                                <div class="fs-12">
+                                    <ais-snippet
+                                        attribute="description"
+                                        :hit="item"
+                                        highlighted-tag-name="em"
+                                    />                                        
+                                </div>                                    
+                            </div>
+                        </a>
+
+                    </template>
+                </ais-hits>                              
+                <div class="p-2 text-center searchHitItems" v-else>
+                    {{ $t('NoResultsFound', { query: query })  }}.
+                    <ais-clear-refinements :excluded-attributes="[]">
+                        <template v-slot:resetLabel>
+                            <span class="text-danger fs-8">{{ $t('ClearRefinements') }}</span>
+                        </template>
+                    </ais-clear-refinements>
+                </div>
+            </template>
+            </ais-state-results>                                      
+        </div>         
         <!-- SEARCH RESULT -->
         <div class="container mx-auto mt-5">
             <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="supplement.id"></SupplementGSupplementSearchItem>
 
             <div class="d-flex justify-content-between align-items-center mt-lg">
                 <div class="w-25">
-                    <select class="form-select" aria-label="Default select example" v-model="searchData.meta.per_page" @change="searchNow">
+                    <select id="pager" class="form-select" aria-label="Default select example" v-model="searchData.meta.per_page" @change="searchNow">
                         <option value="">Supplements Per Page</option>
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -55,14 +94,14 @@
 
     </ais-instant-search>   
     
-    <ais-instant-search :on-state-change="onStateChange" index-name="supplements" :search-client="search">
+    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :on-state-change="onStateChange" index-name="supplements" :search-client="searchClient">
         
         <div class="is-mobile container search-bar" style="margin-bottom:-90px">
             <ais-configure :attributesToSnippet="['description']"/>
             <div class="d-flex w-100 mx-auto ">
                 <div class="input-group mb-3 w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
 
-                    <input type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
+                    <input id="tes-mobile" type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
 
                     <span class="input-group-text px-4 border-0" id="basic-addon2" >
                         <i class="bi bi-search"></i>
@@ -98,7 +137,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+// import { defineComponent, computed } from 'vue'
 import { 
     AisInstantSearch, 
     AisSearchBox, 
@@ -183,7 +222,7 @@ export default defineComponent({
             searchNow('');
         }
 
-        const search = useAlgoliaRef();
+        const searchClient = useAlgoliaRef();
 
         const searchNow = (page:any) => {
             let q = "?";
@@ -238,7 +277,6 @@ export default defineComponent({
             q = q + 'supplement_type=' + filters.value.type;
 
             useSupplementStore().searchSupplement(q).then((res:any) => {
-                console.log("Q: ", res.data)
                 searchData.value = res;
             })
         }
@@ -251,6 +289,8 @@ export default defineComponent({
 
         var onStateChange = ({ uiState, setUiState }: any) => {
             searchBox.value = uiState.supplements.query
+
+            console.log(uiState.supplements)
             setUiState(uiState);
         }
         var onActiveSearch = computed(() => {
@@ -263,7 +303,7 @@ export default defineComponent({
             searchNow,
             checkNext,
             checkPrev,
-            search,
+            searchClient,
             searchData,
             allSupplements,
             filterOpts,
@@ -292,10 +332,10 @@ export default defineComponent({
     .search-result {
         position: absolute;
         background-color:  #ffff;
-        width: 73.5%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, 5%);
+        width: 65%;
+        top: 200px;
+        left: 200px;
+        transform: translate(50px, 50px);
         border-radius: 5px;
         box-shadow: 0 2px 5px 0px #e3e5ec;
         padding: 0.5rem;
