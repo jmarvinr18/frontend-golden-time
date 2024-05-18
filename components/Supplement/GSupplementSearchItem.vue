@@ -13,7 +13,7 @@
                     </span>
                    
                 </button>
-                <button to="/login?ref=search" v-else class="btn btn-primary btn-sm rounded-pill py-2 f14" @click="askLogin">{{ $t("MySupplementRegistration") }}</button>
+                <button to="/login?ref=search" v-else class="btn btn-primary btn-sm rounded-pill py-2 f14" @click="askLogin">{{ $t("MySupplementRegistrationNotLoggedIn") }}</button>
                 <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
                     <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                     <span class="align-self-center">
