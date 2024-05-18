@@ -4,6 +4,7 @@ import { useGeneralStore as generalStore } from "./GStoreGeneral";
 import type { Supplement } from "./GStoreSupplement";
 import type { Blog } from "./GStoreBlog";
 import type { Follows } from "./GStoreFollow";
+import { i18n } from "~/plugins/i18n";
 
 const ACCESS_TOKEN = "access_token";
 const PROFILE = "profile";
@@ -94,13 +95,13 @@ export const useAuthStore = defineStore("authStore", {
                 this.isAuthenticated = true
                 this.token = res.data.token
 
-                generalStore().setSuccess(true, "Welcome back!");
+                generalStore().setSuccess(true, i18n.global.t("WelcomeBack"));
 
                 useRouter().push("/me/profile")
 
             }).catch((err: any) => {
                 const msg = err.response.data.message;
-                generalStore().setError(true, "パスワードが一致します。再度ご入力ください");
+                generalStore().setError(true, i18n.global.t("PasswordDontMatch"));
             });
         },
         async verifyEmail(data: any) {
@@ -130,16 +131,22 @@ export const useAuthStore = defineStore("authStore", {
             generalStore().setIsLoading(true);
             return GApiAuth.updateProfile(this.userData, this.userData.id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true,"");
+                generalStore().setSuccess(true, i18n.global.t("ProfileSubmittedMsg"));
 
                 setTimeout(() => {
                     window.location.href = "/me/profile";
                 }, 3000)
                 return res.data;
             }).catch((err: any) => {
-                generalStore().setIsLoading(false);
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async getProfile(id: any) {
@@ -148,16 +155,22 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setIsLoading(false);
                 this.userData = res.data;
             }).catch((err: any) => {
-                generalStore().setIsLoading(false);
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async sendForgotPasswordRequest(payload: any) {
             generalStore().setIsLoading(true);
             return GApiAuth.forgotPassword({ email: payload }).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Reset password link has been sent to your email.");
+                generalStore().setSuccess(true, i18n.global.t("ResetPasswordSent"));
             }).catch((err: any) => {
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);
@@ -167,7 +180,7 @@ export const useAuthStore = defineStore("authStore", {
             generalStore().setIsLoading(true);
             return GApiAuth.resetPassword(payload).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your password has been changed successfully.");
+                generalStore().setSuccess(true, i18n.global.t("PasswordChanged"));
                 setTimeout(() => {
                     window.location.href = "/login";
                 }, 5000)

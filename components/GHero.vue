@@ -28,9 +28,9 @@
                     <i class="bi bi-search me-3"></i>
                 </a>                
             </div>
-            <div class="d-flex w-75 mx-auto justify-content-between">
+            <div class="gl-search-filter-category d-flex gap-5 justify-content-between px-5 mx-auto">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
-            </div>
+            </div>         
         </div>                
     </di>    
     
@@ -65,7 +65,7 @@ export default defineComponent({
         var searchKeyword = ref("")
         const search = useAlgoliaRef()
         const router = useRouter()
-        var searchBox = ref();
+        var searchBox = ref()
         const filterOpts = ref([
             {
                 title:"Protein",
@@ -87,11 +87,10 @@ export default defineComponent({
                 title:"HMB",
                 value:"hmb"
             }
-        ]);
+        ])
         const filters = ref({
             type: [],
-        });
-
+        })        
         const toggleFilter = (val:any) => {
             if (filters.value.type.includes(val)) {
                 const getIdx = filters.value.type.indexOf(val);
@@ -99,8 +98,7 @@ export default defineComponent({
             } else {
                 filters.value.type.push(val);
             }
-        }
-
+        }        
         var onStateChange = ({ uiState, setUiState }: any) => {
 
             searchBox.value = uiState.supplements.query
@@ -136,7 +134,10 @@ export default defineComponent({
             search,
             searchBox,
             onStateChange,
-            onActiveSearch
+            onActiveSearch,
+            filterOpts,
+            toggleFilter,
+            filters
         }
     },
 })
@@ -147,6 +148,7 @@ export default defineComponent({
     height: 100px;
     top: 80%;
 }
+
 .search-bar {
         position: relative;
     }

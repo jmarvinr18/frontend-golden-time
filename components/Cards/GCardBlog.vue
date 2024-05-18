@@ -48,7 +48,7 @@
                                 <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
                                 <div class="d-flex align-items-center">
                                     <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="width: 20px; height: 20px;" class="object-fit-cover rounded-pill f14" />
-                                    <div class="ms-2 f12 text-light">{{ blog?.user }} </div>
+                                    <div class="ms-2 f12 text-light">{{ blog?.user_id }} </div>
                                 </div>
                                 </NuxtLink>
                             </div>

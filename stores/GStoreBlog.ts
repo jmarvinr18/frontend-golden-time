@@ -3,6 +3,7 @@ import GApiBlog from "~/services/GApiBlog";
 import { useGeneralStore as generalStore } from "./GStoreGeneral";
 import type { Comment } from './GStoreSupplement';
 import type { User } from './GStoreAuth';
+import { i18n } from "~/plugins/i18n";
 
 export interface Blog {
     id?: string
@@ -79,33 +80,54 @@ export const useBlogStore = defineStore("blogStore", {
             generalStore().setIsLoading(true);
             return GApiBlog.createBlog(data).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your blog has been successfully created!");
+                generalStore().setSuccess(true, i18n.global.t("BlogCreated"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async updateBlog(data: any) {
             generalStore().setIsLoading(true);
             return GApiBlog.updateBlog(data).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your blog has been successfully updated!");
+                generalStore().setSuccess(true, i18n.global.t("BlogUpdated"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async deleteBlog(id: any) {
             generalStore().setIsLoading(true);
             return GApiBlog.deleteBlog(id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your blog has been successfully removed!");
+                generalStore().setSuccess(true, i18n.global.t("BlogRemoved"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async likeBlog(id: any) {
@@ -120,34 +142,55 @@ export const useBlogStore = defineStore("blogStore", {
             generalStore().setIsLoading(true);
             return GApiBlog.createBlogComment(data).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your blog has been successfully created!");
+                generalStore().setSuccess(true, i18n.global.t("BlogCommentCreated"));
                 this.getBlog(this.blog.id);
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async updateBlogComment(data: any) {
             generalStore().setIsLoading(true);
             return GApiBlog.updateBlogComment(data).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your blog has been successfully updated!");
+                generalStore().setSuccess(true, i18n.global.t("BlogCommentUpdated"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
         async deleteBlogComment(id: any) {
             generalStore().setIsLoading(true);
             return GApiBlog.deleteBlogComment(id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your blog has been successfully removed!");
+                generalStore().setSuccess(true, i18n.global.t("BlogCommentDeleted"));
                 return res.data;
             }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
+                var status = err.response.status
+                var errorMsg
+
+                if (status == 401) {
+                    errorMsg = i18n.global.t("Unauthenticated")
+                } else {
+                    errorMsg = i18n.global.t("ProblemOccured")
+                }
+                generalStore().setError(true, errorMsg);
             });
         },
     }

@@ -17,11 +17,14 @@
                 </div>
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container ps-3">
                     <div class="w-100 g-profile-content">
-                        <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2 position-relative">
+                        <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
                             <i class="bi bi-pencil me-1"></i>
-                            {{ $t("EditProfile") }}
+                            Edit Profile
                         </NuxtLink>
-                        <ProfileGProfileFollowBtn v-else></ProfileGProfileFollowBtn>
+                        <button v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                            <i class="bi bi-person-plus me-1"></i>
+                            Follow
+                        </button>
                         
                         <div class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content mt-5">
                             {{ $t("BirthDateLable") }}: {{ $formatTime(objData.profile_details.birth_date) }}
@@ -39,7 +42,7 @@
                 </div>
             </div>
             <div class="position-absolute top-10 w-100 g-profile-dp">
-                <img :src="userImage? userImage:'/images/no-image.jpeg'" style="height: 270px; width: 270px;" class="bg-white object-fit-contain rounded-circle mx-auto g-shadow" />
+                <img :src="userImage? userImage:'/images/no-image.jpeg'" style="height: 270px; width: 270px;" class="object-fit-cover rounded-circle mx-auto g-shadow" />
                 <div class="h2 mt-4 fw-bold mt-5">{{ objData.name }}</div>
                 <div v-if="mode=='me'" class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
@@ -101,11 +104,9 @@
         <div class="is-mobile g-profile-card-main bg-white mx-auto rounded-lg g-shadow w-100 p-3" style="min-height:500px">
             <div class="row align-items-center justify-content-between mt-5">
                 <div class="col-xs-12">
-                    <NuxtLink v-if="mode=='me'" to="/me/edit-profile">
-                        <button class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right position-relative"  style="z-index: 900;">
-                            <i class="bi bi-pencil me-1"></i>
-                            {{ $t("EditProfile") }}
-                        </button>
+                    <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right ">
+                        <i class="bi bi-pencil me-1"></i>
+                        Edit Profile
                     </NuxtLink>
                     <ProfileGProfileFollowBtn v-else></ProfileGProfileFollowBtn>
                 </div>
@@ -142,7 +143,7 @@
                 </div>
             </div>
             <div class="position-absolute w-100 g-profile-dp ">
-                <img :src="userImage? userImage:'/images/no-image.jpeg'" style="height: 170px; width: 170px;" class="bg-white object-fit-contain rounded-circle mx-auto g-shadow user__image" />
+                <img :src="userImage? userImage:'/images/no-image.jpeg'" style="height: 170px; width: 170px;" class="object-fit-cover rounded-circle mx-auto g-shadow user__image" />
                 <div class="h2 mt-4 fw-bold">{{ objData.name }}</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
@@ -189,74 +190,74 @@
 </template>
 <script lang="ts">
 export default defineComponent({
-    props: {
-        objData: {
-            type: Object,
-        },
-        mode: {
-            type: String,
-            default: 'me' // me or other
-        }
+  props: {
+    objData: {
+      type: Object,
     },
-    setup(props) {
-        var userImage = ref("")
+    mode: {
+      type: String,
+      default: "me", // me or other
+    },
+  },
+  setup(props) {
+    var userImage = ref("");
 
-        onBeforeUpdate(() => {
-            userImage.value = props.objData?.profile_details.image
-        })
+    onBeforeUpdate(() => {
+      userImage.value = props.objData?.profile_details.image;
+    });
 
-        return {
-            userImage
-        }
-    }
-})
+    return {
+      userImage,
+    };
+  },
+});
 </script>
 <style scoped>
 .g-profile-card {
-    margin-top: -360px;
-    position: relative;
-    margin-bottom: 10%;
+  margin-top: -360px;
+  position: relative;
+  margin-bottom: 10%;
 }
 
 .g-profile-container {
-    height: 20vh;
+  height: 20vh;
 }
 .g-profile-content {
-    z-index: 900;
-    position: relative;
+  z-index: 900;
+  position: relative;
 }
 .g-profile-text {
-    margin-top: 120px;
+  margin-top: 120px;
 }
 .g-profile-dp {
-    top:-90px;
-    left: 0;
-    /* z-index: 100; */
-    text-align: center;
+  top: -90px;
+  left: 0;
+  /* z-index: 100; */
+  text-align: center;
 }
 
 .g-profile-dp img {
-    border: 5px solid white;
+  border: 5px solid white;
 }
 
-@media only screen and (max-width:1009px)  {
-    .g-profile-card {
-        margin-top:-92%;
-    }    
-    .g-profile-container {
-        height: auto;
-    }
-    .g-profile-content-first {
-        margin-top:70px !important;
-    }
-    .g-profile-content div{
-        min-width: 60px;
-        font-size: 12px !important;
-    }
+@media only screen and (max-width: 1009px) {
+  .g-profile-card {
+    margin-top: -92%;
+  }
+  .g-profile-container {
+    height: auto;
+  }
+  .g-profile-content-first {
+    margin-top: 70px !important;
+  }
+  .g-profile-content div {
+    min-width: 60px;
+    font-size: 12px !important;
+  }
 
-    .g-profile-content-slide>* {
-        width: fit-content;
-        min-width: 120px !important;
-    }
+  .g-profile-content-slide > * {
+    width: fit-content;
+    min-width: 120px !important;
+  }
 }
 </style>
