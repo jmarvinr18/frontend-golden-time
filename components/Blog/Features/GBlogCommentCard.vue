@@ -1,8 +1,7 @@
 <template>
     <div class="is-desktop g-supplement-review-card d-flex flex-wrap gap-2" :class="comment?.replies?.length? '':'mb-4'">
         <div class="g-supplement-review-media">
-            <i class="bi bi-person-circle h2"></i>
-            <!-- <img class="object-fit-cover rounded-circle" src="https://picsum.photos/200/200" style="height: 40px; width: 40px;" /> -->
+            <img class="object-fit-cover rounded-circle" :src="avatarImg" style="height: 40px; width: 40px;" />
         </div>
         <div class="g-supplement-review bg-white border border-secondary rounded-3 p-3" :style="comment?.is_reply? 'width:92%;':''">
             <div class="d-flex justify-content-between text-muted">
@@ -23,8 +22,7 @@
     <div class="is-mobile g-supplement-review-card my-2" :class="comment?.is_reply? 'my-3':''">
         <div class="g-supplement-review w-100 d-flex gap-2 bg-white border border-secondary rounded-lg py-1 px-3">
             <div class="g-supplement-review-media">
-                <i class="bi bi-person-circle h2"></i>
-                <!-- <img class="object-fit-cover rounded-circle" src="https://picsum.photos/200/200" style="height: 40px; width: 40px;" /> -->
+                <img class="object-fit-cover rounded-circle" :src="avatarImg" style="height: 40px; width: 40px;" />
             </div>
             <div class="w-75">
                 <div class="d-flex justify-content-between text-muted w-100">
@@ -58,8 +56,14 @@ export default defineComponent({
     props: {
         comment: Object
     },
-    setup() {
-        
+    setup({comment}) {
+        const avatarImg = computed(() => {
+            return comment?.sender?.profile_details?.image? comment?.sender?.profile_details?.image:'/images/no-avatar.jpeg'
+        })
+
+        return {
+            avatarImg
+        }
     },
 })
 </script>

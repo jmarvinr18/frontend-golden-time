@@ -6,7 +6,7 @@
                     <div class="me-5">
                         <NuxtLink to="/">
                             <!-- <img src="/images/icon.jpeg" style="width: 50px;" /> -->
-                            <div style="background: url('/images/GT_logo_white2.png') no-repeat center center; width: 100px; height: 40px; background-size: cover;"></div>
+                            <div style="background: url('/images/logo.png') no-repeat center center; width: 120px; height: 40px; background-size: contain;"></div>
                         </NuxtLink>
                     </div>
                     <a v-if="authStore.isAuthenticated" href="/supplement/add" class="text-decoration-none">

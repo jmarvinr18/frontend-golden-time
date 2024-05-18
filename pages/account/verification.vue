@@ -32,10 +32,17 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     setup() {
         var authStore = useAuthStore()
-        var route = useRoute()
+        var route = useRoute();
+        var router = useRouter();
         onMounted(() => {
-            if (route.query.vp != undefined) {
-                authStore.verifyEmail(route.query.vp)
+            if (route.query.signature != undefined && route.query.expires != undefined && route.query.token != undefined && route.query.request_id != undefined) {
+                const obj = {
+                    signature: route.query.signature,
+                    expires: route.query.expires
+                }
+                authStore.verifyEmail(route.query.signature)
+            } else {
+                router.push({ name: 'login' });
             }
         })
     },

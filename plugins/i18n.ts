@@ -185,6 +185,11 @@ export const i18n = createI18n({
             ProblemOccured: "There's a problem on this request. Please contact the administrator.",
             CommentFieldMustNotBeEmpty: "Please make sure that the comment field isn't empty",
             GiveSomeRatings: "Please give some ratings.",
+            SuccessMsg: "Great! Your changes has been saved",
+            ErrorMsg: "Oops! An error has been occurred",
+            Home: "Home",
+            Member: "Member",
+            FollowUs: "Follow Us"   
             SortLowestPrice: "Lowest Price",
             SortMostRegistration: "Most Registration",
             SortHighEffectiveRate: "High effective Rate",
@@ -368,6 +373,11 @@ export const i18n = createI18n({
             ProblemOccured: "このリクエストには問題があります。管理者にお問い合わせください。",
             CommentFieldMustNotBeEmpty: "コメントが空でないことを確認してください",
             GiveSomeRatings: "評価をお願いします。",
+            SuccessMsg: "素晴らしい！ 変更が保存されました",
+            ErrorMsg: "おっとっと！ エラーが発生しました",
+            Home: "自宅",
+            Member: "会員",
+            FollowUs: "接触"    
             SortLowestPrice: "安い順",
             SortMostRegistration: "登録が多い順",
             SortHighEffectiveRate: "H効果順",

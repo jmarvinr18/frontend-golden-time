@@ -5,13 +5,13 @@
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container">
                     <div class="w-100 g-profile-content" v-if="objData.profile_details">
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.deadlift">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> Big 3 total: {{ objData.profile_details.deadlift }}
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("DeadliftLabel") }}: {{ objData.profile_details.deadlift }}
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.my_training">
-                            <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ objData.profile_details.year_attended_training }} years
+                            <i class="bi bi-bezier2 me-1 text-primary"></i> {{ $t("YearIStartedTrainingLabel") }}: {{ objData.profile_details.year_attended_training }} years
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.respected_trainee">
-                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: {{ objData.profile_details.respected_trainee }}
+                            <i class="bi bi-person-heart me-1 text-primary"></i> {{ $t("RespectedTraineeLabel") }}: {{ objData.profile_details.respected_trainee }}
                         </div>
                     </div>
                 </div>
@@ -27,16 +27,16 @@
                         </button>
                         
                         <div class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content mt-5">
-                            Birth Date: {{ $formatTime(objData.profile_details.birth_date) }}
+                            {{ $t("BirthDateLable") }}: {{ $formatTime(objData.profile_details.birth_date) }}
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            Height: {{ objData.profile_details.height }} cm
+                            {{ $t("HeightLabel") }}: {{ objData.profile_details.height }} cm
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            Weight: {{ objData.profile_details.body_weight }} kg
+                            {{ $t("BodyWeightLabel") }}: {{ objData.profile_details.body_weight }} kg
                         </div>
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            Body fat percentage: {{ objData.profile_details.body_fat_percentage }}
+                            {{ $t("BodyFatPercentageLabel") }}: {{ objData.profile_details.body_fat_percentage }}
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
             </div>
             <div class="g-profile-text border border-light p-2 rounded border-2">
                 <div class="my-1 fw-bold">
-                    Self Introduction
+                    {{ $t("SelfIntroduction") }}
                 </div>
                 <hr style="opacity: 0.10;">
                <div class="mb-5">
@@ -92,7 +92,7 @@
             </div>
             <div class="d-flex flex-column mt-3 border border-light p-2 rounded border-2">
                 <div class="my-1 fw-bold">
-                    My Training
+                    {{ $t("MyTraining") }}
                 </div>
                 <hr style="opacity: 0.10;">
                <div class="mb-5">
@@ -113,13 +113,13 @@
                 <div class="col-sm-6 d-flex flex-wrap align-items-center g-profile-container" v-if="objData.profile_details">
                     <div class="w-100 g-profile-content g-profile-content-first d-flex flex-wrap">
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> Big 3 total: {{ objData.profile_details.bench_press }}
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("BenchPressLabel") }}: {{ objData.profile_details.bench_press }}
                         </div>
                         <!-- <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.my_training">
                             <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ objData.profile_details.my_training }} years
                         </div> -->
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-heart me-1 text-primary"></i> Respected trainee: {{ objData.profile_details.respected_trainee }}
+                            <i class="bi bi-person-heart me-1 text-primary"></i> {{ $t("RespectedTraineeLabel") }}: {{ objData.profile_details.respected_trainee }}
                         </div>
                     </div>
                 </div>
@@ -127,16 +127,16 @@
                     <div class="mw-100 g-profile-content overflow-x-scroll">
                         <div class="d-flex align-items-center gap-2">
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                Birth Date: {{ $formatTime(objData.profile_details.birth_date) }}
+                                {{ $t("BirthDateLable") }}: {{ $formatTime(objData.profile_details.birth_date) }}
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                Height: {{ objData.profile_details.height }} cm
+                                {{ $t("HeightLabel") }}: {{ objData.profile_details.height }} cm
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                Weight: {{ objData.profile_details.body_weight }} kg
+                                {{ $t("BodyWeightLabel") }}: {{ objData.profile_details.body_weight }} kg
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                Body fat percentage: {{ objData.profile_details.body_fat_percentage }}
+                                {{ $t("BodyFatPercentageLabel") }}: {{ objData.profile_details.body_fat_percentage }}
                             </div>
                         </div>
                     </div>
@@ -169,7 +169,7 @@
             
             <div class="mt-3 border border-light p-2 rounded border-2">
                 <div class="my-1 fw-bold">
-                    Self Introduction
+                    {{ $t("SelfIntroduction") }}
                 </div>
                 <hr style="opacity: 0.10;">
                <div class="mb-5">
@@ -178,7 +178,7 @@
             </div>
             <div class="mt-3 mb-5 border border-light p-2 rounded border-2">
                 <div class="my-1 fw-bold">
-                    My Training
+                    {{ $t("MyTraining") }}
                 </div>
                 <hr style="opacity: 0.10;">
                <div class="mb-5">
