@@ -189,7 +189,7 @@ export const i18n = createI18n({
             ErrorMsg: "Oops! An error has been occurred",
             Home: "Home",
             Member: "Member",
-            FollowUs: "Follow Us"   
+            FollowUs: "Follow Us",
             SortLowestPrice: "Lowest Price",
             SortMostRegistration: "Most Registration",
             SortHighEffectiveRate: "High effective Rate",
@@ -377,7 +377,7 @@ export const i18n = createI18n({
             ErrorMsg: "おっとっと！ エラーが発生しました",
             Home: "自宅",
             Member: "会員",
-            FollowUs: "接触"    
+            FollowUs: "接触",
             SortLowestPrice: "安い順",
             SortMostRegistration: "登録が多い順",
             SortHighEffectiveRate: "H効果順",
