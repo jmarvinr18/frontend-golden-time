@@ -65,7 +65,11 @@ body {
     background-color: var(--bs-success);
 }
 
-
+.card-img-top {
+    height: 13rem !important;
+    max-width: 100%; 
+    object-fit: cover;
+}
 
 @media only screen and (max-width:1009px)  {
     body {

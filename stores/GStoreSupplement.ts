@@ -55,6 +55,20 @@ export const useSupplementStore = defineStore("supplementStore", {
     },
     actions: {
 
+        async removeDrinkWish(supplement_id: string, type: string){
+
+            switch (type) {
+                case "drink_wish":
+                    await GApiSupplement.removeDrinkWish(supplement_id)
+                    break;
+            
+                case "my_supplement":
+                    
+                    break;
+            }
+            
+        },
+
         async toggleDrinkWish(supplement_id: string, is_list = true) {
             await GApiSupplement.addOrRemoveFromDrinkWish(supplement_id).then(() => {
                 var sup = is_list ? this.allSupplements.find(({ id }) => id == supplement_id) : this.supplement

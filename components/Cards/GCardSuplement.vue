@@ -1,7 +1,11 @@
 <template>
     <div class="is-desktop g-card-supplement card g-shadow rounded-lg" >
-        <div style="height: 20rem; overflow: hidden;">
-            <img :src="supplement?.image" class="card-img-top" style="max-width: 100%; object-fit: cover;" alt="...">
+        <div style="height: 13rem; overflow: hidden;">
+            <img :src="supplement?.image" class="card-img-top" alt="...">
+        </div>
+
+        <div class="p-2">
+            <h5 class="p-1"> {{ supplement?.name }}</h5>
         </div>
         
         <div v-if="mode=='me'" class="card-body text-center d-block">
@@ -13,7 +17,7 @@
                     </NuxtLink>
                 </div>
             </div>
-            <button class="btn btn-outline-secondary rounded-pill mt-3 w-50"><i class="bi bi-trash me-2"></i>削除する</button>
+            <button @click="remove(supplement?.id)" class="btn btn-outline-secondary rounded-pill mt-3 w-50"><i class="bi bi-trash me-2"></i>削除する</button>
         </div>
         <div v-else class="card-body text-center d-flex align-items-center">
             <div :class="updateMode? 'w-75':'w-100'">
@@ -86,6 +90,8 @@
     </div>
 </template>
 <script lang="ts">
+import Swal from 'sweetalert2';
+import { useI18n } from "vue-i18n";
 export default defineComponent({
     props: {
         updateMode: {
@@ -100,19 +106,45 @@ export default defineComponent({
 
     },
     setup(props) {
+        const {t} = useI18n();
+        var supplementStore = useSupplementStore()
         var router = useRouter()
+        var remove = (id: string) => {
+             
+            Swal.fire({
+                icon: 'info',
+                title: t("SupplementRemovalTitle"),
+                text: t("SupplementWishRemovalQuestion"),
+                showCancelButton: true,
+                confirmButtonText: `${t("Yes")}&nbsp;<i class="bi bi-arrow-right"></i>`,
+                cancelButtonText: t("CancelButton"),
+                reverseButtons: true
+            }).then((res) => {
+                if(res.isConfirmed) {
+                    supplementStore.removeDrinkWish(id, "drink_wish").then(() => {
+                        setTimeout(() => {
+                            location.reload()
+                        }, 1000);
+                    })
+
+                }
+            })            
+        }
 
         return {
-            router
+            router,
+            remove
         }
     }
 })
 </script>
 <style scoped>
+
 @media only screen and (max-width:1009px)  {
     .g-card-supplement {
         min-width: 190px !important;
     }
+
     .g-card-supplement .btn-group button{
         font-size: 9px !important;
     }
