@@ -104,9 +104,8 @@ export const useAuthStore = defineStore("authStore", {
             });
         },
         async verifyEmail(data: any) {
-            console.log("DATA: ", data)
             return GApiAuth.verifyEmail(data).then((res: any) => {
-                useRouter().push("/account/verified")
+                useRouter().push(`/auth/verify-email/${data?.request_id}/${data?.token}`)
             }).catch((err: any) => {
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);
@@ -131,13 +130,14 @@ export const useAuthStore = defineStore("authStore", {
             generalStore().setIsLoading(true);
             return GApiAuth.updateProfile(this.userData, this.userData.id).then((res: any) => {
                 generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, "Your profile has been updated succesfully!");
+                generalStore().setSuccess(true,"");
 
                 setTimeout(() => {
                     window.location.href = "/me/profile";
                 }, 3000)
                 return res.data;
             }).catch((err: any) => {
+                generalStore().setIsLoading(false);
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);
             });
@@ -148,6 +148,7 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setIsLoading(false);
                 this.userData = res.data;
             }).catch((err: any) => {
+                generalStore().setIsLoading(false);
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);
             });

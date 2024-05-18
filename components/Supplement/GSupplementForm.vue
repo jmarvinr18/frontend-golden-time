@@ -21,7 +21,7 @@
                     </select>
                 </div>
             </div>
-            <div class="mb-4 g-form-input">
+            <div v-show="!route.params.id" class="mb-4 g-form-input">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t(`TasteLabel`) }}*</label>
                 <input type="text" class="form-control form-control-lg" id="g-auth-form-1" :placeholder="$t('FlavourPlaceholder')" v-model="supplementForm.flavor" maxlength="25" :disabled="route.params.id!==undefined">
             </div>
@@ -81,7 +81,7 @@
                     </select>
                 </div>
             </div>
-            <div class="mb-4 g-form-input w-75">
+            <div v-show="!route.params.id" class="mb-4 g-form-input w-75">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('TasteLabel') }}*</label>
                 <input type="text" class="form-control " id="g-auth-form-1" :placeholder="$t('FlavourPlaceholder')" maxlength="25" v-model="supplementForm.flavor" :disabled="route.params.id!==undefined">
             </div>

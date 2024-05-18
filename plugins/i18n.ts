@@ -162,7 +162,12 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 SortLowestPrice: "Lowest Price",
                 SortMostRegistration: "Most Registration",
                 SortHighEffectiveRate: "High Effective Rate",
-                SortHighEasyToConsume: "High Easy to Consume Rate"
+                SortHighEasyToConsume: "High Easy to Consume Rate",
+                SuccessMsg: "Great! Your changes has been saved",
+                ErrorMsg: "Oops! An error has been occurred",
+                Home: "Home",
+                Member: "Member",
+                FollowUs: "Follow Us"
             },
             ja: {
                 SupplementRegistration: 'サプリ登録',
@@ -319,7 +324,12 @@ export default defineNuxtPlugin(({ vueApp }) => {
                 SortLowestPrice: "最低価格",
                 SortMostRegistration: "ほとんどの登録",
                 SortHighEffectiveRate: "高い有効率",
-                SortHighEasyToConsume: "高い消費しやすさ"
+                SortHighEasyToConsume: "高い消費しやすさ",
+                SuccessMsg: "素晴らしい！ 変更が保存されました",
+                ErrorMsg: "おっとっと！ エラーが発生しました",
+                Home: "自宅",
+                Member: "会員",
+                FollowUs: "接触"
             }
         }
     })
