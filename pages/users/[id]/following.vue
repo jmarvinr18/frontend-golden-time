@@ -3,7 +3,7 @@
         <div class="container pt-2 pb-4">
             <GSectionTitle icon="bi-person-down" title="Trainees you are following"></GSectionTitle>
             <div class="row bg-white overflow-hidden rounded px-4">
-                <CardsGCardPerson :followData="follower" v-for="(follower) in  userData[0].followings"></CardsGCardPerson>
+                <CardsGCardPerson :followData="following" v-for="(following) in  followings"></CardsGCardPerson>
             </div>
         </div>
     </GSection>
@@ -13,11 +13,15 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     setup() {
-        var userStore = useUserStore();
-        var { userData } = storeToRefs(userStore)
+        var followStore = useFollowStore();
+        var { followings } = storeToRefs(followStore)
+
+        onMounted(() => {
+            followStore.getFollows('following')
+        })
 
         return {
-            userData
+            followings
         }
     },
 })

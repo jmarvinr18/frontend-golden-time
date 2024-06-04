@@ -4,14 +4,13 @@
         <div class="w-75 ms-4">
             <div class="g-person-name h5 mb-0">{{ followDetails.name }}</div>
             <div class="g-person-short mt-3 w-75">
-                
-                {{ followDetails?.profile_details.description }}
+                {{ followDetails?.profile_details.image }}
             </div>
         </div>
-        <div class="g-person-action text-end w-25 pull-right">
-            <button class="btn btn-primary rounded-pill">
+        <div v-if="route.name == 'me-following'" class="g-person-action text-end w-25 pull-right">
+            <button @click="toggleFollow(followDetails.id)" class="btn btn-primary rounded-pill">
                 <i class="bi bi-check-lg me-2"></i>
-                Following
+                Unfollow
             </button>
         </div>
     </div>
@@ -27,7 +26,7 @@
             <div class="g-person-action text-end pull-right">
                 <button class="btn btn-primary btn-lg py-3 f12 rounded-pill">
                     <i class="bi bi-check-lg me-1"></i>
-                    Following
+                    {{ route.name == "me-following" ? "Following" : "follower"}}
                 </button>
             </div>
         </div>
@@ -44,16 +43,24 @@ export default defineComponent({
 
     setup(props) {
         var route = useRoute()
+        var followStore = useFollowStore();
+
+        var toggleFollow = (id: string) => {
+            followStore.toggleFollow(id)
+        }
         var followDetails = computed(() => {
             switch (route.name) {
                 case "me-following":
-                    return props.followData?.follower_details
-                case "me-followers":
                     return props.followData?.following_details
+                case "me-followers":
+                    return props.followData?.follower_details
             }
         })
         return {
-            followDetails
+            toggleFollow,
+            followDetails,
+            route
+            
         }
     }
 })

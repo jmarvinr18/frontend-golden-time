@@ -100,11 +100,7 @@ export default defineComponent({
             }
         }        
         var onStateChange = ({ uiState, setUiState }: any) => {
-
             searchBox.value = uiState.supplements.query
-            console.log("uiState", uiState)
-            console.log("searchBox: ", searchBox.value)
-
             setUiState(uiState);
         }
         var onActiveSearch = computed(() => {

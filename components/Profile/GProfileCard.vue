@@ -21,10 +21,13 @@
                             <i class="bi bi-pencil me-1"></i>
                             Edit Profile
                         </NuxtLink>
-                        <button v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+
+                       
+                        <button @click="followUser(objData.id)" v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
                             <i class="bi bi-person-plus me-1"></i>
                             Follow
                         </button>
+                        {{ objData }}
                         
                         <div class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content mt-5">
                             {{ $t("BirthDateLable") }}: {{ $formatTime(objData.profile_details.birth_date) }}
@@ -47,12 +50,12 @@
                 <div v-if="mode=='me'" class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
                         <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-up me-2"></i>{{ objData.followers_count }}
+                            <i class="bi bi-person-up me-2"></i>{{ objData.followings_count }}
                         </NuxtLink>
                     </div>
                     <div class="mx-2">
                         <NuxtLink to="/me/following" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-down me-2"></i>{{ objData.followings_count }}
+                            <i class="bi bi-person-down me-2"></i>{{ objData.followers_count }}
                         </NuxtLink>
                     </div>
                     <div class="mx-2">
@@ -201,6 +204,11 @@ export default defineComponent({
   },
   setup(props) {
     var userImage = ref("");
+    var followStore = useFollowStore()
+    var followUser = (id: string) => {
+
+        followStore.createFollow({ user_id: id})
+    }
 
     onBeforeUpdate(() => {
       userImage.value = props.objData?.profile_details.image;
@@ -208,6 +216,7 @@ export default defineComponent({
 
     return {
       userImage,
+      followUser
     };
   },
 });

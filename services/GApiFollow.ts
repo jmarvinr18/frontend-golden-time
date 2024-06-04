@@ -7,7 +7,13 @@ const header = {
 }
 
 export default {
-    async getFollows(data: any) {
-        return ApiService.post(`/api/v1/blog?${query}`)
+    async getFollows(query: any) {
+        return ApiService.get(`/api/v1/follow?${query}`)
     },
+    async createFollow(data: any) {
+        return ApiService.post(`/api/v1/follow`, data)
+    },
+    async deleteFollow(id: string) {
+        return ApiService.delete(`/api/v1/follow/${id}`)
+    },    
 }
