@@ -4,7 +4,7 @@
             <div class="g-supplement-item-media">
                 <img :src="supplement?.image" class="object-fit-cover" />
             </div>
-            <div class="g-supplement-item-content py-2 px-3 f14">
+            <div class="g-supplement-item-content py-2 px-3 f14 w-100">
                 <div class="h4 w-100"> {{ supplement?.name? supplement.name:'&nbsp;' }} </div>
                 <div class="sup-description"> {{ useTruncateText(supplement?.description) }} </div>
                 <div class="g-supplement-item-ratings d-flex justify-content-around mt-4 w-100 mx-auto">
