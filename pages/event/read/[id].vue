@@ -1,7 +1,7 @@
 <template>
     <GSection>
         <div class="container">
-            <img :src="blog?.feature_image" class="rounded-lg mt-3 w-100" />
+            <img :src="blog?.feature_image" class="blog-content-image rounded-lg mt-3 w-100" />
             <div class="g-blog-date text-secondary f12 mt-2">
                 <i class="bi bi-clock me-2 f14"></i>
                 {{blog.created_at}}

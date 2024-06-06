@@ -71,6 +71,12 @@ body {
     object-fit: cover;
 }
 
+.blog-content-image{
+    height: 35rem; 
+    object-fit: contain;
+    background-color: black;
+}
+
 @media only screen and (max-width:1009px)  {
     body {
         padding-bottom: 15%;
