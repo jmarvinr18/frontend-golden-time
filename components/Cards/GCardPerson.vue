@@ -4,11 +4,11 @@
         <div class="w-75 ms-4">
             <div class="g-person-name h5 mb-0">{{ followDetails.name }}</div>
             <div class="g-person-short mt-3 w-75">
-                {{ followDetails?.profile_details.image }}
+                {{ followDetails?.profile_details.description }}
             </div>
         </div>
         <div v-if="route.name == 'me-following'" class="g-person-action text-end w-25 pull-right">
-            <button @click="toggleFollow(followDetails.id)" class="btn btn-primary rounded-pill">
+            <button @click="unFollow(followDetails.id)" class="btn btn-primary rounded-pill">
                 <i class="bi bi-check-lg me-2"></i>
                 Unfollow
             </button>
@@ -44,12 +44,16 @@ export default defineComponent({
     setup(props) {
         var route = useRoute()
         var followStore = useFollowStore();
-
-        var toggleFollow = (id: string) => {
-            followStore.toggleFollow(id)
+        var { followers } = storeToRefs(followStore)
+        var unFollow = (id: string) => {
+            followStore.unFollow(id)
         }
         var followDetails = computed(() => {
             switch (route.name) {
+                case "users-id-following":
+                    return props.followData?.following_details
+                case "users-id-followers":
+                    return props.followData?.follower_details                               
                 case "me-following":
                     return props.followData?.following_details
                 case "me-followers":
@@ -57,9 +61,10 @@ export default defineComponent({
             }
         })
         return {
-            toggleFollow,
+            unFollow,
             followDetails,
-            route
+            route,
+            followers
             
         }
     }

@@ -10,6 +10,6 @@ const header = {
 
 export default {
     async getUser(id: any) {
-        return ApiService.get(`/api/v1/public/user/${id}`);
+        return ApiService.get(`/api/v1/user/${id}`);
     },
 }

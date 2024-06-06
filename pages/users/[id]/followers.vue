@@ -2,9 +2,13 @@
     <GSection>
         <div class="container pt-2 pb-4">
             <GSectionTitle icon="bi-person-up" title="Trainees following you"></GSectionTitle>
-            <div class="row bg-white overflow-hidden rounded px-4">
-                <!-- {{  userData }} -->
-                <CardsGCardPerson :followData="follower" v-for="(follower) in  userData[0].followers"></CardsGCardPerson>
+            <div v-if="followers?.length > 0" class="row bg-white overflow-hidden rounded px-4">
+                <CardsGCardPerson :followData="follower" v-for="(follower) in followers"></CardsGCardPerson>
+            </div>
+            <div v-else class="d-flex bg-white justify-content-center">
+                    <div class="p-5">
+                        {{ $t("NoFollowers") }}
+                    </div>
             </div>
         </div>
     </GSection>
@@ -15,11 +19,15 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     setup() {
-        var userStore = useUserStore();
-        var { userData } = storeToRefs(userStore)
+        var followStore = useFollowStore();
+        var { followers } = storeToRefs(followStore)
+
+        onMounted(() => {
+            followStore.getFollows('followers')
+        })
 
         return {
-            userData
+            followers
         }
     },
 })

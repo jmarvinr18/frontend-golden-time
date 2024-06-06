@@ -2,9 +2,14 @@
     <GSection>
         <div class="container pt-2 pb-4">
             <GSectionTitle icon="bi-person-up" title="Trainees following you"></GSectionTitle>
-            <div class="row bg-white overflow-hidden rounded px-4">
+            <div v-if="followers?.length > 0" class="row bg-white overflow-hidden rounded px-4">
                 <CardsGCardPerson :followData="follower" v-for="(follower) in  followers"></CardsGCardPerson>
             </div>
+            <div v-else class="d-flex bg-white justify-content-center">
+                    <div class="p-5">
+                        {{ $t("NoFollowers") }}
+                    </div>
+            </div>            
         </div>
     </GSection>
 </template>

@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import GApiFollow from "~/services/GApiFollow";
 import { useGeneralStore as generalStore } from "./GStoreGeneral";
+import { useUserStore } from "./GStoreUser";
 
 export interface Follows {
     id?: string
@@ -18,14 +19,14 @@ export const useFollowStore = defineStore("followStore", {
     },
     actions: {
         async getFollows(query: string = 'followers') {
-            // generalStore().setIsLoading(true);
+            generalStore().setIsLoading(true);
             return GApiFollow.getFollows(`q=${query}`).then((res: any) => {
-                // generalStore().setIsLoading(false);
+                generalStore().setIsLoading(false);
                 switch (query) {
                     case 'followers':
                         this.followers = res.data
                         break;
-                    case 'following':
+                    case 'followings':
                         this.followings = res.data
                         break;
                 }
@@ -33,12 +34,16 @@ export const useFollowStore = defineStore("followStore", {
             });
         },
 
-        async createFollow(data: Follows) {
-            return GApiFollow.createFollow(data)
+        async toggleFollow(data: Follows) {
+            return GApiFollow.toggleFollow(data).then((response) => {
+                var userStore = useUserStore()
+                var { userData } = storeToRefs(userStore)
+                userData.value.is_following_me = response.data.is_following_me
+            })
         },
-        async toggleFollow(followingUserID: string){
+        async unFollow(followingUserID: string){
             this.followings.map((val, item) => {
-                if (val.user_id === followingUserID) {
+                if (val.following === followingUserID) {
                     GApiFollow.deleteFollow(followingUserID).then(() => {
                         this.followings.splice(item, 1)
                     })

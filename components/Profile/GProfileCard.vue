@@ -1,17 +1,17 @@
 <template>
-    <div v-if="objData && objData.profile_details" class="g-profile-card w-100 overflow-visible">
+    <div v-if="userData && userData.profile_details" class="g-profile-card w-100 overflow-visible">
         <div class="is-desktop g-profile-card-main bg-white mx-auto rounded-lg w-50 p-3 g-shadow" style="min-height:500px">
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container">
-                    <div class="w-100 g-profile-content" v-if="objData.profile_details">
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.deadlift">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("DeadliftLabel") }}: {{ objData.profile_details.deadlift }}
+                    <div class="w-100 g-profile-content" v-if="userData.profile_details">
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.deadlift">
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("DeadliftLabel") }}: {{ userData.profile_details.deadlift }}
                         </div>
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.my_training">
-                            <i class="bi bi-bezier2 me-1 text-primary"></i> {{ $t("YearIStartedTrainingLabel") }}: {{ objData.profile_details.year_attended_training }} years
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.my_training">
+                            <i class="bi bi-bezier2 me-1 text-primary"></i> {{ $t("YearIStartedTrainingLabel") }}: {{ userData.profile_details.year_attended_training }} years
                         </div>
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.respected_trainee">
-                            <i class="bi bi-person-heart me-1 text-primary"></i> {{ $t("RespectedTraineeLabel") }}: {{ objData.profile_details.respected_trainee }}
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.respected_trainee">
+                            <i class="bi bi-person-heart me-1 text-primary"></i> {{ $t("RespectedTraineeLabel") }}: {{ userData.profile_details.respected_trainee }}
                         </div>
                     </div>
                 </div>
@@ -23,39 +23,39 @@
                         </NuxtLink>
 
                        
-                        <button @click="followUser(objData.id)" v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                        <button @click="toggleFollow(userData?.id)" v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
                             <i class="bi bi-person-plus me-1"></i>
-                            Follow
+                            {{ userData?.is_following_me ? "Unfollow" : "Follow"}}
                         </button>
-                        {{ objData }}
+                        <!-- {{ userData }} -->
                         
-                        <div class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content mt-5">
-                            {{ $t("BirthDateLable") }}: {{ $formatTime(objData.profile_details.birth_date) }}
+                        <div v-if="userData.profile_details.birth_date != null" class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content mt-5">
+                            {{ $t("BirthDateLable") }}: {{ $formatTime(userData.profile_details.birth_date) }}
                         </div>
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            {{ $t("HeightLabel") }}: {{ objData.profile_details.height }} cm
+                        <div v-if="userData.profile_details.height != null" class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            {{ $t("HeightLabel") }}: <span> {{ userData.profile_details.height }} cm</span>
                         </div>
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            {{ $t("BodyWeightLabel") }}: {{ objData.profile_details.body_weight }} kg
+                        <div v-if="userData.profile_details.body_weight != null" class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            {{ $t("BodyWeightLabel") }}: {{ userData.profile_details.body_weight }} kg
                         </div>
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            {{ $t("BodyFatPercentageLabel") }}: {{ objData.profile_details.body_fat_percentage }}
+                        <div v-if="userData.profile_details.body_fat_percentage != null" class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            {{ $t("BodyFatPercentageLabel") }}: {{ userData.profile_details.body_fat_percentage }}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="position-absolute top-10 w-100 g-profile-dp">
                 <img :src="userImage? userImage:'/images/no-image.jpeg'" style="height: 270px; width: 270px;" class="object-fit-cover rounded-circle mx-auto g-shadow" />
-                <div class="h2 mt-4 fw-bold mt-5">{{ objData.name }}</div>
+                <div class="h2 mt-4 fw-bold mt-5">{{ userData.name }}</div>
                 <div v-if="mode=='me'" class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
-                        <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-up me-2"></i>{{ objData.followings_count }}
+                        <NuxtLink to="/me/following" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-up me-2"></i><span>{{ userData?.followings_count }}</span>
                         </NuxtLink>
                     </div>
                     <div class="mx-2">
-                        <NuxtLink to="/me/following" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-down me-2"></i>{{ objData.followers_count }}
+                        <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-down me-2"></i><span>{{ userData?.followers_count }}</span>
                         </NuxtLink>
                     </div>
                     <div class="mx-2">
@@ -67,14 +67,16 @@
                 </div>
                 <div v-else class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
-                        <NuxtLink :to="`/users/${objData.id}/followers`" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-up me-2"></i>{{ objData.followers_count }}
-                        </NuxtLink>
+                        <i class="bi bi-person-up me-2"></i><span>{{ userData?.followings_count }}</span>
+                        <!-- <NuxtLink :to="`/users/${userData?.id}/followers`" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-up me-2"></i><span>{{ userData?.followings_count }}</span>
+                        </NuxtLink> -->
                     </div>
                     <div class="mx-2">
-                        <NuxtLink :to="`/users/${objData.id}/following`" class="text-decoration-none text-dark">
-                            <i class="bi bi-person-down me-2"></i>{{ objData.followings_count }}
-                        </NuxtLink>
+                        <i class="bi bi-person-down me-2"></i><span>{{ userData?.followers_count}}</span>                        
+                        <!-- <NuxtLink :to="`/users/${userData.id}/following`" class="text-decoration-none text-dark">
+                            <i class="bi bi-person-down me-2"></i><span>{{ userData?.followers_count}}</span>
+                        </NuxtLink> -->
                     </div>
                     <div class="mx-2">
                         <i class="bi bi-instagram me-2"></i>
@@ -90,7 +92,7 @@
                 </div>
                 <hr style="opacity: 0.10;">
                <div class="mb-5">
-                     {{ objData.profile_details.description }}
+                     {{ userData.profile_details.description }}
                </div>                
             </div>
             <div class="d-flex flex-column mt-3 border border-light p-2 rounded border-2">
@@ -99,7 +101,7 @@
                 </div>
                 <hr style="opacity: 0.10;">
                <div class="mb-5">
-                     {{ objData.profile_details.my_training }}
+                     {{ userData.profile_details.my_training }}
                </div>
             </div>     
 
@@ -113,16 +115,16 @@
                     </NuxtLink>
                     <ProfileGProfileFollowBtn v-else></ProfileGProfileFollowBtn>
                 </div>
-                <div class="col-sm-6 d-flex flex-wrap align-items-center g-profile-container" v-if="objData.profile_details">
+                <div class="col-sm-6 d-flex flex-wrap align-items-center g-profile-container" v-if="userData.profile_details">
                     <div class="w-100 g-profile-content g-profile-content-first d-flex flex-wrap">
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("BenchPressLabel") }}: {{ objData.profile_details.bench_press }}
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("BenchPressLabel") }}: {{ userData.profile_details.bench_press }}
                         </div>
-                        <!-- <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="objData.profile_details.my_training">
-                            <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ objData.profile_details.my_training }} years
+                        <!-- <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.my_training">
+                            <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ userData.profile_details.my_training }} years
                         </div> -->
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-heart me-1 text-primary"></i> {{ $t("RespectedTraineeLabel") }}: {{ objData.profile_details.respected_trainee }}
+                            <i class="bi bi-person-heart me-1 text-primary"></i> {{ $t("RespectedTraineeLabel") }}: {{ userData.profile_details.respected_trainee }}
                         </div>
                     </div>
                 </div>
@@ -130,16 +132,16 @@
                     <div class="mw-100 g-profile-content overflow-x-scroll">
                         <div class="d-flex align-items-center gap-2">
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                {{ $t("BirthDateLable") }}: {{ $formatTime(objData.profile_details.birth_date) }}
+                                {{ $t("BirthDateLable") }}: {{ $formatTime(userData.profile_details.birth_date) }}
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                {{ $t("HeightLabel") }}: {{ objData.profile_details.height }} cm
+                                {{ $t("HeightLabel") }}: {{ userData.profile_details.height }} cm
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                {{ $t("BodyWeightLabel") }}: {{ objData.profile_details.body_weight }} kg
+                                {{ $t("BodyWeightLabel") }}: {{ userData.profile_details.body_weight }} kg
                             </div>
                             <div class="rounded shadow-sm px-2 py-1 f14 my-2">
-                                {{ $t("BodyFatPercentageLabel") }}: {{ objData.profile_details.body_fat_percentage }}
+                                {{ $t("BodyFatPercentageLabel") }}: {{ userData.profile_details.body_fat_percentage }}
                             </div>
                         </div>
                     </div>
@@ -147,18 +149,18 @@
             </div>
             <div class="position-absolute w-100 g-profile-dp ">
                 <img :src="userImage? userImage:'/images/no-image.jpeg'" style="height: 170px; width: 170px;" class="object-fit-cover rounded-circle mx-auto g-shadow user__image" />
-                <div class="h2 mt-4 fw-bold">{{ objData.name }}</div>
+                <div class="h2 mt-4 fw-bold">{{ userData.name }}</div>
                 <div class="d-flex justify-content-center mb-3">
                     <div class="mx-2">
                         <NuxtLink to="/me/followers" class="text-decoration-none text-dark">
                             <i class="bi bi-person-up me-2"></i>
-                            {{ objData.followers_count }}
+                            {{ userData.followers_count }}
                         </NuxtLink>
                     </div>
                     <div class="mx-2">
                         <NuxtLink to="/me/following" class="text-decoration-none text-dark">
                             <i class="bi bi-person-down me-2"></i>
-                            {{ objData.followings_count }}
+                            {{ userData.followings_count }}
                         </NuxtLink>
                     </div>
                     <div class="mx-2">
@@ -176,7 +178,7 @@
                 </div>
                 <hr style="opacity: 0.10;">
                <div class="mb-5">
-                     {{ objData.profile_details.description }}
+                     {{ userData.profile_details.description }}
                </div>    
             </div>
             <div class="mt-3 mb-5 border border-light p-2 rounded border-2">
@@ -185,7 +187,7 @@
                 </div>
                 <hr style="opacity: 0.10;">
                <div class="mb-5">
-                     {{ objData.profile_details.my_training }}
+                     {{ userData.profile_details.my_training }}
                </div>
             </div>
         </div>
@@ -194,9 +196,7 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    objData: {
-      type: Object,
-    },
+    userData: Object,    
     mode: {
       type: String,
       default: "me", // me or other
@@ -204,19 +204,20 @@ export default defineComponent({
   },
   setup(props) {
     var userImage = ref("");
+    // const userStore = useUserStore();
+    // var { userData } = storeToRefs(userStore);    
     var followStore = useFollowStore()
-    var followUser = (id: string) => {
-
-        followStore.createFollow({ user_id: id})
+    var toggleFollow = (id: string | undefined) => {
+        followStore.toggleFollow({ user_id: id})
     }
 
     onBeforeUpdate(() => {
-      userImage.value = props.objData?.profile_details.image;
+      userImage.value = props.userData?.profile_details.image;
     });
 
     return {
       userImage,
-      followUser
+      toggleFollow,
     };
   },
 });

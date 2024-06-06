@@ -195,7 +195,9 @@ export const i18n = createI18n({
             SortMostRegistration: "Most Registration",
             SortHighEffectiveRate: "High effective Rate",
             SortHighEasyToConsume: "High easy to consusme Rate",
-            SortLabel: "Sort label"
+            SortLabel: "Sort label",
+            NoFollowers: "No one is following you at the moment.",
+            NoFollowings: "You are not following anyone at the moment."
         },
         ja: {
             SupplementRegistration: 'サプリ登録',
@@ -385,7 +387,9 @@ export const i18n = createI18n({
             SortMostRegistration: "登録が多い順",
             SortHighEffectiveRate: "H効果順",
             SortHighEasyToConsume: "食べやすさ順",
-            SortLabel: "ソートラベル"
+            SortLabel: "ソートラベル",
+            NoFollowers: "現時点では誰もあなたをフォローしていません。",
+            NoFollowings: "あなたは現在誰もフォローしていません。"
         }
     }
 })

@@ -1,12 +1,12 @@
 <template>
-    <div v-if="userData.length">
-        <ProfileGProfileSection mode="other" :obj-data="userData[0]"></ProfileGProfileSection>
+    <div v-if="userData">
+        <ProfileGProfileSection mode="other" :user-data="userData"></ProfileGProfileSection>
         <div class="is-desktop">
         <div class="container pt-2 pb-4">
             <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
             <div class="row">
-            <div v-for="(supplement) in userData[0].supplements" class="col-md-4 col-xs-12">
+            <div v-for="(supplement) in userData.supplements" class="col-md-4 col-xs-12">
                 <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
             </div>
             <UtilsGLoadMore></UtilsGLoadMore>
@@ -16,7 +16,7 @@
             <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
 
             <div class="row">
-            <div v-for="(supplement) in userData[0].supplement_wishes" class="col-md-3 col-xs-12">
+            <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12">
                 <CardsGCardSuplement :supplement="supplement?.supplement_details"></CardsGCardSuplement>
             </div>
             <UtilsGLoadMore></UtilsGLoadMore>          
@@ -26,7 +26,7 @@
             <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
 
             <div class="row">
-            <div v-for="(blog) in userData[0].blogs" class="col-md-6 col-xs-12 mb-5">
+            <div v-for="(blog) in userData.blogs" class="col-md-6 col-xs-12 mb-5">
                 <CardsGCardBlog :blog="blog"></CardsGCardBlog>
             </div>
             <UtilsGLoadMore></UtilsGLoadMore>
@@ -61,14 +61,14 @@
             <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
             <GContainerSlider>
-            <CardsGCardSuplement v-for="(supplement) in userData[0].supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
+            <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
             </GContainerSlider>
         </div>
         <div class="container pt-2 pb-4">
             <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
 
             <GContainerSlider>
-            <CardsGCardSuplement v-for="(supplement) in userData[0].supplement_wishes" :supplement="supplement?.supplement_details"></CardsGCardSuplement>
+            <CardsGCardSuplement v-for="(supplement) in userData.supplement_wishes" :supplement="supplement?.supplement_details"></CardsGCardSuplement>
             </GContainerSlider>
         
         </div>
@@ -76,7 +76,7 @@
             <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
 
             <GContainerSlider>
-            <CardsGCardBlog v-for="(blog) in userData[0].blogs" :blog="blog"></CardsGCardBlog>
+            <CardsGCardBlog v-for="(blog) in userData.blogs" :blog="blog"></CardsGCardBlog>
             </GContainerSlider>
         </div>
         <!-- <div class="container pt-2 pb-4">

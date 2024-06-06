@@ -1,5 +1,5 @@
 <template>
-    <ProfileGProfileSection :obj-data="userData"></ProfileGProfileSection>
+    <ProfileGProfileSection :user-data="userData"></ProfileGProfileSection>
     <div class="is-desktop">
       <div class="container pt-2 pb-4">
         <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>

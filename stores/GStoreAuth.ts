@@ -20,6 +20,7 @@ export interface User {
     profile_details: ProfileData
     supplements?: Supplement
     blogs?: Blog
+    is_following_me?: boolean
     followings_count?: number
     followers_count?: number
     followers?: Follows[]
