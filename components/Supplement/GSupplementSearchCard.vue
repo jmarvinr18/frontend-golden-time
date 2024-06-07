@@ -18,10 +18,10 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><h6 class="dropdown-header">{{ $t("SortLabel") }}</h6></li>
-                        <li><a class="dropdown-item" href="#">{{ $t("SortLowestPrice") }}</a></li>
-                        <li><a class="dropdown-item" href="#">{{ $t("SortMostRegistration") }}</a></li>
-                        <li><a class="dropdown-item" href="#">{{ $t("SortHighEffectiveRate") }}</a></li>
-                        <li><a class="dropdown-item" href="#">{{ $t("SortHighEasyToConsume") }}</a></li>
+                        <li><span @click="sortAction('lowest_price')" class="dropdown-item">{{ $t("SortLowestPrice") }}</span></li>
+                        <li><span @click="sortAction('most_registration')" class="dropdown-item">{{ $t("SortMostRegistration") }}</span></li>
+                        <li><span @click="sortAction('high_effective_rate')" class="dropdown-item">{{ $t("SortHighEffectiveRate") }}</span></li>
+                        <li><span @click="sortAction('easy_to_consume')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
                     </ul>
                 </div>
             </div>
@@ -72,8 +72,7 @@
         </div>         
         <!-- SEARCH RESULT -->
         <div class="container mx-auto mt-5">
-            <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="supplement.id"></SupplementGSupplementSearchItem>
-
+            <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="i"></SupplementGSupplementSearchItem>
             <div class="d-flex justify-content-between align-items-center mt-lg">
                 <div class="w-25">
                     <select id="pager" class="form-select" aria-label="Default select example" v-model="searchData.meta.per_page" @change="searchNow">
@@ -114,10 +113,10 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><h6 class="dropdown-header">{{ $t("SortLabel") }}</h6></li>
-                        <li><a class="dropdown-item" href="#">{{ $t("SortLowestPrice") }}</a></li>
-                        <li><a class="dropdown-item" href="#">{{ $t("SortMostRegistration") }}</a></li>
-                        <li><a class="dropdown-item" href="#">{{ $t("SortHighEffectiveRate") }}</a></li>
-                        <li><a class="dropdown-item" href="#">{{ $t("SortHighEasyToConsume") }}</a></li>
+                        <li><span @click="sortAction('lowest_price')" class="dropdown-item">{{ $t("SortLowestPrice") }}</span></li>
+                        <li><span @click="sortAction('most_registration')" class="dropdown-item">{{ $t("SortMostRegistration") }}</span></li>
+                        <li><span @click="sortAction('high_effective_rate')" class="dropdown-item">{{ $t("SortHighEffectiveRate") }}</span></li>
+                        <li><span @click="sortAction('easy_to_consume')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
                     </ul>
                 </div>
             </div>
@@ -225,11 +224,15 @@ export default defineComponent({
         var { isAuthenticated } = storeToRefs(authStore)
         var supplementStore = isAuthenticated.value ? useSupplementStore() : usePublicContentStore()
         var { allSupplements } = storeToRefs(supplementStore);
+
+        var sorter = ref("")
         var searchData = ref({
+            data: [],
             meta:{
                 links:[],
                 per_page: 10,
-                current_page:1
+                current_page: 1,
+                last_page: 1
             }
         });
         var checkPrev = computed(() => {
@@ -247,12 +250,12 @@ export default defineComponent({
                 filters.value.type.push(val);
             }
 
-            searchNow('');
+            searchNow();
         }
 
         const search = useAlgoliaRef();
 
-        const searchNow = (page:any) => {
+        const searchNow = (page:any = searchData.value.meta.current_page) => {
             let q = "?";
             q = q + `page_size=${searchData.value.meta.per_page}&`;
 
@@ -273,12 +276,20 @@ export default defineComponent({
             }
 
             if (filters.value.type.length > 0) {
-                q = q + 'supplement_type=' + filters.value.type;
+                q = q + `supplement_type=${filters.value.type}&`;
+            }
+
+            if (sorter.value != null) {
+                q = q + 'sort=' + sorter.value;
             }
 
             
             useSupplementStore().searchSupplement(q).then((res:any) => {
-                searchData.value = res;
+                
+                searchData.value.data = res.data;
+                searchData.value.meta = res.meta;
+
+                console.log("WITH PARAMS: ", searchData.value.data)
             })
         }
 
@@ -305,7 +316,11 @@ export default defineComponent({
             q = q + 'supplement_type=' + filters.value.type;
 
             useSupplementStore().searchSupplement(q).then((res:any) => {
-                searchData.value = res;
+                
+                searchData.value.data = res.data;
+                searchData.value.meta = res.meta;
+
+                console.log(searchData.value.data)
             })
         }
 
@@ -324,6 +339,11 @@ export default defineComponent({
             return searchBox.value == undefined ? false : true
         })
 
+        var sortAction = (val: string) => {
+            sorter.value = val
+            searchNow(searchData.value.meta.current_page, sorter.value);
+        }
+
         return {
             onStateChange,
             searchNow,
@@ -336,17 +356,10 @@ export default defineComponent({
             filters,
             toggleFilter,
             onActiveSearch,
-            searchKeyword
+            searchKeyword,
+            sortAction
         }
     },
-    // watch: {
-    //     filters: {
-    //         type(val) {
-    //             console.log(val)
-    //         },
-    //         deep: true,
-    //     }
-    // }
 })
 
 
