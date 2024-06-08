@@ -3,8 +3,8 @@
         <!-- SEARCH BOX AND FILTER -->
         <ais-configure :attributesToSnippet="['description']"/>
         
-        <div class="search-bar container py-4">
-            <div class="d-flex w-75 mx-auto ">
+        <div class="container py-4">
+            <div class="d-flex w-75 mx-auto search-bar">
                 <div class="input-group mb-3 w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
 
                     <!-- <input id="tes" type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0" placeholder="Search here" /> -->
@@ -24,52 +24,53 @@
                         <li><span @click="sortAction('taste_rate')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
                     </ul>
                 </div>
+                <div v-if="onActiveSearch" class="search-result border-dark mx-auto">
+                    <ais-state-results>
+                    <template v-slot="{ state: { query }, results: { hits } }">
+                        <ais-hits v-if="hits.length > 0" :class-names="{'ais-Hits-item': 'searchHitItems'}">
+                            <template v-slot:item="{ item }">
+                                <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
+                                    <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
+                                    <div class="search-hit-item-body">
+                                        <h6 class="fw-bold">
+                                            <ais-highlight
+                                                attribute="name"
+                                                :hit="item"
+                                                highlighted-tag-name="em"
+                                            />                                       
+                                        
+                                        </h6>
+
+                                        <div class="fs-12">
+                                            <ais-snippet
+                                                attribute="description"
+                                                :hit="item"
+                                                highlighted-tag-name="em"
+                                            />                                        
+                                        </div>                                    
+                                    </div>
+                                </a>
+
+                            </template>
+                        </ais-hits>                              
+                        <div class="p-2 text-center searchHitItems" v-else>
+                            {{ $t('NoResultsFound', { query: query })  }}.
+                            <ais-clear-refinements :excluded-attributes="[]">
+                                <template v-slot:resetLabel>
+                                    <span class="text-danger fs-8">{{ $t('ClearRefinements') }}</span>
+                                </template>
+                            </ais-clear-refinements>
+                        </div>
+                    </template>
+                    </ais-state-results>                                      
+                </div>                    
             </div>
             <div class="gl-search-filter-category d-flex justify-content-between w-50 mx-auto">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
             </div>
         </div>
 
-        <div v-if="onActiveSearch" class="search-result">
-            <ais-state-results>
-            <template v-slot="{ state: { query }, results: { hits } }">
-                <ais-hits v-if="hits.length > 0" :class-names="{'ais-Hits-item': 'searchHitItems'}">
-                    <template v-slot:item="{ item }">
-                        <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
-                            <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
-                            <div class="search-hit-item-body">
-                                <h6 class="fw-bold">
-                                    <ais-highlight
-                                        attribute="name"
-                                        :hit="item"
-                                        highlighted-tag-name="em"
-                                    />                                       
-                                
-                                </h6>
-
-                                <div class="fs-12">
-                                    <ais-snippet
-                                        attribute="description"
-                                        :hit="item"
-                                        highlighted-tag-name="em"
-                                    />                                        
-                                </div>                                    
-                            </div>
-                        </a>
-
-                    </template>
-                </ais-hits>                              
-                <div class="p-2 text-center searchHitItems" v-else>
-                    {{ $t('NoResultsFound', { query: query })  }}.
-                    <ais-clear-refinements :excluded-attributes="[]">
-                        <template v-slot:resetLabel>
-                            <span class="text-danger fs-8">{{ $t('ClearRefinements') }}</span>
-                        </template>
-                    </ais-clear-refinements>
-                </div>
-            </template>
-            </ais-state-results>                                      
-        </div>         
+     
         <!-- SEARCH RESULT -->
         <div class="container mx-auto mt-5">
             <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="i"></SupplementGSupplementSearchItem>
@@ -93,11 +94,12 @@
 
     </ais-instant-search>   
     
-    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
-        
-        <div class="is-mobile container search-bar" style="margin-bottom:-90px">
-            <ais-configure :attributesToSnippet="['description']"/>
-            <div class="d-flex w-100 mx-auto ">
+    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
+        <ais-configure :attributesToSnippet="['description']"/>
+        <div class="is-mobile container" style="margin-bottom:-90px">
+            
+            
+            <div class="d-flex w-100 mx-auto search-bar">
                 <div class="input-group mb-3 w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
 
                     <input id="tes-mobile" type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
@@ -119,13 +121,11 @@
                         <li><span @click="sortAction('taste_rate')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
                     </ul>
                 </div>
-            </div>
-            <div class="gl-search-filter-category d-flex justify-content-between w-100 mx-auto px-4">
-                <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
-            </div>
             <!-- v-if="onActiveSearch" -->
             <div v-if="onActiveSearch" class="search-result-mobile">
-                    <ais-hits :class-names="{'ais-Hits-item': 'searchHitItems'}">
+                <ais-state-results>
+                    <template v-slot="{ state: { query }, results: { hits } }">
+                    <ais-hits v-if="hits.length > 0" :class-names="{'ais-Hits-item': 'searchHitItems'}">
                         <template v-slot:item="{ item }">
                             <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
                                 <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
@@ -149,8 +149,23 @@
                             </a>
 
                         </template>
-                    </ais-hits>                     
-                </div>                           
+                    </ais-hits>  
+                    <div class="p-2 text-center searchHitItems" v-else>
+                            {{ $t('NoResultsFound', { query: query })  }}.
+                            <ais-clear-refinements :excluded-attributes="[]">
+                                <template v-slot:resetLabel>
+                                    <span class="text-danger fs-8">{{ $t('ClearRefinements') }}</span>
+                                </template>
+                            </ais-clear-refinements>
+                        </div>                                  
+                </template>                     
+                </ais-state-results>
+            </div>                   
+            </div>
+            <div class="gl-search-filter-category d-flex justify-content-between w-100 mx-auto px-4">
+                <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
+            </div>
+                        
         </div>
         <div class="is-mobile w-100 rounded-lg py-5 mt-4 bg-white border border-2">
             <!-- SEARCH RESULTs -->
@@ -371,10 +386,10 @@ export default defineComponent({
     .search-result {
         position: absolute;
         background-color:  #ffff;
-        width: 65%;
-        top: 200px;
-        left: 200px;
-        transform: translate(50px, 50px);
+        width: 100%;
+        top: 100%;
+        left: -50%;
+        transform: translate(50%, 0%);
         border-radius: 5px;
         box-shadow: 0 2px 5px 0px #e3e5ec;
         padding: 0.5rem;
@@ -382,13 +397,13 @@ export default defineComponent({
     .search-result-mobile{
         position: absolute;
         background-color:  #ffff;
-        width: 90%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, 5%);
+        width: 100%;
+        top: 100%;
+        left: -50%;
+        transform: translate(50%, 0%);
         border-radius: 5px;
         box-shadow: 0 2px 5px 0px #e3e5ec;
-        padding: 0.5rem;        
+        padding: 0.5rem;       
     }
     .search-hit-item-body {
         overflow-wrap: anywhere;
