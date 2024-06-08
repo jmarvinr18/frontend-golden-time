@@ -20,8 +20,8 @@
                         <li><h6 class="dropdown-header">{{ $t("SortLabel") }}</h6></li>
                         <li><span @click="sortAction('lowest_price')" class="dropdown-item">{{ $t("SortLowestPrice") }}</span></li>
                         <li><span @click="sortAction('most_registration')" class="dropdown-item">{{ $t("SortMostRegistration") }}</span></li>
-                        <li><span @click="sortAction('high_effective_rate')" class="dropdown-item">{{ $t("SortHighEffectiveRate") }}</span></li>
-                        <li><span @click="sortAction('easy_to_consume')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
+                        <li><span @click="sortAction('effect_rate')" class="dropdown-item">{{ $t("SortHighEffectiveRate") }}</span></li>
+                        <li><span @click="sortAction('taste_rate')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
                     </ul>
                 </div>
             </div>
@@ -115,8 +115,8 @@
                         <li><h6 class="dropdown-header">{{ $t("SortLabel") }}</h6></li>
                         <li><span @click="sortAction('lowest_price')" class="dropdown-item">{{ $t("SortLowestPrice") }}</span></li>
                         <li><span @click="sortAction('most_registration')" class="dropdown-item">{{ $t("SortMostRegistration") }}</span></li>
-                        <li><span @click="sortAction('high_effective_rate')" class="dropdown-item">{{ $t("SortHighEffectiveRate") }}</span></li>
-                        <li><span @click="sortAction('easy_to_consume')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
+                        <li><span @click="sortAction('effect_rate')" class="dropdown-item">{{ $t("SortHighEffectiveRate") }}</span></li>
+                        <li><span @click="sortAction('taste_rate')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
                     </ul>
                 </div>
             </div>
