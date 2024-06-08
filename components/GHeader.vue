@@ -10,15 +10,15 @@
                         </NuxtLink>
                     </div>
 
-                    <NuxtLink v-if="authStore.isAuthenticated" to="/supplement/add" class="text-decoration-none">
-                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span><span>{{ $t('SupplementRegistration') }}</span></div>
+                    <NuxtLink v-if="isAuthenticated" to="/supplement/add" class="text-decoration-none">
+                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-plus mt-2 mb-0 me-2"></i></span><span>{{ $t('SupplementRegistration') }}</span></div>
                     </NuxtLink>
-                    <NuxtLink v-else to="/supplement/search" class="text-decoration-none">
+                    <NuxtLink v-if="!isAuthenticated" to="/supplement/search" class="text-decoration-none">
                         <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-search mt-2 mb-0 me-2"></i></span>{{ $t('SupplementSearch') }}</div>  
                     </NuxtLink>               
                 </div>
                 <div class="right-side d-flex align-items-center gap-3">
-                    <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-1">
+                    <div v-if="isAuthenticated" class="d-flex align-items-center gap-1">
                         <NuxtLink to="/me/profile" class="text-decoration-none me-2" >
                             <div class="text-light d-flex align-items-center text-decoration-none">
                                 <img :src="userData.profile_details.image? userData.profile_details.image:'/images/no-avatar.jpeg'" class="me-2 border rounded-circle" style="width: 30px; height: 30px;" />
@@ -109,7 +109,7 @@
                 
                 </div> -->
             </div>
-            <div v-if="authStore.token" class="right-side d-flex align-items-center">
+            <div v-if="token" class="right-side d-flex align-items-center">
                 <div>
                     <i class="bi bi-bell text-light h2 mb-0"></i>
                 </div>
@@ -194,7 +194,7 @@ export default defineComponent({
         const fixedMode = ref(false);
         const route:any = useRoute();
         const authStore = useAuthStore();
-        const { userData } = storeToRefs(authStore)
+        const { userData, isAuthenticated, token} = storeToRefs(authStore)
         
 
         var searchKeyword =ref<any>("")
@@ -258,7 +258,8 @@ export default defineComponent({
 
         return {
             fixedMode,
-            authStore,
+            isAuthenticated,
+            token,
             colorChange,
             logout,
             userData,
