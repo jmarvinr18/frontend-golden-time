@@ -12,7 +12,7 @@ export interface Supplement {
     image: string
     supplement_type: string
     flavor: string
-    price: string
+    price: number
     ingredients: string
     serving_type: string
     url: string
@@ -97,7 +97,7 @@ export const useSupplementStore = defineStore("supplementStore", {
         },
         async getAllSupplement(query: any = "") {
             generalStore().setIsLoading(true);
-            return GApiSupplement.getAllSupplements(query).then((res: any) => {
+            return GApiSupplement.getAllSupplements(query).then((res: any): Supplement => {
                 generalStore().setIsLoading(false);
                 this.allSupplements = res.data.data
                 return res.data;

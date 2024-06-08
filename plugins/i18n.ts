@@ -1,6 +1,21 @@
 import { createI18n } from 'vue-i18n'
 
 
+const numberFormats = {
+    'en': {
+      currency: {
+        style: 'currency',
+        currency: 'USD'
+      }
+    },
+    'ja': {
+      currency: {
+        style: 'currency',
+        currency: 'JPY',
+        currencyDisplay: 'symbol'
+      }
+    }
+  }
 export const i18n = createI18n({
     legacy: false,
     globalInjection: true,
@@ -391,7 +406,8 @@ export const i18n = createI18n({
             NoFollowers: "現時点では誰もあなたをフォローしていません。",
             NoFollowings: "あなたは現在誰もフォローしていません。"
         }
-    }
+    },
+    numberFormats
 })
 
 export default defineNuxtPlugin(({ vueApp }) => {

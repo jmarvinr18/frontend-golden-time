@@ -16,7 +16,7 @@
             <div class="g-review-item-head d-flex justify-content-between position-relative flex-wrap">
                 <div class="w-50 f14 lh-lg">
                     <div>{{ $t('TasteLabel') }}: {{ supplement?.flavor }}</div>
-                    <div>{{ $t('PriceLabel') }}: {{ supplement?.price }}</div>
+                    <div>{{ $t('PriceLabel') }}: {{ price }} </div>
                     
                 </div>
                 <div class="w-50">
@@ -64,7 +64,7 @@
             <div class="w-100 g-review-item-head d-flex justify-content-between position-relative flex-wrap">
                 <div class="d-flex flex-column w-100 f14 lh-lg">
                     <div class="align-self-start">{{ $t('TasteLabel') }}: {{ supplement?.flavor }}</div>
-                    <div class="align-self-start">{{ $t('PriceLabel') }}: {{ supplement?.price }}</div>
+                    <div class="align-self-start">{{ $t('PriceLabel') }}: {{ price }}</div>
                 </div>
             </div>
             
@@ -95,15 +95,18 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
     props: {
         supplement: Object
     },
     setup(props) {
+        const {n} = useI18n();
         var authStore = useAuthStore()
         var { userData, isAuthenticated } = storeToRefs(authStore)
         var supplementStore = useSupplementStore()
+        var price = ref()
 
         var toggleDrinkWish = (id: string) => {
             supplementStore.toggleDrinkWish(id, false)
@@ -120,13 +123,25 @@ export default defineComponent({
         var getProfileImage = computed(() => {
             return props.supplement?.user?.profile_details?.image ?? "/images/no-avatar.jpeg"
         })
+
+        onBeforeUpdate(() => {
+            price.value = n(parseFloat(props.supplement?.price), 'currency', 'ja') 
+        })
+
+        var convertToCurrency = (price: string) => {
+            console.log("TYPE_OF: ", typeof(parseFloat(price)))
+            // if(typeof)
+            // return n(parseFloat(price), 'currency', 'ja')
+        }
         
         return {
             isAuthenticated,
             isContentOwner,
             getProfileImage,
             toggleDrinkWish,
-            toggleHasDrank
+            toggleHasDrank,
+            convertToCurrency,
+            price
         }
     }  
 })
