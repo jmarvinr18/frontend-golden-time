@@ -17,12 +17,11 @@
             </div>
             <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
             <div class="is-desktop d-flex">
-                <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_news">
-                    <div class="p-3" style="width: 20rem; height: 20rem;">
-                        <img  :src="b.feature_image" style="width: 20rem; height: 20rem; object-fit: cover;" class="w-100 rounded-lg" />
-                    </div>  
-                </a>              
-
+                <div class="p-3 w-25"  v-for="(b,s) in blog.related_news">
+                    <a :href="`/blog/read/${b.id}`">
+                        <img :src="b.feature_image" style=" object-fit: cover; height:30vh" class="w-100 rounded-lg" />
+                    </a>
+                </div>
             </div>
             <div class="is-mobile d-flex flex-column mt-3">
                 <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_blog" class="d-flex p-3 text-decoration-none text-dark">
