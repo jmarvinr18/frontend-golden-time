@@ -112,8 +112,9 @@ export const useAuthStore = defineStore("authStore", {
             });
         },
         async verifyEmail(data: any) {
+            console.log("DATA: ", data)
             return GApiAuth.verifyEmail(data).then((res: any) => {
-                useRouter().push(`/auth/verify-email/${data?.request_id}/${data?.token}`)
+                useRouter().push("/account/verified")
             }).catch((err: any) => {
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);
