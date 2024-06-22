@@ -5,22 +5,25 @@
         </div>
         <div class="is-desktop col-md-4 px-4">
             <div class="d-flex flex-column gap-2 py-2 mt-3">
-                <button v-if="isAuthenticated" @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
-                    <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
-                    <span class="align-self-center">
-                          <i class="bi bi-people me-2"></i>
-                           {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
-                    </span>
-                   
-                </button>
-                <button to="/login?ref=search" v-else class="btn btn-primary btn-sm rounded-pill py-2 f14" @click="askLogin">{{ $t("MySupplementRegistrationNotLoggedIn") }}</button>
-                <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
-                    <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
-                    <span class="align-self-center">
-                          <i  class="bi bi-people me-2"></i>
-                            {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
-                    </span>                    
-                </button>
+                <div v-if="isAuthenticated" class="btn-box">
+                    <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
+                        <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
+                        <span class="align-self-center">
+                            <i class="bi bi-people me-2"></i>
+                            {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
+                        </span>
+                    
+                    </button>
+                    <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
+                        <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
+                        <span class="align-self-center">
+                            <i  class="bi bi-people me-2"></i>
+                                {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
+                        </span>                    
+                    </button>
+                </div>
+                <button v-else class="btn btn-primary btn-sm rounded-pill py-2 f14" @click="askLogin">{{ $t("MySupplementRegistrationNotLoggedIn") }}</button>
+               
             </div>
 
         </div>
@@ -35,14 +38,15 @@
                     </span>                  
                 
                 </button>
-                <button to="/login?ref=search" v-else class="g-search-item-extra btn btn-primary btn-sm rounded-pill py-2 f12" @click="askLogin">{{ $t("MySupplementRegistration") }}</button>
-                <button @click="toggleDrinkWish(supplement?.id)" class="g-search-item-extra btn btn-outline-secondary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
+                <button v-if="isAuthenticated" @click="toggleDrinkWish(supplement?.id)" class="g-search-item-extra btn btn-outline-secondary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
                     <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                     <span class="align-self-center">
                         <i class="bi bi-person-heart me-2"></i>
                          {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
                     </span>                       
                 </button>
+                <button v-else class="g-search-item-extra btn btn-primary btn-sm rounded-pill py-2 f12" @click="askLogin">{{ $t("MySupplementRegistration") }}</button>
+                
             </div> 
         </div>
       
@@ -62,6 +66,7 @@ export default defineComponent({
     setup() {
         var authStore = useAuthStore();
         var router = useRouter();
+        var route = useRoute();
         var { isAuthenticated } = storeToRefs(authStore);
         var supplementStore = useSupplementStore();
         const {t} = useI18n();
@@ -83,7 +88,7 @@ export default defineComponent({
                 reverseButtons: true
             }).then((res) => {
                 if(res.isConfirmed) {
-                    router.push('/login?ref=search')
+                    router.push(`/login?ref=${route.fullPath}`)
                 }
             })
         }

@@ -20,15 +20,14 @@
                     
                 </div>
                 <div class="w-50">
-                    <button v-if="isAuthenticated" @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
-                        <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
-                        <span class="align-self-center">
-                            <i class="bi bi-people me-2"></i>
-                            {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
-                        </span>
-                    </button>
-                    <div v-else>
-                        <NuxtLink to="/login?ref=supplement" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }}</NuxtLink>
+                    <div v-if="isAuthenticated">
+                        <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
+                            <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
+                            <span class="align-self-center">
+                                <i class="bi bi-people me-2"></i>
+                                {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
+                            </span>
+                        </button>
                         <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
                             <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
@@ -36,6 +35,9 @@
                                 {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
                             </span>                         
                         </button>
+                    </div>
+                    <div v-else>
+                        <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }} </NuxtLink>
                     </div>
                 </div>
                 <div class="g-review-item-owner w-100 d-flex align-items-center position-absolute">
@@ -74,21 +76,24 @@
             <div class="f12">{{ supplement?.user?.name }}</div>
         </div>        
         <div class="w-100 px-2 mt-4">
-            <button v-if="isAuthenticated" @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3" style="width: 60%;">
-                <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
-                <span class="align-self-center">
-                    <i class="bi bi-people me-2"></i>
-                            {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
-                    </span>                   
-            </button>
-            <NuxtLink v-else to="/login?ref=supplement" class="btn btn-primary btn-sm rounded-pill py-2 f12">{{ $t("Login") }}</NuxtLink>
-            <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3" style="width: 60%;">
-                        <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
-                        <span class="align-self-center">
-                             <i class="bi bi-person-heart me-2"></i>
-                            {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
-                        </span>                 
-            </button>
+            <div v-if="isAuthenticated">
+                <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3" style="width: 60%;">
+                    <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
+                    <span class="align-self-center">
+                        <i class="bi bi-people me-2"></i>
+                                {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
+                        </span>                   
+                </button>
+                <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3" style="width: 60%;">
+                            <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
+                            <span class="align-self-center">
+                                <i class="bi bi-person-heart me-2"></i>
+                                {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
+                            </span>                 
+                </button>
+            </div>
+            <NuxtLink v-else :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f12">{{ $t("Login") }}</NuxtLink>
+            
         </div>
 
     </div>
@@ -103,7 +108,8 @@ export default defineComponent({
     },
     setup(props) {
         const {n} = useI18n();
-        var authStore = useAuthStore()
+        var authStore = useAuthStore();
+        var route = useRoute();
         var { userData, isAuthenticated } = storeToRefs(authStore)
         var supplementStore = useSupplementStore()
         var price = ref()
@@ -135,6 +141,7 @@ export default defineComponent({
         }
         
         return {
+            route,
             isAuthenticated,
             isContentOwner,
             getProfileImage,

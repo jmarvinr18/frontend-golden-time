@@ -5,7 +5,7 @@
         
         <div class="container py-4">
             <div class="d-flex w-75 mx-auto search-bar">
-                <div class="input-group mb-3 w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
+                <div class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
 
                     <!-- <input id="tes" type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0" placeholder="Search here" /> -->
                     <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0" placeholder="Search here" />                
@@ -65,7 +65,7 @@
                     </ais-state-results>                                      
                 </div>                    
             </div>
-            <div class="gl-search-filter-category d-flex justify-content-between w-50 mx-auto">
+            <div class="gl-search-filter-category d-flex justify-content-between w-50 mx-auto mt-3">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
             </div>
         </div>

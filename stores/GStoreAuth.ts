@@ -96,9 +96,15 @@ export const useAuthStore = defineStore("authStore", {
                 this.isAuthenticated = true
                 this.token = res.data.token
 
-                generalStore().setSuccess(true, i18n.global.t("WelcomeBack"));
+                generalStore().setSuccess(true, i18n.global.t("WelcomeBack"), true);
 
-                useRouter().push("/me/profile")
+                const route = useRoute();
+
+                if (route.query.ref) {
+                    useRouter().push(`${route.query.ref}`);
+                } else {
+                    useRouter().push("/me/profile");
+                }
 
             }).catch((err: any) => {
                 const msg = err.response.data.message;

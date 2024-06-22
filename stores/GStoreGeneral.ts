@@ -34,18 +34,32 @@ export const useGeneralStore = defineStore("generalStore", {
                 text: message
             });
         },
-        setSuccess(value: any, message: any) {
+        setSuccess(value: any, message: any, toast: any) {
             this.setIsLoading(false);
             this.success = {
                 message: message,
                 status: value,
             };
 
-            Swal.fire({
-                icon: "success",
-                title: i18n.global.t("Great"),
-                text: message
-            });
+            if (!toast) {
+                Swal.fire({
+                    icon: "success",
+                    title: i18n.global.t("Great"),
+                    text: message
+                });
+            } else {
+                Swal.fire({
+                    toast: true,
+                    icon: "success",
+                    position: "top-end",
+                    showConfirmButton: false,
+                    title: i18n.global.t("Great"),
+                    text: message,
+                    timer: 3000,
+                    timerProgressBar: true,
+                });
+            }
+            
         },
         setMobile(value: any) {
             this.isMobile = value;
