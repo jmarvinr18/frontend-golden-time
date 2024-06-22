@@ -29,6 +29,6 @@ export default {
         return ApiService.post('/auth/logout')
     },
     async verifyEmail(data: object) {
-        return ApiService.get(`/auth/verify-email/${data}`)
+        return ApiService.get(`${data}`)
     },
 }
