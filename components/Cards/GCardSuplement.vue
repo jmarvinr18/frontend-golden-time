@@ -1,7 +1,9 @@
 <template>
     <div class="is-desktop g-card-supplement card g-shadow rounded-lg" >
         <div style="height: 13rem; overflow: hidden;">
-            <img :src="supplement?.image" class="card-img-top" alt="...">
+            <NuxtLink :to="`/supplement/review/${supplement?.id}`">
+                <img :src="supplement?.image" class="card-img-top" alt="...">
+            </NuxtLink>
         </div>
 
         <div class="p-2">
@@ -17,7 +19,7 @@
                     </NuxtLink>
                 </div>
             </div>
-            <button @click="remove(supplement?.id)" class="btn btn-outline-secondary rounded-pill mt-3 w-50"><i class="bi bi-trash me-2"></i>削除する</button>
+            <button @click="remove(supplement?.id)" class="btn btn-outline-secondary rounded-pill mt-3 w-50"><i class="bi bi-trash me-2"></i>{{ $t("DeleteButton") }}</button>
         </div>
         <div v-else class="card-body text-center d-flex align-items-center">
             <div :class="updateMode? 'w-75':'w-100'">

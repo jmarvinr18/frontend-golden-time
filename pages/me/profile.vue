@@ -4,14 +4,14 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
-        <div class="row m-5">
+        <div class="row">
           <div v-for="(supplement) in userData.supplements" class="col-md-3 col-xs-12">
             <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
           </div>
           <!-- <UtilsGLoadMore></UtilsGLoadMore> -->
         </div>
       </div>
-      <!-- <div class="container pt-2 pb-4">
+      <div class="container pt-2 pb-4">
         <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
 
         <div class="row">
@@ -20,7 +20,7 @@
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>          
         </div>
-      </div> -->
+      </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
 

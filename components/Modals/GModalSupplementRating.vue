@@ -2,7 +2,7 @@
     <ModalsGModal title="" :id="`rating-modal-${type}`" :submitBtn="true" @on-submit="submitNow" size="md">
         <div class="text-center">
             <div class="h5 mb-4">{{ type=='effect'? $t('EffectSupplementLabel'):$t('TasteSupplementLabel') }}{{ $t('RateLabel') }}</div>
-            <label v-for="star in 5" class="cursor-pointer mx-1" :for="'star-'+type+'-'+star">
+            <label v-for="star in 5" class="cursor-pointer mx-1 star-rating" :for="'star-'+type+'-'+star">
                 <i v-if="type=='taste'" class="bi h3 text-grad-1" :class="rates >= star? 'bi-star-fill '+ type:'bi-star '+ type"></i>
                 <i v-else class="bi h2 text-grad-2" :class="rates >= star? 'bi-star-fill '+ type:'bi-star '+ type"></i>
                 <input :id="'star-'+type+'-'+star" :value="star" :name="`star-rating-${type}`" type="radio" class="radio-star visibility-hidden" v-model="rates" />
@@ -19,7 +19,8 @@ export default defineComponent({
     props: {
         type: String, // taste or effect
     },
-    setup(props) {
+    emits: ["afterRate"],
+    setup(props, {emit}) {
         const supplementStore = useSupplementStore();
         const generalStore = useGeneralStore();
         const route = useRoute();
@@ -62,7 +63,9 @@ export default defineComponent({
                 }
             }
 
-            supplementStore.ratingSupplement(formData);
+            supplementStore.ratingSupplement(formData).then(() => {
+                emit("afterRate");
+            });
         }
 
         const submitNow = () => {
@@ -90,5 +93,9 @@ export default defineComponent({
 .radio-star {
     width: 0;
     height: 0;
+}
+
+.star-rating .bi{
+    font-size: 30px !important;
 }
 </style>
