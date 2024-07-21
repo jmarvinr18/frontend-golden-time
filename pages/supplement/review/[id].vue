@@ -1,7 +1,7 @@
 <template>
     <SupplementGSupplementReviewSection></SupplementGSupplementReviewSection>
-    <ModalsGModalSupplementRating type="taste"></ModalsGModalSupplementRating>
-    <ModalsGModalSupplementRating type="effect"></ModalsGModalSupplementRating>
+    <ModalsGModalSupplementRating type="taste" @after-rate="loadSupplement"></ModalsGModalSupplementRating>
+    <ModalsGModalSupplementRating type="effect" @after-rate="loadSupplement"></ModalsGModalSupplementRating>
 </template>
 
 <script lang="ts">
@@ -12,12 +12,18 @@ export default defineComponent({
         var route = useRoute()
         var authStore = useAuthStore()
         var { isAuthenticated } = storeToRefs(authStore)
-        var supplementStore = isAuthenticated.value ? useSupplementStore() : usePublicContentStore()        
-
-        onMounted(() => {
+        var supplementStore = isAuthenticated.value ? useSupplementStore() : usePublicContentStore();
+        const loadSupplement = () => {
             supplementStore.getSupplement(route.params.id)
+        }
+        
+        onMounted(() => {
+            loadSupplement();
         })
 
+        return {
+            loadSupplement
+        }
     },
 })
 </script>
