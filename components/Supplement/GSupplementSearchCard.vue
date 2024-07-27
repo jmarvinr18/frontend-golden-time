@@ -94,17 +94,12 @@
 
     </ais-instant-search>   
     
-    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
+    <ais-instant-search class="is-mobile" :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
         <ais-configure :attributesToSnippet="['description']"/>
-        <div class="is-mobile container" style="margin-bottom:-90px">      
+        <div class="container" style="margin-bottom:-90px">      
             <div class="d-flex w-100 mx-auto search-bar">
                 <div class="input-group mb-3 w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
-
-                    <input id="tes-mobile" type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
-
-                    <span class="input-group-text px-4 border-0" id="basic-addon2" >
-                        <i class="bi bi-search"></i>
-                    </span>
+                    <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
                 </div>
                     <!-- SEARCH BOX AND FILTER -->
                 <div class="dropdown">
@@ -163,13 +158,14 @@
             </div>
                         
         </div>
-        <div class="is-mobile w-100 rounded-lg py-5 mt-4 bg-white border border-2">
+        <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
             <!-- SEARCH RESULTs -->
             <div class="container mx-auto mt-5">
                 <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="supplement.id"></SupplementGSupplementSearchItem>
             </div>
         </div>
     </ais-instant-search>
+
 
    
 </template>
