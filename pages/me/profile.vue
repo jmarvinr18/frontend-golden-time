@@ -4,31 +4,41 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
-        <div class="row">
+        <div v-if="userData.supplements && userData.supplements.length" class="row">
           <div v-for="(supplement) in userData.supplements" class="col-md-3 col-xs-12">
             <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
           </div>
           <!-- <UtilsGLoadMore></UtilsGLoadMore> -->
         </div>
+        <div class="my-5 text-dark opacity-50" v-else>
+          No Supplements
+        </div>
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
 
-        <div class="row">
+        <div v-if="supplement_wishes" class="row">
           <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12 mb-5">
             <CardsGCardSuplement :supplement="supplement?.supplement_details"></CardsGCardSuplement>
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>          
         </div>
+        <div class="my-5 text-dark opacity-50" v-else>
+          No Wishlist
+        </div>
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
 
-        <div class="row">
+        <div v-if="userData.blogs && userData.blogs.length" class="row">
           <div v-for="(blog) in userData.blogs" class="col-md-6 col-xs-12 mb-5">
             <CardsGCardBlog :blog="blog"></CardsGCardBlog>
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>
+        </div>
+
+        <div class="my-5 text-dark opacity-50" v-else>
+          No Blogs
         </div>
       </div>
       <!-- <div class="container pt-2 pb-4">
@@ -59,9 +69,13 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
-        <GContainerSlider>
+        <GContainerSlider v-if="userData.supplements && userData.supplements.length">
           <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
         </GContainerSlider>
+
+        <div class="my-5 text-dark opacity-50" v-else>
+          No Supplements
+        </div>
       </div>
       <!-- <div class="container pt-2 pb-4">
         <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
@@ -74,9 +88,12 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
 
-        <GContainerSlider>
+        <GContainerSlider v-if="userData.blogs && userData.blogs.length">
           <CardsGCardBlog v-for="(blog) in userData.blogs" :blog="blog"></CardsGCardBlog>
         </GContainerSlider>
+        <div class="my-5 text-dark opacity-50" v-else>
+          No Blogs
+        </div>
       </div>
       <!-- <div class="container pt-2 pb-4">
         <GSectionTitle title="comments" icon="bi-chat"></GSectionTitle>

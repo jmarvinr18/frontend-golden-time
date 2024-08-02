@@ -28,17 +28,25 @@
             </div>
 
             <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
-            <div class="row mt-3">
-                <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="w-100 rounded-lg" />
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="w-100 rounded-lg" />
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <img src="https://picsum.photos/1000/1000" class="w-100 rounded-lg" />
+            <div class="is-desktop d-flex">
+                <div class="p-3 w-25"  v-for="(b,s) in blog.related_news">
+                    <a :href="`/blog/read/${b.id}`">
+                        <img :src="b.feature_image" style=" object-fit: cover; height:30vh" class="w-100 rounded-lg" />
+                    </a>
                 </div>
             </div>
+            <div class="is-mobile d-flex flex-column mt-3">
+                <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_news" class="d-flex p-3 text-decoration-none text-dark">
+                    <div style="width: 8rem; height: 8rem;">
+                        <img :src="b.feature_image" style="width: 8rem; height: 8rem; object-fit: cover;" class="rounded-lg" />
+                    </div>
+                    
+                    <div class="px-3">
+                        <h5>{{ b?.title }}</h5>
+                        <div v-html="useTruncateText(b?.content, 50)"></div>
+                    </div>
+                </a>
+            </div>  
             
             <hr class="my-3" />
 

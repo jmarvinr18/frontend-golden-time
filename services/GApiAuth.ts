@@ -28,7 +28,7 @@ export default {
     async logout() {
         return ApiService.post('/auth/logout')
     },
-    async verifyEmail(data: object) {
-        return ApiService.get(`/auth/verify-email/${data}`)
+    async verifyEmail(data: object, token:any, id: any) {
+        return ApiService.get(`/auth/verify-email/${id}/${token}?${data}`)
     },
 }

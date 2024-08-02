@@ -93,14 +93,10 @@
     </section>
     <section class="is-mobile g-header position-fixed top-0 start-0 w-100" :class="fixedMode==false? colorChange? 'active':'':'bg-dark'">
         <div class="d-flex align-items-center justify-content-between px-3 py-3">
-            <div class="left-side d-flex align-items-center" style="width: 15%;">
-                <div class="me-5">
-                    <NuxtLink to="/">
-                        <img src="/images/GT_logo_white2.png" style="width: 40px;" />
-                    </NuxtLink>
-                </div>
-            </div>
-            <div class="middle-side w-50 text-center">
+            <NuxtLink to="/" class="left-side d-flex align-items-center logo-mobile">
+                <div></div>
+            </NuxtLink>
+            <!-- <div class="middle-side w-50 text-center"> -->
                 <!-- <div class="input-group w-100 rounded-pill overflow-hidden bg-white">
                     <span class="bg-none input-group-text border-0" id="basic-addon1">
                         <i class="bi bi-search"></i>
@@ -108,7 +104,7 @@
                     <input type="text" class="form-control border-0 py-1" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
                 
                 </div> -->
-            </div>
+            <!-- </div> -->
             <div v-if="token" class="right-side d-flex align-items-center">
                 <div>
                     <i class="bi bi-bell text-light h2 mb-0"></i>
@@ -280,6 +276,13 @@ export default defineComponent({
 .dropdown-divider {
     border: 0.1rem solid #0202021f;
     margin-bottom: 16px;
+}
+
+.logo-mobile {
+    width: 50%;
+    object-fit: cover;
+    background: url(/images/GT_logo_white2.png) -34px center / cover no-repeat;
+    height: 41px;
 }
 
 @keyframes bg-fade {

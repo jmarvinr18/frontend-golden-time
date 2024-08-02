@@ -321,7 +321,9 @@ export default defineComponent({
             if (props.edit) {
                 authStore.updateProfile();
             } else {
-                authStore.register();    
+                authStore.register().then((res) => {
+                    localStorage.setItem("gtuserid", res.data.id);
+                });    
             }
         }
 
