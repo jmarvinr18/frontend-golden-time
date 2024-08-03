@@ -111,10 +111,9 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setError(true, i18n.global.t("PasswordDontMatch"));
             });
         },
-        async verifyEmail(data: any) {
-            console.log("DATA: ", data)
-            return GApiAuth.verifyEmail(data).then((res: any) => {
-                useRouter().push("/account/verified")
+        async verifyEmail(data: any, token:any, id:any) {
+            return GApiAuth.verifyEmail(data, token, id).then((res: any) => {
+                useRouter().push(`/account/verified`);
             }).catch((err: any) => {
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);

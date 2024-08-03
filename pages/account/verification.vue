@@ -33,9 +33,16 @@ export default defineComponent({
     setup() {
         var authStore = useAuthStore()
         var route = useRoute();
+        var router = useRouter();
         onMounted(() => {
-            if (route.query.vp != undefined) {
-                authStore.verifyEmail(route.query.vp)
+            const ls_usrid = localStorage.getItem('gtuserid');
+            if (route.query.signature && route.query.expires && route.query.token) {
+                const obj = `signature=${route.query.signature}&expires=${route.query.expires}`
+                authStore.verifyEmail(obj, route.query.token, ls_usrid).then(() => {
+                    localStorage.removeItem('gtuserid');
+                });
+            } else {
+                router.push({ name: 'login' });
             }
         })
     },

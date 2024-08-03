@@ -70,19 +70,15 @@ export default defineComponent({
         var authStore = useAuthStore()
         var route = useRoute()
         var authData = ref<UserAuth>({
-            email: "",
             password: "",
             password_confirmation: "",
-            token: ""
-        })
+            email: route.query.email,
+            token: route.query.token
+        });
 
 
         var submit = () => {
-            authStore.resetPassword({
-                ...authData.value,
-                email: route.query.email,
-                token: route.params.token
-            })
+            authStore.resetPassword(authData.value)
         }
 
         
