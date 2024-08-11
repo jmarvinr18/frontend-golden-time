@@ -319,7 +319,10 @@ export default defineComponent({
 
         const submitData = () => {
             if (props.edit) {
-                authStore.updateProfile();
+                if (userData.value.profile_details.image) {
+                    dataObj.value.profile_details.image = userData.value.profile_details.image;
+                }
+                authStore.updateProfile(dataObj.value);
             } else {
                 authStore.register().then((res) => {
                     localStorage.setItem("gtuserid", res.data.id);
