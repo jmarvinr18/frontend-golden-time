@@ -134,9 +134,9 @@ export const useAuthStore = defineStore("authStore", {
             });
         },
 
-        async updateProfile() {
+        async updateProfile(data: any) {
             generalStore().setIsLoading(true);
-            return GApiAuth.updateProfile(this.userData, this.userData.id).then((res: any) => {
+            return GApiAuth.updateProfile(data, this.userData.id).then((res: any) => {
                 generalStore().setIsLoading(false);
                 generalStore().setSuccess(true, i18n.global.t("ProfileSubmittedMsg"));
 

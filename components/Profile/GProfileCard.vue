@@ -17,9 +17,9 @@
                 </div>
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container ps-3">
                     <div class="w-100 g-profile-content">
-                        <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                        <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill pull-right w-50 py-2 f10">
                             <i class="bi bi-pencil me-1"></i>
-                            Edit Profile
+                            {{$t('EditProfile')}}
                         </NuxtLink>
 
                        
@@ -111,7 +111,7 @@
                 <div class="col-xs-12 position-relative" style="z-index: 100;">
                     <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill f12 pull-right ">
                         <i class="bi bi-pencil me-1"></i>
-                        Edit Profile
+                        {{$t('EditProfile')}}
                     </NuxtLink>
                     <ProfileGProfileFollowBtn v-else></ProfileGProfileFollowBtn>
                 </div>
