@@ -2,20 +2,20 @@ import { createI18n } from 'vue-i18n'
 
 
 const numberFormats = {
-    'en': {
-      currency: {
-        style: 'currency',
-        currency: 'USD'
-      }
-    },
-    'ja': {
-      currency: {
-        style: 'currency',
-        currency: 'JPY',
-        currencyDisplay: 'symbol'
-      }
+  'en': {
+    currency: {
+      style: 'currency',
+      currency: 'USD'
+    }
+  },
+  'ja': {
+    currency: {
+      style: 'currency',
+      currency: 'JPY',
+      currencyDisplay: 'symbol'
     }
   }
+}
 export const i18n = createI18n({
     legacy: false,
     globalInjection: true,
@@ -137,7 +137,7 @@ export const i18n = createI18n({
             FlavourPlaceholder: "vanilla",
             PricePlaceholder: "3800",
             IngredientsPlaceholder: "protein",
-            UrlPlaceholder: "google.com",
+            UrlPlaceholder: "https://yoururl.com",
             DescriptionPlaceholder: "Protein content is higher than other products",
             GoToMyAccount: "Go to my account",
             YourAccountHasBeenVerified: "Your account has been verified.",
@@ -212,7 +212,8 @@ export const i18n = createI18n({
             SortHighEasyToConsume: "High easy to consusme Rate",
             SortLabel: "Sort label",
             NoFollowers: "No one is following you at the moment.",
-            NoFollowings: "You are not following anyone at the moment."
+            NoFollowings: "You are not following anyone at the moment.",
+            ProperURL: "Please use proper URL format. For example : https://thedomain.com"
         },
         ja: {
             SupplementRegistration: 'サプリ登録',
@@ -329,7 +330,7 @@ export const i18n = createI18n({
             FlavourPlaceholder: "バニラ",
             PricePlaceholder: "3800",
             IngredientsPlaceholder: "タンパク質",
-            UrlPlaceholder: "google.com",
+            UrlPlaceholder: "https://yoururl.com",
             DescriptionPlaceholder: "プロテイン含有量が他の商品に比べて多い",
             GoToMyAccount: "マイアカウントへ移動します",
             YourAccountHasBeenVerified: "アカウントが承認されました。",
@@ -377,7 +378,7 @@ export const i18n = createI18n({
             Yes: "はい",
             CommentAddedMsg: "→コメントを投稿できました！",
             Great: "ログイン成功",
-            Oops: "ユーザ登録/ログインしてください",
+            Oops: "おっと",
             WelcomeBack: "おかえりなさい",
             ProfileSubmittedMsg: "あなたのプロファイルが正常に更新されました！",
             ResetPasswordSent: "パスワードをリセットするリンクがメールに送信されました。",
@@ -404,7 +405,8 @@ export const i18n = createI18n({
             SortHighEasyToConsume: "食べやすさ順",
             SortLabel: "ソートラベル",
             NoFollowers: "現時点では誰もあなたをフォローしていません。",
-            NoFollowings: "あなたは現在誰もフォローしていません。"
+            NoFollowings: "あなたは現在誰もフォローしていません。",
+            ProperURL: "適切な URL 形式を使用してください。例: https://thedomain.com"
         }
     },
     numberFormats

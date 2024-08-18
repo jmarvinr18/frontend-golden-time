@@ -37,7 +37,7 @@
                         </button>
                     </div>
                     <div v-else>
-                        <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }} </NuxtLink>
+                        <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}</NuxtLink>
                     </div>
                 </div>
                 <div class="g-review-item-owner w-100 d-flex align-items-center position-absolute">

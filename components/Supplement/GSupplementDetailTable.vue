@@ -59,7 +59,7 @@
                 {{ $t('ComponentLabel') }}
                 </div>
                 <div class="w-50 border-bottom">
-                {{supplement?.component}}
+                {{supplement?.ingredients}}
                 </div>
             </div>
         </div>
@@ -124,7 +124,7 @@
                     {{ $t('ComponentLabel') }}
                 </div>
                 <div class="w-75 border-bottom">
-                    {{supplement?.component}}
+                    {{supplement?.ingredients}}
                 </div>
             </div>
         </div>

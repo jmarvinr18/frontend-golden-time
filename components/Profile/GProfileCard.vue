@@ -4,12 +4,15 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container">
                     <div class="w-100 g-profile-content" v-if="userData.profile_details">
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.deadlift">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("DeadliftLabel") }}: {{ userData.profile_details.deadlift }}
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            <i class="bi bi-person-arms-up me-1 text-primary"></i> {{ $t("DeadliftLabel") }}: {{ userData.profile_details.deadlift? userData.profile_details.deadlift:0 }}
                         </div>
-                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.my_training">
-                            <i class="bi bi-bezier2 me-1 text-primary"></i> {{ $t("YearIStartedTrainingLabel") }}: {{ userData.profile_details.year_attended_training }} years
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("BenchPressLabel") }}: {{ userData.profile_details.bench_press? userData.profile_details.bench_press:0 }}
                         </div>
+                        <!-- <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            <i class="bi bi-bezier2 me-1 text-primary"></i> {{ $t("YearIStartedTrainingLabel") }}: {{ userData.profile_details.year_attended_training? userData.profile_details.year_attended_training:0 }} years
+                        </div> -->
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.respected_trainee">
                             <i class="bi bi-person-heart me-1 text-primary"></i> {{ $t("RespectedTraineeLabel") }}: {{ userData.profile_details.respected_trainee }}
                         </div>
@@ -32,14 +35,15 @@
                         <div v-if="userData.profile_details.birth_date != null" class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content mt-5">
                             {{ $t("BirthDateLable") }}: {{ $formatTime(userData.profile_details.birth_date) }}
                         </div>
-                        <div v-if="userData.profile_details.height != null" class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            {{ $t("HeightLabel") }}: <span> {{ userData.profile_details.height }} cm</span>
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            {{ $t("HeightLabel") }}: <span> {{ userData.profile_details.height? userData.profile_details.height:0 }} cm</span>
                         </div>
-                        <div v-if="userData.profile_details.body_weight != null" class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            {{ $t("BodyWeightLabel") }}: {{ userData.profile_details.body_weight }} kg
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            {{ $t("BodyWeightLabel") }}: {{ userData.profile_details.body_weight? 
+                            userData.profile_details.body_weight:0 }} kg
                         </div>
                         <div v-if="userData.profile_details.body_fat_percentage != null" class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            {{ $t("BodyFatPercentageLabel") }}: {{ userData.profile_details.body_fat_percentage }}
+                            {{ $t("BodyFatPercentageLabel") }}: {{ userData.profile_details.body_fat_percentage? userData.profile_details.body_fat_percentage:0 }}
                         </div>
                     </div>
                 </div>
@@ -116,9 +120,12 @@
                     <ProfileGProfileFollowBtn v-else></ProfileGProfileFollowBtn>
                 </div>
                 <div class="col-sm-6 d-flex flex-wrap align-items-center g-profile-container" v-if="userData.profile_details">
-                    <div class="w-100 g-profile-content g-profile-content-first d-flex flex-wrap">
+                    <div class="w-100 g-profile-content g-profile-content-first d-flex flex-wrap mt-5 gap-2">
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("BenchPressLabel") }}: {{ userData.profile_details.bench_press }}
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("DeadliftLabel") }}: {{ userData.profile_details.deadlift? userData.profile_details.deadlift:0 }}
+                        </div>
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            <i class="bi bi-person-arms-up me-1 text-primary"></i> {{ $t("BenchPressLabel") }}: {{ userData.profile_details.bench_press? userData.profile_details.bench_press:0 }}
                         </div>
                         <!-- <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.my_training">
                             <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ userData.profile_details.my_training }} years
@@ -224,7 +231,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .g-profile-card {
-  margin-top: -360px;
+  margin-top: -43vh;
   position: relative;
   margin-bottom: 10%;
 }
@@ -250,9 +257,19 @@ export default defineComponent({
   border: 5px solid white;
 }
 
-@media only screen and (max-width: 1009px) {
+@media only screen and (max-width: 890px) {
+    .g-profile-card {
+        margin-top: -92%;
+    }
+}
+
+@media only screen and (min-width: 990px) and (max-width:1180px) {
+  .g-profile-dp img{
+    width: 210px !important;
+    height: 210px !important;
+  }
   .g-profile-card {
-    margin-top: -92%;
+    margin-top: -22%;
   }
   .g-profile-container {
     height: auto;
