@@ -77,12 +77,12 @@ body {
     background-color: black;
 }
 
-.bi.bi-star, .bi.bi-star-fill{
+.bi.bi-star, .bi.bi-star-fill, .bi.bi-star-half{
     font-size : clamp(.3rem, 1vw, 9.5rem) !important;
 }
 
 @media only screen and (max-width:1009px)  {
-    .bi.bi-star, .bi.bi-star-fill{
+    .bi.bi-star, .bi.bi-star-fill, .bi.bi-star-half{
         font-size : clamp(.8rem, 1.4vw, 8rem) !important;
     }
 
