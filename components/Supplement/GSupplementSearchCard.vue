@@ -70,7 +70,7 @@
             </div>
         </div>
 
-     
+     <!-- {{searchData}} -->
         <!-- SEARCH RESULT -->
         <div class="container mx-auto mt-5">
             <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="i"></SupplementGSupplementSearchItem>
@@ -83,6 +83,8 @@
                         <option value="15">15</option>
                         <option value="20">20</option>
                     </select>
+
+                    <!-- {{ searchData.meta.links }} -->
                 </div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination mb-0">

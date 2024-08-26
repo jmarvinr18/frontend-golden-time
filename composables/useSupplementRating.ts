@@ -1,5 +1,6 @@
 
 export default function (ratings: any) {
+
     if (ratings != undefined) {
         var numberInarray = ratings.toString().split('.')
         var wholeNumber = numberInarray[0]
@@ -17,7 +18,6 @@ export default function (ratings: any) {
         for (let i = 0; i < (decimalNumber == undefined ? totalStars : totalStars - 1) - wholeNumber; i++) {
             starsArr.push("bi-star-fill text-light")
         }
-
         return starsArr
     }
 }
