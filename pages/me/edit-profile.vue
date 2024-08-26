@@ -13,7 +13,7 @@
             <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
                 <!-- SIGN UP FORM -->
                 <div class="container py-4 w-50 mx-auto">
-                    <ProfileGProfileForm/>
+                    <ProfileGProfileForm :edit="true" />
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@ export default defineComponent({
 
         const setPhoto = ((data:any) => {
             avatarImg.value = data.src;
-            userData.value.profile_details.image = data.file;
+            userData.value.profile_details.image = data.src;
         });
 
         useHead({
@@ -62,7 +62,9 @@ export default defineComponent({
 
         onMounted(async () => {
             await authStore.getProfile(userData.value.id).then(() => {
-                avatarImg.value = userData.value.profile_details.image  
+                if (userData.value.profile_details.image) {
+                    avatarImg.value = userData.value.profile_details.image
+                }
             })
         })
 
