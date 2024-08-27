@@ -16,20 +16,19 @@
                     </div>
                 </div>
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container ps-3">
-                    <div class="w-100 g-profile-content">
-                        <NuxtLink v-if="mode=='me'" to="/me/edit-profile" class="btn btn-outline-primary btn-sm rounded-pill pull-right w-50 py-2 f10">
+                    <div class="w-100 g-profile-action">
+                        <button v-if="mode=='me'" @click="router.push('/me/edit-profile')" class="btn btn-outline-primary btn-sm rounded-pill pull-right w-50 py-2 f10">
                             <i class="bi bi-pencil me-1"></i>
                             {{$t('EditProfile')}}
-                        </NuxtLink>
-
-                       
+                        </button>
                         <button @click="toggleFollow(userData?.id)" v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
                             <i class="bi bi-person-plus me-1"></i>
                             {{ userData?.is_following_me ? "Unfollow" : "Follow"}}
                         </button>
-                        <!-- {{ userData }} -->
+                    </div>                    
+                    <div class="w-100 g-profile-content">
                         
-                        <div v-if="userData.profile_details.birth_date != null" class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content mt-5">
+                        <div v-if="userData.profile_details.birth_date != null" class="rounded shadow-sm px-2 py-1 f12 my-2 w-fit-content">
                             {{ $t("BirthDateLable") }}: {{ $formatTime(userData.profile_details.birth_date) }}
                         </div>
                         <div v-if="userData.profile_details.height != null" class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
@@ -204,6 +203,7 @@ export default defineComponent({
   },
   setup(props) {
     var userImage = ref("");
+    var router = useRouter()
     // const userStore = useUserStore();
     // var { userData } = storeToRefs(userStore);    
     var followStore = useFollowStore()
@@ -218,6 +218,7 @@ export default defineComponent({
     return {
       userImage,
       toggleFollow,
+      router
     };
   },
 });
@@ -232,9 +233,14 @@ export default defineComponent({
 .g-profile-container {
   height: 20vh;
 }
+.g-profile-action {
+  z-index: 900;
+  align-self: flex-start;
+
+}
 .g-profile-content {
   z-index: 900;
-  position: relative;
+  align-self: flex-start;
 }
 .g-profile-text {
   margin-top: 120px;
