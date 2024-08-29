@@ -16,8 +16,8 @@ export default {
     async updateProfile(data: object, id: any) {
         return ApiService.post(`/api/v1/me/${id}?_method=PUT`, data, header)
     },
-    async getProfile(id: any) {
-        return ApiService.get(`/api/v1/me/${id}`);
+    async getProfile(id: any, params: string = "") {
+        return ApiService.get(`/api/v1/me/${id}${params}`);
     },
     async forgotPassword(data: any) {
         return ApiService.post('/auth/forgot-password', data)

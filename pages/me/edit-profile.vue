@@ -51,6 +51,8 @@ export default defineComponent({
         const avatarImg = ref('/images/no-avatar.jpeg');
         var { userData } = storeToRefs(authStore)
 
+        var route = useRoute()
+
         const setPhoto = ((data:any) => {
             avatarImg.value = data.src;
             userData.value.profile_details.image = data.src;
@@ -60,8 +62,8 @@ export default defineComponent({
             title: "Edit Profile | Golden Time"
         });
 
-        onMounted(async () => {
-            await authStore.getProfile(userData.value.id).then(() => {
+        onBeforeMount(async () => {
+            authStore.getProfile(userData.value.id, "?action=edit").then(() => {
                 if (userData.value.profile_details.image) {
                     avatarImg.value = userData.value.profile_details.image
                 }

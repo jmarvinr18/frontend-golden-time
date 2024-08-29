@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-md-4 d-flex flex-wrap align-items-center g-profile-container ps-3">
                     <div class="w-100 g-profile-action">
-                        <button v-if="mode=='me'" @click="router.push('/me/edit-profile')" class="btn btn-outline-primary btn-sm rounded-pill pull-right w-50 py-2 f10">
+                        <button v-if="mode=='me'" @click="router.replace('/me/edit-profile')" class="btn btn-outline-primary btn-sm rounded-pill pull-right w-50 py-2 f10">
                             <i class="bi bi-pencil me-1"></i>
                             {{$t('EditProfile')}}
                         </button>
@@ -204,12 +204,14 @@ export default defineComponent({
   setup(props) {
     var userImage = ref("");
     var router = useRouter()
-    // const userStore = useUserStore();
-    // var { userData } = storeToRefs(userStore);    
     var followStore = useFollowStore()
     var toggleFollow = (id: string | undefined) => {
         followStore.toggleFollow({ user_id: id})
     }
+
+    var editProfile = (param: string) => {
+        window.location.href = param
+    }    
 
     onBeforeUpdate(() => {
       userImage.value = props.userData?.profile_details.image;
@@ -218,7 +220,8 @@ export default defineComponent({
     return {
       userImage,
       toggleFollow,
-      router
+      router,
+      editProfile
     };
   },
 });

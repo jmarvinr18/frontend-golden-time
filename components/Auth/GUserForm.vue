@@ -308,8 +308,15 @@ export default defineComponent({
         const {t} = useI18n();
         const dataObj = ref(registrationForm.value);
 
-
-        dataObj.value = props.edit? userData.value:registrationForm.value;
+        onMounted(async () => {
+            if (props.edit) {
+                await authStore.getProfile(userData.value.id, "?action=edit").then(() => {
+                    dataObj.value = userData.value
+                })
+            } else {
+                dataObj.value = registrationForm.value;
+            }
+        })
 
         const genderData = ref([
             { value: "male", text: t("GenderMale") },
