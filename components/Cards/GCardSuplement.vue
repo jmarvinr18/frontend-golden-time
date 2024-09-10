@@ -1,5 +1,5 @@
 <template>
-    <div class="is-desktop g-card-supplement card g-shadow rounded-lg" >
+    <div class="is-desktop g-card-supplement card g-shadow rounded-lg">
         <div style="height: 13rem; overflow: hidden;">
             <NuxtLink :to="`/supplement/review/${supplement?.id}`">
                 <img :src="supplement?.image" class="card-img-top" alt="...">
@@ -7,7 +7,7 @@
         </div>
 
         <div class="p-2">
-            <h5 class="p-1"> {{ supplement?.name }}</h5>
+            <h5 class="p-1">{{ supplement?.name }}</h5>
         </div>
         
         <div v-if="mode=='me'" class="card-body text-center d-block">

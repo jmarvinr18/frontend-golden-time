@@ -4,13 +4,13 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
 
-        <div v-if="userData.supplements && userData.supplements.length" class="row">
+        <div v-if="userData.supplements" class="row">
           <div v-for="(supplement) in userData.supplements" class="col-md-3 col-xs-12">
             <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
           </div>
           <!-- <UtilsGLoadMore></UtilsGLoadMore> -->
         </div>
-        <div class="my-5 text-dark opacity-50" v-else>
+        <div class="my-5 text-dark opacity-50 row" v-else>
           No Supplements
         </div>
       </div>
