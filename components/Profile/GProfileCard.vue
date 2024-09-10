@@ -281,7 +281,7 @@ export default defineComponent({
 }
 
 .g-profile-action > button {
-    width: 110px;
+    width: 140px;
 }
 .g-profile-content {
   z-index: 900;
