@@ -53,7 +53,7 @@
                                 <i class="bi bi-pencil me-1"></i>
                                 {{$t('EditProfile')}}
                             </button>
-                            <button @click="toggleFollow(userData?.id)" v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right w-50 py-2">
+                            <button @click="toggleFollow(userData?.id)" v-else class="btn btn-primary btn-sm rounded-pill f12 pull-right py-2">
                                 <i class="bi bi-person-plus me-1"></i>
                                 {{ userData?.is_following_me ? "Unfollow" : "Follow"}}
                             </button>
@@ -278,6 +278,10 @@ export default defineComponent({
     width: 100%;
     right: 0%;
     height: 100%;
+}
+
+.g-profile-action > button {
+    width: 110px;
 }
 .g-profile-content {
   z-index: 900;
