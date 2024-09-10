@@ -8,7 +8,7 @@
                     </span>
                     {{ avatarImg? $t('ChangeImage'): $t('AddImage') }}
                 </button>
-                <img :src="avatarImg" class="bg-white object-fit-contain rounded-circle mx-auto g-shadow" style="height:180px; width:180px;" />
+                <img :src="avatarImg" class="bg-white object-fit-cover rounded-circle mx-auto g-shadow" style="height:180px; width:180px;" />
             </div>
             <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
                 <!-- SIGN UP FORM -->
@@ -19,7 +19,7 @@
         </div>
         <div class="is-mobile">
             <div class="container w-100 text-center position-relative mt-5 cursor-pointer" style="margin-bottom:-60px" data-bs-toggle="modal" data-bs-target="#photo-modal">
-                <img :src="avatarImg"  class="bg-white object-fit-contain rounded-circle mx-auto g-shadow" style="height:10rem; width:10rem;"/>
+                <img :src="avatarImg"  class="bg-white object-fit-cover rounded-circle mx-auto g-shadow" style="height:10rem; width:10rem;"/>
                 <button class="btn position-absolute bottom-0 rounded-pill py-2" style="right:0%">
                     <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
                         <i class="bi bi-camera "></i>
