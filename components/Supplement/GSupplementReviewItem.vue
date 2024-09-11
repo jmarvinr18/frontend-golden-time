@@ -40,10 +40,11 @@
                         <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }} </NuxtLink>
                     </div>
                 </div>
-                <div class="g-review-item-owner w-100 d-flex align-items-center position-absolute">
+
+               <NuxtLink class="g-review-item-owner w-100 d-flex align-items-center position-absolute text-decoration-none text-dark" :to="`/users/${supplement?.user?.id}`">
                     <img class="rounded-circle me-2" :src="getProfileImage" style="height: 30px; width: 30px;" />
                     <div class="f12">{{ supplement?.user?.name }}</div>
-                </div>
+               </NuxtLink> 
             </div>
             
         </div>

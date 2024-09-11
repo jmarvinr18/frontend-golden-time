@@ -56,17 +56,13 @@ export const useSupplementStore = defineStore("supplementStore", {
     actions: {
 
         async removeDrinkWish(supplement_id: string, type: string){
-
             switch (type) {
                 case "drink_wish":
                     await GApiSupplement.removeDrinkWish(supplement_id)
                     break;
-            
                 case "my_supplement":
-                    
                     break;
             }
-            
         },
 
         async toggleDrinkWish(supplement_id: string, is_list = true) {
@@ -80,6 +76,8 @@ export const useSupplementStore = defineStore("supplementStore", {
                         sup.user_supplement_wish_count -= 1
                     }
                 }
+            }).catch(() => {
+                console.log("ERROR!")
             })
         },
         async toggleHasDrank(supplement_id: string, is_list = true) {
@@ -112,9 +110,7 @@ export const useSupplementStore = defineStore("supplementStore", {
             });
         },
         async getSupplement(id: any) {
-            generalStore().setIsLoading(true);
             return GApiSupplement.getDetailSupplement(id).then((res: any) => {
-                generalStore().setIsLoading(false);
                 this.supplement = res.data
                 return res.data;
             });
@@ -164,11 +160,7 @@ export const useSupplementStore = defineStore("supplementStore", {
             });
         },
         async ratingSupplement(data: any) {
-            // const { t } = useI18n();
-            generalStore().setIsLoading(true);
             return GApiSupplement.ratingSupplement(data).then((res: any) => {
-                generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, i18n.global.t("RatingSubmitted"));
                 return res.data;
             }).catch((err: any) => {
                 var status = err.response.status
@@ -183,10 +175,7 @@ export const useSupplementStore = defineStore("supplementStore", {
             });
         },
         async createCommentSupplement(data: any) {
-            generalStore().setIsLoading(true);
             return GApiSupplement.createCommentSupplement(data).then((res: any) => {
-                generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, i18n.global.t("CommentAddedMsg"));
                 this.getSupplement(data?.supplement_id);
                 return res.data;
             }).catch((err: any) => {

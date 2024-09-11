@@ -2,7 +2,7 @@
     <div class="is-desktop w-100 d-flex py-4 align-items-center border-bottom">
         <img :src="followDetails?.profile_details.image" style="height: 120px; width: 120px;" class="rounded-circle" />
         <div class="w-75 ms-4">
-            <div class="g-person-name h5 mb-0">{{ followDetails.name }}</div>
+            <NuxtLink :to="`/users/${followDetails.id}`" class="g-person-name h5 mb-0 text-decoration-none">{{ followDetails.name }}</NuxtLink>
             <div class="g-person-short mt-3 w-75">
                 {{ followDetails?.profile_details.description }}
             </div>
