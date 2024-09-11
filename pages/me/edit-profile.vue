@@ -63,11 +63,9 @@ export default defineComponent({
         });
 
         onBeforeMount(async () => {
-            authStore.getProfile(userData.value.id, "?action=edit").then(() => {
-                if (userData.value.profile_details.image) {
-                    avatarImg.value = userData.value.profile_details.image
-                }
-            })
+            if (userData.value.profile_details.image) {
+                avatarImg.value = userData.value.profile_details.image
+            }
         })
 
         return  {

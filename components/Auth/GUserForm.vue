@@ -308,7 +308,7 @@ export default defineComponent({
         const {t} = useI18n();
         const dataObj = ref(registrationForm.value);
 
-        onMounted(async () => {
+        onBeforeMount(async () => {
             if (props.edit) {
                 await authStore.getProfile(userData.value.id, "?action=edit").then(() => {
                     dataObj.value = userData.value
