@@ -108,7 +108,13 @@ export const useAuthStore = defineStore("authStore", {
 
             }).catch((err: any) => {
                 const msg = err.response.data.message;
-                generalStore().setError(true, i18n.global.t("PasswordDontMatch"));
+
+                if (msg === "Your email address is not verified.") {
+                    generalStore().setError(true, i18n.global.t("EmailNotVerified"));
+                } else {
+                    generalStore().setError(true, i18n.global.t("PasswordDontMatch"));
+                }
+                
             });
         },
         async verifyEmail(data: any, token:any, id:any) {
