@@ -5,6 +5,10 @@
 
 }
 
+.font-italic {
+    font-style: italic;
+}
+
 .text-border-black {
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: black;

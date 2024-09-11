@@ -61,7 +61,7 @@
                 </div>
 
                   
-            <div class="border border-light p-2 rounded border-2 mt-5 mb-2">
+            <div class="border border-light p-2 rounded border-2 mt-5 mb-2 g-profile-details">
                 <div class="my-1 fw-bold">
                     {{ $t("ProfileDetails") }}
                 </div>
@@ -69,14 +69,14 @@
                 <div class="row w-100">
                     <div class="col-md-6 d-flex flex-wrap align-items-center g-profile-container">
                         <div class="w-100 g-profile-content" v-if="userData.profile_details">
-                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.deadlift">
-                                <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("DeadliftLabel") }}: {{ userData.profile_details.deadlift }}
+                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content" >
+                                <i class="bi bi-person-raised-hand me-1 text-primary"></i> <span>{{ $t("DeadliftLabel") }}:</span>  <span v-if="userData.profile_details.deadlift">{{ userData.profile_details.deadlift }}</span><span class="fs-bold font-italic text-muted" v-else> {{ $t("DataNotAvailable") }} </span>
                             </div>
-                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.my_training">
-                                <i class="bi bi-bezier2 me-1 text-primary"></i> {{ $t("YearIStartedTrainingLabel") }}: {{ userData.profile_details.year_attended_training }} years
+                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content" >
+                                <i class="bi bi-bezier2 me-1 text-primary"></i> <span> {{ $t("YearIStartedTrainingLabel") }}: </span> <span v-if="userData.profile_details.my_training"> {{ userData.profile_details.year_attended_training }}</span> <span class="fs-bold font-italic text-muted" v-else>  {{ $t("DataNotAvailable") }} </span>
                             </div>
-                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.respected_trainee">
-                                <i class="bi bi-person-heart me-1 text-primary"></i> {{ $t("RespectedTraineeLabel") }}: {{ userData.profile_details.respected_trainee }}
+                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content">
+                                <i class="bi bi-person-heart me-1 text-primary"></i> <span>{{ $t("RespectedTraineeLabel") }}: </span> <span v-if="userData.profile_details.respected_trainee"> {{ userData.profile_details.respected_trainee }}</span><span class="fs-bold font-italic text-muted" v-else>  {{ $t("DataNotAvailable") }} </span>
                             </div>
                         </div>
                     </div>
@@ -84,17 +84,17 @@
                    
                         <div class="w-100 g-profile-content">
                             
-                            <div v-if="userData.profile_details.birth_date != null" class="rounded px-2 py-1 f12 my-2 w-fit-content">
-                                {{ $t("BirthDateLable") }}: {{ $formatTime(userData.profile_details.birth_date) }}
+                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content w-100">
+                              <span>{{ $t("BirthDateLable") }}: </span> <span class="ml-5" v-if="userData.profile_details.birth_date != null"> {{ $formatTime(userData.profile_details.birth_date) }}</span> <span class="fs-bold font-italic text-muted" v-else>  {{ $t("DataNotAvailable") }} </span>
                             </div>
-                            <div v-if="userData.profile_details.height != null" class="rounded px-2 py-1 f14 my-2 w-fit-content">
-                                {{ $t("HeightLabel") }}: <span> {{ userData.profile_details.height }} cm</span>
+                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content">
+                                <span>{{ $t("HeightLabel") }}: </span> <span v-if="userData.profile_details.height != null"> {{ userData.profile_details.height }} cm</span> <span class="fs-bold font-italic text-muted" v-else>  {{ $t("DataNotAvailable") }} </span>
                             </div>
-                            <div v-if="userData.profile_details.body_weight != null" class="rounded px-2 py-1 f14 my-2 w-fit-content">
-                                {{ $t("BodyWeightLabel") }}: {{ userData.profile_details.body_weight }} kg
+                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content">
+                               <span> {{ $t("BodyWeightLabel") }}: </span><span v-if="userData.profile_details.body_weight != null">{{ userData.profile_details.body_weight }} kg</span> <span class="fs-bold font-italic text-muted" v-else>  {{ $t("DataNotAvailable") }} </span>
                             </div>
-                            <div v-if="userData.profile_details.body_fat_percentage != null" class="rounded px-2 py-1 f14 my-2 w-fit-content">
-                                {{ $t("BodyFatPercentageLabel") }}: {{ userData.profile_details.body_fat_percentage }}
+                            <div class="rounded px-2 py-1 f14 my-2 w-fit-content">
+                                <span>{{ $t("BodyFatPercentageLabel") }}: </span> <span v-if="userData.profile_details.body_fat_percentage != null">{{ userData.profile_details.body_fat_percentage }}</span> <span class="fs-bold font-italic text-muted" v-else>  {{ $t("DataNotAvailable") }} </span>
                             </div>
                         </div>
                     </div>
@@ -257,6 +257,10 @@ export default defineComponent({
 .g-profile-card-main{
     height: 67rem;
     border-radius: 15px;
+}
+
+.g-profile-details {
+  min-height: 250px;
 }
 
 .g-profile-card-wrapper {
