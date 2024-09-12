@@ -8,7 +8,7 @@
                 <div v-for="(blog, i) in contents?.blog" class="col-md-6 col-xs-12 mb-5">
                     <CardsGCardBlog :blog="blog" ></CardsGCardBlog>
                 </div>
-                <UtilsGLoadMore v-if="contents?.blog.length > 3" @on-click="viewAll('/blog')"></UtilsGLoadMore>
+                <UtilsGLoadMore v-if="contents?.blog?.length > 3" @on-click="viewAll('/blog')"></UtilsGLoadMore>
             </div>
         </div>
         <div class="container pt-2 pb-4">
@@ -20,7 +20,7 @@
                 </div>
 
                 <!-- {{ contents?.news.length }} -->
-                <UtilsGLoadMore v-if="contents?.news.length > 3" @on-click="viewAll('/news')"></UtilsGLoadMore>
+                <UtilsGLoadMore v-if="contents?.news?.length > 3" @on-click="viewAll('/news')"></UtilsGLoadMore>
             </div>
         </div>
         <!-- <div class="container pt-2 pb-4">

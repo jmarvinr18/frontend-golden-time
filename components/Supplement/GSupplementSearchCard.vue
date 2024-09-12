@@ -99,13 +99,13 @@
     <ais-instant-search class="is-mobile" :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
         <ais-configure :attributesToSnippet="['description']"/>
         <div class="container" style="margin-bottom:-90px">      
-            <div class="d-flex w-100 mx-auto search-bar">
-                <div class="input-group mb-3 w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
+            <div class="d-flex w-100 mx-auto search-bar mb-3">
+                <div class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
                     <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
                 </div>
                     <!-- SEARCH BOX AND FILTER -->
                 <div class="dropdown">
-                    <button class="btn btn-secondary bg-dark dropdown-toggle px-3 py-1 border-3 border-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius:0 0 20px 0">
+                    <button class="btn btn-secondary bg-dark dropdown-toggle px-3 py-1 border-3 border-dark h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius:0 0 20px 0">
                         <i class="bi bi-sort-up h2"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
