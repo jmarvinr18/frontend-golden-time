@@ -25,9 +25,9 @@
         </div>
         <div class="is-mobile g-supplement-item-card d-flex rounded-lg gap-1 g-shadow">
             <div class="g-supplement-item-media">
-                <img :src="supplement?.image" class="object-fit-cover" style="max-height: 150px; width: 100px; object-fit: cover;" />
+                <img :src="supplement?.image" class="object-fit-cover" style="height: 100%; width: 100px; object-fit: cover;" />
             </div>
-            <div class="g-supplement-item-content  px-3 f14">
+            <div class="g-supplement-item-content p-3 f14">
                 <div class=" w-100 mt-1 fw-bold">{{ supplement?.name? supplement.name:'&nbsp;' }}</div>
                 <div class="f12 mb-2 sup-description text-truncate mt-2">{{ useTruncateText(supplement?.description) }}</div>
                 <div class="g-supplement-item-ratings d-flex justify-content-around mt-3 w-100 mx-auto">

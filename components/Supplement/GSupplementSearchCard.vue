@@ -98,7 +98,7 @@
     
     <ais-instant-search class="is-mobile" :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
         <ais-configure :attributesToSnippet="['description']"/>
-        <div class="container" style="margin-bottom:-90px">      
+        <div class="container" >      
             <div class="d-flex w-100 mx-auto search-bar mb-3">
                 <div class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
                     <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
@@ -160,9 +160,9 @@
             </div>
                         
         </div>
-        <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
+        <div class="w-100 rounded-lg mt-4 bg-white border border-2">
             <!-- SEARCH RESULTs -->
-            <div class="container mx-auto mt-5">
+            <div class="container mx-auto mt-3">
                 <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="supplement.id"></SupplementGSupplementSearchItem>
             </div>
         </div>
