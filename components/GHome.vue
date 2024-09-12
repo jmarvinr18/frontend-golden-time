@@ -31,7 +31,7 @@
           <UtilsGLoadMore></UtilsGLoadMore>
         </div>
       </div>
-      <div class="container pt-2 pb-4">
+      <!-- <div class="container pt-2 pb-4">
         <GSectionTitle title="Tournament Information" icon="bi-calendar-check"></GSectionTitle>
   
         <div class="row">
@@ -64,7 +64,7 @@
           </div>
           <UtilsGLoadMore></UtilsGLoadMore>
         </div>
-      </div>
+      </div> -->
       <div class="container pt-2 pb-4">
         <GSectionTitle title="Featured players" icon="bi-stars"></GSectionTitle>
   

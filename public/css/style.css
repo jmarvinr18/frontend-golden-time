@@ -89,4 +89,10 @@ body {
     body {
         padding-bottom: 15%;
     }
+
+    .blog-content-image{
+        height: 15rem; 
+        object-fit: cover;
+        background-color: black;
+    }    
 }

@@ -2,12 +2,9 @@
     <GSection>
         <div class="container">
             <GSectionTitle :title="blog.title" :icon-hide="true"></GSectionTitle>
-            <hr class="my-3" />
+            <hr class="my-1"/>
+
             <BlogGBlogAuthor :blog="blog"></BlogGBlogAuthor>
-            <div class="g-blog-date text-secondary f12 mt-3">
-                <i class="bi bi-clock me-2 f14"></i>
-                {{ $formatTime(blog.created_at) }}
-            </div>
             <img :src="blog.feature_image" class="blog-content-image rounded-lg mt-3 w-100" />
             <div class="g-blog-body mt-5 lh-lg" v-html="blog.content"></div>
 

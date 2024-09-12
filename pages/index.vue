@@ -8,7 +8,7 @@
                 <div v-for="(blog, i) in contents?.blog" class="col-md-6 col-xs-12 mb-5">
                     <CardsGCardBlog :blog="blog" ></CardsGCardBlog>
                 </div>
-                <UtilsGLoadMore @on-click="viewAll('/blog')"></UtilsGLoadMore>
+                <UtilsGLoadMore v-if="contents?.blog.length > 3" @on-click="viewAll('/blog')"></UtilsGLoadMore>
             </div>
         </div>
         <div class="container pt-2 pb-4">
@@ -18,10 +18,12 @@
                 <div v-for="(news, i) in contents?.news" class="col-md-4 col-xs-12">
                     <CardsGCardNews :news="news"></CardsGCardNews>
                 </div>
-                <UtilsGLoadMore @on-click="viewAll('/news')"></UtilsGLoadMore>
+
+                <!-- {{ contents?.news.length }} -->
+                <UtilsGLoadMore v-if="contents?.news.length > 3" @on-click="viewAll('/news')"></UtilsGLoadMore>
             </div>
         </div>
-        <div class="container pt-2 pb-4">
+        <!-- <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('TournamentInformation')" icon="bi-calendar-check"></GSectionTitle>
 
             <div class="row">
@@ -30,7 +32,7 @@
                 </div>
                 <UtilsGLoadMore @on-click="viewAll('/event')"></UtilsGLoadMore>
             </div>
-        </div>
+        </div> -->
 
     </div>
 
@@ -50,14 +52,14 @@
                 <CardsGCardNews v-for="(news, i) in contents?.news" :news="news"></CardsGCardNews>
             </GContainerSlider>
         </div>
-        <div class="container pt-2 pb-4">
+        <!-- <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('TournamentInformation')" icon="bi-calendar-check"></GSectionTitle>
             
             
             <GContainerSlider>
                 <CardsGCardEvent v-for="(event, i) in contents?.event" :event="event" ></CardsGCardEvent>
             </GContainerSlider>
-        </div>
+        </div> -->
         <!-- <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('FeaturedPlayers')" icon="bi-stars"></GSectionTitle>
             <GContainerSlider>
