@@ -87,6 +87,7 @@ body {
     }
 
     body {
+        height: 100vh !important;
         /* padding-bottom: 15%; */
         /* overflow: hidden; */
     }
