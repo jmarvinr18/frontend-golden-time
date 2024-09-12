@@ -87,7 +87,8 @@ body {
     }
 
     body {
-        padding-bottom: 15%;
+        /* padding-bottom: 15%; */
+        /* overflow: hidden; */
     }
 
     .blog-content-image{
