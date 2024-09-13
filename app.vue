@@ -1,5 +1,5 @@
 <template>
-  <div class="main-frame">
+  <div>
     <UtilsGPreloader v-if="isLoading"></UtilsGPreloader>
     <GHeader></GHeader>
     <NuxtPage></NuxtPage>
