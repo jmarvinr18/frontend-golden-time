@@ -86,17 +86,8 @@ body {
         font-size : clamp(.8rem, 1.4vw, 8rem) !important;
     }
 
-    /* .main-frame{
-        overflow-y: scroll;
-        height: 48rem;  
-        margin: 0;
-        padding: 0;  
-      }     */
-
     body {
-        /* height: 100vh !important; */
-        /* padding-bottom: 15%; */
-        /* overflow: hidden; */
+        padding-bottom: 15%;
     }
 
     .blog-content-image{
