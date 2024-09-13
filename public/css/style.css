@@ -87,9 +87,9 @@ body {
     }
 
     body {
-        height: 100vh !important;
-        /* padding-bottom: 15%; */
-        /* overflow: hidden; */
+        /* height: 100vh !important; */
+        padding-bottom: 15%;
+        overflow: hidden;
     }
 
     .blog-content-image{

@@ -4,6 +4,7 @@
                 <i class="bi bi-clock f12"></i>
                 {{ $formatTime(blog?.created_at) }}
         </div>        
+
         <div class="g-author-name">
             <NuxtLink :to="`/users/${blog?.users.id}`" class="text-decoration-none text-dark f12 d-flex gap-2">
                 <img :src="blog?.users.profile_details.image" style="height: 20px; width: 20px;" class="rounded-circle" /> 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-frame">
     <UtilsGPreloader v-if="isLoading"></UtilsGPreloader>
     <GHeader></GHeader>
     <NuxtPage></NuxtPage>
@@ -43,3 +43,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+  .main-frame{
+    overflow: scroll;
+    height: 92vh;    
+  }
+</style>

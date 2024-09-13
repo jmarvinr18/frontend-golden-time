@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="g-card-body p-3 position-relative">
-            <div v-html="useTruncateText(blog?.short_description,200)"></div>
+            <div class="text-muted" v-html="useTruncateText(blog?.short_description,200)"></div>
             <div class="g-card-more w-100 text-light position-absolute bottom-2 d-flex justify-content-center">
                 <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
                     {{ $t("ReadMoreLabel") }} <i class="ms-2 bi bi-chevron-down rounded-pill"></i>

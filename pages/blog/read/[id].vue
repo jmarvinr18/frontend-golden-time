@@ -9,7 +9,7 @@
             <div class="g-blog-body mt-5 lh-lg" v-html="blog.content"></div>
 
             <GSectionTitle class="mt-lg py-3" title="More blogs" :icon-hide="true"></GSectionTitle>
-            <div class="w-100">
+            <div class="is-desktop w-100">
                 <div class="row">
                     <div class="p-3 col-lg-3 col-md-4" v-for="(b,s) in blog.related_news">
                     <a class="text-decoration-none" :href="`/blog/read/${b.id}`">
@@ -19,7 +19,7 @@
                         <img :src="b?.feature_image" style=" object-fit: cover; height:200px; width: 300px;" class="card-img-top w-100" />
                         <div class="card-body">
                             <h5 class="card-title"> {{ b?.title }} </h5>
-                            <p class="card-text">{{ useTruncateText(b?.content,50) }}</p>
+                            <p class="card-text">{{ useTruncateText(b?.short_descriptions,50) }}</p>
                         </div>
                         </div>                    
                     
@@ -38,7 +38,7 @@
                     
                     <div class="px-3">
                         <h5>{{ b?.title }}</h5>
-                        <div v-html="useTruncateText(b?.content, 50)"></div>
+                        <div v-html="useTruncateText(b?.short_description, 50)"></div>
                     </div>
                 </a>
                 
