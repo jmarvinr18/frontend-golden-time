@@ -1,6 +1,6 @@
 <template>
     <div class="is-desktop g-card-supplement card g-shadow rounded-lg">
-        <div style="height: 13rem; overflow: hidden;">
+        <div style="height: 13rem;">
             <NuxtLink :to="`/supplement/review/${supplement?.id}`">
                 <img :src="supplement?.image" class="card-img-top" alt="...">
             </NuxtLink>
