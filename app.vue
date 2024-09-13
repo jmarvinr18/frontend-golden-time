@@ -43,10 +43,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped>
-  .main-frame{
-    overflow: scroll;
-    height: 92vh;    
-  }
-</style>
