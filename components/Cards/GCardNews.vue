@@ -4,7 +4,7 @@
             <div class="g-card-news card w-100 g-shadow rounded-lg">
                 <img :src="news?.feature_image" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <div class="h5 g-card-title">
+                    <div class="h5">
                         {{ useTruncateText(news?.title, 35) }}
                     </div>
                     <div class="card-created-time f12 text-secondary">
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <hr class="border-secondary mb-1" />
-                    <p class="card-text f12 text-secondary" v-html="useTruncateText(news?.content, 100)"></p>
+                    <p class="card-text f12 text-secondary">{{ useTruncateText(news?.short_description, 100) }}</p>
                 </div>
             </div>
         </a>
@@ -34,7 +34,7 @@
                                 </NuxtLink>
                             </div>
                             <div class="mt-3 f14 text-light">
-                                <div v-html="useTruncateText(news?.content,50)"></div>
+                                <div v-html="useTruncateText(news?.short_description,50)"></div>
                             </div>                            
 
                         </div>               
@@ -62,9 +62,7 @@ export default defineComponent({
     height: 200px;
     object-fit: cover;
 }
-.g-card-title {
-    height: 68px;
-}
+
 @media only screen and (max-width:1009px)  {
     .g-card-news {
         width: 190px !important;

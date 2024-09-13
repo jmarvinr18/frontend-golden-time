@@ -2,18 +2,20 @@
     <div class="is-desktop bg-white w-100 rounded-lg g-shadow">
         <div class="g-card-head d-flex gap-4 p-3 border border-bottom border-2 border-light">
             <div class="g-card-image rounded">
-                <img :src="blog?.feature_image" style="height: 80px; width: 80px;" class="object-fit-cover rounded-lg" />
+                <img :src="blog?.feature_image" style="height: 80px; width: 100px;" class="object-fit-cover rounded-lg" />
             </div>
             <div class="g-card-info">
-                <div class="g-card-title h5"> {{ useTruncateText(blog?.title, 45) }}</div>
+                <div class="h5"> {{ useTruncateText(blog?.title, 45) }}</div>
                 <div class="d-flex align-items-center">
-                    <div class="text-muted f10">{{ $formatTime(blog?.created_at) }}</div>
+                    <div class="text-muted f12">{{ $formatTime(blog?.created_at) }}</div>
                     <NuxtLink :to="`/users/${blog?.user_id}`" class="text-decoration-none text-dark">
                     <div class="d-flex ms-3 align-items-center">
-                        <!-- <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" /> -->
-                        <i class="bi bi-person-circle h5 mb-0"></i>
-                        <div class="ms-2" v-if="blog.users"> {{ blog?.users?.name }} </div>
-                        <div class="ms-2" v-else> {{ blog?.author }} </div>
+                        <div class="ms-2 d-flex" > 
+                            <img v-if="blog?.user_image" :src="blog?.user_image" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" />
+                            <i v-else class="bi bi-person-circle h5 mb-0"></i>
+                            <div class="ms-2 f12 text-muted"> {{ blog?.author }} </div>
+                        </div>
+                        
                     </div>
                     </NuxtLink>
                 </div>
@@ -25,7 +27,7 @@
             </div>
         </div>
         <div class="g-card-body p-3 position-relative">
-            <div v-html="useTruncateText(blog?.content,200)"></div>
+            <div v-html="useTruncateText(blog?.short_description,200)"></div>
             <div class="g-card-more w-100 text-light position-absolute bottom-2 d-flex justify-content-center">
                 <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
                     {{ $t("ReadMoreLabel") }} <i class="ms-2 bi bi-chevron-down rounded-pill"></i>
@@ -45,15 +47,16 @@
                         <div class="g-card-info p-3 overlay" style="position: absolute; top: 0;">
                             <div class="h5 text-light">{{ useTruncateText(blog?.title, 45) }}</div>
                             <div class="d-flex align-items-center ">
-                                <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
+                                <NuxtLink :to="`/users/${blog?.user_id}`" class="text-decoration-none text-dark">
                                 <div class="d-flex align-items-center">
-                                    <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="width: 20px; height: 20px;" class="object-fit-cover rounded-pill f14" />
+                                    <img v-if="blog?.user_image" :src="blog?.user_image" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill f14" />
+                                    <i v-else class="bi bi-person-circle h5 mb-0"></i>                                    
                                     <div class="ms-2 f12 text-light">{{ blog?.user_id }} </div>
                                 </div>
                                 </NuxtLink>
                             </div>
                             <div class="mt-3 f14 text-light">
-                                <div v-html="useTruncateText(blog?.content,50)"></div>
+                                <div v-html="useTruncateText(blog?.short_description,150)"></div>
                             </div>                            
 
                         </div>               
@@ -98,9 +101,7 @@ export default defineComponent({
     font-size: 12px;
 }
 
-.g-card-title {
-    height: 48px;
-}
+
 .overlay{
     background: rgb(0,0,0);
     background: linear-gradient(164deg, rgba(0,0,0,1) 0%, rgba(133,133,133,0.8099614845938375) 53%, rgba(255,255,255,0) 100%);

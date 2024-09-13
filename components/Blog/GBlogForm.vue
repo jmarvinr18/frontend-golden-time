@@ -16,10 +16,10 @@
             <div>
                 <div class="mb-5">
                     <select @change="changedType" v-model="blogForm.type"  class="form-control form-control-lg form-select" aria-label="Default select example">
-                        <option selected>Select content type</option>
+                        <option value="null" selected>Select content type</option>
                         <option value="blog">Blog</option>
                         <option value="news">News</option>
-                        <option value="event">Event</option>
+                        <!-- <option value="event">Event</option> -->
                     </select>
                 </div>          
                 <div v-if="blogForm.type == 'event'">
@@ -59,7 +59,11 @@
                   
             </div>
 
-
+            <div class="mb-5">
+                <textarea class="form-control form-control-lg" :placeholder="$t('AddShortDescription')" v-model="blogForm.short_description"></textarea>
+                <!-- <input type="text" class="form-control form-control-lg" :placeholder="$t('AddTitle')"
+                v-model="blogForm.title" name="title" maxlength="25" > -->
+            </div>
             <!-- CONTENT EDITOR -->
             <div class="mb-3 position-relative">
                 <div id="editor-container" class=" border rounded-3"></div>
@@ -115,7 +119,7 @@
                     </button>
                 </div>
                 <div class="w-25 text-end">
-                    <div>{{ blogForm.visibility=='public' || blogForm.visibility==true? $t('ReleaseLabel'):$t('PrivateLabel') }}</div>
+                    <div>{{ blogForm.visibility=='public' || blogForm?.visibility == true? $t('ReleaseLabel'):$t('PrivateLabel') }}</div>
                     <div class="form-check form-switch form-check-reverse">
                         <input v-model="blogForm.visibility" class="form-check-input form-check-input-success py-3 px-4" type="checkbox" role="switch" id="flexSwitchCheckChecked" value="public">
                     </div>
@@ -332,6 +336,8 @@ export default defineComponent({
 
         onMounted(() => {
             generalStore.setIsLoading(true);
+
+            blogForm.value.type = null
             setTimeout(() => {
                 initEditor();
                 renderImage();

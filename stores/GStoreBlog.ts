@@ -8,11 +8,12 @@ import { i18n } from "~/plugins/i18n";
 export interface Blog {
     id?: string
     title: string
+    short_description: string
     content: string
     feature_image: string
     meta: Meta[] | null
     visibility: string
-    type: string
+    type: string | null
     status: string
     user: User
     created_at?: string

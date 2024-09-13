@@ -3,7 +3,7 @@
         <div class="g-card-event card w-100 g-shadow rounded-lg">
             <img :src="event?.feature_image" class="card-img-top" alt="...">
             <div class="card-body">
-                <div class="h5 g-card-title">
+                <div class="h5">
                     {{ event?.title }}
                 </div>
                 <div class="card-created-time f12 text-secondary">

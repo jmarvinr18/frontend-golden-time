@@ -1,18 +1,16 @@
 <template>
     <div v-if="blog?.users" class="w-100 py-2 d-flex align-items-center align-item-center gap-3">
         <div class="g-blog-date text-secondary f12">
-                <i class="bi bi-clock me-2 f12"></i>
+                <i class="bi bi-clock f12"></i>
                 {{ $formatTime(blog?.created_at) }}
         </div>        
-        <div class="g-author-img">
-            <NuxtLink to="/users/detail" class="text-decoration-none">
-                <img :src="blog?.users.profile_details.image" style="height: 20px; width: 20px;" class="rounded-circle" />
-            </NuxtLink>
-        </div>
         <div class="g-author-name">
-            <NuxtLink :to="`/users/${blog?.users.id}`" class="text-decoration-none text-dark f12">
-               {{ blog?.users.name }}
-               <!-- {{blog?.liker}} -->
+            <NuxtLink :to="`/users/${blog?.users.id}`" class="text-decoration-none text-dark f12 d-flex gap-2">
+                <img :src="blog?.users.profile_details.image" style="height: 20px; width: 20px;" class="rounded-circle" /> 
+                 <div>
+                    {{ blog?.users.name }}
+                 </div>
+
             </NuxtLink>
             </div>
         <div class="g-person-action text-end pull-right">
