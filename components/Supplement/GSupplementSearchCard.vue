@@ -13,7 +13,7 @@
                 </div>
                     <!-- SEARCH BOX AND FILTER -->
                 <div class="dropdown">
-                    <button class="btn btn-secondary bg-dark dropdown-toggle px-3 py-1 border-2 border-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius:0 0 20px 0">
+                    <button class="btn btn-secondary bg-dark dropdown-toggle px-3 py-1 border-2 border-dark h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius:0 0 20px 0">
                         <i class="bi bi-sort-up h2"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
