@@ -23,6 +23,9 @@ export const i18n = createI18n({
     fallbackLocale: 'en',
     messages: {
         en: {
+            MySupplement: "My Supplement",
+            Blogs: "Blogs",
+            DrinkList: "Drink List",
             SupplementRegistration: 'Supplement Registration',
             Login: "Login",
             SignUp: "Sign Up",
@@ -219,6 +222,9 @@ export const i18n = createI18n({
             NoFollowings: "You are not following anyone at the moment."
         },
         ja: {
+            MySupplement: "私のサプリメント", 
+            Blogs: "ブログ",
+            DrinkList: "ドリンクリスト", 
             SupplementRegistration: 'サプリ登録',
             Login: "ログイン",
             SignUp: "登録する",

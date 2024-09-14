@@ -2,7 +2,7 @@
     <ProfileGProfileSection :user-data="userData"></ProfileGProfileSection>
     <div class="is-desktop">
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
+        <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
         <div v-if="userData.supplements" class="row">
           <div v-for="(supplement) in userData.supplements" class="col-md-3 col-xs-12">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
+        <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
 
         <div v-if="supplement_wishes" class="row">
           <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12 mb-5">
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
+        <GSectionTitle :title="$t('Blogs')" icon="bi-journals"></GSectionTitle>
 
         <div v-if="userData.blogs && userData.blogs.length" class="row">
           <div v-for="(blog) in userData.blogs" class="col-md-6 col-xs-12 mb-5">
@@ -67,7 +67,7 @@
     </div>
     <div class="is-mobile">
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
+        <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
         <GContainerSlider v-if="userData.supplements && userData.supplements.length">
           <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
@@ -77,16 +77,16 @@
           No Supplements
         </div>
       </div>
-      <!-- <div class="container pt-2 pb-4">
-        <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
+      <div class="container pt-2 pb-4">
+        <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
 
         <GContainerSlider>
           <CardsGCardSuplement v-for="(supplement) in userData.supplement_wishes" :supplement="supplement?.supplement_details"></CardsGCardSuplement>
         </GContainerSlider>
       
-      </div> -->
+      </div>
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
+        <GSectionTitle :title="$t('Blogs')" icon="bi-journals"></GSectionTitle>
 
         <GContainerSlider v-if="userData.blogs && userData.blogs.length">
           <CardsGCardBlog v-for="(blog) in userData.blogs" :blog="blog"></CardsGCardBlog>
