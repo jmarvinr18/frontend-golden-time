@@ -70,7 +70,7 @@
                 </div>
                 <div class="g-form-box mb-2 d-flex gap-4 w-75">
                     <div class="w-50 mb-4 g-form-input">
-                        <label  class="form-label bg-white ms-2 px-2">{{ $t('BirthDateLable') }}</label>
+                        <label  class="form-label bg-white ms-2 px-2">{{ $t('BirthDateLabel') }}</label>
                         <input type="date" class="form-control form-control-lg"  v-model="dataObj.profile_details.birth_date">
                     </div>
                     <div class="ms-5 w-25 text-start">
@@ -202,7 +202,7 @@
                 </div>
                 <div class="row w-100">
                     <div class="col-8 mb-4 g-form-input pe-2">
-                        <label  class="form-label bg-white px-2">{{ $t('BirthDateLable') }}</label>
+                        <label  class="form-label bg-white px-2">{{ $t('BirthDateLabel') }}</label>
                         <input type="date" class="form-control"  v-model="dataObj.profile_details.birth_date" :placeholder="$t('BirthDatePlaceholder')">
                     </div>
                     <div class="col-4 ms-1 w-25 text-end">

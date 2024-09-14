@@ -5,32 +5,42 @@
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
-            <div class="row">
-            <div v-for="(supplement) in userData.supplements" class="col-md-4 col-xs-12">
-                <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
+            <div v-if="userData?.supplements?.length > 0" class="row">
+                <div v-for="(supplement) in userData.supplements" class="col-md-4 col-xs-12">
+                    <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
+                </div>
+
+                <UtilsGLoadMore v-if="userData.supplements?.length > 3" @on-click="viewAll('/blog')"></UtilsGLoadMore>
             </div>
-            <UtilsGLoadMore></UtilsGLoadMore>
-            </div>
+            <div class="my-5 text-dark opacity-50" v-else>
+                {{ $t('NoSupplements') }}
+            </div>              
         </div>
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
 
-            <div class="row">
-            <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12">
-                <CardsGCardSuplement :supplement="supplement?.supplement_details"></CardsGCardSuplement>
+            <div v-if="userData?.supplement_wishes?.length > 0" class="row">
+                <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12">
+                    <CardsGCardSuplement :supplement="supplement?.supplement_details"></CardsGCardSuplement>
+                </div>
+                <UtilsGLoadMore></UtilsGLoadMore>          
             </div>
-            <UtilsGLoadMore></UtilsGLoadMore>          
-            </div>
+            <div class="my-5 text-dark opacity-50" v-else>
+                {{ $t('NoWishlist') }}
+            </div>            
         </div>
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('Blogs')" icon="bi-journals"></GSectionTitle>
 
-            <div class="row">
-            <div v-for="(blog) in userData.blogs" class="col-md-6 col-xs-12 mb-5">
-                <CardsGCardBlog :blog="blog"></CardsGCardBlog>
+            <div v-if="userData?.blogs?.length > 0" class="row">
+                <div v-for="(blog) in userData.blogs" class="col-md-6 col-xs-12 mb-5">
+                    <CardsGCardBlog :blog="blog"></CardsGCardBlog>
+                </div>
+                <UtilsGLoadMore v-if="userData.blogs?.length > 0" @on-click="viewAll('/blog')"></UtilsGLoadMore>
             </div>
-            <UtilsGLoadMore></UtilsGLoadMore>
-            </div>
+            <div class="my-5 text-dark opacity-50" v-else>
+                {{ $t('NoBlogs') }}
+            </div>             
         </div>
         <!-- <div class="container pt-2 pb-4">
             <GSectionTitle title="comments" icon="bi-chat"></GSectionTitle>
@@ -105,6 +115,7 @@ export default defineComponent({
    const route = useRoute();
    const userStore = useUserStore();
    var { userData } = storeToRefs(userStore);
+   const router = useRouter();
 
    useHead({
     title: "Users Profile | Golden Time"
@@ -114,8 +125,13 @@ export default defineComponent({
     userStore.getUser(route.params.id)
    });
 
+   const viewAll = (str:any) => {
+            router.push(str);
+        }
+
    return {
     userData,
+    viewAll
    }
   }
 })
