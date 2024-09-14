@@ -145,7 +145,7 @@ export default defineComponent({
     top: 80%;
 }
 
-.search-bar {
+    .search-bar {
         position: relative;
     }
     .search-result {
@@ -174,13 +174,13 @@ export default defineComponent({
         overflow-wrap: anywhere;
     }
 .g-hero {
-    height: 70vh;
+    min-height: 500px;
     border-radius: 0 0 30px 30px;
     background: url('/images/bg-1.png') no-repeat center center;
     background-size: cover;
-    box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
+    /* box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75); */
 }
 
 .g-title {
@@ -200,14 +200,33 @@ export default defineComponent({
 }
 
 .g-hero-search {
-    margin-top:-30px;
+    margin-top:-65px;
 }
 
 .g-hero-search input {
     border:1px solid #333000;
 }
 
-@media only screen and (max-width:1009px)  {
+
+
+@media only screen and (max-width:1300px)  {
+    .gl-search-filter-category{
+        display: none !important;
+    }
+
+    .search-bar {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width:500px)  {
+    .gl-search-filter-category{
+        display: none;
+    }
+
+    .search-bar {
+        width: 30rem;
+    }    
     .g-hero {
         height: 40vh;
     }

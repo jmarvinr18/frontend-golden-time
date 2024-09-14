@@ -76,7 +76,7 @@ export default defineComponent({
     line-break: anywhere;
 }
 
-@media only screen and (max-width:1009px) {
+@media only screen and (max-width:800px) {
     .g-supplement-item-media img{
         width: auto;
         height: 120px;

@@ -27,18 +27,15 @@ export default defineComponent({
 </script>
 <style scoped>
 .g-profile-section {
-    min-height: 70vh;
+    min-height: 600px;
     border-radius: 0 0 30px 30px;
-    background: url('/images/bg-2.png') no-repeat center center;
+    background: url('/images/bg-2.png');
     background-size: cover;
-    box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
 }
 
-@media only screen and (min-height:766px) {
+@media only screen and (min-height:800px) {
     .g-profile-section {
-        padding-top:45%;
+        /* padding-top:40rem; */
     }
 }
 </style>

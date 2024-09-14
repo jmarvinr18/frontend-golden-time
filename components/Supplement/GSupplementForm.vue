@@ -189,7 +189,7 @@ export default defineComponent({
   color: #e4e4e4;
 }
 
-@media only screen and (max-width: 1009px) {
+@media only screen and (max-width: 800px) {
   .g-form-input input,
   .g-form-input select,
   .g-form-input textarea {

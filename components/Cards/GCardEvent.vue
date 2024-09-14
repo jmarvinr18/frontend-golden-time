@@ -50,7 +50,7 @@ export default defineComponent({
 .g-card-event .card-created-time {
     height: 70px;
 }
-@media only screen and (max-width:1009px)  {
+@media only screen and (max-width:500px)  {
     .g-card-event .card-created-time {
         height: 30px;
         overflow: hidden;

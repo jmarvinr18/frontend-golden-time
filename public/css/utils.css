@@ -161,7 +161,10 @@
 .search_box{
     border: 0 !important;
 }
-@media only screen and (max-width:1009px)  {
+
+
+
+@media only screen and (max-width:500px)  {
     .is-mobile {
         display: block !important;
     }

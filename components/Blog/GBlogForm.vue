@@ -482,7 +482,7 @@ export default defineComponent({
     font-size: 13px;
 }
 
-@media only screen and (max-width: 1009px) {
+@media only screen and (max-width: 800px) {
     .g-blog-form {
        margin-top: -130%;
     }

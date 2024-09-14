@@ -1,6 +1,6 @@
 <template>
     <div v-if="userData && userData.profile_details" class="g-profile-card w-100 overflow-visible">
-        <div class="is-desktop g-profile-card-main bg-white mx-auto w-50 p-3 g-shadow position-relative" style="min-height:500px">
+        <div class="is-desktop g-profile-card-main bg-white mx-auto p-3 g-shadow position-relative" style="min-height:500px">
 
             <div class="g-profile-card-wrapper">
                 <div class="mb-5 position-relative">
@@ -139,7 +139,7 @@
   
 
         </div>
-        <div class="is-mobile g-profile-card-main bg-white mx-auto g-shadow w-100 p-3 position-relative">
+        <div class="is-mobile g-profile-card-main bg-white mx-auto g-shadow p-3 position-relative">
 
             <div class="g-profile-card-wrapper">
                 <div class="w-100 g-profile-dp">
@@ -273,6 +273,7 @@ export default defineComponent({
 .g-profile-card-main{
     height: 67rem;
     border-radius: 15px;
+    width: 50rem;
 }
 
 .g-profile-details {
@@ -322,9 +323,18 @@ export default defineComponent({
   border: 5px solid white;
 }
 
-@media only screen and (max-width: 1009px) {
+@media only screen and (max-width: 500px) {
+    .g-profile-card-main{
+        height: 67rem;
+        border-radius: 15px;
+        width: 50rem;
+    }
+
+ }
+
+@media only screen and (max-width: 800px) {
   .g-profile-card {
-    margin-top: -92%;
+    /* margin-top: -92%; */
   }
 
 .g-profile-card-wrapper {
@@ -337,7 +347,10 @@ export default defineComponent({
 .g-profile-card-main{
     height: 67rem;
     border-radius: 15px;
+    width: 100%;
 }  
+
+
   .g-profile-container {
     height: auto;
   }

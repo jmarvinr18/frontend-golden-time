@@ -84,7 +84,7 @@
           <CardsGCardSuplement v-for="(supplement) in userData.supplement_wishes" :supplement="supplement?.supplement_details"></CardsGCardSuplement>
         </GContainerSlider>
 
-        <div class="my-5 text-dark opacity-50" v-else>
+        <div class="my-5 text-dark opacity-50 overflow-scroll" v-else>
           {{ $t('NoWishlist') }}
         </div>      
       </div>

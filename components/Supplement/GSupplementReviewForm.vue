@@ -131,7 +131,7 @@ export default defineComponent({
     opacity: 1 !important;
 }
 
-@media only screen and (max-width: 1009px) {
+@media only screen and (max-width: 800px) {
     .g-supplement-review-form {
         margin-top: -140%
     }
@@ -139,6 +139,6 @@ export default defineComponent({
 </style>
 <style>
 .g-profile-section {
-    margin-bottom: -28% !important;
+    /* margin-bottom: -28% !important; */
 }
 </style>

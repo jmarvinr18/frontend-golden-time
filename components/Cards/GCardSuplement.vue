@@ -142,7 +142,7 @@ export default defineComponent({
 </script>
 <style scoped>
 
-@media only screen and (max-width:1009px)  {
+@media only screen and (max-width:500px)  {
     .g-card-supplement {
         min-width: 190px !important;
     }

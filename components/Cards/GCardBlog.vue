@@ -10,10 +10,10 @@
                     <div class="text-muted f12">{{ $formatTime(blog?.created_at) }}</div>
                     <NuxtLink :to="`/users/${blog?.user_id}`" class="text-decoration-none text-dark">
                     <div class="d-flex ms-3 align-items-center">
-                        <div class="ms-2 d-flex" > 
+                        <div v-if="isContentOwner" class="ms-2 d-flex" > 
                             <img v-if="blog?.user_image" :src="blog?.user_image" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" />
-                            <i v-else class="bi bi-person-circle h5 mb-0"></i>
-                            <div class="ms-2 f12 text-muted"> {{ blog?.author }} </div>
+                            <i v-else-if="blog?.user_image && isContentOwner" class="bi bi-person-circle h5 mb-0"></i>
+                            <div v-if="isContentOwner" class="ms-2 f12 text-muted"> {{ blog?.author }} </div>
                         </div>
                         
                     </div>
@@ -32,7 +32,7 @@
                 <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
                     {{ $t("ReadMoreLabel") }} <i class="ms-2 bi bi-chevron-down rounded-pill"></i>
                 </a>
-                <a v-if="isContentOwner"  :href="`/blog/edit/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
+                <a v-if="!isNotContentOwner"  :href="`/blog/edit/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
                     {{ $t("UpdateLabel") }} <strong class="bi bi-arrow-up me-2 fw-bold"></strong>
                 </a>
             </div>
@@ -78,13 +78,19 @@ export default defineComponent({
     setup(props) {
         var authStore = useAuthStore()
         var { userData } = storeToRefs(authStore)
+        var route = useRoute()
 
         var isContentOwner = computed(() => {
             return userData.value.id === props.blog?.user_id
         })        
+
+        var isNotContentOwner = computed(() => {
+            return route.params.id === props.blog?.user_id
+        })
         return {
             useTruncateText,
-            isContentOwner
+            isContentOwner,
+            isNotContentOwner
         }
     },
 })
@@ -108,7 +114,7 @@ export default defineComponent({
     height: 100%;
 }
 
-@media only screen and (max-width:1009px)  {
+@media only screen and (max-width:500px)  {
     .g-card-blog .g-card-info {
         width: 100%;
     }

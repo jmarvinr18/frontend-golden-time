@@ -21,10 +21,10 @@ export default defineComponent({
     setup() {
 
         const isMobile = computed(() => {
-            return window.innerWidth <= 1009 ? true : false
+            return window.innerWidth <= 800 ? true : false
         })
         const isDesktop = computed(() => {
-            return window.innerWidth > 1009 ? true : false
+            return window.innerWidth > 800 ? true : false
         } )
 
         return {
