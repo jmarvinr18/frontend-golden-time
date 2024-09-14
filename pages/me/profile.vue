@@ -11,7 +11,7 @@
           <!-- <UtilsGLoadMore></UtilsGLoadMore> -->
         </div>
         <div class="my-5 text-dark opacity-50 row" v-else>
-          No Supplements
+          {{ $t('NoSupplements') }}
         </div>
       </div>
       <div class="container pt-2 pb-4">
@@ -24,7 +24,7 @@
           <UtilsGLoadMore></UtilsGLoadMore>          
         </div>
         <div class="my-5 text-dark opacity-50" v-else>
-          No Wishlist
+          {{ $t('NoWishlist') }}
         </div>
       </div>
       <div class="container pt-2 pb-4">
@@ -38,7 +38,7 @@
         </div>
 
         <div class="my-5 text-dark opacity-50" v-else>
-          No Blogs
+          {{ $t('NoBlogs') }}
         </div>
       </div>
       <!-- <div class="container pt-2 pb-4">
@@ -74,16 +74,19 @@
         </GContainerSlider>
 
         <div class="my-5 text-dark opacity-50" v-else>
-          No Supplements
+          {{ $t('NoSupplements') }}
         </div>
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
 
-        <GContainerSlider>
+        <GContainerSlider v-if="userData.supplement_wishes && userData.supplement_wishes.length">
           <CardsGCardSuplement v-for="(supplement) in userData.supplement_wishes" :supplement="supplement?.supplement_details"></CardsGCardSuplement>
         </GContainerSlider>
-      
+
+        <div class="my-5 text-dark opacity-50" v-else>
+          {{ $t('NoWishlist') }}
+        </div>      
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('Blogs')" icon="bi-journals"></GSectionTitle>
@@ -92,7 +95,7 @@
           <CardsGCardBlog v-for="(blog) in userData.blogs" :blog="blog"></CardsGCardBlog>
         </GContainerSlider>
         <div class="my-5 text-dark opacity-50" v-else>
-          No Blogs
+          {{ $t('NoBlogs') }}
         </div>
       </div>
       <!-- <div class="container pt-2 pb-4">
