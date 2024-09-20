@@ -79,7 +79,7 @@ body {
 }
 
 .bi.bi-star, .bi.bi-star-fill, .bi.bi-star-half{
-    font-size : clamp(.3rem, 1vw, 9.5rem) !important;
+    font-size : clamp(1rem, 1vw, 9.5rem) !important;
 }
 
 @media only screen and (max-width:500px)  {

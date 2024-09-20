@@ -3,8 +3,8 @@
         <!-- SEARCH BOX AND FILTER -->
         <ais-configure :attributesToSnippet="['description']"/>
         
-        <div class="container py-4">
-            <div class="d-flex w-75 mx-auto search-bar">
+        <div class="py-4">
+            <div class="d-flex mx-auto search-bar">
                 <div class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
 
                     <!-- <input id="tes" type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0" placeholder="Search here" /> -->
@@ -72,7 +72,7 @@
 
      <!-- {{searchData}} -->
         <!-- SEARCH RESULT -->
-        <div class="container mx-auto mt-5">
+        <div class="container mx-auto supplement-search-items">
             <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="i"></SupplementGSupplementSearchItem>
             <div class="d-flex justify-content-between align-items-center mt-lg">
                 <div class="w-25">
@@ -375,6 +375,7 @@ export default defineComponent({
 </script>
 <style scoped>
     .search-bar {
+        width: 60rem;
         position: relative;
     }
     .search-result {
@@ -402,4 +403,21 @@ export default defineComponent({
     .search-hit-item-body {
         overflow-wrap: anywhere;
     }
+
+/* @media only screen and (max-width:1050px)  {
+
+} */
+
+
+@media only screen and (max-width:1050px)  {
+
+    .supplement-search-items {
+        width: 50rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .search-bar {
+        width: 40rem;
+    }
+}    
 </style>

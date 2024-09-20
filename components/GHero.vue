@@ -210,9 +210,9 @@ export default defineComponent({
 
 
 @media only screen and (max-width:1300px)  {
-    .gl-search-filter-category{
+    /* .gl-search-filter-category{
         display: none !important;
-    }
+    } */
 
     .search-bar {
         width: 50%;
@@ -220,9 +220,9 @@ export default defineComponent({
 }
 
 @media only screen and (max-width:500px)  {
-    .gl-search-filter-category{
+    /* .gl-search-filter-category{
         display: none;
-    }
+    } */
 
     .search-bar {
         width: 30rem;

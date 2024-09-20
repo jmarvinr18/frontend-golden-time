@@ -1,11 +1,11 @@
 <template>
-    <div class="d-flex justify-content-center gap-5 my-5">
+    <div class="my-5 supplement-item-card-wrapper">
         <div class="supplement-item-card">
             <SupplementGSupplementSearchItemCard :supplement="supplement"></SupplementGSupplementSearchItemCard>
         </div>
         <div class="is-desktop">
-            <div class="d-flex flex-column gap-2 py-2 mt-3">
-                <div v-if="isAuthenticated" class="btn-box">
+            <div class="supplement-item-actions py-2 mt-3">
+                <div v-if="isAuthenticated" class="supplement-item-btn-box">
                     <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
                         <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                         <span class="align-self-center">
@@ -110,5 +110,39 @@ export default defineComponent({
 .supplement-item-card{
     width: 40rem;
 }
+
+.supplement-item-card-wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.supplement-item-actions{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.supplement-item-btn-box{
+    display: flex;
+    flex-direction: column;
+    width: 14rem;
+}
+
+@media only screen and (max-width:1050px)  {
+
+    .supplement-item-card-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-self: center;
+    }
+
+    .supplement-item-btn-box{
+        display: flex;
+        flex-direction: column;
+        width: 40rem;
+    }    
+} 
+
 
 </style>
