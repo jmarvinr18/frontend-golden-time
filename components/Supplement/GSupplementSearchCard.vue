@@ -378,6 +378,9 @@ export default defineComponent({
         width: 60rem;
         position: relative;
     }
+    .gl-search-filter-category{
+        width: 35rem;
+    }    
     .search-result {
         position: absolute;
         background-color:  #ffff;
@@ -410,9 +413,11 @@ export default defineComponent({
 
 
 @media only screen and (max-width:1050px)  {
-
+    .gl-search-filter-category{
+        width: 40rem;
+    }
     .supplement-search-items {
-        width: 50rem;
+        width: 40rem;
         display: flex;
         flex-direction: column;
     }
