@@ -193,7 +193,7 @@ export default defineComponent({
         const route:any = useRoute();
         const authStore = useAuthStore();
         const { userData, isAuthenticated, token} = storeToRefs(authStore)
-        const isDesktop = ref(true)
+        const isDesktop = ref(false)
 
         var searchKeyword =ref<any>("")
         const filterOpts = ref([
@@ -250,6 +250,7 @@ export default defineComponent({
         });
 
         onMounted(() => {
+            isDesktop.value = window.innerWidth > 700 ? true : false
             checkScroll()
             window.addEventListener('scroll', initScroll);
             window.addEventListener('resize', () => {

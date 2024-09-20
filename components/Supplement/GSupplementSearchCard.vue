@@ -65,7 +65,7 @@
                     </ais-state-results>                                      
                 </div>                    
             </div>
-            <div class="gl-search-filter-category d-flex justify-content-between w-50 mx-auto mt-3">
+            <div class="gl-search-filter-category d-flex justify-content-between mx-auto mt-3">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
             </div>
         </div>
@@ -420,4 +420,19 @@ export default defineComponent({
         width: 40rem;
     }
 }    
+
+@media only screen and (max-width:700px)  {
+
+    .supplement-search-items {
+        width: 30rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .search-bar {
+        width: 30rem;
+    }
+    .gl-search-filter-category{
+        width: 30rem;
+    }
+}  
 </style>

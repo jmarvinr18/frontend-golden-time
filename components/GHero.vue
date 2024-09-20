@@ -174,7 +174,7 @@ export default defineComponent({
         overflow-wrap: anywhere;
     }
 .g-hero {
-    min-height: 500px;
+    min-height: 450px;
     border-radius: 0 0 30px 30px;
     background: url('/images/bg-1.png') no-repeat center center;
     background-size: cover;
@@ -219,7 +219,7 @@ export default defineComponent({
     }
 }
 
-@media only screen and (max-width:500px)  {
+@media only screen and (max-width:450px)  {
     /* .gl-search-filter-category{
         display: none;
     } */

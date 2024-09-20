@@ -67,7 +67,7 @@
     border:1px solid #333000;
 }
 
-@media only screen and (max-width:500px)  {
+@media only screen and (max-width:450px)  {
     .g-auth-hero {
         height: 40vh;
         background-size: 210%;

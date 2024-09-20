@@ -114,7 +114,7 @@ export default defineComponent({
     height: 100%;
 }
 
-@media only screen and (max-width:500px)  {
+@media only screen and (max-width:450px)  {
     .g-card-blog .g-card-info {
         width: 100%;
     }

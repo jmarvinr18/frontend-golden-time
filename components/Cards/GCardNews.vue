@@ -63,7 +63,7 @@ export default defineComponent({
     object-fit: cover;
 }
 
-@media only screen and (max-width:500px)  {
+@media only screen and (max-width:450px)  {
     .g-card-news {
         width: 190px !important;
     }

@@ -72,7 +72,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@media only screen and (max-width:500px)  {
+@media only screen and (max-width:450px)  {
     .g-person-action {
         width: 30%;
     }

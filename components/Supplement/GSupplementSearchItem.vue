@@ -144,5 +144,23 @@ export default defineComponent({
     }    
 } 
 
+@media only screen and (max-width:700px)  {
+    .supplement-item-card{
+        width: 30rem;
+    }
+    .supplement-item-card-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-self: center;
+    }
+
+    .supplement-item-btn-box{
+        display: flex;
+        flex-direction: column;
+        width: 30rem;
+    }
+}  
+
 
 </style>
