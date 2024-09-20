@@ -82,6 +82,15 @@ body {
     font-size : clamp(1rem, 1vw, 9.5rem) !important;
 }
 
+.content-card-wrapper > .swiper-wrapper{
+    display: flex !important;
+    gap: 1rem;
+}
+
+.content-card-wrapper > .swiper-wrapper > .swiper-slide {
+    width: 20rem !important;
+}
+
 @media only screen and (max-width:450px)  {
     .bi.bi-star, .bi.bi-star-fill, .bi.bi-star-half{
         font-size : clamp(.8rem, 1.4vw, 8rem) !important;
@@ -95,5 +104,8 @@ body {
         height: 15rem; 
         object-fit: cover;
         background-color: black;
-    }    
+    }  
+    .content-card-wrapper > .swiper-wrapper > .swiper-slide {
+        width: 20rem !important;
+    }      
 }

@@ -4,15 +4,15 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
-        <div v-if="userData.supplements" class="row">
-          <div v-for="(supplement) in userData.supplements" class="col-md-3 col-xs-12">
-            <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
-          </div>
-          <!-- <UtilsGLoadMore></UtilsGLoadMore> -->
-        </div>
-        <div class="my-5 text-dark opacity-50 row" v-else>
+        <swiper v-if="userData.supplements" class="content-card-wrapper p-2" :breakPoints="breakPoints" :slides-per-view="4"
+            @swiper="onSwiper" @slideChange="onSlideChange">
+            <swiper-slide v-for="(supplement) in userData.supplements" ><CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement></swiper-slide>
+        </swiper>
+        
+        <div v-if="!userData.supplements" class="my-5 text-dark opacity-50 row">
           {{ $t('NoSupplements') }}
         </div>
+        <div><UtilsGLoadMore></UtilsGLoadMore></div>
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
@@ -73,6 +73,11 @@
           <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
         </GContainerSlider>
 
+        <!-- <swiper v-if="userData.supplements && userData.supplements.length" class="content-card-wrapper p-2" :slides-per-view="4"
+            @swiper="onSwiper" @slideChange="onSlideChange">
+            <swiper-slide v-for="(supplement) in userData.supplements" ><CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement></swiper-slide>
+        </swiper> -->
+
         <div class="my-5 text-dark opacity-50" v-else>
           {{ $t('NoSupplements') }}
         </div>
@@ -115,9 +120,15 @@
 </template>
 <script lang="ts">
 import { useAuthStore } from "~/stores/GStoreAuth";
-
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
 export default defineComponent({
   name: 'PageProfile',
+
+  components: {
+      Swiper,
+      SwiperSlide,
+  },  
   setup() {
    const authStore = useAuthStore();
    var { userData } = storeToRefs(authStore);
@@ -130,9 +141,44 @@ export default defineComponent({
       authStore.getProfile(userData.value.id)
    });
 
+   const onSwiper = (swiper) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+  };   
+
+  var breakPoints = {
+      '640': {
+        slidesPerView: 4,
+      },
+      '768': {
+        slidesPerView: 4,
+      },
+      '1024': {
+        slidesPerView: 5,
+      },
+    }
+
    return {
     userData,
+    onSwiper,
+    onSlideChange,
+    breakPoints 
    }
   }
 })
 </script>
+
+<style scoped>
+.content-card-wrapper{
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  /* overflow: scroll; */
+}
+
+.swiper-slide .swiper-slide-active {
+  width: 30rem;
+}
+</style>
