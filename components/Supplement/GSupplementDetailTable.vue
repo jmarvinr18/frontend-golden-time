@@ -1,11 +1,11 @@
 <template>
     <div class="is-desktop">
         <div class="w-100 text-center mb-5">
-            <a :href="supplement?.url" class="mx-auto w-25 mx-auto btn btn-primary rounded-pill" target="_blank">
+            <a :href="supplement?.url" class="mx-auto mx-auto btn btn-primary rounded-pill" target="_blank">
                 {{ $t('ViewSupplementLabel') }}
             </a>
         </div>
-        <div class="row f14 lh-lg justify-content-between align-items-start">
+        <div class="supplement-detail-body row f14 lh-lg">
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
                 {{ $t('BrandLabel') }}
@@ -46,14 +46,7 @@
                 {{supplement?.supplement_type}}
                 </div>
             </div>
-            <div class="col-md-6 col-xs-12 d-flex gap-3 my-2 f12">
-                <div class="w-25 me-2 text-muted">
-                {{ $t('FeatureLabel') }}
-                </div>
-                <div class="w-50 border-bottom f10 line-break-anywhere">
-                    {{supplement?.description}}
-                </div>
-            </div>
+
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
                 {{ $t('ComponentLabel') }}
@@ -62,6 +55,16 @@
                 {{supplement?.ingredients}}
                 </div>
             </div>
+        </div>
+        <div class="supplement-detail-body row f14 lh-lg">
+            <div class="col-md-12 col-xs-12 d-flex gap-3 my-2 f12">
+                <div class="w-25 me-2 text-muted">
+                {{ $t('FeatureLabel') }}
+                </div>
+                <div class="w-100 border-bottom f10 line-break-anywhere">
+                    {{supplement?.description}}
+                </div>
+            </div>            
         </div>
     </div>
     <div class="is-mobile">
@@ -140,3 +143,9 @@ export default defineComponent({
     }
 })
 </script>
+
+<style scoped>
+.supplement-detail-body{
+    padding: 0 3rem;
+}
+</style>

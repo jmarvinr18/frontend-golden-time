@@ -1,6 +1,6 @@
 <template>
-    <div class="is-desktop g-review-item d-flex">
-        <div class="g-review-item-media w-25 px-4">
+    <div class="is-desktop g-review-item">
+        <div class="g-review-item-media">
             <img class="g-review-item-image g-shadow w-100 rounded object-fit-cover" :src="supplement?.image" style="height: 190px;" />
         </div>
         <div class="g-review-item-description w-75">
@@ -157,5 +157,10 @@ export default defineComponent({
 <style scoped>
 .g-review-item-owner  {
     bottom:-22px
+}
+.g-review-item{
+    display: flex;
+    gap: 1rem;
+    padding: 0 2rem;
 }
 </style>
