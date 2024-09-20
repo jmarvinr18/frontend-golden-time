@@ -6,6 +6,7 @@
         <div class="is-desktop">
             <div class="supplement-item-actions py-2 mt-3">
                 <div v-if="isAuthenticated" class="supplement-item-btn-box">
+                    
                     <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
                         <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                         <span class="align-self-center">
@@ -22,7 +23,7 @@
                         </span>                    
                     </button>
                 </div>
-                <button v-else class="btn btn-primary btn-sm rounded-pill py-2 f12" @click="askLogin">{{ $t("MySupplementRegistrationNotLoggedIn") }}</button>
+                <button v-else class="btn btn-primary btn-sm rounded-pill py-2 f12" @click="askLogin"> {{ $t("MySupplementRegistrationNotLoggedIn", { count: supplement?.users_who_drank_the_supplement_count}) }}</button>
                
             </div>
 
@@ -45,7 +46,7 @@
                          {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
                     </span>                       
                 </button>
-                <button v-else class="g-search-item-extra btn btn-primary btn-sm rounded-pill py-2 f12" @click="askLogin">{{ $t("MySupplementRegistration") }}</button>
+                <button v-else class="g-search-item-extra btn btn-primary btn-sm rounded-pill py-2 f12" @click="askLogin">{{ $t("MySupplementRegistration", { count: supplement?.users_who_drank_the_supplement_count}) }}</button>
                 
             </div> 
         </div>
