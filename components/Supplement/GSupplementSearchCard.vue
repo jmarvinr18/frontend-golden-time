@@ -439,5 +439,9 @@ export default defineComponent({
     .gl-search-filter-category{
         width: 30rem;
     }
+
+    .is-mobile > div > .gl-search-filter-category {
+        /* overflow: scroll; */
+    }
 }  
 </style>

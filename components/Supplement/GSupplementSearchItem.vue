@@ -160,6 +160,10 @@ export default defineComponent({
         flex-direction: column;
         width: 30rem;
     }
+
+    .is-mobile div.supplement-item-card-wrapper > .supplement-item-card{
+        width: 100%;
+    }    
 }  
 
 

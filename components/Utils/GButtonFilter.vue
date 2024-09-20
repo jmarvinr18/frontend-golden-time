@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="is-mobile">
-        <button class="btn f2" :class="checked? 'btn-primary-soft':''" @click="onClick">
+        <button class="btn" :class="checked? 'btn-primary-soft':''" @click="onClick">
             <i v-if="checked" class="bi bi-check-lg text-primary"></i>
             {{ title }}
         </button>
@@ -31,7 +31,7 @@ export default defineComponent({
 .is-desktop button {
     font-size: 12px !important;
 }
-.is-mobile.btn {
-    font-size: 12px !important;
-}
+.is-mobile > .btn {
+    font-size: 11px !important;
+} 
 </style>
