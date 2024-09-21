@@ -79,7 +79,7 @@ export default defineComponent({
         var authStore = useAuthStore()
         var { userData } = storeToRefs(authStore)
         var route = useRoute()
-        var truncateCount = ref(200)
+        var truncateCount = ref(70)
 
         var isContentOwner = computed(() => {
             return userData.value.id === props.blog?.user_id
@@ -93,15 +93,15 @@ export default defineComponent({
             window.addEventListener('resize', () => {
                 
                 if(window.innerWidth < 1160){
-                    truncateCount.value = 100
+                    truncateCount.value = 50
                     console.log("TRUNCATE: ADD")
                 }
-                if(window.innerWidth > 1160 && truncateCount.value < 200){
-                    truncateCount.value = 200
+                if(window.innerWidth > 1160 && truncateCount.value < 70){
+                    truncateCount.value = 70
                     console.log("TRUNCATE: MINUS")
                 }           
                 if(window.innerWidth <= 500){
-                    truncateCount.value = 50
+                    truncateCount.value = 30
                     console.log("TRUNCATE: MINUS")
                 }                       
             })               
