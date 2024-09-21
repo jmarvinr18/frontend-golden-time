@@ -3,16 +3,16 @@
         <!-- SEARCH BOX AND FILTER -->
         <ais-configure :attributesToSnippet="['description']"/>
         
-        <div class="py-4">
-            <div v-if="!hasSearchFromHome" class="d-flex w-100 gap-5 mx-auto mb-3 search-bar">   
+        <div>
+            <div v-if="!hasSearchFromHome" class="d-flex gap-5 mx-auto mb-3 search-bar">   
                 <div class="f20">
                     <span>{{ searchData.data.length }} </span>
-                    <span> Search Results for </span>
+                    <span> {{ $t("SearchResultFor") }} </span>
                     <span>{{ searchFromHome }}...</span>
                 </div>
-                <button @click="searchAgain" class="btn btn-primary btn-sm">
+                <button @click="searchAgain" class="btn btn-primary btn-sm rounded-pill py-2 px-4 f12">
                     <i class="bi bi-search"></i>
-                    Search Again
+                    {{ $t("SearchAgain") }}
                 </button>
                 
             </div>
@@ -87,7 +87,10 @@
         <!-- SEARCH RESULT -->
         <div class="container mx-auto supplement-search-items">
             <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="i"></SupplementGSupplementSearchItem>
-            <div class="d-flex justify-content-between align-items-center mt-lg">
+
+        </div>
+        <div class="container pagination-wrapper">
+            <div class="d-flex justify-content-between align-items-center mt-5">
                 <div class="w-25">
                     <select id="pager" class="form-select" aria-label="Default select example" v-model="searchData.meta.per_page" @change="searchNow">
                         <option value="">Supplements Per Page</option>
@@ -104,8 +107,8 @@
                         <li v-for="(link, idx) in searchData.meta.links" class="page-item" :class="{ 'active':link.active, 'disabled':idx==0 && !checkPrev || idx==(searchData.meta.links.length-1) && !checkNext }"><a class="page-link"  v-html="link.label" @click="searchNow(link.label)"></a></li>
                     </ul>
                 </nav>
-            </div>
-        </div>
+            </div>            
+        </div>        
 
     </ais-instant-search>   
     
@@ -115,12 +118,12 @@
             <div v-if="!hasSearchFromHome" class="d-flex gap-5 w-100 mx-auto mb-3 search-bar">   
                 <div class="f20">
                     <span>{{ searchData.data.length }} </span>
-                    <span> Search Results for </span>
+                    <span> {{ $t("SearchResultFor") }} </span>
                     <span>{{ searchFromHome }}...</span>
                 </div>
                 <button @click="searchAgain" class="btn btn-primary btn-sm" >
                     <i class="bi bi-search"></i>
-                    Search Again
+                    {{ $t("SearchAgain") }}
                 </button>
                 
             </div>            
@@ -185,10 +188,29 @@
             </div>
                         
         </div>
-        <div class="w-100 rounded-lg mt-4 bg-white border border-2">
+        <div class="w-100 rounded-lg mt-4 pb-5 px-2 bg-white border border-2">
             <!-- SEARCH RESULTs -->
             <div class="container mx-auto mt-3">
                 <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="supplement.id"></SupplementGSupplementSearchItem>
+                <div class="d-flex gap-3 flex-wrap justify-content-between align-items-center mt-5">
+                <div class="w-25">
+                    <select id="pager" class="form-select" aria-label="Default select example" v-model="searchData.meta.per_page" @change="searchNow">
+                        <option value="">Supplements Per Page</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+
+                    <!-- {{ searchData.meta.links }} -->
+                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination mb-0">
+                        <li v-for="(link, idx) in searchData.meta.links" class="page-item" :class="{ 'active':link.active, 'disabled':idx==0 && !checkPrev || idx==(searchData.meta.links.length-1) && !checkNext }"><a class="page-link"  v-html="link.label" @click="searchNow(link.label)"></a></li>
+                    </ul>
+                </nav>
+            </div>            
+            
             </div>
         </div>
     </ais-instant-search>
@@ -456,10 +478,19 @@ export default defineComponent({
         border: 0.1rem solid #0202021f;
         margin-bottom: 16px;
     }
-/* @media only screen and (max-width:1050px)  {
 
-} */
+    .active>.page-link, .page-link.active{
+        background-color: #6739ff;
+        border-color: #6739ff;
+        color: #ffffff;
+    }
+    .page-link{
+        color: #6739ff;
+    }
 
+    .pagination-wrapper{
+        max-width: 968px;
+    }
 
 @media only screen and (max-width:1050px)  {
     .gl-search-filter-category{
@@ -473,6 +504,9 @@ export default defineComponent({
     .search-bar {
         width: 40rem;
     }
+    .pagination-wrapper{
+        max-width: 670px;
+    }    
 }    
 
 @media only screen and (max-width:700px)  {
