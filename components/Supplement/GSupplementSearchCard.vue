@@ -4,11 +4,26 @@
         <ais-configure :attributesToSnippet="['description']"/>
         
         <div class="py-4">
-            <div class="d-flex mx-auto search-bar">
-                <div class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
+            <div v-if="!hasSearchFromHome" class="d-flex gap-5 mx-auto mb-3 search-bar">   
+                <div class="f20">
+                    <span>{{ searchData.data.length }} </span>
+                    <span> Search Results for </span>
+                    <span>{{ searchFromHome }}...</span>
+                </div>
+                <button @click="searchAgain" class="btn btn-primary btn-sm">
+                    <i class="bi bi-search"></i>
+                    Search Again
+                </button>
+                
+            </div>
+            <!-- <hr class="dropdown-divider"> -->
+            
+            <div v-if="hasSearchFromHome" class="d-flex mx-auto search-bar">
+                
+                <div  class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
 
                     <!-- <input id="tes" type="text" v-model="searchKeyword" class="form-control form-control-lg border-0 rounded-0" placeholder="Search here" /> -->
-                    <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0" placeholder="Search here" />                
+                    <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0" placeholder="Search here" />                
       
                 </div>
                     <!-- SEARCH BOX AND FILTER -->
@@ -65,12 +80,10 @@
                     </ais-state-results>                                      
                 </div>                    
             </div>
-            <div class="gl-search-filter-category d-flex justify-content-between mx-auto mt-3">
+            <div v-if="hasSearchFromHome" class="gl-search-filter-category d-flex justify-content-between mx-auto mt-3">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
             </div>
         </div>
-
-     <!-- {{searchData}} -->
         <!-- SEARCH RESULT -->
         <div class="container mx-auto supplement-search-items">
             <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="i"></SupplementGSupplementSearchItem>
@@ -99,7 +112,19 @@
     <ais-instant-search class="is-mobile" :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
         <ais-configure :attributesToSnippet="['description']"/>
         <div class="container" >      
-            <div class="d-flex w-100 mx-auto search-bar mb-3">
+            <div v-if="!hasSearchFromHome" class="d-flex gap-5 mx-auto mb-3 search-bar">   
+                <div class="f20">
+                    <span>{{ searchData.data.length }} </span>
+                    <span> Search Results for </span>
+                    <span>{{ searchFromHome }}...</span>
+                </div>
+                <button @click="searchAgain" class="btn btn-primary btn-sm" >
+                    <i class="bi bi-search"></i>
+                    Search Again
+                </button>
+                
+            </div>            
+            <div v-if="hasSearchFromHome" class="d-flex w-100 mx-auto search-bar mb-3">
                 <div class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
                     <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
                 </div>
@@ -155,7 +180,7 @@
                     </ais-state-results>
                 </div>                   
             </div>
-            <div class="gl-search-filter-category d-flex justify-content-between w-100 mx-auto px-4">
+            <div v-if="hasSearchFromHome" class="gl-search-filter-category d-flex justify-content-between w-100 mx-auto px-4">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
             </div>
                         
@@ -225,6 +250,7 @@ export default defineComponent({
         ])
 
         var route = useRoute()
+        const router = useRouter();
 
         const filters = ref({
             type: [],
@@ -233,8 +259,9 @@ export default defineComponent({
         var { isAuthenticated } = storeToRefs(authStore)
         var supplementStore = isAuthenticated.value ? useSupplementStore() : usePublicContentStore()
         var { allSupplements } = storeToRefs(supplementStore);
-
         var sorter = ref("")
+        var searchFromHome = ref("")
+        var q = ref("?")
         var searchData = ref({
             data: [],
             meta:{
@@ -303,16 +330,16 @@ export default defineComponent({
         }
 
         const initSearch = (page:any = "") => {
-            let q = "?";
-            q = q + `page_size=${searchData.value.meta.per_page}&`;
+           
+            q.value = `${q.value}page_size=${searchData.value.meta.per_page}&`;
+
+            
 
             if (page) {
-                q = q + `page=${page}&`;
+                q.value = q.value + `page=${page}&`;
             };
-
-            if (route.query.kw) {
-                q = `?keyword=${route.query.kw}&`;
-                searchKeyword.value = route.query.k;
+            if (route.query.k != undefined) {
+                q.value =  `${q.value}keyword=${route.query.k}&`;
             }
             
             if (route.query.supplement_type) {
@@ -322,10 +349,9 @@ export default defineComponent({
                 })
             }
 
-            q = q + 'supplement_type=' + filters.value.type;
+            q.value = `${q.value}supplement_type=${filters.value.type}`;
 
-            useSupplementStore().searchSupplement(q).then((res:any) => {
-                
+            useSupplementStore().searchSupplement(q.value).then((res:any) => {
                 searchData.value.data = res.data;
                 searchData.value.meta = res.meta;
 
@@ -333,8 +359,14 @@ export default defineComponent({
             })
         }
 
+        var hasSearchFromHome = computed(() => {
+            return route.query.k == undefined
+        })
+
+
         onMounted(async() => {
-            searchKeyword.value = route.query.k
+            console.log("SEARCH: ", route.query.k == undefined)
+            searchFromHome.value = route.query.k
             initSearch();
         })
 
@@ -352,6 +384,17 @@ export default defineComponent({
             sorter.value = val
             searchNow(searchData.value.meta.current_page, sorter.value);
         }
+        var searchAgain = () => {
+            q.value = `?page_size=${searchData.value.meta.per_page}&`
+            router.replace({ query: undefined })
+
+            useSupplementStore().searchSupplement(q.value).then((res:any) => {
+                searchData.value.data = res.data;
+                searchData.value.meta = res.meta;
+
+                console.log(searchData.value.data)
+            })
+        }
 
         return {
             onStateChange,
@@ -366,7 +409,10 @@ export default defineComponent({
             toggleFilter,
             onActiveSearch,
             searchKeyword,
-            sortAction
+            sortAction,
+            hasSearchFromHome,
+            searchAgain,
+            searchFromHome
         }
     },
 })
@@ -406,7 +452,10 @@ export default defineComponent({
     .search-hit-item-body {
         overflow-wrap: anywhere;
     }
-
+    .dropdown-divider {
+        border: 0.1rem solid #0202021f;
+        margin-bottom: 16px;
+    }
 /* @media only screen and (max-width:1050px)  {
 
 } */
