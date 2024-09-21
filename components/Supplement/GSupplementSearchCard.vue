@@ -4,7 +4,7 @@
         <ais-configure :attributesToSnippet="['description']"/>
         
         <div class="py-4">
-            <div v-if="!hasSearchFromHome" class="d-flex gap-5 mx-auto mb-3 search-bar">   
+            <div v-if="!hasSearchFromHome" class="d-flex w-100 gap-5 mx-auto mb-3 search-bar">   
                 <div class="f20">
                     <span>{{ searchData.data.length }} </span>
                     <span> Search Results for </span>
@@ -112,7 +112,7 @@
     <ais-instant-search class="is-mobile" :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
         <ais-configure :attributesToSnippet="['description']"/>
         <div class="container" >      
-            <div v-if="!hasSearchFromHome" class="d-flex gap-5 mx-auto mb-3 search-bar">   
+            <div v-if="!hasSearchFromHome" class="d-flex gap-5 w-100 mx-auto mb-3 search-bar">   
                 <div class="f20">
                     <span>{{ searchData.data.length }} </span>
                     <span> Search Results for </span>
