@@ -487,6 +487,7 @@ export default defineComponent({
     }
     .page-link{
         color: #6739ff;
+        z-index: 0;
     }
 
     .pagination-wrapper{
