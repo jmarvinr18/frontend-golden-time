@@ -4,7 +4,7 @@
             <img class="g-review-item-image g-shadow w-100 rounded object-fit-cover" :src="supplement?.image" style="height: 190px;" />
         </div>
         <div class="g-review-item-description w-75">
-            <div class="g-review-item-head d-flex justify-content-between">
+            <div class="g-review-item-head">
 
                 <div class="h4"> {{ supplement?.name }}</div>
                 <nuxt-link v-if="isContentOwner" :to="`/supplement/edit/${supplement?.id}`" class="btn bg-none btn-sm rounded-pill w-50 f12">
@@ -13,14 +13,21 @@
                 </nuxt-link>
             </div>
             <hr />
-            <div class="g-review-item-head d-flex justify-content-between position-relative flex-wrap">
-                <div class="w-50 f14 lh-lg">
+            <div class="g-review-item-head">
+                <div class="w-100 f14 lh-lg">
                     <div>{{ $t('TasteLabel') }}: {{ supplement?.flavor }}</div>
                     <div>{{ $t('PriceLabel') }}: {{ price }} </div>
-                    
+
+                 
                 </div>
-                <div class="w-50">
-                    <div v-if="isAuthenticated">
+                <NuxtLink class="g-review-item-owner w-100 d-flex align-items-center text-decoration-none text-dark" :to="`/users/${supplement?.user?.id}`">
+                        <img class="rounded-circle me-2" :src="getProfileImage" style="height: 30px; width: 30px;" />
+                        <div class="f12">{{ supplement?.user?.name }}</div>
+                </NuxtLink>                    
+            </div>
+            <div>
+                <div class="g-review-item-actions">
+                    <div class="d-flex gap-3 mt-4" v-if="isAuthenticated">
                         <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
                             <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
@@ -28,7 +35,7 @@
                                 {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
                             </span>
                         </button>
-                        <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3">
+                        <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
                             <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
                                 <i class="bi bi-person-heart me-2"></i>
@@ -41,12 +48,7 @@
                     </div>
                 </div>
 
-               <NuxtLink class="g-review-item-owner w-100 d-flex align-items-center position-absolute text-decoration-none text-dark" :to="`/users/${supplement?.user?.id}`">
-                    <img class="rounded-circle me-2" :src="getProfileImage" style="height: 30px; width: 30px;" />
-                    <div class="f12">{{ supplement?.user?.name }}</div>
-               </NuxtLink> 
             </div>
-            
         </div>
     </div>
     <div class="is-mobile g-review-item d-flex flex-wrap">
@@ -162,5 +164,15 @@ export default defineComponent({
     display: flex;
     gap: 1rem;
     padding: 0 2rem;
+}
+.g-review-item-head{
+    display: flex;
+    justify-content: space-between;
+}
+.g-review-item-actions{
+    width: 100%;
+}
+.g-review-item-actions > div > button {
+    width: 15rem;
 }
 </style>

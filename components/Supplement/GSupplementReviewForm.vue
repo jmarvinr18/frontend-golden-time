@@ -149,8 +149,6 @@ export default defineComponent({
 }
 
 @media only screen and (max-width: 800px) {
-    .g-supplement-review-form {
-        margin-top: -140%
-    }
+    
 }
 </style>

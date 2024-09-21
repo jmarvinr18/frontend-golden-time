@@ -340,7 +340,7 @@ export default defineComponent({
 .g-profile-card-wrapper {
     position: absolute;
     width: 100%;
-    top: -100px;
+    top: -120px;
     left: 0;
     padding: 10px;
 }
