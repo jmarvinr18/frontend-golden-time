@@ -43,22 +43,21 @@
                         </button>
                     </div>
                     <div v-else>
-                        <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }} </NuxtLink>
+                        <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">{{ $t("Login") }} </NuxtLink>
                     </div>
                 </div>                   
             </div>
         </div>
-    </div>
-    <div v-if="!isDesktop" class="g-review-item-actions">
+    </div>               <div v-if="!isDesktop" class="is-desktop g-review-item-actions">
                     <div class="d-flex gap-3 mt-4" v-if="isAuthenticated">
-                        <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
+                        <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
                             <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
                                 <i class="bi bi-people me-2"></i>
                                 {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
                             </span>
                         </button>
-                        <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 f14 d-flex justify-content-center gap-3">
+                        <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
                             <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
                                 <i class="bi bi-person-heart me-2"></i>
@@ -69,7 +68,7 @@
                     <div v-else>
                         <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }} </NuxtLink>
                     </div>
-                </div>    
+                </div>
     <div class="is-mobile g-review-item d-flex flex-wrap">
         <div class="w-100 text-end">
             <nuxt-link v-if="isContentOwner" :to="`/supplement/edit/${supplement?.id}`" class="btn bg-none btn-sm rounded-pill w-50 f12">
@@ -114,7 +113,7 @@
                             </span>                 
                 </button>
             </div>
-            <NuxtLink v-else :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f12">{{ $t("Login") }}</NuxtLink>
+            <NuxtLink v-else :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">{{ $t("Login") }}</NuxtLink>
             
         </div>
 
@@ -135,7 +134,7 @@ export default defineComponent({
         var { userData, isAuthenticated } = storeToRefs(authStore)
         var supplementStore = useSupplementStore()
         var price = ref()
-        var isDesktop = ref(true)
+        var isDesktop = ref(false)
 
         var toggleDrinkWish = (id: string) => {
             supplementStore.toggleDrinkWish(id, false)
@@ -201,8 +200,9 @@ export default defineComponent({
     width: 100%;
     flex-direction: column;
     gap: 1rem;
+    margin-top: 1rem;
 }
-.g-review-item-actions > div > button {
+.g-review-item-actions > div > button, .g-review-item-actions > div > a {
     width: 13rem;
 }
 .g-review-item-actions > div {
@@ -221,6 +221,9 @@ export default defineComponent({
     .g-review-item-actions > div > button {
         width: 14rem;
     }    
+    .g-review-item-actions > div > button, .g-review-item-actions > div > a {
+        width: 14rem;
+    }
     .g-review-item-actions > div {
         display: flex;
         flex-direction: row;
