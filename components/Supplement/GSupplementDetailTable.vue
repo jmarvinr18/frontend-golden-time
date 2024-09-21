@@ -62,7 +62,7 @@
                 {{ $t('FeatureLabel') }}
                 </div>
                 <div class="supplement-detail-content border-bottom f12 line-break-anywhere">
-                    {{supplement?.description}} asdfasdfasdfsefwrwe werwerwerwe
+                    {{supplement?.description}}
                 </div>
             </div>            
         </div>
