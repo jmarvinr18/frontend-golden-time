@@ -147,8 +147,4 @@ export default defineComponent({
 .rating-box{
     width: 15rem;
 }
-
-@media only screen and (max-width: 800px) {
-    
-}
 </style>

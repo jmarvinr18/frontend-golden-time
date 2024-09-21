@@ -5,7 +5,7 @@
                 {{ $t('ViewSupplementLabel') }}
             </a>
         </div>
-        <div class="supplement-detail-body row f14 lh-lg">
+        <div class="supplement-detail-body row f12 lh-lg">
             <div class="col-md-6 col-xs-12 d-flex gap-3 my-2">
                 <div class="w-25 me-2 text-muted">
                 {{ $t('BrandLabel') }}
@@ -56,13 +56,13 @@
                 </div>
             </div>
         </div>
-        <div class="supplement-detail-body row f14 lh-lg">
-            <div class="col-md-12 col-xs-12 d-flex gap-3 my-2 f12">
-                <div class="w-25 me-2 text-muted">
+        <div class="supplement-detail-body lh-lg">
+            <div class="d-flex gap-3">
+                <div class="supplement-detail-label me-2 text-muted">
                 {{ $t('FeatureLabel') }}
                 </div>
-                <div class="w-100 border-bottom f10 line-break-anywhere">
-                    {{supplement?.description}}
+                <div class="supplement-detail-content border-bottom f12 line-break-anywhere">
+                    {{supplement?.description}} asdfasdfasdfsefwrwe werwerwerwe
                 </div>
             </div>            
         </div>
@@ -73,7 +73,7 @@
                 {{ $t('ViewSupplementLabel') }}
             </a>
         </div>
-        <div class="row f14 lh-lg justify-content-between">
+        <div class="row f12 lh-lg justify-content-between">
             <div class="col-md-6 col-xs-12 d-flex gap-3">
                 <div class="w-25 me-2 text-muted">
                 {{ $t('BrandLabel') }}
@@ -147,5 +147,17 @@ export default defineComponent({
 <style scoped>
 .supplement-detail-body{
     padding: 0 3rem;
+}
+.supplement-detail-body > div > .supplement-detail-label {
+    width: 6rem;
+}
+.supplement-detail-body > div > .supplement-detail-content {
+    width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+    .supplement-detail-body > div > .supplement-detail-label {
+        width: 35%;
+    }
 }
 </style>
