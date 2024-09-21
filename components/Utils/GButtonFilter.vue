@@ -33,5 +33,8 @@ export default defineComponent({
 }
 .is-mobile > .btn {
     font-size: 11px !important;
-} 
+}
+.btn-primary-soft{
+    margin: 0.2rem;
+}
 </style>

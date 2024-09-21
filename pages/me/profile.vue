@@ -4,7 +4,7 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
-        <swiper v-if="userData.supplements" class="content-card-wrapper p-2" :break-points="breakPoints" :slides-per-view="4"
+        <swiper v-if="userData.supplements" class="content-card-wrapper p-2" :breakpoints="breakPoints" :slides-per-view="4"
             @swiper="onSwiper" @slideChange="onSlideChange">
             <swiper-slide v-for="(supplement) in userData.supplements" ><CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement></swiper-slide>
         </swiper>
@@ -124,7 +124,6 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 export default defineComponent({
   name: 'PageProfile',
-
   components: {
       Swiper,
       SwiperSlide,
@@ -141,7 +140,7 @@ export default defineComponent({
       authStore.getProfile(userData.value.id)
    });
 
-   const onSwiper = (swiper) => {
+   const onSwiper = (swiper: any) => {
         console.log(swiper);
       };
       const onSlideChange = () => {

@@ -20,7 +20,7 @@
     </div>
     <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
         <!-- ADD / EDIT FORM -->
-        <div class="is-desktop container py-4 w-50 mx-auto">
+        <div class="is-desktop container py-4 mx-auto supplement-add-form">
             <SupplementGSupplementForm></SupplementGSupplementForm>
         </div>
         <div class="is-mobile container py-4 w-100 mx-auto">
@@ -55,3 +55,15 @@ export default defineComponent({
     }
 })
 </script>
+
+<style scoped>
+.supplement-add-form{
+    width: 50%;
+}
+
+@media only screen and (max-width: 900px) {
+    .supplement-add-form{
+        width: 100%;
+    }
+}
+</style>

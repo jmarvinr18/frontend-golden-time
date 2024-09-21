@@ -91,6 +91,7 @@ body {
     width: 20rem !important;
 }
 
+
 @media only screen and (max-width:450px)  {
     .bi.bi-star, .bi.bi-star-fill, .bi.bi-star-half{
         font-size : 1rem !important;

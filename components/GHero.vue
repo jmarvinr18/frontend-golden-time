@@ -20,7 +20,7 @@
 
     <di class="is-desktop g-hero-search w-100 d-flex justify-content-center" >
         
-        <div class="w-50 search-bar">
+        <div class="search-bar">
               <i class="bi bi-search"></i>
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
                 <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')">
@@ -28,7 +28,7 @@
                     <i class="bi bi-search me-3"></i>
                 </a>                
             </div>
-            <div class="gl-search-filter-category d-flex gap-5 justify-content-between px-5 mx-auto">
+            <div class="gl-search-filter-category d-flex justify-content-between px-5 mx-auto">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
             </div>         
         </div>                
@@ -144,9 +144,13 @@ export default defineComponent({
     height: 100px;
     top: 80%;
 }
+    .gl-search-filter-category{
+            gap: 0rem;
+    }
 
     .search-bar {
         position: relative;
+        width: 40rem;
     }
     .search-result {
         position: absolute;
@@ -207,22 +211,18 @@ export default defineComponent({
     border:1px solid #333000;
 }
 
-
-
-@media only screen and (max-width:1300px)  {
-    /* .gl-search-filter-category{
-        display: none !important;
-    } */
-
+@media only screen and (max-width: 750px)  {
     .search-bar {
-        width: 50%;
+        position: relative;
+        width: 35rem;
     }
+
 }
 
-@media only screen and (max-width:450px)  {
-    /* .gl-search-filter-category{
-        display: none;
-    } */
+@media only screen and (max-width: 500px)  {
+    .gl-search-filter-category{
+        gap: 0rem;
+    }
 
     .search-bar {
         width: 30rem;

@@ -1,8 +1,8 @@
 <template>
-    <div class="is-desktop bg-white w-100 rounded-lg g-shadow">
-        <div class="g-card-head d-flex gap-4 p-3 border border-bottom border-2 border-light">
-            <div class="g-card-image rounded">
-                <img :src="blog?.feature_image" style="height: 80px; width: 100px;" class="object-fit-cover rounded-lg" />
+    <div class="card-blog-item is-desktop bg-white rounded-lg g-shadow">
+        <div class="g-card-head">
+            <div class="g-card-image">
+                <img :src="blog?.feature_image" class="object-fit-cover" />
             </div>
             <div class="g-card-info">
                 <div class="h5"> {{ useTruncateText(blog?.title, 45) }}</div>
@@ -26,13 +26,13 @@
                 </div>
             </div>
         </div>
-        <div class="g-card-body p-3 position-relative">
-            <div class="text-muted" v-html="useTruncateText(blog?.short_description,200)"></div>
-            <div class="g-card-more w-100 text-light position-absolute bottom-2 d-flex justify-content-center">
-                <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
+        <div class="g-card-body p-3">
+            <div class="g-card-content text-muted" v-html="useTruncateText(blog?.short_description, truncateCount)"></div>
+            <div class="g-card-more text-light bottom-2">
+                <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 me-2">
                     {{ $t("ReadMoreLabel") }} <i class="ms-2 bi bi-chevron-down rounded-pill"></i>
                 </a>
-                <a v-if="!isNotContentOwner"  :href="`/blog/edit/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
+                <a v-if="!isNotContentOwner"  :href="`/blog/edit/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 me-2">
                     {{ $t("UpdateLabel") }} <strong class="bi bi-arrow-up me-2 fw-bold"></strong>
                 </a>
             </div>
@@ -79,6 +79,7 @@ export default defineComponent({
         var authStore = useAuthStore()
         var { userData } = storeToRefs(authStore)
         var route = useRoute()
+        var truncateCount = ref(200)
 
         var isContentOwner = computed(() => {
             return userData.value.id === props.blog?.user_id
@@ -86,27 +87,65 @@ export default defineComponent({
 
         var isNotContentOwner = computed(() => {
             return route.params.id === props.blog?.user_id
-        })
+        })     
+
+        onMounted(() => {
+            window.addEventListener('resize', () => {
+                
+                if(window.innerWidth < 1160){
+                    truncateCount.value = 100
+                    console.log("TRUNCATE: ADD")
+                }
+                if(window.innerWidth > 1160 && truncateCount.value < 200){
+                    truncateCount.value = 200
+                    console.log("TRUNCATE: MINUS")
+                }           
+                if(window.innerWidth <= 500){
+                    truncateCount.value = 50
+                    console.log("TRUNCATE: MINUS")
+                }                       
+            })               
+        })        
         return {
             useTruncateText,
             isContentOwner,
-            isNotContentOwner
+            isNotContentOwner,
+            truncateCount
         }
     },
 })
 </script>
 
 <style>
-.g-card-body {
-    height: 190px;
 
+.card-blog-item{
+    width: 40rem;
 }
-
+.g-card-body {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.g-card-head{
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+}
+.g-card-head > .g-card-image > img {
+    height: 100px; 
+    width: 100px;        
+}
 .g-card-more {
     bottom: 25px;
     font-size: 12px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
-
+.g-card-more > a {
+    width: 10rem;
+}
 
 .overlay{
     background: rgb(0,0,0);
@@ -114,9 +153,47 @@ export default defineComponent({
     height: 100%;
 }
 
-@media only screen and (max-width:450px)  {
+@media only screen and (max-width:1400px)  {
+    .card-blog-item{
+        width: 100%;
+    }
+    .g-card-more > a {
+        width: 8rem;
+    }        
+}
+@media only screen and (max-width:800px)  {
+    .g-card-more {
+        bottom: 25px;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+    }    
+    .g-card-more > a {
+        width: 10rem;
+    }    
+}
+
+@media only screen and (max-width:500px)  {
+    
+    .g-card-head{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0rem;
+    }
+    .g-card-head > .g-card-image > img {
+        height: 11rem; 
+        width: 14rem;        
+    }
     .g-card-blog .g-card-info {
         width: 100%;
+
+    }
+    .g-card-info{
+        padding: 1rem;
     }
     .g-card-blog .g-card-image {
         width: 45%;
@@ -130,8 +207,11 @@ export default defineComponent({
         min-width: 360px;
     }
 
-    .g-card-body {
-        height: 60vh;
+    .g-card-content{
+        display: none;
     }
+    /* .g-card-body {
+        height: 60vh;
+    } */
 }
 </style>

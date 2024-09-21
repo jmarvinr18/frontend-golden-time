@@ -4,8 +4,8 @@
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
 
-            <div class="row">
-                <div v-for="(blog, i) in contents?.blog" class="col-md-6 col-xs-12 mb-5">
+            <div class="blog-item-cards">
+                <div v-for="(blog, i) in contents?.blog">
                     <CardsGCardBlog :blog="blog" ></CardsGCardBlog>
                 </div>
                 <UtilsGLoadMore v-if="contents?.blog?.length > 3" @on-click="viewAll('/blog')"></UtilsGLoadMore>
@@ -15,7 +15,7 @@
             <GSectionTitle :title="$t('MuscleNews')" icon="bi-newspaper"></GSectionTitle>
 
             <div class="row">
-                <div v-for="(news, i) in contents?.news" class="col-md-4 col-xs-12">
+                <div v-for="(news, i) in contents?.news" class="col-md-4 col-xs-12 mb-3">
                     <CardsGCardNews :news="news"></CardsGCardNews>
                 </div>
 
@@ -96,4 +96,10 @@ export default defineComponent({
 })
 </script>
 
-  
+<style>
+ .blog-item-cards{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+ }
+</style>
