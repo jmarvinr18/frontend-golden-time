@@ -48,7 +48,8 @@
                 </div>                   
             </div>
         </div>
-    </div>               <div v-if="!isDesktop" class="is-desktop g-review-item-actions">
+    </div>
+    <div v-if="!isDesktop" class="is-desktop g-review-item-actions">
                     <div class="d-flex gap-3 mt-4" v-if="isAuthenticated">
                         <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
                             <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
@@ -68,7 +69,7 @@
                     <div v-else>
                         <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }} </NuxtLink>
                     </div>
-                </div>
+        </div>
     <div class="is-mobile g-review-item d-flex flex-wrap">
         <div class="w-100 text-end">
             <nuxt-link v-if="isContentOwner" :to="`/supplement/edit/${supplement?.id}`" class="btn bg-none btn-sm rounded-pill w-50 f12">
@@ -77,11 +78,16 @@
             </nuxt-link>
         </div>
         <div class="g-review-item-media w-100 px-2">
-            <img class="g-review-item-image g-shadow w-100 rounded object-fit-cover" :src="supplement?.image" />
+            <img class="g-review-item-image rounded" :src="supplement?.image" />
         </div>
         <div class="g-review-item-description w-100 px-2 mt-5">
-            <div class="g-review-item-head d-flex justify-content-between">
+            <div class="g-review-item-head d-flex flex-column">
                 <div class="h4 fw-bold">{{ supplement?.name }}</div>
+
+                <NuxtLink class="g-review-item-owner w-100 d-flex align-items-center text-decoration-none text-dark" :to="`/users/${supplement?.user?.id}`">
+                        <img class="rounded-circle me-2" :src="getProfileImage" style="height: 25px; width: 25px;" />
+                        <div class="f12">{{ supplement?.user?.name }}</div>
+                </NuxtLink>                
             </div>
             <hr />
             <div class="w-100 g-review-item-head d-flex justify-content-between position-relative flex-wrap">
@@ -91,21 +97,17 @@
                 </div>
             </div>
             
-        </div>
-        <div class="px-2 mt-4 g-review-item-owner w-100 d-flex align-items-center">
-            <img class="rounded-circle me-2" :src="getProfileImage" style="height: 25px; width: 25px;" />
-            <div class="f12">{{ supplement?.user?.name }}</div>
-        </div>        
+        </div>      
         <div class="w-100 px-2 mt-4">
-            <div v-if="isAuthenticated">
-                <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3" style="width: 60%;">
+            <div class="d-flex flex-column" v-if="isAuthenticated">
+                <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3" >
                     <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                     <span class="align-self-center">
                         <i class="bi bi-people me-2"></i>
                                 {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
                         </span>                   
                 </button>
-                <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3" style="width: 60%;">
+                <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3" >
                             <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
                                 <i class="bi bi-person-heart me-2"></i>
@@ -215,6 +217,11 @@ export default defineComponent({
     height: 11rem;
     width: 11rem;
     object-fit: cover
+}
+.g-review-item-media{
+    display: flex;
+    justify-content: center;
+    background-color: #00000005;
 }
 
 @media only screen and (max-width: 600px) {
