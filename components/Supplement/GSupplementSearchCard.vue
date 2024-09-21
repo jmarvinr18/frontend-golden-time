@@ -483,6 +483,7 @@ export default defineComponent({
         background-color: #6739ff;
         border-color: #6739ff;
         color: #ffffff;
+        z-index: 0;
     }
     .page-link{
         color: #6739ff;
