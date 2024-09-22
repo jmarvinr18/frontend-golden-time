@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div class="g-form-group border-bottom py-5">
-                <div class="g-form-box mb-2 d-flex gap-4 w-75">
-                    <div class="w-50 mb-4 g-form-input">
+                <div class="g-form-box mb-2 d-flex gap-4 w-100">
+                    <div class="w-75 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('HeightLabel') }}</label>
                         <input type="number" class="form-control form-control-lg"  v-model="dataObj.profile_details.height" :placeholder="$t('HeightPlaceholder')">
                     </div>
@@ -44,8 +44,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="g-form-box mb-2 d-flex gap-4 w-75">
-                    <div class="w-50 mb-4 g-form-input">
+                <div class="g-form-box mb-2 d-flex gap-4 w-100">
+                    <div class="w-75 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('BodyWeightLabel') }}</label>
                         <input type="number" class="form-control form-control-lg"  v-model="dataObj.profile_details.body_weight" :placeholder="$t('BodyWeightPlaceholder')">
                     </div>
@@ -56,8 +56,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="g-form-box mb-2 d-flex gap-4 w-75">
-                    <div class="w-50 mb-4 g-form-input">
+                <div class="g-form-box mb-2 d-flex gap-4 w-100">
+                    <div class="w-75 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('BodyFatPercentageLabel') }}</label>
                         <input type="number" class="form-control form-control-lg"  v-model="dataObj.profile_details.body_fat_percentage" :placeholder="$t('BodyFatPlaceholder')">
                     </div>
@@ -68,8 +68,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="g-form-box mb-2 d-flex gap-4 w-75">
-                    <div class="w-50 mb-4 g-form-input">
+                <div class="g-form-box mb-2 d-flex gap-4 w-100">
+                    <div class="w-75 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('BirthDateLabel') }}</label>
                         <input type="date" class="form-control form-control-lg"  v-model="dataObj.profile_details.birth_date">
                     </div>
@@ -80,8 +80,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="g-form-box mb-2 d-flex gap-4 w-75">
-                    <div class="w-50 mb-4 g-form-input">
+                <div class="g-form-box mb-2 d-flex gap-4 w-100">
+                    <div class="w-75 mb-4 g-form-input">
                         <label  class="form-label bg-white ms-2 px-2">{{ $t('SexLabel') }}</label>
                         <select class="form-select form-select-lg" aria-label="Default select example" v-model="dataObj.profile_details.sex">
                             <option :value="null" selected>Select</option>

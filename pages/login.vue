@@ -4,13 +4,13 @@
             <div class="d-flex align-items-center justify-content-center">
                 <img src="/images/img-login.svg" class="img-login" />
             </div>
-            <div class="container w-25 text-center mx-auto mt-5">
+            <div class="login-body container text-center mx-auto mt-5">
                 <div class="btn-group rounded-pill overflow-hidden bg-white border border-primary w-75 " role="group" aria-label="Basic example">
                     <button type="button" class="f12 btn btn-primary fw-bold">{{ $t('Login')}} <i class="bi bi-arrow-right mb-0 ms-1"></i></button>
                     <NuxtLink to="/signup" type="button" class="f12 btn text-primary fw-bold rounded">{{ $t('SignUp') }} <i class="bi bi-plus-lg mb-0 ms-1"></i></NuxtLink>
                 </div>
             </div>
-            <div class="container w-25 mx-auto mt-5 mb-4">
+            <div class="container login-field mx-auto mt-5 mb-4">
                 <div class="input-group input-group-md bg-white mb-3 w-100 mx-auto border rounded border-secondary">
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
                         <i class="bi bi-envelope"></i>
@@ -97,6 +97,9 @@ export default defineComponent({
 </script>
 <style>
 .img-login {
-    width: 15%;
+    width: 11rem;
+}
+.login-body, .login-field{
+    width: 30rem;
 }
 </style>

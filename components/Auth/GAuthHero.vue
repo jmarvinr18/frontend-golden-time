@@ -9,7 +9,7 @@
             <div class="text-border-black fw-bold h1 w-100">
                 {{ $t('CheckItNow') }}
             </div>
-            <div class="mt-4 btn-group rounded-pill overflow-hidden bg-white border border-primary w-25 ms-1" role="group" aria-label="Basic example">
+            <div class="mt-4 btn-group rounded-pill overflow-hidden bg-white border border-primary w-10rem ms-1" role="group" aria-label="Basic example">
                 <NuxtLink to="/login" type="button" class="f12 btn text-primary fw-bold">{{ $t('Login') }} <i class="bi bi-arrow-right mb-0 ms-1"></i></NuxtLink>
                 <button type="button" class="f12 btn btn-primary fw-bold">{{ $t('SignUp') }} <i class="bi bi-plus-lg mb-0 ms-1"></i></button>
             </div>
@@ -34,13 +34,10 @@
 </template>
 <style scope>
 .g-auth-hero {
-    height: 70vh;
+    min-height: 600px;
     border-radius: 0 0 30px 30px;
-    background: url('/images/bg-3.jpeg') no-repeat center center;
+    background: url('/images/bg-3.jpeg');
     background-size: cover;
-    box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
 }
 
 .g-title {

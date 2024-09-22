@@ -1,12 +1,12 @@
 <template>
-    <div v-if="isDesktop" class="is-desktop">
+    <div  class="is-desktop">
         <div class="g-auth-signup-title w-100 mt-5">
             <div class="h3 mt-5">{{ $t('ProfileChange') }}</div>
             <div class="text-danger mt-5">* {{ $t('RequiredInput') }}</div>
         </div>
         <AuthGUserForm :edit="true"></AuthGUserForm>
     </div>
-    <div v-if="isMobile" class="is-mobile">
+    <div class="is-mobile">
         <div class="g-auth-signup-title w-100 mt-2">
             <div class="h4 mt-2 text-center">{{ $t('ProfileChange') }}</div>
             <div class="text-danger mt-5">* {{ $t('RequiredInput') }}</div>

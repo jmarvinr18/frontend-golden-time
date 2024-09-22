@@ -91,6 +91,16 @@ body {
     width: 20rem !important;
 }
 
+.change-img-btn{
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 181%);
+}
+.change-img-btn-mobile{
+    bottom: 0;
+    left: 0;
+    transform: translate(68%, 100%);
+}
 
 @media only screen and (max-width:450px)  {
     .bi.bi-star, .bi.bi-star-fill, .bi.bi-star-half{

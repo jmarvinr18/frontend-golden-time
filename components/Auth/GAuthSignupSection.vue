@@ -1,9 +1,9 @@
 <template>
     <div class="is-desktop">
         <div class="container w-100 text-center position-relative cursor-pointer" style="margin-bottom:-120px" data-bs-toggle="modal" data-bs-target="#photo-modal">
-            <button class="btn position-absolute top-0 rounded-pill py-2" style="right:30%">
+            <button class="change-img-btn btn position-absolute top-0 rounded-pill py-2">
                 <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
-                    <i class="bi bi-camera "></i>
+                    <i class="bi bi-camera"></i>
                 </span>
                 {{ avatarImg? $t('ChangeImage'): $t('AddImage') }}
             </button>
@@ -11,7 +11,7 @@
         </div>
         <div class="w-100 rounded-lg py-5 mt-4 bg-white border border-2">
             <!-- SIGN UP FORM -->
-            <div class="container py-4 w-50 mx-auto">
+            <div class="container form-body py-4 mx-auto">
                 <AuthGAuthSignupForm></AuthGAuthSignupForm>
             </div>
         </div>
@@ -51,3 +51,14 @@ export default defineComponent({
     }
 })
 </script>
+
+<style scoped>
+.form-body{
+    width: 40rem;
+}
+@media only screen and (max-width: 600px)  {
+    .form-body{
+        width: 30rem;
+    }
+}
+</style>
