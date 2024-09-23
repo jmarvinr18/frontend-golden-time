@@ -1,19 +1,18 @@
 <template>
     <div class="is-desktop g-card-supplement card g-shadow rounded-lg">
-        <div style="height: 13rem;">
+        <div class="g-card-supplement-image-wrapper">
             <NuxtLink :to="`/supplement/review/${supplement?.id}`">
                 <img :src="supplement?.image" class="card-img-top" alt="...">
             </NuxtLink>
         </div>
 
-        <div class="p-2">
-            <h5 class="p-1">{{ supplement?.name }}</h5>
+        <div class="p-2 g-card-supplement-title">
+            <div class="p-1">{{ supplement?.name }}</div>
         </div>
         
-        <div v-if="mode=='me'" class="card-body text-center d-block">
+        <div v-if="mode=='me'" class="g-card-supplement-actions card-body text-center d-block">
             <div class="w-100" v-if="updateMode">
-                <div class="btn-group g-shadow rounded-pill overflow-hidden bg-light" role="group" aria-label="Basic mixed styles example">
-                    <!-- <button type="button" class="btn btn-light px-3">{{supplement?.protein_content}} g/day</button> -->
+                <div class="btn-group rounded-pill overflow-hidden bg-light" role="group" aria-label="Basic mixed styles example">
                     <NuxtLink :to="`/supplement/edit/${supplement?.id}`"  class="btn btn-dark rounded-pill px-3">
                         Update <strong class="bi bi-arrow-up me-2 fw-bold"></strong>
                     </NuxtLink>
@@ -142,8 +141,33 @@ export default defineComponent({
 </script>
 <style scoped>
     .g-card-supplement {
-        width: 20rem !important;
+        width: 15rem !important;
     }
+    .g-card-supplement > .g-card-supplement-title {
+        height: 5rem;
+        font-size: 1rem;
+        font-weight: bolder;
+    }
+    .g-card-supplement > .g-card-supplement-image-wrapper {
+        height: 10rem;
+    }
+    .g-card-supplement-actions{
+        height: 8rem;
+    }
+    .g-card-supplement-actions > div > .btn-group > a, .g-card-supplement-actions > button {
+        font-size: 12px;
+    }     
+
+@media only screen and (max-width:600px)  {
+    .g-card-supplement {
+        width: 13rem !important;
+    }
+    .g-card-supplement-actions{
+        height: 7rem;
+        font-size: 12px;
+    }   
+
+}
 @media only screen and (max-width:450px)  {
     .g-card-supplement {
         min-width: 190px !important;

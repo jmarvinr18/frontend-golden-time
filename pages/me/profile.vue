@@ -4,10 +4,12 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
-        <swiper v-if="userData.supplements" class="content-card-wrapper p-2" :breakpoints="breakPoints" :slides-per-view="4"
-            @swiper="onSwiper" @slideChange="onSlideChange">
-            <swiper-slide v-for="(supplement) in userData.supplements" ><CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement></swiper-slide>
-        </swiper>
+
+        <div v-if="userData.supplements" class="content-card-wrapper p-2">
+          <div v-for="(supplement) in userData.supplements">
+            <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
+          </div>
+        </div>
         
         <div v-if="!userData.supplements" class="my-5 text-dark opacity-50 row">
           {{ $t('NoSupplements') }}
@@ -172,7 +174,8 @@ export default defineComponent({
 <style scoped>
 .content-card-wrapper{
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
   width: 100%;
   /* overflow: scroll; */
 }
