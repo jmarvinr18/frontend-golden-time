@@ -7,7 +7,7 @@
 
             <div v-if="userData?.supplements?.length > 0" class="content-card-wrapper p-2">
                 <div v-for="(supplement, i) in userData.supplements">
-                    <CardsGCardSuplement v-if="i <= 4" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
+                    <CardsGCardSuplement v-if="i <= 4" :supplement="supplement"></CardsGCardSuplement>
                 </div>
 
                 <UtilsGLoadMore v-if="userData.supplements?.length > 5" @on-click="viewAll('/blog')"></UtilsGLoadMore>
@@ -71,7 +71,7 @@
             <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
             <GContainerSlider>
-            <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
+                <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement"></CardsGCardSuplement>
             </GContainerSlider>
         </div>
         <div class="container pt-2 pb-4">
