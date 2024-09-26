@@ -6,15 +6,16 @@
 
 
         <div v-if="userData.supplements" class="content-card-wrapper p-2">
-          <div v-for="(supplement) in userData.supplements">
-            <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
+          <div v-for="(supplement, i) in userData.supplements">
+            <CardsGCardSuplement v-if="i <= 4" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
           </div>
+          <div v-if="userData.supplements?.length > 5"><UtilsGLoadMore></UtilsGLoadMore></div>
         </div>
         
-        <div v-if="!userData.supplements" class="my-5 text-dark opacity-50 row">
+        <div  class="my-5 text-dark opacity-50 row" v-else>
           {{ $t('NoSupplements') }}
         </div>
-        <div><UtilsGLoadMore></UtilsGLoadMore></div>
+        
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
@@ -75,10 +76,6 @@
           <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
         </GContainerSlider>
 
-        <!-- <swiper v-if="userData.supplements && userData.supplements.length" class="content-card-wrapper p-2" :slides-per-view="4"
-            @swiper="onSwiper" @slideChange="onSlideChange">
-            <swiper-slide v-for="(supplement) in userData.supplements" ><CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement></swiper-slide>
-        </swiper> -->
 
         <div class="my-5 text-dark opacity-50" v-else>
           {{ $t('NoSupplements') }}
@@ -172,13 +169,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.content-card-wrapper{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  width: 100%;
-  /* overflow: scroll; */
-}
+
 
 .swiper-slide .swiper-slide-active {
   width: 30rem;

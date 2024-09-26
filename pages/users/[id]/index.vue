@@ -5,12 +5,12 @@
         <div class="container pt-2 pb-4">
             <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
-            <div v-if="userData?.supplements?.length > 0" class="row">
-                <div v-for="(supplement) in userData.supplements" class="col-md-4 col-xs-12">
-                    <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
+            <div v-if="userData?.supplements?.length > 0" class="content-card-wrapper p-2">
+                <div v-for="(supplement, i) in userData.supplements">
+                    <CardsGCardSuplement v-if="i <= 4" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
                 </div>
 
-                <UtilsGLoadMore v-if="userData.supplements?.length > 3" @on-click="viewAll('/blog')"></UtilsGLoadMore>
+                <UtilsGLoadMore v-if="userData.supplements?.length > 5" @on-click="viewAll('/blog')"></UtilsGLoadMore>
             </div>
             <div class="my-5 text-dark opacity-50" v-else>
                 {{ $t('NoSupplements') }}
