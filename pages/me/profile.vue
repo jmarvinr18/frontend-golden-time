@@ -9,27 +9,29 @@
           <div v-for="(supplement, i) in userData.supplements">
             <CardsGCardSuplement v-if="i <= 4" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
           </div>
-          <div v-if="userData.supplements?.length > 5"><UtilsGLoadMore></UtilsGLoadMore></div>
+          
         </div>
         
         <div  class="my-5 text-dark opacity-50 row" v-else>
           {{ $t('NoSupplements') }}
         </div>
-        
+        <div v-if="userData.supplements?.length > 5"><UtilsGLoadMore></UtilsGLoadMore></div>
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
 
-        <div v-if="supplement_wishes" class="row">
-          <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12 mb-5">
-            <CardsGCardSuplement :supplement="supplement?.supplement_details"></CardsGCardSuplement>
+        <div v-if="userData.supplement_wishes && userData.supplement_wishes?.length" class="content-card-wrapper p-2">
+          <div v-for="(supplement, i) in userData.supplement_wishes" :key="i">
+            <CardsGCardSuplement v-if="i <= 4"  :supplement="supplement?.supplement_details"></CardsGCardSuplement>
           </div>
-          <UtilsGLoadMore></UtilsGLoadMore>          
+             
         </div>
         <div class="my-5 text-dark opacity-50" v-else>
           {{ $t('NoWishlist') }}
         </div>
+        <div v-if="userData.supplement_wishes?.length > 5"><UtilsGLoadMore></UtilsGLoadMore></div>   
       </div>
+
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('Blogs')" icon="bi-journals"></GSectionTitle>
 
@@ -83,7 +85,7 @@
       </div>
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
-
+        
         <GContainerSlider v-if="userData.supplement_wishes && userData.supplement_wishes.length">
           <CardsGCardSuplement v-for="(supplement) in userData.supplement_wishes" :supplement="supplement?.supplement_details"></CardsGCardSuplement>
         </GContainerSlider>
