@@ -3,17 +3,18 @@
         <div class="is-desktop g-blog-card-main bg-white mx-auto rounded-lg g-shadow">
 
             <div class="g-blog-card-wrapper">
-                <div class="mb-4">
-                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')"
-                    v-model="blogForm.title" name="title" maxlength="25" >
-                </div>
+
                 <div class="mb-4 d-flex align-items-center flex-wrap">
                     <div class="h4 me-3">{{ $t("CoverImage") }}</div>
                     <button v-if="blogForm.feature_image" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >Change ...</button>
                     <div v-if="blogForm.feature_image" class="w-100 mt-2">
-                        <img :src="coverImage" class="w-25 rounded object-fit-contain bg-dark" style="height: 200px;" />
+                        <img :src="coverImage" class="w-100 rounded object-fit-contain bg-dark" style="height: 20rem;" />
                     </div>
                     <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >{{ $t("Browse") }}...</button>
+                </div>
+                <div class="mb-4">
+                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')"
+                    v-model="blogForm.title" name="title" maxlength="25" >
                 </div>
                 <div>
                     <div class="mb-5">
@@ -249,7 +250,7 @@ export default defineComponent({
         const router = useRouter();
         const route = useRoute();
         const coverImage = ref("/images/no-image.jpeg");
-        const limitDescriptionChar = 3000;
+        // const limitDescriptionChar = 3000;
         const limitError = ref(false);
 
         const toolShow = ref<Boolean>(false);
@@ -418,14 +419,14 @@ export default defineComponent({
                 }
             });
 
-            quill.on('text-change', function (delta:any, old:any, source:any) {
-                if (quill.getLength() > limitDescriptionChar) {
-                    limitError.value = true;
-                    quill.deleteText(limitDescriptionChar, quill.getLength());
-                } else {
-                    limitError.value = false;
-                }
-            });
+            // quill.on('text-change', function (delta:any, old:any, source:any) {
+            //     if (quill.getLength() > limitDescriptionChar) {
+            //         limitError.value = true;
+            //         quill.deleteText(limitDescriptionChar, quill.getLength());
+            //     } else {
+            //         limitError.value = false;
+            //     }
+            // });
 
             loadData();
 
@@ -441,7 +442,7 @@ export default defineComponent({
             toolShow,
             gMediaUpload,
             gMediaGifLibrary,
-            limitDescriptionChar,
+            // limitDescriptionChar,
             limitError,
             setCover,
             selectObj,
@@ -471,7 +472,7 @@ export default defineComponent({
     margin-bottom: 0;
 }
 .g-blog-card-main{
-    height: 67rem;
+    min-height: 67rem;
     border-radius: 15px;
     width: 50rem;
 }

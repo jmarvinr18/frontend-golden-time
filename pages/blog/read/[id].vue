@@ -5,6 +5,7 @@
             <hr class="my-1"/>
 
             <BlogGBlogAuthor :blog="blog"></BlogGBlogAuthor>
+            
             <img :src="blog.feature_image" class="blog-content-image rounded-lg mt-3 w-100" />
             <div class="g-blog-body mt-5 lh-lg" v-html="blog.content"></div>
 

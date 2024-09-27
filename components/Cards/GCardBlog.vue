@@ -2,27 +2,25 @@
     <div class="card-blog-item is-desktop bg-white rounded-lg g-shadow">
         <div class="g-card-head">
             <div class="g-card-image">
-                <img :src="blog?.feature_image" class="object-fit-cover" />
+                <img :src="blog?.feature_image" class="object-fit-cover rounded" />
             </div>
             <div class="g-card-info">
                 <div class="h5"> {{ useTruncateText(blog?.title, 45) }}</div>
-                <div class="d-flex align-items-center">
-                    <div class="text-muted f12">{{ $formatTime(blog?.created_at) }}</div>
-                    <NuxtLink :to="`/users/${blog?.user_id}`" class="text-decoration-none text-dark">
-                    <div class="d-flex ms-3 align-items-center">
-                        <div v-if="isContentOwner" class="ms-2 d-flex" > 
-                            <img v-if="blog?.user_image" :src="blog?.user_image" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" />
-                            <i v-else-if="blog?.user_image && isContentOwner" class="bi bi-person-circle h5 mb-0"></i>
-                            <div v-if="isContentOwner" class="ms-2 f12 text-muted"> {{ blog?.author }} </div>
-                        </div>
-                        
+                    <div class="d-flex align-items-center">
+                        <div class="text-muted f12">{{ $formatTime(blog?.created_at) }}</div>
+                        <NuxtLink :to="`/users/${blog?.user_id}`" class="text-decoration-none text-dark">
+                            <div class="d-flex ms-3 align-items-center">
+                                <div class="ms-2 d-flex align-items-center" >
+                                    <img v-if="blog?.user_image" :src="blog?.user_image" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill"/>
+                                    <i v-else class="bi bi-person-circle f15 mb-0"></i>
+                                    <div  class="ms-2 f12 text-muted"> {{ blog?.author }} </div>
+                                </div>
+                            </div>
+                        </NuxtLink>
                     </div>
-                    </NuxtLink>
-                </div>
                 <div class="d-flex mt-1">
                     <i class="bi bi-chat-square-text me-2 text-primary"></i>
                     <i class="bi bi-heart-fill text-primary"></i>
-
                 </div>
             </div>
         </div>
@@ -86,7 +84,7 @@ export default defineComponent({
         })        
 
         var isNotContentOwner = computed(() => {
-            return route.params.id === props.blog?.user_id
+            return userData.value.id != props.blog?.user_id
         })     
 
         onMounted(() => {

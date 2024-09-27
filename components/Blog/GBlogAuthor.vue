@@ -7,14 +7,13 @@
 
         <div class="g-author-name">
             <NuxtLink :to="`/users/${blog?.users.id}`" class="text-decoration-none text-dark f12 d-flex gap-2">
-                <img :src="blog?.users.profile_details.image" style="height: 20px; width: 20px;" class="rounded-circle" /> 
-                 <div>
+                <img :src="blog.users.profile_details?.image != null ? blog.users.profile_details?.image :'/images/no-avatar.jpeg'" style="height: 20px; width: 20px;" class="rounded-circle"/>
+                <div>
                     {{ blog?.users.name }}
-                 </div>
-
+                </div>
             </NuxtLink>
             </div>
-        <div class="g-person-action text-end pull-right">
+        <div v-if="userData.id != blog.users.id" class="g-person-action text-end pull-right">
             <button @click="toggleFollow(blog?.id)" class="btn btn-primary rounded-pill px-3">
                 <i class="bi bi-person-plus"></i>
                 {{ blog?.is_following_me ? "Unfollow" : "Follow"}}
@@ -35,14 +34,17 @@ export default defineComponent({
         }
     },
     setup() {
+        var authStore = useAuthStore()
         var followStore = useFollowStore();
         var { followers } = storeToRefs(followStore)
+        var { userData } = storeToRefs(authStore)
 
         var toggleFollow = (id: string | undefined) => {
             followStore.toggleFollow({ user_id: id})
         }        
         return {
-            toggleFollow            
+            toggleFollow,
+            userData  
         }
     },
 })
