@@ -102,6 +102,9 @@ export default defineComponent({
     flex-direction: row;
     gap: 1rem;
  }
+ .blog-item-cards-each{
+    width: 100%;
+ }
 
  @media only screen and (max-width:800px)  {
     .blog-item-cards{
@@ -109,9 +112,6 @@ export default defineComponent({
         flex-direction: row;
         gap: 1rem;
         flex-wrap: wrap;
-    }
-    .blog-item-cards-each{
-        width: 100%;
     }
  }
 </style>
