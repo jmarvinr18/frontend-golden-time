@@ -13,8 +13,8 @@
                     <button v-else class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#cover-modal" >{{ $t("Browse") }}...</button>
                 </div>
                 <div class="mb-4">
-                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')"
-                    v-model="blogForm.title" name="title" maxlength="25" >
+                    <input type="text" class="form-control form-control-lg" :placeholder="$t('AddTitle')"
+                    v-model="blogForm.title" name="title" >
                 </div>
                 <div>
                     <div class="mb-5">
@@ -132,7 +132,7 @@
         </div>
         <div class="is-mobile bg-white mx-auto rounded-lg w-100 py-3 px-3 position-relative g-shadow" style="min-height:500px">
             <div class="mb-4">
-                <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" :placeholder="$t('AddTitle')" v-model="blogForm.title">
+                <input type="text" class="form-control form-control-lg" :placeholder="$t('AddTitle')" v-model="blogForm.title">
             </div>
             <div class="mb-4 d-flex align-items-center flex-wrap">
                 <div class="h4 me-3">Cover Image</div>
@@ -215,7 +215,7 @@
             </div>
             <div class="modal-body">
                 <div v-if="modalType=='link'" class="mb-4">
-                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="https://mydomain.com" v-model="textLink">
+                    <input type="text" class="form-control form-control-lg" placeholder="https://mydomain.com" v-model="textLink">
                 </div>
                 <UtilsGMediaImageUpload v-else-if="modalType=='image'" @on-get-file="selectObj" ref="gMediaUpload"></UtilsGMediaImageUpload>
 

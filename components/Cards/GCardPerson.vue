@@ -10,7 +10,7 @@
         <div v-if="route.name == 'me-following'" class="g-person-action text-end w-25 pull-right">
             <button @click="unFollow(followDetails.id)" class="btn btn-primary rounded-pill">
                 <i class="bi bi-check-lg me-2"></i>
-                Unfollow
+                {{ $t('Unfollow')  }}
             </button>
         </div>
     </div>
