@@ -91,7 +91,7 @@
         </div>
         <div class="container pagination-wrapper">
             <div class="d-flex justify-content-between align-items-center mt-5">
-                <div class="w-25">
+                <div class="pagination-per-page">
                     <select id="pager" class="form-select" aria-label="Default select example" v-model="searchData.meta.per_page" @change="searchNow">
                         <option value="">Supplements Per Page</option>
                         <option value="5">5</option>
@@ -442,6 +442,12 @@ export default defineComponent({
 
 </script>
 <style scoped>
+    .pagination-per-page{
+        width: 5rem;
+    }
+    #pager{
+        font-size: 12px;
+    }
     .search-bar {
         width: 60rem;
         position: relative;
@@ -484,10 +490,12 @@ export default defineComponent({
         border-color: #6739ff;
         color: #ffffff;
         z-index: 0;
+        font-size: 12px;
     }
     .page-link{
         color: #6739ff;
         z-index: 0;
+        font-size: 12px;
     }
 
     .pagination-wrapper{
