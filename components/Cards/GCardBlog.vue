@@ -6,14 +6,14 @@
             </div>
             <div class="g-card-info">
                 <div class="h5"> {{ useTruncateText(blog?.title, 45) }}</div>
-                    <div class="d-flex align-items-center">
+                    <div class="g-card-meta">
                         <div class="text-muted f12">{{ $formatTime(blog?.created_at) }}</div>
                         <NuxtLink :to="`/users/${blog?.user_id}`" class="text-decoration-none text-dark">
                             <div class="d-flex ms-3 align-items-center">
                                 <div class="ms-2 d-flex align-items-center" >
                                     <img v-if="blog?.user_image" :src="blog?.user_image" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill"/>
                                     <i v-else class="bi bi-person-circle f15 mb-0"></i>
-                                    <div  class="ms-2 f12 text-muted"> {{ blog?.author }} </div>
+                                    <div class="text-nowrap ms-2 f12 text-muted"> {{ blog?.author }} </div>
                                 </div>
                             </div>
                         </NuxtLink>
@@ -116,8 +116,13 @@ export default defineComponent({
 
 <style>
 
+.g-card-meta{
+    display: flex;
+    align-items: center;
+}
+
 .card-blog-item{
-    width: 40rem;
+    height: 18rem;
 }
 .g-card-body {
     min-height: 150px;
@@ -153,13 +158,22 @@ export default defineComponent({
 
 @media only screen and (max-width:1400px)  {
     .card-blog-item{
-        width: 100%;
+        /* width: 100%; */
+        height: 20rem;
     }
     .g-card-more > a {
         width: 8rem;
     }        
 }
 @media only screen and (max-width:800px)  {
+    /* .g-card-meta{
+        display: flex;
+        flex-direction: column;
+    } */
+
+    .card-blog-item{
+        height: 100%;
+    }    
     .g-card-more {
         bottom: 25px;
         font-size: 12px;
@@ -172,10 +186,10 @@ export default defineComponent({
     .g-card-more > a {
         width: 10rem;
     }    
-}
 
-@media only screen and (max-width:500px)  {
-    
+    .card-blog-item{
+        height: 100%;
+    }      
     .g-card-head{
         display: flex;
         flex-direction: column;
@@ -183,8 +197,8 @@ export default defineComponent({
         padding: 0rem;
     }
     .g-card-head > .g-card-image > img {
-        height: 11rem; 
-        width: 14rem;        
+        height: 15rem; 
+        width: 100%;        
     }
     .g-card-blog .g-card-info {
         width: 100%;
@@ -207,9 +221,45 @@ export default defineComponent({
 
     .g-card-content{
         display: none;
+    }    
+}
+
+@media only screen and (max-width:500px)  {
+    .card-blog-item{
+        height: 100%;
+    }      
+    .g-card-head{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0rem;
     }
-    /* .g-card-body {
-        height: 60vh;
-    } */
+    .g-card-head > .g-card-image > img {
+        height: 15rem; 
+        width: 100%; 
+    }
+    .g-card-blog .g-card-info {
+        width: 100%;
+
+    }
+    .g-card-info{
+        padding: 1rem;
+    }
+    .g-card-blog .g-card-image {
+        width: 100%;
+        height: 250px;
+    }
+
+    .g-card-blog .g-card-image img{
+        height: 100%;
+        width: 100%;
+    }
+    .g-card-blog {
+        min-width: 360px;
+    }
+
+    .g-card-content{
+        display: none;
+    }
 }
 </style>

@@ -5,7 +5,7 @@
             <GSectionTitle :title="$t('Blog')" icon="bi-journals"></GSectionTitle>
 
             <div class="blog-item-cards">
-                <div v-for="(blog, i) in contents?.blog">
+                <div class="blog-item-cards-each"  v-for="(blog, i) in contents?.blog">
                     <CardsGCardBlog :blog="blog" ></CardsGCardBlog>
                 </div>
                 <UtilsGLoadMore v-if="contents?.blog?.length > 3" @on-click="viewAll('/blog')"></UtilsGLoadMore>
@@ -101,5 +101,17 @@ export default defineComponent({
     display: flex;
     flex-direction: row;
     gap: 1rem;
+ }
+
+ @media only screen and (max-width:800px)  {
+    .blog-item-cards{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .blog-item-cards-each{
+        width: 100%;
+    }
  }
 </style>
