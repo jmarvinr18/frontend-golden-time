@@ -9,7 +9,7 @@
             <img :src="blog.feature_image" class="blog-content-image rounded-lg mt-3 w-100" />
             <div class="g-blog-body mt-5 lh-lg" v-html="blog.content"></div>
 
-            <CardsGRelatedBlog :section-header="'More Blogs'" :blogs="blog.related_blog"></CardsGRelatedBlog>
+            <CardsGRelatedBlog :type="'blog'" :section-header="$t('MoreBlogs')" :blogs="blog.related_blog"></CardsGRelatedBlog>
 
 
             <div class="is-mobile d-flex flex-column mt-3">

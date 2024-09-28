@@ -4,16 +4,16 @@
             <div class="is-desktop w-100">
                 <div class="more-content-card-wrapper">
                     <div class="more-content-card-item" v-for="(b,s) in blogs">
-                    <a class="text-decoration-none" :href="`/blog/read/${b.id}`">
+                    <a class="text-decoration-none" :href="`/${getLink}/read/${b.id}`">
                         <div class="card">
                             <img :src="b?.feature_image" class="card-img-top" />
                             <div class="card-body">
                                 <h5 class="card-title"> {{ useTruncateText(b?.title,30) }} </h5>
 
                                 <div class="d-flex gap-3">
-                                    <p class="f11"> <i class="bi bi-clock f11"></i> {{ $formatTime(b?.created_at) }}</p>
+                                    <p class="f12"> <i class="bi bi-clock f12"></i> {{ $formatTime(b?.created_at) }}</p>
                                     <img :src="b.author_image != null ? b.author_image :'/images/no-avatar.jpeg'" style="height: 20px; width: 20px;" class="rounded-circle"/>
-                                    <p class="f11"> {{ useTruncateText(b?.author, 10) }}</p>
+                                    <p class="f12"> {{ useTruncateText(b?.author, 10) }}</p>
                                 </div>
                                 <p class="card-text">{{ useTruncateText(b?.short_description,50) }}</p>
                             </div>
@@ -33,13 +33,19 @@ export default defineComponent({
 
     props: {
       blogs: Object,
-      sectionHeader: String
+      sectionHeader: String,
+      type: String
     },
 
-    setup() {
+    setup(props) {
+
+      var getLink = computed(() => {
+          if(props.type == 'blog') return 'blog'
+          if(props.type == 'news') return 'news'
+      })
 
       return {
-
+        getLink
       }
     }
 

@@ -15,7 +15,7 @@
             <hr class="my-3" />
             <div class="g-blog-body mt-5 lh-lg" v-html=" blog.content">
             </div>
-            <CardsGRelatedBlog :section-header="'More News'" :blogs="blog.related_news"></CardsGRelatedBlog>          
+            <CardsGRelatedBlog :type="'news'" :section-header="$t('MoreNews')" :blogs="blog.related_news"></CardsGRelatedBlog>          
             <div class="is-mobile d-flex flex-column mt-3">
                 <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_blog" class="d-flex p-3 text-decoration-none text-dark">
                    
