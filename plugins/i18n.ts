@@ -23,6 +23,7 @@ export const i18n = createI18n({
     fallbackLocale: 'en',
     messages: {
         en: {
+            Comments: "Comments",
             MoreBlogs: "More blogs",
             MoreNews: "More News",
             Unfollow: "Unfollow",
@@ -232,6 +233,7 @@ export const i18n = createI18n({
             NoFollowings: "You are not following anyone at the moment."
         },
         ja: {
+            Comments: "コメント",
             MoreBlogs: "その他のブログ",
             MoreNews: "その他のニュース",
             Unfollow: "フォロー解除",

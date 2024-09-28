@@ -33,7 +33,7 @@
             <hr class="my-4" />
             <!-- COMMENT SECTIONS -->
             <div class="w-75 mx-auto">
-                <GSectionTitle class="mt-2 mb-4" title="Comments" :icon-hide="true"></GSectionTitle>
+                <GSectionTitle class="mt-2 mb-4" :title="$t('Comments')" :icon-hide="true"></GSectionTitle>
                 <div v-for="(comment,key) in commentList">
                     <BlogFeaturesGBlogCommentCard :comment="comment" v-if="!comment.is_reply" class="my-3"></BlogFeaturesGBlogCommentCard>
                     
