@@ -87,7 +87,7 @@
             </div>            
             <div v-if="hasSearchFromHome" class="d-flex w-100 mx-auto search-bar mb-3">
                 <div class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
-                    <input @keypress.enter="search" class="search-input form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" type="text">
+                    <input v-model="searchValue" @keypress.enter="search" class="search-input form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" type="text">
                     <a href="javascript:void(0)" @click="search" class="input-group-text border-0 bg-white">
                         <i class="bi bi-search me-2"></i>
                     </a>                  
@@ -314,11 +314,11 @@ export default defineComponent({
         var resultsFound = ref("")
 
         var search = () => {
-            if (!searchValue.value) return
-
-            q.value = `${q.value}keyword=${searchValue.value}&`;
-            router.replace({ query: { k: searchValue.value } })
-            initSearch();
+            if (searchValue.value) {
+                q.value = `${q.value}keyword=${searchValue.value}&`;
+                router.replace({ query: { k: searchValue.value } })
+                initSearch();
+            }
         }
 
         return {
