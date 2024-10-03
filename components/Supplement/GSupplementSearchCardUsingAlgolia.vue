@@ -1,26 +1,26 @@
 <template>
-    <div class="is-desktop w-100 rounded-lg py-5 mt-4 bg-white border border-2">
-        <!-- SEARCH BOX AND FILTER -->        
+    <ais-instant-search :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search" class="is-desktop w-100 rounded-lg py-5 mt-4 bg-white border border-2">
+        <!-- SEARCH BOX AND FILTER -->
+        <ais-configure :attributesToSnippet="['description']"/>
+        
         <div>
             <div v-if="!hasSearchFromHome" class="d-flex gap-5 mx-auto mb-3 search-bar">   
                 <div class="f20">
                     <span>{{ searchData.data.length }} </span>
                     <span> {{ $t("SearchResultFor") }} </span>
-                    <span>{{ searchValue }}...</span>
+                    <span>{{ searchFromHome }}...</span>
                 </div>
                 <button @click="searchAgain" class="btn btn-primary btn-sm rounded-pill py-2 px-4 f12">
                     <i class="bi bi-search"></i>
                     {{ $t("SearchAgain") }}
                 </button>
             </div>
+            <!-- <hr class="dropdown-divider"> -->
             
             <div v-if="hasSearchFromHome" class="d-flex mx-auto search-bar">
                 
                 <div  class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
-                    <input v-model="searchValue" @keypress.enter="search" class="search-input form-control form-control-lg border-0" type="text" placeholder="Search here">
-                    <a href="javascript:void(0)" @click="search" class="input-group-text border-0 bg-white">
-                        <i class="bi bi-search me-2"></i>
-                    </a>  
+                    <ais-search-box :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0" placeholder="Search here" />                
                 </div>
                     <!-- SEARCH BOX AND FILTER -->
                 <div class="dropdown">
@@ -35,7 +35,46 @@
                         <li><span @click="sortAction('taste_rate')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
                     </ul>
                 </div>
-               
+                <div v-if="onActiveSearch" class="search-result border-dark mx-auto">
+                    <ais-state-results>
+                    <template v-slot="{ state: { query }, results: { hits } }">
+                        <ais-hits v-if="hits.length > 0" :class-names="{'ais-Hits-item': 'searchHitItems'}">
+                            <template v-slot:item="{ item }">
+                                <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
+                                    <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
+                                    <div class="search-hit-item-body">
+                                        <h6 class="fw-bold">
+                                            <ais-highlight
+                                                attribute="name"
+                                                :hit="item"
+                                                highlighted-tag-name="em"
+                                            />                                       
+                                        
+                                        </h6>
+
+                                        <div class="fs-12">
+                                            <ais-snippet
+                                                attribute="description"
+                                                :hit="item"
+                                                highlighted-tag-name="em"
+                                            />                                        
+                                        </div>                                    
+                                    </div>
+                                </a>
+
+                            </template>
+                        </ais-hits>                              
+                        <div class="p-2 text-center searchHitItems" v-else>
+                            {{ $t('NoResultsFound', { query: query })  }}.
+                            <ais-clear-refinements :excluded-attributes="[]">
+                                <template v-slot:resetLabel>
+                                    <span class="text-danger fs-8">{{ $t('ClearRefinements') }}</span>
+                                </template>
+                            </ais-clear-refinements>
+                        </div>
+                    </template>
+                    </ais-state-results>                                      
+                </div>                    
             </div>
             <div v-if="hasSearchFromHome" class="gl-search-filter-category d-flex justify-content-between mx-auto mt-3">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
@@ -43,12 +82,10 @@
         </div>
         <!-- SEARCH RESULT -->
         <div class="container mx-auto supplement-search-items">
-            <SupplementGSupplementSearchItem v-if="searchData.data?.length > 0" :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="i"></SupplementGSupplementSearchItem>
-            <div class="my-5 d-flex justify-content-center text-muted" v-else>
-                {{ $t("NoResultsFound", { query: searchValue }) }}
-            </div>
+            <SupplementGSupplementSearchItem :supplement="supplement" v-for="(supplement, i) in searchData.data" :key="i"></SupplementGSupplementSearchItem>
+
         </div>
-        <div v-if="searchData.data?.length > 0" class="container pagination-wrapper">
+        <div class="container pagination-wrapper">
             <div class="d-flex justify-content-between align-items-center mt-5">
                 <div class="pagination-per-page">
                     <select id="pager" class="form-select" aria-label="Default select example" v-model="searchData.meta.per_page" @change="searchNow">
@@ -69,15 +106,16 @@
             </div>            
         </div>        
 
-    </div>   
+    </ais-instant-search>   
     
-    <div class="is-mobile" >
+    <ais-instant-search class="is-mobile" :future="{preserveSharedStateOnUnmount: true}" :insights="true" :on-state-change="onStateChange" index-name="supplements" :search-client="search">
+        <ais-configure :attributesToSnippet="['description']"/>
         <div class="container" >      
             <div v-if="!hasSearchFromHome" class="d-flex gap-5 w-100 mx-auto mb-3 search-bar">   
                 <div class="f20">
                     <span>{{ searchData.data.length }} </span>
                     <span> {{ $t("SearchResultFor") }} </span>
-                    <span>{{ searchValue }}...</span>
+                    <span>{{ searchFromHome }}...</span>
                 </div>
                 <button @click="searchAgain" class="btn btn-primary btn-sm" >
                     <i class="bi bi-search"></i>
@@ -87,11 +125,7 @@
             </div>            
             <div v-if="hasSearchFromHome" class="d-flex w-100 mx-auto search-bar mb-3">
                 <div class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
-                    <input @keypress.enter="search" class="search-input form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" type="text">
-                    <a href="javascript:void(0)" @click="search" class="input-group-text border-0 bg-white">
-                        <i class="bi bi-search me-2"></i>
-                    </a>                  
-                
+                    <ais-search-box v-model="searchKeyword" :class-names="{'ais-SearchBox-input': 'search_box'}" class="form-control form-control-lg border-0 rounded-0 f16" placeholder="Search here" />
                 </div>
                     <!-- SEARCH BOX AND FILTER -->
                 <div class="dropdown">
@@ -106,7 +140,44 @@
                         <li><span @click="sortAction('taste_rate')" class="dropdown-item">{{ $t("SortHighEasyToConsume") }}</span></li>
                     </ul>
                 </div>
-                 
+                <div v-if="onActiveSearch" class="search-result-mobile">
+                    <ais-state-results>
+                        <template v-slot="{ state: { query }, results: { hits } }">
+                        <ais-hits v-if="hits.length > 0" :class-names="{'ais-Hits-item': 'searchHitItems'}">
+                            <template v-slot:item="{ item }">
+                                <a :href="`/supplement/review/${item.id}`" class="text-decoration-none d-flex gap-2">
+                                    <div class="text-center"><i class="bi bi-capsule-pill w-50" style="font-size: 30px;"></i></div>
+                                    <div class="search-hit-item-body">
+                                        <h6 class="fw-bold">
+                                            <ais-highlight
+                                                attribute="name"
+                                                :hit="item"
+                                                highlighted-tag-name="em"/>                               
+                                        
+                                        </h6>
+                                        <div class="fs-12">
+                                            <ais-snippet
+                                                attribute="description"
+                                                :hit="item"
+                                                highlighted-tag-name="em"
+                                            /> 
+                                        </div>                                    
+                                    </div>
+                                </a>
+
+                            </template>
+                        </ais-hits>  
+                        <div class="p-2 text-center searchHitItems" v-else>
+                                {{ $t('NoResultsFound', { query: query })  }}.
+                                <ais-clear-refinements :excluded-attributes="[]">
+                                    <template v-slot:resetLabel>
+                                        <span class="text-danger fs-8">{{ $t('ClearRefinements') }}</span>
+                                    </template>
+                                </ais-clear-refinements>
+                            </div>                                  
+                    </template>                     
+                    </ais-state-results>
+                </div>                   
             </div>
             <div v-if="hasSearchFromHome" class="gl-search-filter-category d-flex justify-content-between w-100 mx-auto px-4">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
@@ -138,7 +209,7 @@
             
             </div>
         </div>
-    </div>
+    </ais-instant-search>
 
 
    
@@ -146,10 +217,31 @@
 
 <script lang="ts">
 // import { defineComponent, computed } from 'vue'
+import { 
+    AisInstantSearch, 
+    AisSearchBox, 
+    AisHits, 
+    AisHighlight, 
+    AisSnippet, 
+    AisConfigure, 
+    AisStateResults,
+    AisClearRefinements
+} from 'vue-instantsearch/vue3/es'
+import 'instantsearch.css/themes/algolia-min.css';
+import 'instantsearch.css/themes/reset.css';
 
 
 export default defineComponent({
-
+    components:{
+        AisInstantSearch,
+        AisSearchBox,
+        AisHits,
+        AisHighlight,
+        AisSnippet,
+        AisConfigure,
+        AisStateResults,
+        AisClearRefinements
+    },
     setup() {
         var searchKeyword =ref<any>("")
         const filterOpts = ref([
@@ -186,7 +278,7 @@ export default defineComponent({
         var supplementStore = isAuthenticated.value ? useSupplementStore() : usePublicContentStore()
         var { allSupplements } = storeToRefs(supplementStore);
         var sorter = ref("")
-        var searchValue = ref("")
+        var searchFromHome = ref("")
         var q = ref("?")
         var searchData = ref({
             data: [],
@@ -215,6 +307,7 @@ export default defineComponent({
             searchNow();
         }
 
+        const search = useAlgoliaRef();
 
         const searchNow = (page:any = searchData.value.meta.current_page) => {
             let q = "?";
@@ -258,11 +351,13 @@ export default defineComponent({
            
             q.value = `${q.value}page_size=${searchData.value.meta.per_page}&`;
 
+            
+
             if (page) {
                 q.value = q.value + `page=${page}&`;
             };
             if (route.query.k != undefined) {
-                q.value = `${q.value}keyword=${route.query.k}&`;
+                q.value =  `${q.value}keyword=${route.query.k}&`;
             }
             
             if (route.query.supplement_type) {
@@ -277,6 +372,8 @@ export default defineComponent({
             useSupplementStore().searchSupplement(q.value).then((res:any) => {
                 searchData.value.data = res.data;
                 searchData.value.meta = res.meta;
+
+                console.log(searchData.value.data)
             })
         }
 
@@ -287,12 +384,16 @@ export default defineComponent({
 
         onMounted(async() => {
             console.log("SEARCH: ", route.query.k == undefined)
-            searchValue.value = route.query.k
+            searchFromHome.value = route.query.k
             initSearch();
         })
 
         var searchBox = ref();
 
+        var onStateChange = ({ uiState, setUiState }: any) => {
+            searchBox.value = uiState.supplements.query
+            setUiState(uiState);
+        }
         var onActiveSearch = computed(() => {
             return searchBox.value == undefined ? false : true
         })
@@ -302,29 +403,23 @@ export default defineComponent({
             searchNow(searchData.value.meta.current_page, sorter.value);
         }
         var searchAgain = () => {
-            searchValue.value = ""
             q.value = `?page_size=${searchData.value.meta.per_page}&`
             router.replace({ query: undefined })
 
             useSupplementStore().searchSupplement(q.value).then((res:any) => {
                 searchData.value.data = res.data;
                 searchData.value.meta = res.meta;
+
+                console.log(searchData.value.data)
             })
-        }
-        var resultsFound = ref("")
-
-        var search = () => {
-            if (!searchValue.value) return
-
-            q.value = `${q.value}keyword=${searchValue.value}&`;
-            router.replace({ query: { k: searchValue.value } })
-            initSearch();
         }
 
         return {
+            onStateChange,
             searchNow,
             checkNext,
             checkPrev,
+            search,
             searchData,
             allSupplements,
             filterOpts,
@@ -335,9 +430,7 @@ export default defineComponent({
             sortAction,
             hasSearchFromHome,
             searchAgain,
-            searchValue,
-            search,
-            resultsFound
+            searchFromHome
         }
     },
 })

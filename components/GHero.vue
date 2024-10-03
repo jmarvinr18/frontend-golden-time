@@ -23,14 +23,14 @@
         <div class="search-bar">
               <i class="bi bi-search"></i>
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
-                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')">
+                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="search-input form-control border-0 p-4" :placeholder="$t('FindSupplements')">
                 <a href="javascript:void(0)" @click="searchNow" class="input-group-text border-0 bg-white" id="basic-addon2">
                     <i class="bi bi-search me-3"></i>
                 </a>                
             </div>
-            <div class="gl-search-filter-category d-flex justify-content-between px-5 mx-auto">
+            <!-- <div class="gl-search-filter-category d-flex justify-content-between px-5 mx-auto">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
-            </div>         
+            </div>          -->
         </div>                
     </di>    
     
@@ -38,7 +38,7 @@
         
         <div class="w-100 px-3 search-bar">
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">                
-                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')">
+                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="search-input form-control border-0 p-4" :placeholder="$t('FindSupplements')">
                 <a href="javascript:void(0)" @click="searchNow" class="input-group-text border-0 bg-white" id="basic-addon2">
                     <i class="bi bi-search me-3"></i>
                 </a>             
@@ -130,10 +130,7 @@ export default defineComponent({
             search,
             searchBox,
             onStateChange,
-            onActiveSearch,
-            filterOpts,
-            toggleFilter,
-            filters
+            onActiveSearch
         }
     },
 })

@@ -23,6 +23,7 @@ export const i18n = createI18n({
     fallbackLocale: 'en',
     messages: {
         en: {
+            IOwnThis: "I own this",
             Comments: "Comments",
             MoreBlogs: "More blogs",
             MoreNews: "More News",
@@ -102,7 +103,7 @@ export const i18n = createI18n({
             InTheEnd: "In the end",
             WhatShouldIDrink: "What should I drink?",
             CheckItNow: "Check it out now in prime time",
-            DataNotAvailable: "Not available",
+            DataNotAvailable: "Not registered",
             HangOn: "Hang On",
             AddTitle: "Add Title",
             AddShortDescription: "Add short description",
@@ -233,6 +234,7 @@ export const i18n = createI18n({
             NoFollowings: "You are not following anyone at the moment."
         },
         ja: {
+            IOwnThis: "これは私のものだ",
             Comments: "コメント",
             MoreBlogs: "その他のブログ",
             MoreNews: "その他のニュース",
@@ -418,7 +420,7 @@ export const i18n = createI18n({
             PasswordChanged: "パスワードが正常に変更されました。",
             PasswordDontMatch: "パスワードが一致していません。もう一度入力してください",
             EmailNotVerified: "あなたのメールアドレスは確認されていません。",
-            DataNotAvailable: "利用不可",
+            DataNotAvailable: "未登録",
             BlogCreated: "ブログが正常に作成されました。",
             BlogUpdated: "ブログが正常に更新されました。",
             BlogRemoved: "ブログは正常に削除されました。",

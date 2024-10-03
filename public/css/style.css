@@ -109,7 +109,11 @@ body {
     width: 100%;
     /* overflow: scroll; */
   }
-
+.search-input{
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;        
+}
 @media only screen and (max-width:450px)  {
     .bi.bi-star, .bi.bi-star-fill, .bi.bi-star-half{
         font-size : 1rem !important;
