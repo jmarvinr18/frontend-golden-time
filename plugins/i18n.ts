@@ -236,6 +236,7 @@ export const i18n = createI18n({
             NoFollowings: "You are not following anyone at the moment."
         },
         ja: {
+            SelectContentType: "コンテンツタイプを選択",
             IOwnThis: "これは私のものだ",
             Comments: "コメント",
             MoreBlogs: "その他のブログ",
