@@ -4,9 +4,9 @@
         <div>
             <div v-if="!hasSearchFromHome" class="d-flex gap-5 mx-auto mb-3 search-bar">   
                 <div class="f20">
-                    <span>{{ searchData.data.length }} </span>
+                    <span> {{ searchData.data.length }} </span>
                     <span> {{ $t("SearchResultFor") }} </span>
-                    <span   > {{ searchValue }}... </span>
+                    <span> {{ searchValue }}... </span>
                 </div>
                 <button @click="searchAgain" class="btn btn-primary btn-sm rounded-pill py-2 px-4 f12">
                     <i class="bi bi-search"></i>
@@ -15,7 +15,6 @@
             </div>
             
             <div v-if="hasSearchFromHome" class="d-flex mx-auto search-bar">
-                
                 <div  class="input-group w-100 mx-auto border border-dark overflow-hidden p-0" style="border-radius: 20px 0 0 20px;">
                     <input v-model="searchValue" @keypress.enter="search" class="search-input form-control form-control-lg border-0" type="text" placeholder="Search here">
                     <a href="javascript:void(0)" @click="search" class="input-group-text border-0 bg-white">
