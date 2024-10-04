@@ -6,7 +6,7 @@
                 <div class="f20">
                     <span>{{ searchData.data.length }} </span>
                     <span> {{ $t("SearchResultFor") }} </span>
-                    <span>{{ searchValue }}...</span>
+                    <span   > {{ searchValue }}... </span>
                 </div>
                 <button @click="searchAgain" class="btn btn-primary btn-sm rounded-pill py-2 px-4 f12">
                     <i class="bi bi-search"></i>
@@ -240,7 +240,7 @@ export default defineComponent({
                 q = q + `supplement_type=${filters.value.type}&`;
             }
 
-            if (sorter.value != null) {
+            if (sorter.value != "") {
                 q = q + 'sort=' + sorter.value;
             }
 
@@ -271,8 +271,10 @@ export default defineComponent({
                     toggleFilter(item);
                 })
             }
-
-            q.value = `${q.value}supplement_type=${filters.value.type}`;
+            console.log(filters.value)
+            if(filters.value.type.length > 0){
+                q.value = `${q.value}supplement_type=${filters.value.type}`;
+            }
 
             useSupplementStore().searchSupplement(q.value).then((res:any) => {
                 searchData.value.data = res.data;
