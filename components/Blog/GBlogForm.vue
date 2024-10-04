@@ -19,9 +19,7 @@
                 <div>
                     <div class="mb-5">
                         <select @change="changedType" v-model="blogForm.type"  class="form-control form-control-lg form-select" aria-label="Default select example">
-                            <option value="null" selected>Select content type</option>
-                            <option value="blog">Blog</option>
-                            <option value="news">News</option>
+                            <option v-for="(option) in contentTypeOptions" :value="option.value" selected>{{  option.text }}</option>
                             <!-- <option value="event">Event</option> -->
                         </select>
                     </div>          
@@ -275,6 +273,21 @@ export default defineComponent({
             textLink.value = src;
         }
 
+        const contentTypeOptions = ref([
+            {
+                value: null,
+                text: t('SelectContentType'),
+            },
+            {
+                value: "blog",
+                text: t('Blog'),
+            },          
+            {
+                value: "news",
+                text: t('News'),
+            },                         
+        ])
+
         const changedType = (val: any) => {
             if(val.target.value == "event"){
                 blogForm.value.meta = [{
@@ -453,7 +466,8 @@ export default defineComponent({
             blogForm,
             time,
             coverImage,
-            changedType
+            changedType,
+            contentTypeOptions
         }
     }
 })

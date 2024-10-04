@@ -1,9 +1,8 @@
 <template>
     <section id="section-hero" class="is-desktop w-100 g-auth-hero overflow-hidden d-flex align-items-center border-bottom border-3 border-dark">
         <div class="display-4 fw-bold d-flex align-items-center g-title text-light h-25 ms-5 flex-wrap">
-            <div class="g-title-spot position-relative me-3">
+            <div class="g-title-spot position-relative me-3 rounded border border-3 border-light p-1">
                 {{ $t('InTheEnd') }}
-                <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
             </div>
             <div class="text-border-black fw-bold">{{ $t('WhatShouldIDrink') }}</div>
             <div class="text-border-black fw-bold h1 w-100">
@@ -41,7 +40,7 @@
 }
 
 .g-title {
-    margin-bottom: 1%;
+    margin-bottom: 3%;
 
 }
 

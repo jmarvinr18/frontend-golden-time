@@ -23,6 +23,7 @@ export const i18n = createI18n({
     fallbackLocale: 'en',
     messages: {
         en: {
+            SelectContentType: "Select content type",
             IOwnThis: "I own this",
             Comments: "Comments",
             MoreBlogs: "More blogs",
@@ -49,6 +50,7 @@ export const i18n = createI18n({
             Settings: "Settings",
             Logout: "Logout",
             Blog: "Blog",
+            News: "News",
             MuscleNews: "Muscle News",
             TournamentInformation: "Tournament Information",
             FeaturedPlayers: "Featured players",
@@ -260,6 +262,7 @@ export const i18n = createI18n({
             Settings: "設定",
             Logout: "ログアウト",
             Blog: "ブログ",
+            News: "ニュース",
             MuscleNews: "筋肉ニュース",
             TournamentInformation: "大会情報",
             FeaturedPlayers: "注目選手",

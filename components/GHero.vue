@@ -3,7 +3,6 @@
         <div class="display-4 fw-bold d-flex align-items-center g-title text-light justify-content-center h-25">
             <div class="g-title-spot position-relative me-3 rounded border border-3 border-light p-1">
                 {{ $t('InTheEnd') }}
-                <div class="g-title-spot-box position-absolute "></div>
             </div>
             <div class="text-border-black fw-bolder"> <strong>{{ $t('WhatShouldIDrink') }}</strong></div>
         </div>
@@ -20,8 +19,8 @@
 
     <di class="is-desktop g-hero-search w-100 d-flex justify-content-center" >
         
-        <div class="search-bar">
-              <i class="bi bi-search"></i>
+        <div class="search-bar mt-1">
+              <!-- <i class="bi bi-search"></i> -->
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
                 <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="search-input form-control border-0 p-4" :placeholder="$t('FindSupplements')">
                 <a href="javascript:void(0)" @click="searchNow" class="input-group-text border-0 bg-white" id="basic-addon2">
