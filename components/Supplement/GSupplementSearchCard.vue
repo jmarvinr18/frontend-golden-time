@@ -79,7 +79,7 @@
                     <span> {{ $t("SearchResultFor") }} </span>
                     <span>{{ searchValue }}...</span>
                 </div>
-                <button @click="searchAgain" class="btn btn-primary btn-sm" >
+                <button @click="searchAgain" class="btn btn-primary btn-sm rounded-pill" >
                     <i class="bi bi-search"></i>
                     {{ $t("SearchAgain") }}
                 </button>
