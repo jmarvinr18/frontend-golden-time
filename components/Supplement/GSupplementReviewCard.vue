@@ -1,8 +1,8 @@
 <template>
     <div class="is-desktop g-supplement-review-card d-flex flex-wrap gap-2" :class="comment?.replies?.length? '':'mb-4'">
-        <div class="g-supplement-review-media">
+        <NuxtLink :to="`/users/${comment?.user_id}`" class="g-supplement-review-media">
             <img class="object-fit-cover rounded-circle" :src="avatarImg" style="width: 40px; height: 40px;" />
-        </div>
+        </NuxtLink>
         <div class="g-supplement-review bg-white border border-secondary rounded-3 p-3">
             <div class="d-flex justify-content-between text-muted">
                 <div class="f10">{{ comment?.sender.name }}</div>
@@ -21,9 +21,9 @@
     </div>
     <div class="is-mobile g-supplement-review-card" :class="comment?.is_reply? 'my-3':''">
         <div class="g-supplement-review w-100 d-flex gap-2 bg-white border border-secondary rounded-lg py-1 px-3">
-            <div class="g-supplement-review-media">
+            <NuxtLink :to="`/users/${comment?.user_id}`" class="g-supplement-review-media">
                 <img class="object-fit-cover rounded-circle" :src="avatarImg" style="width: 40px; height: 40px;" />
-            </div>
+            </NuxtLink>
             <div class="w-75">
                 <div class="d-flex justify-content-between text-muted w-100">
                     <div class="f10">{{ comment?.sender.name }}</div>
