@@ -27,23 +27,25 @@
                 </div>
                 <div v-if="isDesktop" class="g-review-item-actions">
                     <div v-if="isAuthenticated">
-                        <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
+                        <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-2">
                             <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
                                 <i class="bi bi-people me-2"></i>
                                 {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
                             </span>
                         </button>
-                        <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
+
+                        <!-- /*** Hidden for now, will not show on release timing*/ -->
+                        <!-- <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
                             <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
                                 <i class="bi bi-person-heart me-2"></i>
                                 {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
                             </span>                         
-                        </button>
+                        </button> -->
                     </div>
                     <div v-else>
-                        <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">{{ $t("Login") }} </NuxtLink>
+                        <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">{{ $t("MySupplementRegistration", { count: supplement?.users_who_drank_the_supplement_count}) }} </NuxtLink>
                     </div>
                 </div>                   
             </div>
@@ -51,23 +53,24 @@
     </div>
     <div v-if="!isDesktop" class="is-desktop g-review-item-actions">
                     <div class="d-flex gap-3 mt-4" v-if="isAuthenticated">
-                        <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
+                        <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-2">
                             <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
                                 <i class="bi bi-people me-2"></i>
                                 {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
                             </span>
                         </button>
-                        <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">
+                        <!-- /*** Hidden for now, will not show on release timing*/ -->
+                        <!-- <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-1">
                             <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
                                 <i class="bi bi-person-heart me-2"></i>
                                 {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
                             </span>                         
-                        </button>
+                        </button> -->
                     </div>
                     <div v-else>
-                        <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("Login") }} </NuxtLink>
+                        <NuxtLink :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f14">{{ $t("MySupplementRegistration", { count: supplement?.users_who_drank_the_supplement_count}) }} </NuxtLink>
                     </div>
         </div>
     <div class="is-mobile g-review-item d-flex flex-wrap">
@@ -100,22 +103,23 @@
         </div>      
         <div class="w-100 px-2 mt-4">
             <div class="d-flex flex-column" v-if="isAuthenticated">
-                <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3" >
+                <button @click="toggleHasDrank(supplement?.id)" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-1" >
                     <i v-if="supplement?.has_user_drank_the_supplement" class="bi bi-hand-thumbs-up-fill"></i>
                     <span class="align-self-center">
                         <i class="bi bi-people me-2"></i>
                                 {{ $t('MySupplementRegistration', { count: supplement?.users_who_drank_the_supplement_count}) }}
                         </span>                   
                 </button>
-                <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-3" >
+                <!-- /*** Hidden for now, will not show on release timing*/ -->
+                <!-- <button @click="toggleDrinkWish(supplement?.id)" class="btn btn-outline-secondary btn-sm rounded-pill py-2 mt-3 f14 d-flex justify-content-center gap-1" >
                             <i v-if="supplement?.on_users_wishlist" class="bi bi-hand-thumbs-up-fill"></i>
                             <span class="align-self-center">
                                 <i class="bi bi-person-heart me-2"></i>
                                 {{ $t('PeopleWhoWantToDrink', { count: supplement?.user_supplement_wish_count}) }}
                             </span>                 
-                </button>
+                </button> -->
             </div>
-            <NuxtLink v-else :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-3">{{ $t("Login") }}</NuxtLink>
+            <NuxtLink v-else :to="`/login?ref=${route.fullPath}`" class="btn btn-primary btn-sm rounded-pill py-2 f12 d-flex justify-content-center gap-1">{{ $t("MySupplementRegistration", { count: supplement?.users_who_drank_the_supplement_count}) }}</NuxtLink>
             
         </div>
 
