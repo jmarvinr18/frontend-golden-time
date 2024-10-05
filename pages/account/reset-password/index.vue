@@ -76,9 +76,12 @@ export default defineComponent({
             token: route.query.token
         });
 
+        console.log(route.query.email)
+
 
         var submit = () => {
-            authStore.resetPassword(authData.value)
+            console.log(route.query)
+            // authStore.resetPassword(authData.value)
         }
 
         

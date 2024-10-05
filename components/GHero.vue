@@ -8,10 +8,9 @@
         </div>
     </section>
     <section id="section-hero" class="is-mobile w-100 g-hero overflow-hidden d-flex align-items-end justify-content-center border-bottom border-3 border-dark position-relative">
-        <div class="h4 fw-bold d-flex align-items-center g-title text-light h-25 position-absolute bottom-0 w-100">
+        <div style="margin-left: 3rem;" class="fw-bold d-flex justify-content-center align-items-center g-title text-light h-25 px-3 flex-wrap w-100">
             <div class="g-title-spot position-relative me-3 rounded border border-3 border-light">
                  {{ $t('InTheEnd') }}
-                <div class="g-title-spot-box position-absolute"></div>
             </div>
             <div class="g-title-display text-border-black fw-bold h1">{{ $t('WhatShouldIDrink') }}</div>
         </div>
@@ -136,10 +135,10 @@ export default defineComponent({
 </script>
 
 <style>
-.no-result{
-    height: 100px;
-    top: 80%;
-}
+    .no-result{
+        height: 100px;
+        top: 80%;
+    }
     .gl-search-filter-category{
             gap: 0rem;
     }
@@ -184,12 +183,17 @@ export default defineComponent({
 }
 
 .g-title {
-    margin-bottom: 5%;
+    margin-bottom: 10%;
 
 }
 
 .g-title-spot {
     font-size: 40px;
+}
+
+.is-mobile > div > .g-title-spot{
+    /* margin-left: 4rem; */
+    margin-right: 0.5rem !important
 }
 
 .g-title-spot-box {
@@ -233,8 +237,9 @@ export default defineComponent({
 
     .g-title-spot {
         font-size: 16px;
-        width: 24%;
+        width: 4rem;
         text-align: center;
+        padding: 0.4rem;
     }
     
     .g-title-spot-box {

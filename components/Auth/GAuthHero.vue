@@ -15,13 +15,12 @@
         </div>
     </section>
     <section id="section-hero" class="is-mobile w-100 g-auth-hero overflow-hidden d-flex align-items-center border-bottom border-3 border-dark">
-        <div class="fw-bold d-flex align-items-center g-title text-light h-25 px-3 flex-wrap">
-            <div class="g-title-spot position-relative me-3">
+        <div class="fw-bold d-flex justify-content-center align-items-center g-title text-light px-3 flex-wrap">
+            <div class="g-title-spot position-relative rounded border border-3 border-light p-1 mb-2">
                 {{ $t('InTheEnd') }}
-                <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
             </div>
             <div class="text-border-black fw-bold h4">{{ $t('WhatShouldIDrink') }}</div>
-            <div class="text-border-black fw-bold h6 w-100">
+            <div class="text-border-black fw-bold h6 w-100 text-center">
                 {{ $t('CheckItNow') }}
             </div>
             <div class="mt-3 btn-group rounded-pill overflow-hidden bg-white border border-primary w-100 ms-1" role="group" aria-label="Basic example">
