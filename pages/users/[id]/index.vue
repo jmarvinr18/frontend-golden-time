@@ -114,12 +114,22 @@ export default defineComponent({
   setup() {
    const route = useRoute();
    const userStore = useUserStore();
+   const authStore = useAuthStore()
+
+   var { isAuthenticated } = storeToRefs(authStore)
    var { userData } = storeToRefs(userStore);
    const router = useRouter();
 
    useHead({
     title: "Users Profile | Golden Time"
    });
+
+
+   onBeforeMount(() => {
+    if(!isAuthenticated.value) {
+            router.push("/login")
+        }
+   })
 
    onMounted(() => {
     userStore.getUser(route.params.id)

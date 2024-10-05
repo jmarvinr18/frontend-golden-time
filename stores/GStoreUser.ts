@@ -16,13 +16,10 @@ export const useUserStore = defineStore("userStore", {
     },
     actions: {
         async getUser(id: any) {
-            generalStore().setIsLoading(true);
+            // generalStore().setIsLoading(true);
             return GApiUser.getUser(id).then((res: any) => {
                 generalStore().setIsLoading(false);
                 this.userData = res.data;
-            }).catch((err: any) => {
-                const msg = err.response.data.message;
-                generalStore().setError(true, msg);
             });
         },
     }
