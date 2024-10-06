@@ -139,10 +139,18 @@ export default defineComponent({
         supplementForm.value.supplement_type="protein";
         supplementForm.value.serving_type="powder";
 
+        const checkUrl = computed(() => {
+            const regex = /^((https|ftp|smtp):\/\/)(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
+            return regex.test(supplementForm.value.url)
+        })
+
         const submitNow = () => {
             if (supplementForm.value.name && supplementForm.value.supplement_type && supplementForm.value.serving_type && supplementForm.value.price && supplementForm.value.ingredients && supplementForm.value.url && supplementForm.value.brand) {
-                console.log(supplementForm.value)
-                submitSupplement();
+                if (checkUrl.value) {
+                    submitSupplement();
+                } else {
+                    generalStore.setError(true, i18n.global.t("ProperURL"))
+                }
             } else {
                 generalStore.setError(true, i18n.global.t("MakeSureAllFieldsHasBeenFilled"))
             }

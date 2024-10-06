@@ -39,7 +39,7 @@ export default defineComponent({
                 const userId = route.query.user_id;
                 const obj = `signature=${route.query.signature}&expires=${route.query.expires}`
                 authStore.verifyEmail(obj, route.query.token, userId).then(() => {
-                    
+                    router.push({name: 'login'})
                 });
             } else {
                 router.push({ name: 'login' });

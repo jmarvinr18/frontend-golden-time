@@ -35,11 +35,13 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('Blogs')" icon="bi-journals"></GSectionTitle>
 
-        <div v-if="userData.blogs && userData.blogs.length" class="row">
-          <div v-for="(blog) in userData.blogs" class="col-md-6 col-xs-12 mb-5">
-            <CardsGCardBlog :blog="blog"></CardsGCardBlog>
+        <div v-if="userData.blogs || userData.blogs?.length">
+          <div class="row">
+            <div v-for="(blog) in userData.blogs" class="col-md-6 col-xs-12 mb-5">
+              <CardsGCardBlog :blog="blog"></CardsGCardBlog>
+            </div>
           </div>
-          <UtilsGLoadMore></UtilsGLoadMore>
+          <!-- <UtilsGLoadMore></UtilsGLoadMore> -->
         </div>
 
         <div class="my-5 text-dark opacity-50" v-else>
@@ -74,7 +76,7 @@
       <div class="container pt-2 pb-4">
         <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
-        <GContainerSlider v-if="userData.supplements && userData.supplements.length">
+        <GContainerSlider v-if="userData.supplements || userData.supplements?.length">
           <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
         </GContainerSlider>
 
@@ -103,6 +105,9 @@
         <div class="my-5 text-dark opacity-50" v-else>
           {{ $t('NoBlogs') }}
         </div>
+        <p class="my-5 text-dark opacity-50" v-else>
+          No Blogs
+        </p>
       </div>
       <!-- <div class="container pt-2 pb-4">
         <GSectionTitle title="comments" icon="bi-chat"></GSectionTitle>

@@ -175,9 +175,12 @@
                     <ProfileGProfileFollowBtn v-else></ProfileGProfileFollowBtn>
                 </div>
                 <div class="col-sm-6 d-flex flex-wrap align-items-center g-profile-container" v-if="userData.profile_details">
-                    <div class="w-100 g-profile-content g-profile-content-first d-flex flex-wrap">
+                    <div class="w-100 g-profile-content g-profile-content-first d-flex flex-wrap mt-5 gap-2">
                         <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
-                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("BenchPressLabel") }}: {{ userData.profile_details.bench_press }}
+                            <i class="bi bi-person-raised-hand me-1 text-primary"></i> {{ $t("DeadliftLabel") }}: {{ userData.profile_details.deadlift? userData.profile_details.deadlift:0 }}
+                        </div>
+                        <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content">
+                            <i class="bi bi-person-arms-up me-1 text-primary"></i> {{ $t("BenchPressLabel") }}: {{ userData.profile_details.bench_press? userData.profile_details.bench_press:0 }}
                         </div>
                         <!-- <div class="rounded shadow-sm px-2 py-1 f14 my-2 w-fit-content" v-if="userData.profile_details.my_training">
                             <i class="bi bi-bezier2 me-1 text-primary"></i> Training experience: {{ userData.profile_details.my_training }} years
@@ -265,7 +268,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .g-profile-card {
-  margin-top: -360px;
+  margin-top: -43vh;
   position: relative;
   margin-bottom: 10%;
 }

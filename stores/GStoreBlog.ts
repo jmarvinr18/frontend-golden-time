@@ -85,7 +85,7 @@ export const useBlogStore = defineStore("blogStore", {
                 return res.data;
             }).catch((err: any) => {
                 var status = err.response.status
-                var errorMsg
+                var errorMsg;
 
                 if (status == 401) {
                     errorMsg = i18n.global.t("Unauthenticated")
