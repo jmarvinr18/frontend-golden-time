@@ -15,14 +15,7 @@
             <hr class="my-3" />
             <div class="g-blog-body mt-5 lh-lg" v-html=" blog.content">
             </div>
-            <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
-            <div class="is-desktop d-flex">
-                <div class="p-3 w-25"  v-for="(b,s) in blog.related_news">
-                    <a :href="`/blog/read/${b.id}`">
-                        <img :src="b.feature_image" style=" object-fit: cover; height:30vh" class="w-100 rounded-lg" />
-                    </a>
-                </div>
-            </div>
+            <CardsGRelatedBlog :type="'news'" :section-header="$t('MoreNews')" :blogs="blog.related_news"></CardsGRelatedBlog>          
             <div class="is-mobile d-flex flex-column mt-3">
                 <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_blog" class="d-flex p-3 text-decoration-none text-dark">
                    
@@ -40,7 +33,7 @@
             <hr class="my-4" />
             <!-- COMMENT SECTIONS -->
             <div class="w-75 mx-auto">
-                <GSectionTitle class="mt-2 mb-4" title="Comments" :icon-hide="true"></GSectionTitle>
+                <GSectionTitle class="mt-2 mb-4" :title="$t('Comments')" :icon-hide="true"></GSectionTitle>
                 <div v-for="(comment,key) in commentList">
                     <BlogFeaturesGBlogCommentCard :comment="comment" v-if="!comment.is_reply" class="my-3"></BlogFeaturesGBlogCommentCard>
                     
@@ -57,7 +50,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import useTruncateText from '~/composables/useTruncateText'
 export default defineComponent({
     name: 'NewsDetail',
     setup() {
@@ -106,12 +99,11 @@ export default defineComponent({
             
         });
 
-        
-
         return {
             blog,
             isLiked,
-            commentList
+            commentList,
+            useTruncateText
         }
     }
 })

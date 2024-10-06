@@ -65,15 +65,15 @@
     </div>
     <div class="is-mobile g-auth-signup-form mt-2">
         <div class="g-form-group pb-2">
-            <div class="mb-4 g-form-input w-75">
+            <div class="mb-4 g-form-input w-100">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('BrandLabel') }}*</label>
                 <input type="text" class="form-control " id="g-auth-form-1" :placeholder="$t('BrandPlaceholder')" maxlength="25" v-model="supplementForm.brand">
             </div>
-            <div class="mb-4 g-form-input w-75">
+            <div class="mb-4 g-form-input w-100">
                 <label for="g-auth-form-2" class="form-label bg-white ms-2 px-2">{{ $t('ProductNameLabel') }}*</label>
                 <input type="text" class="form-control " id="g-auth-form-2" :placeholder="$t('ProductNamePlaceholder')" maxlength="25" v-model="supplementForm.name">
             </div>
-            <div class="mb-4 g-form-input w-75">
+            <div class="mb-4 g-form-input w-100">
                 <div class="mb-4 g-form-input">
                     <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('KindsLabel') }}*</label>
                     <select class="form-select" aria-label="Default select example" v-model="supplementForm.supplement_type">
@@ -85,15 +85,15 @@
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('TasteLabel') }}*</label>
                 <input type="text" class="form-control " id="g-auth-form-1" :placeholder="$t('FlavourPlaceholder')" maxlength="25" v-model="supplementForm.flavor" :disabled="route.params.id!==undefined">
             </div> -->
-            <div class="mb-4 g-form-input w-75">
+            <div class="mb-4 g-form-input w-100">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('PriceLabel') }}*</label>
                 <input type="number" class="form-control " id="g-auth-form-1" :placeholder="$t('PricePlaceholder')" maxlength="25" v-model="supplementForm.price">
             </div>
-            <div class="mb-4 g-form-input w-75">
+            <div class="mb-4 g-form-input w-100">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('ComponentLabel') }}*</label>
                 <input type="text" class="form-control " id="g-auth-form-1" :placeholder="$t('IngredientsPlaceholder')" maxlength="25" v-model="supplementForm.ingredients">
             </div>
-            <div class="mb-4 g-form-input w-75">
+            <div class="mb-4 g-form-input w-100">
                 <div class="mb-4 g-form-input">
                     <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('ShapeLabel') }}*</label>
                     <select class="form-select " aria-label="Default select example" v-model="supplementForm.serving_type">
@@ -101,7 +101,7 @@
                     </select>
                 </div>
             </div>
-            <div class="mb-4 g-form-input w-75">
+            <div class="mb-4 g-form-input w-100">
                 <label for="g-auth-form-1" class="form-label bg-white ms-2 px-2">{{ $t('UrlLabel') }}*</label>
                 <input type="text" class="form-control " maxlength="25" id="g-auth-form-1" :placeholder="$t('UrlPlaceholder')" v-model="supplementForm.url">
             </div>
@@ -197,7 +197,7 @@ export default defineComponent({
   color: #e4e4e4;
 }
 
-@media only screen and (max-width: 1009px) {
+@media only screen and (max-width: 800px) {
   .g-form-input input,
   .g-form-input select,
   .g-form-input textarea {

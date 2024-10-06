@@ -3,16 +3,14 @@
         <div class="display-4 fw-bold d-flex align-items-center g-title text-light justify-content-center h-25">
             <div class="g-title-spot position-relative me-3 rounded border border-3 border-light p-1">
                 {{ $t('InTheEnd') }}
-                <div class="g-title-spot-box position-absolute "></div>
             </div>
             <div class="text-border-black fw-bolder"> <strong>{{ $t('WhatShouldIDrink') }}</strong></div>
         </div>
     </section>
     <section id="section-hero" class="is-mobile w-100 g-hero overflow-hidden d-flex align-items-end justify-content-center border-bottom border-3 border-dark position-relative">
-        <div class="h4 fw-bold d-flex align-items-center g-title text-light h-25 position-absolute bottom-0 w-100">
+        <div style="margin-left: 3rem;" class="fw-bold d-flex justify-content-center align-items-center g-title text-light h-25 px-3 flex-wrap w-100">
             <div class="g-title-spot position-relative me-3 rounded border border-3 border-light">
                  {{ $t('InTheEnd') }}
-                <div class="g-title-spot-box position-absolute"></div>
             </div>
             <div class="g-title-display text-border-black fw-bold h1">{{ $t('WhatShouldIDrink') }}</div>
         </div>
@@ -20,17 +18,17 @@
 
     <di class="is-desktop g-hero-search w-100 d-flex justify-content-center" >
         
-        <div class="w-50 search-bar">
-              <i class="bi bi-search"></i>
+        <div class="search-bar mt-1">
+              <!-- <i class="bi bi-search"></i> -->
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">
-                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')">
+                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="search-input form-control border-0 p-4" :placeholder="$t('FindSupplements')">
                 <a href="javascript:void(0)" @click="searchNow" class="input-group-text border-0 bg-white" id="basic-addon2">
                     <i class="bi bi-search me-3"></i>
                 </a>                
             </div>
-            <div class="gl-search-filter-category d-flex gap-5 justify-content-between px-5 mx-auto">
+            <!-- <div class="gl-search-filter-category d-flex justify-content-between px-5 mx-auto">
                 <UtilsGButtonFilter v-for="(opt,index) in filterOpts" :title="opt.title" :checked="filters.type.includes(opt.value)" @on-click="toggleFilter(opt.value)"></UtilsGButtonFilter>
-            </div>         
+            </div>          -->
         </div>                
     </di>    
     
@@ -38,7 +36,7 @@
         
         <div class="w-100 px-3 search-bar">
             <div class="input-group mb-3 border border-4 g-shadow rounded-pill overflow-hidden border-dark">                
-                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="form-control border-0 p-4" :placeholder="$t('FindSupplements')">
+                <input v-model="searchKeyword" @keypress.enter="searchNow" type="text" class="search-input form-control border-0 p-4" :placeholder="$t('FindSupplements')">
                 <a href="javascript:void(0)" @click="searchNow" class="input-group-text border-0 bg-white" id="basic-addon2">
                     <i class="bi bi-search me-3"></i>
                 </a>             
@@ -130,23 +128,24 @@ export default defineComponent({
             search,
             searchBox,
             onStateChange,
-            onActiveSearch,
-            filterOpts,
-            toggleFilter,
-            filters
+            onActiveSearch
         }
     },
 })
 </script>
 
 <style>
-.no-result{
-    height: 100px;
-    top: 80%;
-}
+    .no-result{
+        height: 100px;
+        top: 80%;
+    }
+    .gl-search-filter-category{
+            gap: 0rem;
+    }
 
-.search-bar {
+    .search-bar {
         position: relative;
+        width: 40rem;
     }
     .search-result {
         position: absolute;
@@ -174,22 +173,27 @@ export default defineComponent({
         overflow-wrap: anywhere;
     }
 .g-hero {
-    height: 70vh;
+    min-height: 450px;
     border-radius: 0 0 30px 30px;
     background: url('/images/bg-1.png') no-repeat center center;
     background-size: cover;
-    box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
+    /* box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75); */
 }
 
 .g-title {
-    margin-bottom: 5%;
+    margin-bottom: 10%;
 
 }
 
 .g-title-spot {
     font-size: 40px;
+}
+
+.is-mobile > div > .g-title-spot{
+    /* margin-left: 4rem; */
+    margin-right: 0.5rem !important
 }
 
 .g-title-spot-box {
@@ -200,14 +204,29 @@ export default defineComponent({
 }
 
 .g-hero-search {
-    margin-top:-30px;
+    margin-top:-65px;
 }
 
 .g-hero-search input {
     border:1px solid #333000;
 }
 
-@media only screen and (max-width:1009px)  {
+@media only screen and (max-width: 750px)  {
+    .search-bar {
+        position: relative;
+        width: 35rem;
+    }
+
+}
+
+@media only screen and (max-width: 500px)  {
+    .gl-search-filter-category{
+        gap: 0rem;
+    }
+
+    .search-bar {
+        width: 30rem;
+    }    
     .g-hero {
         height: 40vh;
     }
@@ -218,8 +237,9 @@ export default defineComponent({
 
     .g-title-spot {
         font-size: 16px;
-        width: 24%;
+        width: 4rem;
         text-align: center;
+        padding: 0.4rem;
     }
     
     .g-title-spot-box {

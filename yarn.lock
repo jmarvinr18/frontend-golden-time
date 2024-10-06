@@ -11152,6 +11152,11 @@ sweetalert2@^11.10.1:
   resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.10.1.tgz"
   integrity sha512-qu145oBuFfjYr5yZW9OSdG6YmRxDf8CnkgT/sXMfrXGe+asFy2imC2vlaLQ/L/naZ/JZna1MPAY56G4qYM0VUQ==
 
+swiper@^11.1.14:
+  version "11.1.14"
+  resolved "https://registry.npmjs.org/swiper/-/swiper-11.1.14.tgz"
+  integrity sha512-VbQLQXC04io6AoAjIUWuZwW4MSYozkcP9KjLdrsG/00Q/yiwvhz9RQyt0nHXV10hi9NVnDNy1/wv7Dzq1lkOCQ==
+
 tabtab@3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/tabtab/-/tabtab-3.0.2.tgz"

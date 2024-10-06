@@ -5,8 +5,8 @@
                 <img :src="supplement?.image" class="object-fit-cover" />
             </div>
             <div class="g-supplement-item-content py-2 px-3 f14 w-100">
-                <div class="h4 w-100"> {{ supplement?.name? supplement.name:'&nbsp;' }} </div>
-                <div class="sup-description"> {{ useTruncateText(supplement?.description) }} </div>
+                <div class="h5 w-100"> {{ supplement?.name? supplement.name:'&nbsp;' }} </div>
+                <div class="sup-description"> {{ useTruncateText(supplement?.description, 50) }} </div>
                 <div class="g-supplement-item-ratings d-flex justify-content-around mt-4 w-100 mx-auto">
                     <div class="g-supplement-item-rating text-center">
                         <div class="g-rating-caption">{{ $t('TasteSupplementLabel') }}</div>
@@ -25,9 +25,9 @@
         </div>
         <div class="is-mobile g-supplement-item-card d-flex rounded-lg gap-1 g-shadow">
             <div class="g-supplement-item-media">
-                <img :src="supplement?.image" class="object-fit-cover" style="max-height: 150px; width: 100px; object-fit: cover;" />
+                <img :src="supplement?.image" class="object-fit-cover" style="height: 100%; width: 100px; object-fit: cover;" />
             </div>
-            <div class="g-supplement-item-content  px-3 f14">
+            <div class="g-supplement-item-content p-3 f14 w-100">
                 <div class=" w-100 mt-1 fw-bold">{{ supplement?.name? supplement.name:'&nbsp;' }}</div>
                 <div class="f12 mb-2 sup-description text-truncate mt-2">{{ useTruncateText(supplement?.description) }}</div>
                 <div class="g-supplement-item-ratings d-flex justify-content-around mt-3 w-100 mx-auto">
@@ -67,8 +67,8 @@ export default defineComponent({
 </script>
 <style scoped>
 .g-supplement-item-media img{
-    width: 250px;
-    height: 210px;
+    width: 150px;
+    height: 100%;
 }
 
 .sup-description {
@@ -76,10 +76,10 @@ export default defineComponent({
     line-break: anywhere;
 }
 
-@media only screen and (max-width:1009px) {
+@media only screen and (max-width:800px) {
     .g-supplement-item-media img{
-        width: auto;
-        height: 120px;
+        width: 150px;
+        height: 100%;
     }
     .sup-description {
         line-break: anywhere;

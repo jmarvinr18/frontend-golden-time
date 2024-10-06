@@ -2,10 +2,10 @@
     <GSection>
         <div class="is-desktop">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="/images/img-login.svg" class="w-25" />
+                <img src="/images/img-login.svg" style="width: 10rem;" />
             </div>
 
-            <div class="container w-25 mx-auto mt-5 mb-4">
+            <div class="container auth-container mx-auto mt-5 mb-4">
 
                 <div class="text-center">
                     <h5>{{ $t('VerifyingYourAccount') }}</h5>

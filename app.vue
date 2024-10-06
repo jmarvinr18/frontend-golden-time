@@ -18,7 +18,7 @@ export default defineComponent({
     const isLoading = ref(generalRef.isLoading);
 
     onMounted(() => {
-      if (window.screen.width <= 1009) {
+      if (window.screen.width <= 450) {
         var elems = document.querySelectorAll(".is-desktop");
 
         [].forEach.call(elems, (el:any) => {

@@ -2,37 +2,38 @@
     <ProfileGProfileSection :user-data="userData"></ProfileGProfileSection>
     <div class="is-desktop">
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
+        <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
-        <div v-if="userData.supplements?.length">
-          <div class="row">
-            <div v-for="(supplement) in userData.supplements" class="col-md-3 col-xs-12 mb-5 clear-both">
-              <CardsGCardSuplement :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
-            </div>
+
+        <div v-if="userData.supplements" class="content-card-wrapper p-2">
+          <div v-for="(supplement, i) in userData.supplements">
+            <CardsGCardSuplement v-if="i <= 4" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
           </div>
-          <!-- <UtilsGLoadMore></UtilsGLoadMore> -->
+          
         </div>
-        <p v-else class="my-5 text-dark opacity-50">
-          No Supplements
-        </p>
+        
+        <div  class="my-5 text-dark opacity-50 row" v-else>
+          {{ $t('NoSupplements') }}
+        </div>
+        <div v-if="userData.supplements?.length > 5"><UtilsGLoadMore></UtilsGLoadMore></div>
       </div>
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
+        <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
 
-        <div v-if="userData.supplement_wishes">
-          <div  class="row">
-            <div v-for="(supplement) in userData.supplement_wishes" class="col-md-3 col-xs-12 mb-5">
-              <CardsGCardSuplement :supplement="supplement?.supplement_details"></CardsGCardSuplement>
-            </div>
+        <div v-if="userData.supplement_wishes && userData.supplement_wishes?.length" class="content-card-wrapper p-2">
+          <div v-for="(supplement, i) in userData.supplement_wishes" :key="i">
+            <CardsGCardSuplement v-if="i <= 4"  :supplement="supplement?.supplement_details"></CardsGCardSuplement>
           </div>
-          <!-- <UtilsGLoadMore></UtilsGLoadMore> -->
+             
         </div>
-        <p v-else class="my-5 text-dark opacity-50">
-          No Wishlist
-        </p>
+        <div class="my-5 text-dark opacity-50" v-else>
+          {{ $t('NoWishlist') }}
+        </div>
+        <div v-if="userData.supplement_wishes?.length > 5"><UtilsGLoadMore></UtilsGLoadMore></div>   
       </div>
+
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
+        <GSectionTitle :title="$t('Blogs')" icon="bi-journals"></GSectionTitle>
 
         <div v-if="userData.blogs || userData.blogs?.length">
           <div class="row">
@@ -43,9 +44,9 @@
           <!-- <UtilsGLoadMore></UtilsGLoadMore> -->
         </div>
 
-        <p v-else class="my-5 text-dark opacity-50">
-          No Blogs
-        </p>
+        <div class="my-5 text-dark opacity-50" v-else>
+          {{ $t('NoBlogs') }}
+        </div>
       </div>
       <!-- <div class="container pt-2 pb-4">
         <GSectionTitle title="comments" icon="bi-chat"></GSectionTitle>
@@ -73,34 +74,36 @@
     </div>
     <div class="is-mobile">
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="My Supplement" icon="bi-capsule"></GSectionTitle>
+        <GSectionTitle :title="$t('MySupplement')" icon="bi-capsule"></GSectionTitle>
 
         <GContainerSlider v-if="userData.supplements || userData.supplements?.length">
           <CardsGCardSuplement v-for="(supplement) in userData.supplements" :supplement="supplement" :update-mode="true"></CardsGCardSuplement>
         </GContainerSlider>
 
-        <p class="my-5 text-dark opacity-50" v-else>
-          No Supplements
-        </p>
+
+        <div class="my-5 text-dark opacity-50" v-else>
+          {{ $t('NoSupplements') }}
+        </div>
       </div>
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="Drink List" icon="bi-bookmark-heart"></GSectionTitle>
-
-        <GContainerSlider v-if="userData.supplement_wishes">
+        <GSectionTitle :title="$t('DrinkList')" icon="bi-bookmark-heart"></GSectionTitle>
+        
+        <GContainerSlider v-if="userData.supplement_wishes && userData.supplement_wishes.length">
           <CardsGCardSuplement v-for="(supplement) in userData.supplement_wishes" :supplement="supplement?.supplement_details"></CardsGCardSuplement>
         </GContainerSlider>
-        
-        <p class="my-5 text-dark opacity-50" v-else>
-          No Drink List
-        </p>
+
+        <div class="my-5 text-dark opacity-50 overflow-scroll" v-else>
+          {{ $t('NoWishlist') }}
+        </div>      
       </div>
       <div class="container pt-2 pb-4">
-        <GSectionTitle title="blog" icon="bi-journals"></GSectionTitle>
+        <GSectionTitle :title="$t('Blogs')" icon="bi-journals"></GSectionTitle>
 
-        <div v-if="userData.blogs || userData.blogs?.length">
-          <GContainerSlider>
-            <CardsGCardBlog v-for="(blog) in userData.blogs" :blog="blog"></CardsGCardBlog>
-          </GContainerSlider>
+        <GContainerSlider v-if="userData.blogs && userData.blogs.length">
+          <CardsGCardBlog v-for="(blog) in userData.blogs" :blog="blog"></CardsGCardBlog>
+        </GContainerSlider>
+        <div class="my-5 text-dark opacity-50" v-else>
+          {{ $t('NoBlogs') }}
         </div>
         <p class="my-5 text-dark opacity-50" v-else>
           No Blogs
@@ -123,9 +126,14 @@
 </template>
 <script lang="ts">
 import { useAuthStore } from "~/stores/GStoreAuth";
-
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
 export default defineComponent({
   name: 'PageProfile',
+  components: {
+      Swiper,
+      SwiperSlide,
+  },  
   setup() {
    const authStore = useAuthStore();
    var { userData } = storeToRefs(authStore);
@@ -138,9 +146,39 @@ export default defineComponent({
       authStore.getProfile(userData.value.id)
    });
 
+   const onSwiper = (swiper: any) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+  };   
+
+  var breakPoints = {
+      '640': {
+        slidesPerView: 4,
+      },
+      '768': {
+        slidesPerView: 4,
+      },
+      '1024': {
+        slidesPerView: 5,
+      },
+    }
+
    return {
     userData,
+    onSwiper,
+    onSlideChange,
+    breakPoints 
    }
   }
 })
 </script>
+
+<style scoped>
+
+
+.swiper-slide .swiper-slide-active {
+  width: 30rem;
+}
+</style>

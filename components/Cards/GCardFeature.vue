@@ -15,7 +15,7 @@
     </div>
 </template>
 <style scoped>
-@media only screen and (max-width:1009px)  {
+@media only screen and (max-width:450px)  {
     .g-card-feature {
         min-width: 300px !important;
         max-width: 300px !important;

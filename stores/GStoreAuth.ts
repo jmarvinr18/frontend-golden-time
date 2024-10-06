@@ -108,7 +108,13 @@ export const useAuthStore = defineStore("authStore", {
 
             }).catch((err: any) => {
                 const msg = err.response.data.message;
-                generalStore().setError(true, i18n.global.t("PasswordDontMatch"));
+
+                if (msg === "Your email address is not verified.") {
+                    generalStore().setError(true, i18n.global.t("EmailNotVerified"));
+                } else {
+                    generalStore().setError(true, i18n.global.t("PasswordDontMatch"));
+                }
+                
             });
         },
         async verifyEmail(data: any, token:any, id:any) {
@@ -142,7 +148,7 @@ export const useAuthStore = defineStore("authStore", {
 
                 setTimeout(() => {
                     window.location.href = "/me/profile";
-                }, 3000)
+                }, 2000)
                 return res.data;
             }).catch((err: any) => {
                 var status = err.response.status
@@ -156,11 +162,12 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setError(true, errorMsg);
             });
         },
-        async getProfile(id: any) {
+        async getProfile(id: any, params: string = "") {
             generalStore().setIsLoading(true);
-            return GApiAuth.getProfile(id).then((res: any) => {
-                generalStore().setIsLoading(false);
+            return GApiAuth.getProfile(id, params).then((res: any) => {
                 this.userData = res.data;
+                generalStore().setIsLoading(false);            
+                
             }).catch((err: any) => {
                 var status = err.response.status
                 var errorMsg

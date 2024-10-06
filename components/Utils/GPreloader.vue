@@ -28,7 +28,7 @@
     margin: 0 auto;
 }
 
-@media only screen and (max-width: 1009px){
+@media only screen and (max-width: 800px){
     .g-preloader-content {
         z-index: 11000;
         max-width: 50%;

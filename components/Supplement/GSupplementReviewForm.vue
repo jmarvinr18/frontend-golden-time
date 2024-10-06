@@ -1,32 +1,32 @@
 
 <template>
-    <div class="is-desktop g-supplement-review-form w-100 position-relative overflow-visible ">
-        <div class="bg-white mx-auto rounded-lg w-75 position-relative g-shadow" style="min-height:500px">
-            <div class="w-75 mx-auto pt-4 pb-2">
+    <div class="d-flex justify-content-center">
+        <div class="is-desktop g-supplement-review-form position-relative overflow-visible">
+        <div class="bg-white mx-auto rounded-lg position-relative g-shadow" style="min-height:500px">
+            <div class="mx-auto py-5">
                 <SupplementGSupplementReviewItem :supplement="supplement" class="mt-4 mb-5"></SupplementGSupplementReviewItem>
 
-                <div class="d-flex justify-content-center gap-4" style="margin-bottom:80px; margin-top:100px">
-                    <div class="w-25">
+                <div class="rating-box-wrapper">
+                    <div class="rating-box">
                         <SupplementGSupplementRatingCard :supplement="supplement"></SupplementGSupplementRatingCard>
                     </div>
-                    <div class="w-25">
+                    <div class="rating-box">
                         <SupplementGSupplementRatingCard :supplement="supplement" type="effect"></SupplementGSupplementRatingCard>
                     </div>
                 </div>
             </div>
 
-            <div class="w-75 mx-auto py-2">
+            <div class="w-100 mx-auto py-2">
                 <SupplementGSupplementDetailTable :supplement="supplement"></SupplementGSupplementDetailTable>
             </div>
 
             <hr class="border-dashed w-75 mx-auto my-5" />
-
             <div class="w-50 mx-auto">
                 <div v-for="(comment, i) in comments" :key="i">
                     <SupplementGSupplementReviewCard class="mb-1" :comment="comment"></SupplementGSupplementReviewCard>
                     <div class="w-100 text-center mt-1 mb-4">
                         <!-- <a class="text-decoration-none text-primary text-end" v-if="comment?.replies?.length && !comment.view_replies" href="javascript:void(0)" @click="comment.view_replies=true">View {{ comment?.replies?.length }} Replies</a> -->
-                        <UtilsGLoadMore class="mt-1" v-if="comment?.replies?.length && !comment.view_replies" :button-mode="true" :label-btn="`${ comment?.replies?.length } ${$t('Replies')}`" @on-click="comment.view_replies=true"></UtilsGLoadMore>
+                        <UtilsGLoadMore class="mt-1" v-if="comment?.replies?.length && !comment.view_replies" :button-mode="true" :label-btn="`${$t('Replies')}`" @on-click="comment.view_replies=true"></UtilsGLoadMore>
                     </div>
                     <div class="w-100 m-5" v-if="comment.view_replies">
                         <SupplementGSupplementReviewCard v-for="(reply, i) in comment?.replies" :key="i" :comment="reply"></SupplementGSupplementReviewCard>
@@ -35,6 +35,7 @@
             </div>
             <SupplementGSupplementReviewCommentForm></SupplementGSupplementReviewCommentForm>
         </div>
+        </div>        
     </div>
     <div class="is-mobile g-supplement-review-form w-100 position-relative overflow-visible ">
         <div class="bg-white rounded-lg w-100 position-relative g-shadow" >
@@ -114,8 +115,14 @@ export default defineComponent({
     background-color: var(--bs-success);
 }
 .g-supplement-review-form {
-    margin-bottom: 20%;
+    border-radius: 15px;
+    width: 50rem;  
+
+    margin-top: -360px;
+    position: relative;
+    margin-bottom: 10%;    
 }
+
 .g-blog-form-menu {
     /* min-width: unset !important;
     transform: translate3d(-8px, 55.5px, 0) !important;
@@ -131,14 +138,13 @@ export default defineComponent({
     opacity: 1 !important;
 }
 
-@media only screen and (max-width: 1009px) {
-    .g-supplement-review-form {
-        margin-top: -140%
-    }
+.rating-box-wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 5rem;
 }
-</style>
-<style>
-.g-profile-section {
-    margin-bottom: -28% !important;
+.rating-box{
+    width: 15rem;
 }
 </style>

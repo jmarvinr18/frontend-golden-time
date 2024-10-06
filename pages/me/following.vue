@@ -1,7 +1,7 @@
 <template>
     <GSection>
         <div class="container pt-2 pb-4">
-            <GSectionTitle icon="bi-person-down" title="Trainees you are following"></GSectionTitle>
+            <GSectionTitle icon="bi-person-down" :title="$t('TraineesYoureFollowing')"></GSectionTitle>
             <div v-if="followings?.length > 0" class="row bg-white overflow-hidden rounded px-4">
                 <CardsGCardPerson :followData="following" v-for="(following) in followings"></CardsGCardPerson>
             </div>

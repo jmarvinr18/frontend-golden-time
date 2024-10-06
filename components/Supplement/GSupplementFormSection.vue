@@ -1,6 +1,6 @@
 <template>
     <div class="is-desktop container w-100 text-center position-relative" style="margin-bottom:-120px">
-        <button class="btn position-absolute top-0 rounded-pill py-2" style="right:30%" data-bs-toggle="modal" data-bs-target="#photo-modal">
+        <button class="change-img-btn btn position-absolute top-0 rounded-pill py-2" style="right:30%" data-bs-toggle="modal" data-bs-target="#photo-modal">
             <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
                 <i class="bi bi-camera "></i>
             </span>
@@ -9,7 +9,7 @@
         <img :src="prodImage? prodImage:'/images/no-image.jpeg'" style="width: 180px; height: 180px;" class="cursor-pointer object-fit-cover rounded-circle mx-auto g-shadow" data-bs-toggle="modal" data-bs-target="#photo-modal" />
     </div>
     <div class="is-mobile container w-100 text-center position-relative" style="margin-bottom:-100px">
-        <button class="f12 btn position-absolute top-0 rounded-pill py-2" style="right:10%" data-bs-toggle="modal" data-bs-target="#photo-modal">
+        <button class="change-img-btn-mobile f12 btn position-absolute top-0 rounded-pill py-2 change-img-btn-mobile" data-bs-toggle="modal" data-bs-target="#photo-modal">
             <span class="bg-secondary text-center rounded-circle text-black fw-bold me-2 py-1 px-2">
                 <i class="bi bi-camera "></i>
             </span>
