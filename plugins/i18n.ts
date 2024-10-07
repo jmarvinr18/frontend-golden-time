@@ -416,7 +416,7 @@ export const i18n = createI18n({
             SupplementRemovalTitle: "飲み物リストから削除してください。",
             Yes: "はい",
             CommentAddedMsg: "→コメントを投稿できました！",
-            Great: "ログイン成功",
+            Great: "素晴らしい",
             Oops: "ユーザ登録/ログインしてください",
             WelcomeBack: "おかえりなさい",
             ProfileSubmittedMsg: "あなたのプロファイルが正常に更新されました！",
