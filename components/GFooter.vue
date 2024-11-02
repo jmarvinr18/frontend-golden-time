@@ -3,49 +3,61 @@
         <div class="container-xs py-5 text-light">
             <div class="logo">
                 <NuxtLink to="/">
-                    <img src="/logo.png" style="width: 60px;" />
+                    <img src="/images/logo.png" style="width: 120px;" />
                 </NuxtLink>
             </div>
 
             <div class="row lh-lg mt-4">
                 <div class="col-md-4 col-xs-12">
-                    <h5>Home</h5>
-                    <div>news</div>
-                    <div>tournament</div>
-                    <div>feature</div>
-                    <div>players</div>
+                    <h5>{{ $t("Home") }}</h5>
+                    <div>
+                        <NuxtLink to="/news">{{ $t("MuscleNews") }}</NuxtLink>
+                    </div>
+                    <div>
+                        <NuxtLink to="/event">{{ $t("TournamentInformation") }}</NuxtLink>
+                    </div>
+                    <div>
+                        <NuxtLink to="/supplement/search">{{ $t("FindSupplements") }}</NuxtLink>
+                    </div>
+                    <div>
+                        <NuxtLink to="/blog">{{ $t("Blog") }}</NuxtLink>
+                    </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <h5>About</h5>
-                    <div>operating</div>
-                    <div>terms condition</div>
-                    <div>company information</div>
-                    <div>privacy policy</div>
+                    <h5>{{ $t("Member") }}</h5>
+                    <div>
+                        <NuxtLink to="/login">
+                            {{ $t("Login") }}
+                        </NuxtLink>
+                    </div>
+                    <div>
+                        <NuxtLink to="/signup">
+                            {{ $t("SignUp") }}
+                        </NuxtLink>
+                    </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <h5>Support</h5>
-                    <div>inquiry</div>
-                    <div>press room</div>
-                    <div>description based on specified transaction law</div>
+                    <h5>{{ $t("FollowUs") }}</h5>
+                    <div class="d-flex gap-3 h4">
+                        <a href="" class="text-light">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <a href="" class="text-light">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="" class="text-light">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="" class="text-light">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="d-flex gap-3 h4">
-                <a href="" class="text-light">
-                    <i class="bi bi-envelope"></i>
-                </a>
-                <a href="" class="text-light">
-                    <i class="bi bi-twitter"></i>
-                </a>
-                <a href="" class="text-light">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="" class="text-light">
-                    <i class="bi bi-facebook"></i>
-                </a>
-            </div>
+            
 
-            <div class="fw-light mt-4">&copy; 2023 Golden Time | All rights reserved.</div>
+            <div class="fw-light mt-4">&copy; {{ year }} Golden Time | All rights reserved.</div>
         </div>
     </footer>
     <div class="is-mobile position-fixed w-100 bottom-0 start-0 bg-dark p-0">
@@ -86,12 +98,19 @@ export default defineComponent({
     setup() {
         const authStore = useAuthStore();
         const { isAuthenticated } = storeToRefs(authStore)
-
+        const year = new Date().getFullYear();
 
         return {
-            isAuthenticated
+            isAuthenticated,
+            year
         }
                 
     },
 })
 </script>
+<style scoped>
+footer a {
+    text-decoration: none !important;
+    color: white;
+}
+</style>

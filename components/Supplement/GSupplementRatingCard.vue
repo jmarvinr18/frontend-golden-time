@@ -58,3 +58,8 @@ export default defineComponent({
 
 })
 </script>
+<style scoped>
+.g-rating-stars i.h3 {
+    font-size: 2rem !important;
+}
+</style>

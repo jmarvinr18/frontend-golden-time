@@ -1,7 +1,7 @@
 <template>
     <GSection>
         <div class="container">
-            <img :src="blog?.feature_image" style="height: 35rem; object-fit: cover;" class="rounded-lg mt-3 w-100" />
+            <img :src="blog?.feature_image"  class="blog-content-image rounded-lg mt-3 w-100" />
             <div class="g-blog-date text-secondary f12 mt-2">
                 <i class="bi bi-clock me-2 f14"></i>
                 {{blog.created_at}}
@@ -15,15 +15,7 @@
             <hr class="my-3" />
             <div class="g-blog-body mt-5 lh-lg" v-html=" blog.content">
             </div>
-            <GSectionTitle class="mt-lg" title="More news" :icon-hide="true"></GSectionTitle>
-            <div class="is-desktop d-flex">
-                <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_news">
-                    <div class="p-3" style="width: 20rem; height: 20rem;">
-                        <img  :src="b.feature_image" style="width: 20rem; height: 20rem; object-fit: cover;" class="w-100 rounded-lg" />
-                    </div>  
-                </a>              
-
-            </div>
+            <CardsGRelatedBlog :type="'news'" :section-header="$t('MoreNews')" :blogs="blog.related_news"></CardsGRelatedBlog>          
             <div class="is-mobile d-flex flex-column mt-3">
                 <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_blog" class="d-flex p-3 text-decoration-none text-dark">
                    
@@ -41,7 +33,7 @@
             <hr class="my-4" />
             <!-- COMMENT SECTIONS -->
             <div class="w-75 mx-auto">
-                <GSectionTitle class="mt-2 mb-4" title="Comments" :icon-hide="true"></GSectionTitle>
+                <GSectionTitle class="mt-2 mb-4" :title="$t('Comments')" :icon-hide="true"></GSectionTitle>
                 <div v-for="(comment,key) in commentList">
                     <BlogFeaturesGBlogCommentCard :comment="comment" v-if="!comment.is_reply" class="my-3"></BlogFeaturesGBlogCommentCard>
                     
@@ -58,7 +50,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import useTruncateText from '~/composables/useTruncateText'
 export default defineComponent({
     name: 'NewsDetail',
     setup() {
@@ -107,12 +99,11 @@ export default defineComponent({
             
         });
 
-        
-
         return {
             blog,
             isLiked,
-            commentList
+            commentList,
+            useTruncateText
         }
     }
 })

@@ -9,7 +9,7 @@
                     <div class="p-5">
                         {{ $t("NoFollowings") }}
                     </div>
-            </div>                 
+            </div>            
         </div>
     </GSection>
 </template>

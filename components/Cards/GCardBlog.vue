@@ -1,35 +1,36 @@
 <template>
-    <div class="is-desktop bg-white w-100 rounded-lg g-shadow">
-        <div class="g-card-head d-flex gap-4 p-3 border border-bottom border-2 border-light">
-            <div class="g-card-image rounded">
-                <img :src="blog?.feature_image" style="height: 80px; width: 80px;" class="object-fit-cover rounded-lg" />
+    <div class="card-blog-item is-desktop bg-white rounded-lg g-shadow">
+        <div class="g-card-head">
+            <div class="g-card-image">
+                <img :src="blog?.feature_image" class="object-fit-cover rounded" />
             </div>
             <div class="g-card-info">
-                <div class="g-card-title h5"> {{ useTruncateText(blog?.title, 45) }}</div>
-                <div class="d-flex align-items-center">
-                    <div class="text-muted f10">30 seconds ago</div>
-                    <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
-                    <div class="d-flex ms-3 align-items-center">
-                        <!-- <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill" /> -->
-                        <i class="bi bi-person-circle h5"></i>
-                        <div class="ms-2"> {{ blog?.user }} </div>
+                <div class="h5"> {{ useTruncateText(blog?.title, 45) }}</div>
+                    <div class="g-card-meta">
+                        <div class="text-muted f12">{{ $formatTime(blog?.created_at) }}</div>
+                        <NuxtLink :to="`/users/${blog?.user_id}`" class="text-decoration-none text-dark">
+                            <div class="d-flex ms-3 align-items-center">
+                                <div class="ms-2 d-flex align-items-center" >
+                                    <img v-if="blog?.user_image" :src="blog?.user_image" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill"/>
+                                    <i v-else class="bi bi-person-circle f15 mb-0"></i>
+                                    <div class="text-nowrap ms-2 f12 text-muted"> {{ blog?.author }} </div>
+                                </div>
+                            </div>
+                        </NuxtLink>
                     </div>
-                    </NuxtLink>
-                </div>
                 <div class="d-flex mt-1">
                     <i class="bi bi-chat-square-text me-2 text-primary"></i>
                     <i class="bi bi-heart-fill text-primary"></i>
-
                 </div>
             </div>
         </div>
-        <div class="g-card-body p-3 position-relative">
-            <div v-html="useTruncateText(blog?.content,200)"></div>
-            <div class="g-card-more w-100 text-light position-absolute bottom-2 d-flex justify-content-center">
-                <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
+        <div class="g-card-body p-3">
+            <div class="g-card-content text-muted" v-html="useTruncateText(blog?.short_description, truncateCount)"></div>
+            <div class="g-card-more text-light bottom-2">
+                <a :href="`/blog/read/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 me-2">
                     {{ $t("ReadMoreLabel") }} <i class="ms-2 bi bi-chevron-down rounded-pill"></i>
                 </a>
-                <a v-if="isContentOwner"  :href="`/blog/edit/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 w-25 me-2">
+                <a v-if="!isNotContentOwner"  :href="`/blog/edit/${blog?.id}`" class="text-decoration-none text-light bg-dark text-center rounded-pill py-3 me-2">
                     {{ $t("UpdateLabel") }} <strong class="bi bi-arrow-up me-2 fw-bold"></strong>
                 </a>
             </div>
@@ -44,15 +45,16 @@
                         <div class="g-card-info p-3 overlay" style="position: absolute; top: 0;">
                             <div class="h5 text-light">{{ useTruncateText(blog?.title, 45) }}</div>
                             <div class="d-flex align-items-center ">
-                                <NuxtLink to="/users/detail" class="text-decoration-none text-dark">
+                                <NuxtLink :to="`/users/${blog?.user_id}`" class="text-decoration-none text-dark">
                                 <div class="d-flex align-items-center">
-                                    <img src="https://i.pinimg.com/236x/8d/b7/e3/8db7e3866bc0821fd92ffa5edece1c3f.jpg" style="width: 20px; height: 20px;" class="object-fit-cover rounded-pill f14" />
-                                    <div class="ms-2 f12 text-light">{{ blog?.user }} </div>
+                                    <img v-if="blog?.user_image" :src="blog?.user_image" style="height: 20px; width: 20px;"  class="object-fit-cover rounded-pill f14" />
+                                    <i v-else class="bi bi-person-circle h5 mb-0"></i>                                    
+                                    <div class="ms-2 f12 text-light">{{ blog?.user_id }} </div>
                                 </div>
                                 </NuxtLink>
                             </div>
                             <div class="mt-3 f14 text-light">
-                                <div v-html="useTruncateText(blog?.content,50)"></div>
+                                <div v-html="useTruncateText(blog?.short_description,150)"></div>
                             </div>                            
 
                         </div>               
@@ -74,41 +76,136 @@ export default defineComponent({
     setup(props) {
         var authStore = useAuthStore()
         var { userData } = storeToRefs(authStore)
+        var route = useRoute()
+        var truncateCount = ref(70)
 
         var isContentOwner = computed(() => {
             return userData.value.id === props.blog?.user_id
         })        
+
+        var isNotContentOwner = computed(() => {
+            return userData.value.id != props.blog?.user_id
+        })     
+
+        onMounted(() => {
+            window.addEventListener('resize', () => {
+                
+                if(window.innerWidth < 1160){
+                    truncateCount.value = 50
+                    console.log("TRUNCATE: ADD")
+                }
+                if(window.innerWidth > 1160 && truncateCount.value < 70){
+                    truncateCount.value = 70
+                    console.log("TRUNCATE: MINUS")
+                }           
+                if(window.innerWidth <= 500){
+                    truncateCount.value = 30
+                    console.log("TRUNCATE: MINUS")
+                }                       
+            })               
+        })        
         return {
             useTruncateText,
-            isContentOwner
+            isContentOwner,
+            isNotContentOwner,
+            truncateCount
         }
     },
 })
 </script>
 
 <style>
-.g-card-body {
-    height: 190px;
 
+.g-card-meta{
+    display: flex;
+    align-items: center;
 }
 
+.card-blog-item{
+    height: 18rem;
+}
+.g-card-body {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.g-card-head{
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+}
+.g-card-head > .g-card-image > img {
+    height: 100px; 
+    width: 100px;        
+}
 .g-card-more {
     bottom: 25px;
     font-size: 12px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.g-card-more > a {
+    width: 10rem;
 }
 
-.g-card-title {
-    height: 48px;
-}
 .overlay{
     background: rgb(0,0,0);
     background: linear-gradient(164deg, rgba(0,0,0,1) 0%, rgba(133,133,133,0.8099614845938375) 53%, rgba(255,255,255,0) 100%);
     height: 100%;
 }
 
-@media only screen and (max-width:1009px)  {
+@media only screen and (max-width:1400px)  {
+    .card-blog-item{
+        /* width: 100%; */
+        height: 20rem;
+    }
+    .g-card-more > a {
+        width: 8rem;
+    }        
+}
+@media only screen and (max-width:800px)  {
+    /* .g-card-meta{
+        display: flex;
+        flex-direction: column;
+    } */
+
+    .card-blog-item{
+        height: 100%;
+    }    
+    .g-card-more {
+        bottom: 25px;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+    }    
+    .g-card-more > a {
+        width: 10rem;
+    }    
+
+    .card-blog-item{
+        height: 100%;
+    }      
+    .g-card-head{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0rem;
+    }
+    .g-card-head > .g-card-image > img {
+        height: 15rem; 
+        width: 100%;        
+    }
     .g-card-blog .g-card-info {
         width: 100%;
+
+    }
+    .g-card-info{
+        padding: 1rem;
     }
     .g-card-blog .g-card-image {
         width: 45%;
@@ -122,8 +219,47 @@ export default defineComponent({
         min-width: 360px;
     }
 
-    .g-card-body {
-        height: 60vh;
+    .g-card-content{
+        display: none;
+    }    
+}
+
+@media only screen and (max-width:500px)  {
+    .card-blog-item{
+        height: 100%;
+    }      
+    .g-card-head{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0rem;
+    }
+    .g-card-head > .g-card-image > img {
+        height: 15rem; 
+        width: 100%; 
+    }
+    .g-card-blog .g-card-info {
+        width: 100%;
+
+    }
+    .g-card-info{
+        padding: 1rem;
+    }
+    .g-card-blog .g-card-image {
+        width: 100%;
+        height: 250px;
+    }
+
+    .g-card-blog .g-card-image img{
+        height: 100%;
+        width: 100%;
+    }
+    .g-card-blog {
+        min-width: 360px;
+    }
+
+    .g-card-content{
+        display: none;
     }
 }
 </style>

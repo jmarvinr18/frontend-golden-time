@@ -1,28 +1,26 @@
 <template>
     <section id="section-hero" class="is-desktop w-100 g-auth-hero overflow-hidden d-flex align-items-center border-bottom border-3 border-dark">
         <div class="display-4 fw-bold d-flex align-items-center g-title text-light h-25 ms-5 flex-wrap">
-            <div class="g-title-spot position-relative me-3">
+            <div class="g-title-spot position-relative me-3 rounded border border-3 border-light p-1">
                 {{ $t('InTheEnd') }}
-                <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
             </div>
             <div class="text-border-black fw-bold">{{ $t('WhatShouldIDrink') }}</div>
             <div class="text-border-black fw-bold h1 w-100">
                 {{ $t('CheckItNow') }}
             </div>
-            <div class="mt-4 btn-group rounded-pill overflow-hidden bg-white border border-primary w-25 ms-1" role="group" aria-label="Basic example">
+            <div class="mt-4 btn-group rounded-pill overflow-hidden bg-white border border-primary w-10rem ms-1" role="group" aria-label="Basic example">
                 <NuxtLink to="/login" type="button" class="f12 btn text-primary fw-bold">{{ $t('Login') }} <i class="bi bi-arrow-right mb-0 ms-1"></i></NuxtLink>
                 <button type="button" class="f12 btn btn-primary fw-bold">{{ $t('SignUp') }} <i class="bi bi-plus-lg mb-0 ms-1"></i></button>
             </div>
         </div>
     </section>
     <section id="section-hero" class="is-mobile w-100 g-auth-hero overflow-hidden d-flex align-items-center border-bottom border-3 border-dark">
-        <div class="fw-bold d-flex align-items-center g-title text-light h-25 px-3 flex-wrap">
-            <div class="g-title-spot position-relative me-3">
+        <div class="fw-bold d-flex justify-content-center align-items-center g-title text-light px-3 flex-wrap">
+            <div class="g-title-spot position-relative rounded border border-3 border-light p-1 mb-2">
                 {{ $t('InTheEnd') }}
-                <div class="g-title-spot-box position-absolute rounded border border-3 border-light"></div>
             </div>
             <div class="text-border-black fw-bold h4">{{ $t('WhatShouldIDrink') }}</div>
-            <div class="text-border-black fw-bold h6 w-100">
+            <div class="text-border-black fw-bold h6 w-100 text-center">
                 {{ $t('CheckItNow') }}
             </div>
             <div class="mt-3 btn-group rounded-pill overflow-hidden bg-white border border-primary w-100 ms-1" role="group" aria-label="Basic example">
@@ -34,17 +32,14 @@
 </template>
 <style scope>
 .g-auth-hero {
-    height: 70vh;
+    min-height: 600px;
     border-radius: 0 0 30px 30px;
-    background: url('/images/bg-3.jpeg') no-repeat center center;
+    background: url('/images/bg-3.jpeg');
     background-size: cover;
-    box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
 }
 
 .g-title {
-    margin-bottom: 1%;
+    margin-bottom: 3%;
 
 }
 
@@ -67,7 +62,7 @@
     border:1px solid #333000;
 }
 
-@media only screen and (max-width:1009px)  {
+@media only screen and (max-width:450px)  {
     .g-auth-hero {
         height: 40vh;
         background-size: 210%;

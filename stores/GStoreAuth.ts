@@ -20,6 +20,7 @@ export interface User {
     profile_details: ProfileData
     supplements?: Supplement
     blogs?: Blog
+    is_following_me?: boolean
     followings_count?: number
     followers_count?: number
     followers?: Follows[]
@@ -95,19 +96,30 @@ export const useAuthStore = defineStore("authStore", {
                 this.isAuthenticated = true
                 this.token = res.data.token
 
-                generalStore().setSuccess(true, i18n.global.t("WelcomeBack"));
+                generalStore().setSuccess(true, i18n.global.t("WelcomeBack"), true);
 
-                useRouter().push("/me/profile")
+                const route = useRoute();
+
+                if (route.query.ref) {
+                    useRouter().push(`${route.query.ref}`);
+                } else {
+                    useRouter().push("/me/profile");
+                }
 
             }).catch((err: any) => {
                 const msg = err.response.data.message;
-                generalStore().setError(true, i18n.global.t("PasswordDontMatch"));
+
+                if (msg === "Your email address is not verified.") {
+                    generalStore().setError(true, i18n.global.t("EmailNotVerified"));
+                } else {
+                    generalStore().setError(true, i18n.global.t("PasswordDontMatch"));
+                }
+                
             });
         },
-        async verifyEmail(data: any) {
-            console.log("DATA: ", data)
-            return GApiAuth.verifyEmail(data).then((res: any) => {
-                useRouter().push("/account/verified")
+        async verifyEmail(data: any, token:any, id:any) {
+            return GApiAuth.verifyEmail(data, token, id).then((res: any) => {
+                useRouter().push(`/account/verified`);
             }).catch((err: any) => {
                 const msg = err.response.data.message;
                 generalStore().setError(true, msg);
@@ -128,15 +140,15 @@ export const useAuthStore = defineStore("authStore", {
             });
         },
 
-        async updateProfile() {
+        async updateProfile(data: any) {
             generalStore().setIsLoading(true);
-            return GApiAuth.updateProfile(this.userData, this.userData.id).then((res: any) => {
+            return GApiAuth.updateProfile(data, this.userData.id).then((res: any) => {
                 generalStore().setIsLoading(false);
                 generalStore().setSuccess(true, i18n.global.t("ProfileSubmittedMsg"));
 
                 setTimeout(() => {
                     window.location.href = "/me/profile";
-                }, 3000)
+                }, 2000)
                 return res.data;
             }).catch((err: any) => {
                 var status = err.response.status
@@ -150,11 +162,12 @@ export const useAuthStore = defineStore("authStore", {
                 generalStore().setError(true, errorMsg);
             });
         },
-        async getProfile(id: any) {
+        async getProfile(id: any, params: string = "") {
             generalStore().setIsLoading(true);
-            return GApiAuth.getProfile(id).then((res: any) => {
-                generalStore().setIsLoading(false);
+            return GApiAuth.getProfile(id, params).then((res: any) => {
                 this.userData = res.data;
+                generalStore().setIsLoading(false);            
+                
             }).catch((err: any) => {
                 var status = err.response.status
                 var errorMsg

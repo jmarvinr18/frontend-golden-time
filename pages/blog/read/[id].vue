@@ -2,24 +2,16 @@
     <GSection>
         <div class="container">
             <GSectionTitle :title="blog.title" :icon-hide="true"></GSectionTitle>
-            <hr class="my-3" />
+            <hr class="my-1"/>
+
             <BlogGBlogAuthor :blog="blog"></BlogGBlogAuthor>
-            <div class="g-blog-date text-secondary f12 mt-3">
-                <i class="bi bi-clock me-2 f14"></i>
-                {{ $formatTime(blog.created_at) }}
-            </div>
-            <img :src="blog.feature_image"  style="height: 35rem; object-fit: cover;" class="rounded-lg mt-3 w-100" />
+            <!-- {{ blog.related_news }} -->
+            <img :src="blog.feature_image" class="blog-content-image rounded-lg mt-3 w-100" />
             <div class="g-blog-body mt-5 lh-lg" v-html="blog.content"></div>
 
-            <GSectionTitle class="mt-lg p-3" title="More blogs" :icon-hide="true"></GSectionTitle>
-            <div class="is-desktop d-flex">
-                <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_blog">
-                    <div class="p-3" style="width: 20rem; height: 20rem;">
-                        <img  :src="b.feature_image" style="width: 20rem; height: 20rem; object-fit: cover;" class="w-100 rounded-lg" />
-                    </div>  
-                </a>              
+            <CardsGRelatedBlog :type="'blog'" :section-header="$t('MoreBlogs')" :blogs="blog.related_blog"></CardsGRelatedBlog>
 
-            </div>
+
             <div class="is-mobile d-flex flex-column mt-3">
                 <a :href="`/blog/read/${b.id}`" v-for="(b,s) in blog.related_blog" class="d-flex p-3 text-decoration-none text-dark">
                    
@@ -29,21 +21,21 @@
                     
                     <div class="px-3">
                         <h5>{{ b?.title }}</h5>
-                        <div v-html="useTruncateText(b?.content, 50)"></div>
+                        <div v-html="useTruncateText(b?.short_description, 50)"></div>
                     </div>
                 </a>
                 
             </div>            
             <hr class="mt-5 mb-3" />
             <div class="d-flex align-items-center justify-content-end h4 text-primary">
-                <BlogFeaturesGBlogLike :is-liked="isLiked" :id="blog.id"></BlogFeaturesGBlogLike>
+                <!-- <BlogFeaturesGBlogLike :is-liked="isLiked" :id="blog.id"></BlogFeaturesGBlogLike> -->
                 <BlogFeaturesGBlogComment :id="blog.id"></BlogFeaturesGBlogComment>
                 <BlogFeaturesGBlogShare :objData="blog" id="share-modal"></BlogFeaturesGBlogShare>
             </div>
 
             <!-- COMMENT SECTIONS -->
             <div class="w-75 mx-auto">
-                <GSectionTitle class="mt-2 mb-4" title="Comments" :icon-hide="true"></GSectionTitle>
+                <GSectionTitle class="mt-2 mb-4" :title="$t('Comments')" :icon-hide="true"></GSectionTitle>
                 <div v-for="(comment,key) in commentList">
                     <BlogFeaturesGBlogCommentCard :comment="comment" v-if="!comment.is_reply" class="my-3"></BlogFeaturesGBlogCommentCard>
                     
@@ -59,6 +51,7 @@
     </GSection>
 </template>
 <script lang="ts">
+import useTruncateText from '~/composables/useTruncateText'
 export default defineComponent({
     name: 'BlogDetail',
     setup() {
@@ -110,7 +103,8 @@ export default defineComponent({
         return {
             blog,
             isLiked,
-            commentList
+            commentList,
+            useTruncateText
         }
     }
 })

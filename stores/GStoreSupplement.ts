@@ -12,7 +12,7 @@ export interface Supplement {
     image: string
     supplement_type: string
     flavor: string
-    price: string
+    price: number
     ingredients: string
     serving_type: string
     url: string
@@ -55,6 +55,16 @@ export const useSupplementStore = defineStore("supplementStore", {
     },
     actions: {
 
+        async removeDrinkWish(supplement_id: string, type: string){
+            switch (type) {
+                case "drink_wish":
+                    await GApiSupplement.removeDrinkWish(supplement_id)
+                    break;
+                case "my_supplement":
+                    break;
+            }
+        },
+
         async toggleDrinkWish(supplement_id: string, is_list = true) {
             await GApiSupplement.addOrRemoveFromDrinkWish(supplement_id).then(() => {
                 var sup = is_list ? this.allSupplements.find(({ id }) => id == supplement_id) : this.supplement
@@ -66,6 +76,8 @@ export const useSupplementStore = defineStore("supplementStore", {
                         sup.user_supplement_wish_count -= 1
                     }
                 }
+            }).catch(() => {
+                console.log("ERROR!")
             })
         },
         async toggleHasDrank(supplement_id: string, is_list = true) {
@@ -83,16 +95,22 @@ export const useSupplementStore = defineStore("supplementStore", {
         },
         async getAllSupplement(query: any = "") {
             generalStore().setIsLoading(true);
-            return GApiSupplement.getAllSupplements(query).then((res: any) => {
+            return GApiSupplement.getAllSupplements(query).then((res: any): Supplement => {
                 generalStore().setIsLoading(false);
                 this.allSupplements = res.data.data
                 return res.data;
             });
         },
-        async getSupplement(id: any) {
+        async searchSupplement(query: any = "") {
             generalStore().setIsLoading(true);
-            return GApiSupplement.getDetailSupplement(id).then((res: any) => {
+            return GApiSupplement.SearchSupplements(query).then((res: any) => {
                 generalStore().setIsLoading(false);
+                this.allSupplements = res.data.data;
+                return res.data;
+            });
+        },
+        async getSupplement(id: any) {
+            return GApiSupplement.getDetailSupplement(id).then((res: any) => {
                 this.supplement = res.data
                 return res.data;
             });
@@ -142,11 +160,7 @@ export const useSupplementStore = defineStore("supplementStore", {
             });
         },
         async ratingSupplement(data: any) {
-            // const { t } = useI18n();
-            generalStore().setIsLoading(true);
             return GApiSupplement.ratingSupplement(data).then((res: any) => {
-                generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, i18n.global.t("RatingSubmitted"));
                 return res.data;
             }).catch((err: any) => {
                 var status = err.response.status
@@ -161,10 +175,7 @@ export const useSupplementStore = defineStore("supplementStore", {
             });
         },
         async createCommentSupplement(data: any) {
-            generalStore().setIsLoading(true);
             return GApiSupplement.createCommentSupplement(data).then((res: any) => {
-                generalStore().setIsLoading(false);
-                generalStore().setSuccess(true, i18n.global.t("CommentAddedMsg"));
                 this.getSupplement(data?.supplement_id);
                 return res.data;
             }).catch((err: any) => {

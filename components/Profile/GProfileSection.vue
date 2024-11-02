@@ -3,7 +3,7 @@
 <template>
     <section id="section-hero" class="g-profile-section position-relative">
     </section>
-    <GProfileCard :obj-data="objData" :mode="mode"></GProfileCard>
+    <GProfileCard :user-data="userData" :mode="mode"></GProfileCard>
 </template>
 <script lang="ts">
 import GProfileCard from './GProfileCard.vue';
@@ -11,7 +11,7 @@ import GProfileCard from './GProfileCard.vue';
 export default defineComponent({
     name: 'GProfileSection',
     props: {
-        objData: {
+        userData: {
             type: Object,
             default: {}
         },
@@ -27,12 +27,15 @@ export default defineComponent({
 </script>
 <style scoped>
 .g-profile-section {
-    min-height: 70vh;
+    min-height: 600px;
     border-radius: 0 0 30px 30px;
-    background: url('/images/bg-2.png') no-repeat center center;
+    background: url('/images/bg-2.png');
     background-size: cover;
-    box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
+}
+
+@media only screen and (min-height:800px) {
+    .g-profile-section {
+        /* padding-top:40rem; */
+    }
 }
 </style>

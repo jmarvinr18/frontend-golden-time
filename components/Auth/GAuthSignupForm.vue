@@ -1,5 +1,5 @@
 <template>
-    <div class="is-desktop">
+    <div class="is-desktop g-auth-signup-body">
         <div class="g-auth-signup-title w-100 mt-5">
             <div class="h3 mt-5">{{ $t('RegisterANewAccount') }}</div>
             <div class="text-danger mt-5">* {{ $t('RequiredInput') }}</div>
@@ -23,6 +23,8 @@
 .g-form-input input::placeholder {
     color:#e4e4e4;
 }
-
+.g-auth-signup-body{
+    margin-top: 7rem;
+}
 
 </style>

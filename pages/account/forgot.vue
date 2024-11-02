@@ -2,12 +2,12 @@
     <GSection>
         <div class="is-desktop">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="/images/img-forgot.svg" style="width: 20%;" />
+                <img src="/images/img-forgot.svg" style="width: 10rem;" />
             </div>
-            <div class="container w-25 text-center mx-auto mt-5">
+            <div class="container auth-container text-center mx-auto mt-5">
                 <div class="h3">{{ $t('ChangePasswordHeader') }}</div>
             </div>
-            <div class="container w-25 mx-auto mt-5 mb-4">
+            <div class="container auth-container mx-auto mt-5 mb-4">
                 <div class="mb-2 f12"> {{ $t('PleaseEnterYourRegisteredEmail') }} </div>
                 <div class="input-group input-group-md bg-white mb-3 w-100 mx-auto border rounded border-secondary">
                     <span class="input-group-text bg-none border-0" id="basic-addon1">
@@ -69,3 +69,8 @@ export default defineComponent({
     },
 })
 </script>
+<style scoped>
+.auth-container{
+    width: 30rem;
+}
+</style>

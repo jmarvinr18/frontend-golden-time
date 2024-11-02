@@ -1,28 +1,30 @@
 <template>
     <section class="is-desktop g-header position-fixed top-0 start-0 w-100 py-3" :class="fixedMode==false? colorChange? 'active':'':'bg-dark'">
-        <div class="container">
+        <div class="container-fluid">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="left-side d-flex align-items-center">
                     <div class="me-5">
                         <NuxtLink to="/">
                             <!-- <img src="/images/icon.jpeg" style="width: 50px;" /> -->
-                            <div style="background: url('/images/GT_logo_white2.png') no-repeat center center; width: 100px; height: 40px; background-size: cover;"></div>
+                            <div style="background: url('/images/logo.png') no-repeat center center; width: 120px; height: 40px; background-size: contain;"></div>
                         </NuxtLink>
                     </div>
-                    <a v-if="authStore.isAuthenticated" href="/supplement/add" class="text-decoration-none">
-                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2">+</span>{{ $t('SupplementRegistration') }}</div>
-                    </a>
 
-                    <a v-else href="/supplement/search" class="text-decoration-none">
-                        <div class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-search mt-2 mb-0 me-2"></i></span>{{ $t('SupplementSearch') }}</div>                
-                    </a>                    
+                    <!-- {{ isDesktop }} -->
+
+                    <NuxtLink v-if="isAuthenticated" to="/supplement/add" class="text-decoration-none">
+                        <div v-if="isDesktop" class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-plus mt-2 mb-0 me-2"></i></span><span>{{ $t('SupplementRegistration') }}</span></div>
+                    </NuxtLink>
+                    <NuxtLink v-if="!isAuthenticated" to="/supplement/search" class="text-decoration-none">
+                        <div v-if="isDesktop"  class="border rounded-pill px-3 py-1 text-light"><span class="me-2"><i class="bi bi-search mt-2 mb-0 me-2"></i></span>{{ $t('SupplementSearch') }}</div>  
+                    </NuxtLink>               
                 </div>
                 <div class="right-side d-flex align-items-center gap-3">
-                    <div v-if="authStore.isAuthenticated" class="d-flex align-items-center gap-1">
+                    <div v-if="isAuthenticated" class="d-flex align-items-center gap-1">
                         <NuxtLink to="/me/profile" class="text-decoration-none me-2" >
                             <div class="text-light d-flex align-items-center text-decoration-none">
                                 <img :src="userData.profile_details.image? userData.profile_details.image:'/images/no-avatar.jpeg'" class="me-2 border rounded-circle" style="width: 30px; height: 30px;" />
-                                <div class="text-light fw-bold">
+                                <div v-if="isDesktop" class="text-light fw-bold">
                                     <span>{{ $t("HelloGreetings") }}, {{ userData.name }}</span>
                                 </div>
                             </div>
@@ -93,14 +95,10 @@
     </section>
     <section class="is-mobile g-header position-fixed top-0 start-0 w-100" :class="fixedMode==false? colorChange? 'active':'':'bg-dark'">
         <div class="d-flex align-items-center justify-content-between px-3 py-3">
-            <div class="left-side d-flex align-items-center" style="width: 15%;">
-                <div class="me-5">
-                    <NuxtLink to="/">
-                        <img src="/images/GT_logo_white2.png" style="width: 40px;" />
-                    </NuxtLink>
-                </div>
-            </div>
-            <div class="middle-side w-50 text-center">
+            <NuxtLink to="/" class="left-side d-flex align-items-center logo-mobile">
+                <div></div>
+            </NuxtLink>
+            <!-- <div class="middle-side w-50 text-center"> -->
                 <!-- <div class="input-group w-100 rounded-pill overflow-hidden bg-white">
                     <span class="bg-none input-group-text border-0" id="basic-addon1">
                         <i class="bi bi-search"></i>
@@ -108,8 +106,8 @@
                     <input type="text" class="form-control border-0 py-1" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
                 
                 </div> -->
-            </div>
-            <div v-if="authStore.token" class="right-side d-flex align-items-center">
+            <!-- </div> -->
+            <div v-if="token" class="right-side d-flex align-items-center">
                 <div>
                     <i class="bi bi-bell text-light h2 mb-0"></i>
                 </div>
@@ -189,13 +187,13 @@
 </template>
 <script lang="ts">
 export default defineComponent({
-    async setup() {
+    setup() {
         const colorChange = ref(false);
         const fixedMode = ref(false);
         const route:any = useRoute();
         const authStore = useAuthStore();
-        const { userData } = storeToRefs(authStore)
-        
+        const { userData, isAuthenticated, token} = storeToRefs(authStore)
+        const isDesktop = ref(false)
 
         var searchKeyword =ref<any>("")
         const filterOpts = ref([
@@ -242,14 +240,23 @@ export default defineComponent({
             }
         }
 
+        const isMobile = computed(() => {
+            return window.innerWidth <= 700 ? true : false
+        })
+
         watch(() => route.fullPath, () => {
             // console.log('change url')
             checkScroll();
         });
 
         onMounted(() => {
+            isDesktop.value = window.innerWidth > 700 ? true : false
             checkScroll()
             window.addEventListener('scroll', initScroll);
+            window.addEventListener('resize', () => {
+                console.log("SCREEN WIDTH: ", window.innerWidth > 700 ? true : false)
+                isDesktop.value = window.innerWidth > 700 ? true : false
+            })            
         });
 
         var logout = () => {
@@ -258,10 +265,13 @@ export default defineComponent({
 
         return {
             fixedMode,
-            authStore,
+            isAuthenticated,
+            token,
             colorChange,
             logout,
             userData,
+            isMobile,
+            isDesktop
         }
     }
 })
@@ -279,6 +289,13 @@ export default defineComponent({
 .dropdown-divider {
     border: 0.1rem solid #0202021f;
     margin-bottom: 16px;
+}
+
+.logo-mobile {
+    width: 200px;
+    object-fit: cover;
+    background: url(/images/GT_logo_white2.png) -34px center / cover no-repeat;
+    height: 41px;
 }
 
 @keyframes bg-fade {
